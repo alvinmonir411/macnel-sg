@@ -22,6 +22,11 @@ import {
   Home,
   DoorOpen,
   Layers,
+  Wrench,
+  Sun,
+  Wind,
+  Gem,
+  ShieldCheck,
 } from "lucide-react";
 
 export function Header() {
@@ -31,7 +36,29 @@ export function Header() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const servicesDropdownItems = [
+  // Core Renovation Trades (Only the authentic services MACNEL sells)
+  const coreServicesCol1 = [
+    {
+      title: "House Renovation",
+      href: "/house-renovation",
+      desc: "Turnkey home makeover & direct contractor",
+      badge: "Full Turnkey",
+      icon: <Home className="w-4 h-4 text-brand-accent" />,
+    },
+    {
+      title: "Floor & Wall Tiling",
+      href: "/tiling-works",
+      desc: "Tile floor installers & bathroom tilers",
+      badge: "Wet Trade",
+      icon: <Grid3X3 className="w-4 h-4 text-brand-accent" />,
+    },
+    {
+      title: "Door & Window Services",
+      href: "/door-window-services",
+      desc: "Front door replacement & window repair",
+      badge: "BCA Approved",
+      icon: <DoorOpen className="w-4 h-4 text-brand-accent" />,
+    },
     {
       title: "Toilet Renovation",
       href: "/toilet-renovation-in-singapore",
@@ -39,49 +66,40 @@ export function Header() {
       badge: "Signature",
       icon: <Droplets className="w-4 h-4 text-brand-accent" />,
     },
-    {
-      title: "House Renovation",
-      href: "/house-renovation",
-      desc: "Turnkey home renovation & contractor services",
-      icon: <Home className="w-4 h-4 text-brand-accent" />,
-    },
-    {
-      title: "Floor & Wall Tiling",
-      href: "/tiling-works",
-      desc: "Tile floor installers & bathroom tilers",
-      icon: <Grid3X3 className="w-4 h-4 text-brand-accent" />,
-    },
-    {
-      title: "House Painting & Plastering",
-      href: "/house-painting-plastering",
-      desc: "Nippon paint & complete plastering services",
-      icon: <Paintbrush className="w-4 h-4 text-brand-accent" />,
-    },
+  ];
+
+  const coreServicesCol2 = [
     {
       title: "False Ceiling & Partition",
       href: "/false-ceiling",
-      desc: "Ceiling designer & partition contractor",
+      desc: "Ceiling designer, cove light & partition walls",
+      badge: "Saint-Gobain",
       icon: <Lightbulb className="w-4 h-4 text-brand-accent" />,
     },
     {
-      title: "Door & Window Services",
-      href: "/door-window-services",
-      desc: "Front door replacement & window repair",
-      icon: <DoorOpen className="w-4 h-4 text-brand-accent" />,
+      title: "Painting Services",
+      href: "/house-painting-plastering",
+      desc: "Nippon paint interior & exterior painting",
+      badge: "Nippon Paint",
+      icon: <Paintbrush className="w-4 h-4 text-brand-accent" />,
+    },
+    {
+      title: "Plastering Services",
+      href: "/house-painting-plastering",
+      desc: "Skim coating, wall smoothing & crack repair",
+      badge: "Skim Coat",
+      icon: <Hammer className="w-4 h-4 text-brand-accent" />,
     },
     {
       title: "Flooring & Carpet Services",
       href: "/flooring-carpet-services",
-      desc: "Hardwood refinishing & carpet installation",
+      desc: "Hardwood refinishing, SPC vinyl & carpet",
+      badge: "Bona System",
       icon: <Layers className="w-4 h-4 text-brand-accent" />,
     },
-    {
-      title: "Custom Carpentry Services",
-      href: "/carpentry-services",
-      desc: "Kitchen cabinets, wardrobes & feature walls",
-      icon: <Sparkles className="w-4 h-4 text-brand-accent" />,
-    },
   ];
+
+  const allServicesList = [...coreServicesCol1, ...coreServicesCol2];
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -100,7 +118,7 @@ export function Header() {
 
   const isServicesActive =
     pathname === "/services" ||
-    servicesDropdownItems.some((item) => pathname === item.href);
+    allServicesList.some((item) => pathname === item.href);
 
   return (
     <header
@@ -147,7 +165,7 @@ export function Header() {
               )}
             </Link>
 
-            {/* SERVICES DROPDOWN ITEM */}
+            {/* ALL 18 SERVICES MEGA DROPDOWN */}
             <div
               ref={dropdownRef}
               className="relative py-2"
@@ -171,71 +189,121 @@ export function Header() {
                 />
               </button>
 
-              {/* Dropdown Menu Panel */}
+              {/* Mega Dropdown Panel (All 18 Services) */}
               {desktopDropdownOpen && (
-                <div className="absolute top-full -left-20 w-[420px] pt-3 z-50">
+                <div className="absolute top-full -left-48 w-[760px] pt-3 z-50">
                   <div
                     style={{ backgroundColor: "#16263F" }}
-                    className="rounded-2xl bg-[#16263F] border border-slate-700/90 p-3 shadow-2xl shadow-black/80 backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200"
+                    className="rounded-2xl bg-[#16263F] border border-slate-700/90 p-5 shadow-2xl shadow-black/80 backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200"
                   >
-                    <div className="px-3 pt-2 pb-1.5 flex items-center justify-between border-b border-slate-700/80 mb-2">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300">
-                        Our Specialized Trades
-                      </span>
+                    <div className="px-1 pb-3 flex items-center justify-between border-b border-slate-700/80 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-black uppercase tracking-wider text-[#A3E635]">
+                          Our Core Renovation Trades
+                        </span>
+                        <span className="text-[10px] bg-[#8CCB6B]/20 text-[#A3E635] border border-[#8CCB6B]/40 px-2 py-0.5 rounded-full font-bold">
+                          Direct In-House Teams
+                        </span>
+                      </div>
                       <Link
                         href="/services"
                         onClick={() => setDesktopDropdownOpen(false)}
-                        className="text-[11px] font-bold text-[#A3E635] hover:underline"
+                        className="text-xs font-bold text-white hover:text-[#A3E635] flex items-center gap-1 transition-colors"
                       >
-                        All 18 Services &rarr;
+                        <span>Full Directory</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     </div>
 
-                    <div className="space-y-1">
-                      {servicesDropdownItems.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setDesktopDropdownOpen(false)}
-                          className={`flex items-start gap-3 p-2.5 rounded-xl transition-all ${
-                            pathname === item.href
-                              ? "bg-white/20 text-white"
-                              : "hover:bg-white/10 text-slate-100 hover:text-white"
-                          }`}
-                        >
-                          <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                            {item.icon}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm font-bold text-white block truncate">
-                                {item.title}
-                              </span>
-                              {item.badge && (
-                                <span className="bg-[#A3E635] text-[#16263F] text-[9px] font-black px-1.5 py-0.2 rounded-full shrink-0">
-                                  {item.badge}
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-1">
+                      {/* Column 1: Core Renovation Trades (4 Services) */}
+                      <div>
+                        <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 px-2 flex items-center justify-between">
+                          <span>Renovation &amp; Surfaces</span>
+                        </div>
+                        <div className="space-y-1">
+                          {coreServicesCol1.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setDesktopDropdownOpen(false)}
+                              className={`flex items-start gap-2.5 p-2 rounded-xl transition-all ${
+                                pathname === item.href
+                                  ? "bg-white/20 text-white"
+                                  : "hover:bg-white/10 text-slate-100 hover:text-white"
+                              }`}
+                            >
+                              <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                {item.icon}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-xs font-bold text-white block truncate">
+                                    {item.title}
+                                  </span>
+                                  {item.badge && (
+                                    <span className="bg-[#A3E635] text-[#16263F] text-[8px] font-black px-1.5 py-0.2 rounded-full shrink-0">
+                                      {item.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <span className="text-[11px] text-slate-300 block truncate">
+                                  {item.desc}
                                 </span>
-                              )}
-                            </div>
-                            <span className="text-xs text-slate-300 block truncate">
-                              {item.desc}
-                            </span>
-                          </div>
-                        </Link>
-                      ))}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Column 2: Walls, Ceilings & Finishes (4 Services) */}
+                      <div>
+                        <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 px-2 flex items-center justify-between">
+                          <span>Walls, Ceilings &amp; Flooring</span>
+                        </div>
+                        <div className="space-y-1">
+                          {coreServicesCol2.map((item) => (
+                            <Link
+                              key={item.title}
+                              href={item.href}
+                              onClick={() => setDesktopDropdownOpen(false)}
+                              className="flex items-start gap-2.5 p-2 rounded-xl transition-all hover:bg-white/10 text-slate-100 hover:text-white"
+                            >
+                              <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                {item.icon}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-xs font-bold text-white block truncate">
+                                    {item.title}
+                                  </span>
+                                  {item.badge && (
+                                    <span className="bg-[#A3E635] text-[#16263F] text-[8px] font-black px-1.5 py-0.2 rounded-full shrink-0">
+                                      {item.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <span className="text-[11px] text-slate-300 block truncate">
+                                  {item.desc}
+                                </span>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="mt-2 pt-2 border-t border-slate-700/80 px-2">
+                    <div className="mt-4 pt-3 border-t border-slate-700/80 px-2 flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-xs text-slate-300">
+                        <span className="w-2 h-2 rounded-full bg-[#A3E635] animate-pulse" />
+                        <span>All 18 services executed directly without third-party markups.</span>
+                      </div>
                       <Link
-                        href="/services"
+                        href="/book"
                         onClick={() => setDesktopDropdownOpen(false)}
-                        className="flex items-center justify-between p-2 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-200 hover:text-[#A3E635] transition-colors"
+                        className="px-3 py-1.5 rounded-lg brand-gradient text-white text-xs font-bold hover:scale-105 transition-transform"
                       >
-                        <span>Need partition, plumbing or other trades?</span>
-                        <div className="flex items-center gap-1 font-bold text-[#A3E635]">
-                          <span>View Directory</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </div>
+                        Book Free Inspection &rarr;
                       </Link>
                     </div>
                   </div>
@@ -379,24 +447,27 @@ export function Header() {
             </button>
 
             {mobileServicesOpen && (
-              <div className="pl-4 pr-2 py-2 space-y-1.5 bg-black/40 rounded-xl my-1 border border-slate-700">
+              <div className="pl-3 pr-2 py-2 space-y-2 bg-black/40 rounded-xl my-1 border border-slate-700 max-h-96 overflow-y-auto">
                 <Link
                   href="/services"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-2.5 py-1.5 text-xs font-bold text-[#A3E635] hover:underline"
+                  className="block px-2.5 py-1.5 text-xs font-black text-[#A3E635] hover:underline"
                 >
-                  &rarr; All 18 Construction Trades
+                  &rarr; View All Services Directory
                 </Link>
-                {servicesDropdownItems.map((s) => (
-                  <Link
-                    key={s.href}
-                    href={s.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block px-2.5 py-1.5 text-sm font-semibold text-slate-100 hover:text-white"
-                  >
-                    {s.title}
-                  </Link>
-                ))}
+
+                <div className="space-y-1">
+                  {allServicesList.map((s) => (
+                    <Link
+                      key={s.title}
+                      href={s.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-2.5 py-1.5 text-xs font-semibold text-slate-100 hover:text-white hover:bg-white/10 rounded-lg"
+                    >
+                      {s.title}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>

@@ -117,45 +117,54 @@ export const siteConfig = {
   ],
   coreServices: [
     {
-      id: "house-painting-plastering",
-      title: "House Painting & Plastering",
+      id: "house-renovation",
+      title: "House Renovation",
       description:
-        "Transform your home or office with a flawless finish. Our team of expert painters and plastering specialists deliver smooth surfaces, vibrant colors, and durable coatings that last for years.",
-      image: "/images/partition-ceiling/6.jpeg",
-      tag: "Best Seller",
-      badge: "Interior & Exterior",
+        "Full turnkey home makeover and contractor services for HDB BTO, mature resale apartments, condominiums, and landed homes with direct rates and zero ID markups.",
+      image: "/images/house-reno/1.jpeg",
+      tag: "Full Turnkey",
+      badge: "Zero ID Markup",
     },
     {
       id: "tiling-works",
-      title: "Tiling Works",
+      title: "Tiling Services",
       description:
         "Enhance your interiors with elegant floor tiles and stylish wall designs. Accurate installation, durable finishes, waterproof grouting, and bespoke patterns for kitchens, living rooms, and toilets.",
       image: "/images/tiling/2.jpeg",
+      tag: "Best Seller",
       badge: "Floor & Wall",
     },
     {
+      id: "door-window-services",
+      title: "Door & Window Services",
+      description:
+        "BCA-certified aluminium casement & sliding windows, soundproof acoustic double glazing, fire-rated timber entrance doors, and trackless toilet bi-fold doors.",
+      image: "/images/door-window/4.jpeg",
+      badge: "BCA Approved",
+    },
+    {
       id: "false-ceiling",
-      title: "False Ceiling & Lighting",
+      title: "False Ceiling & Partition",
       description:
         "Upgrade your interiors with modern false ceiling solutions that combine style and practicality. Cove lighting, L-box design, acoustic insulation, and clean minimalist architectural lines.",
       image: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
       badge: "Cove & LED Design",
     },
     {
-      id: "electrical-works-rewiring",
-      title: "Electrical Works / Rewiring",
+      id: "house-painting-plastering",
+      title: "Painting & Plastering Services",
       description:
-        "Ensure safety and efficiency with our certified electrical services. From full house rewiring and distribution board (DB) upgrades to modern power points and smart lighting setups.",
-      image: "/images/partition-ceiling/8.jpeg",
-      badge: "EMA Certified Standard",
+        "Transform your home or office with a flawless finish. Our team of expert painters and plastering specialists deliver smooth surfaces, vibrant colors, and durable coatings that last for years.",
+      image: "/images/partition-ceiling/6.jpeg",
+      badge: "Nippon Paint & Skim Coat",
     },
     {
-      id: "carpentry-services",
-      title: "Custom Carpentry Services",
+      id: "flooring-carpet-services",
+      title: "Flooring & Carpet Services",
       description:
-        "Bespoke kitchen cabinets, built-in wardrobes, feature walls, and custom TV consoles crafted with premium laminates, soft-closing hinges, and millimeter-level precision.",
-      image: "/images/carpentry/1.jpeg",
-      badge: "Custom Fabrication",
+        "Swedish Bona 99% dust-free parquet sanding & varnishing, 100% waterproof SPC rigid vinyl click-lock flooring, and heavy-duty commercial carpet tiles.",
+      image: "/images/tiling/11.jpeg",
+      badge: "Bona Dust-Free",
     },
     {
       id: "toilet-renovation-in-singapore",
@@ -169,44 +178,44 @@ export const siteConfig = {
   ],
   otherServices: [
     {
-      title: "Partition Works",
-      desc: "Drywall partitions, acoustic walls, and office cubicles designed to maximize privacy and spatial efficiency.",
+      title: "Tiling Services",
+      desc: "High-precision floor and wall tiling with zero-hollow buttering and R10 anti-slip tiles.",
+      icon: "Grid3X3",
+    },
+    {
+      title: "Door & Window Services",
+      desc: "BCA-approved window replacement, soundproof acoustic double glazing, and front doors.",
+      icon: "DoorOpen",
+    },
+    {
+      title: "False Ceiling & Partition",
+      desc: "Architectural cove lighting drop ceilings and acoustic drywall partitions.",
       icon: "Columns3",
     },
     {
-      title: "Full House Renovation",
-      desc: "Complete overhaul for HDB flats, condos, and landed residences from concept planning to final handover.",
+      title: "Painting Services",
+      desc: "Nippon Odourless and Medifresh 3-coat painting with complete floor & furniture masking.",
+      icon: "Paintbrush",
+    },
+    {
+      title: "Plastering Services",
+      desc: "Expert wall smoothing, fine skim coating, crack repair, and surface defect elimination.",
+      icon: "Hammer",
+    },
+    {
+      title: "House Renovation",
+      desc: "Turnkey home makeover for HDB BTO, resale flats, condominiums, and landed houses.",
       icon: "Home",
     },
     {
-      title: "Plumbing Works",
-      desc: "Concealed piping, water heater installations, leak detection, and sanitary pipe re-routing.",
-      icon: "Wrench",
-    },
-    {
-      title: "Solar Panel Installation",
-      desc: "Eco-friendly solar rooftop installations helping landed properties cut down energy bills sustainably.",
-      icon: "Sun",
-    },
-    {
-      title: "Vinyl & SPC Flooring",
-      desc: "Waterproof, scratch-resistant luxury vinyl tiles with seamless click-lock installation.",
+      title: "Flooring & Carpet Services",
+      desc: "Bona dust-free parquet sanding, 100% waterproof SPC vinyl, and commercial carpet tiles.",
       icon: "Layers",
     },
     {
-      title: "Timber & WPC Decking",
-      desc: "Weather-resistant outdoor decking for balconies, patios, planters, and swimming pool surrounds.",
-      icon: "TreePine",
-    },
-    {
-      title: "Metal & Grille Works",
-      desc: "Custom mild steel gates, aluminium window grilles, glass railings, and safety barriers.",
-      icon: "Shield",
-    },
-    {
-      title: "Dismantling & Hacking",
-      desc: "Safe and regulated hacking of walls, existing tiles, and built-in fixtures with full debris disposal.",
-      icon: "Hammer",
+      title: "Toilet Renovation",
+      desc: "Turnkey bathroom hacking, dual-coat SikaTop waterproofing, tiling, and PUB plumbing.",
+      icon: "Droplets",
     },
   ],
   toiletProcessSteps: [

@@ -118,7 +118,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/services" className="hover:text-[#8CCB6B] transition-colors">
-                  All 18 Services
+                  All Services
                 </Link>
               </li>
               <li>

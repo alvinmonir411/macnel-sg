@@ -1,281 +1,349 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { MessageCircle, Phone, ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  MessageCircle,
+  Phone,
+  ArrowRight,
+  CheckCircle2,
+  Sparkles,
+  ShieldCheck,
+  Building2,
+  CalendarCheck,
+  Check,
+  Home,
+  Grid3X3,
+  DoorOpen,
+  Lightbulb,
+  Paintbrush,
+  Hammer,
+  Layers,
+  Droplets,
+} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Construction & Renovation Services in Singapore",
+  title: "Core Renovation Services Singapore | MACNEL Construction Pte. Ltd",
   description:
-    "18 services from MACNEL Construction: painting & plastering, tiling, false ceiling, electrical rewiring, carpentry, toilet renovation, plumbing, flooring, decking and more.",
+    "Direct renovation contractor services in Singapore: House Renovation, Tiling Services, Door & Window Replacement, False Ceiling & Partition, Painting, Plastering, Flooring & Carpets, and Toilet Renovation.",
 };
 
-const fullServicesList = [
+interface ServiceItem {
+  id: string;
+  title: string;
+  image: string;
+  desc: string;
+  badge: string;
+  specs: string[];
+  href: string;
+  icon: typeof Home;
+}
+
+const mainServices: ServiceItem[] = [
   {
-    title: "Partition Works",
-    image: "/images/partition-ceiling/1.jpeg",
-    desc: "Our partition solutions are designed to create functional, flexible, and stylish spaces for both homes and offices. Whether you need to divide a large hall into smaller rooms, add privacy to your workspace, or create customized layouts, we provide durable and modern drywall and acoustic partition systems.",
-  },
-  {
+    id: "house-renovation",
     title: "House Renovation",
     image: "/images/house-reno/1.jpeg",
-    desc: "Give your property a complete makeover with our comprehensive renovation services. From flooring upgrades and wall finishes to electrical rewiring and plumbing improvements, we handle every aspect from concept planning to final handover.",
+    desc: "Turnkey home transformations for HDB BTO, mature resale apartments, condominiums, and landed houses with direct contractor pricing and zero interior designer middleman commissions.",
+    badge: "Direct Contractor",
+    specs: ["Save 20% to 30% without ID markups", "Full HDB and BCA permit handling", "Guaranteed handover schedule & Gantt timeline"],
+    href: "/house-renovation",
+    icon: Home,
   },
   {
-    title: "Plumbing Works",
+    id: "tiling-works",
+    title: "Tiling Services",
+    image: "/images/tiling/2.jpeg",
+    desc: "Master tile installation with zero-hollow polymer buttering. Large-format 600x1200 homogeneous slabs, anti-slip bathroom flooring, and razor-sharp 45° mitred external edge joints.",
+    badge: "BCA Certified Tilers",
+    specs: ["C2TE heavy-duty polymer adhesive", "Mapei Ultracolor anti-mold waterproof grout", "Laser 3D horizontal leveling system"],
+    href: "/tiling-works",
+    icon: Grid3X3,
+  },
+  {
+    id: "door-window-services",
+    title: "Door & Window Services",
+    image: "/images/door-window/4.jpeg",
+    desc: "BCA-certified aluminium casement & sliding windows, soundproof acoustic double glazing, fire-rated timber entrance doors, and trackless toilet bi-fold doors.",
+    badge: "BCA Approved Installers",
+    specs: ["Grade SS304 stainless safety rivets & stays", "-42 dB acoustic noise reduction double glazing", "CoC certified fire-rated timber doors"],
+    href: "/door-window-services",
+    icon: DoorOpen,
+  },
+  {
+    id: "false-ceiling",
+    title: "False Ceiling & Partition",
+    image: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
+    desc: "Architectural drop ceilings, cove lighting pelmets, curtain boxes, and acoustic drywall partitions built with heavy-duty galvanized steel framing and Saint-Gobain plasterboards.",
+    badge: "Saint-Gobain Gyproc",
+    specs: ["Hot-dipped zinc galvanised steel channel grids", "Acoustic rockwool sound insulation infill", "3-coat fiber-reinforced anti-crack joint taping"],
+    href: "/false-ceiling",
+    icon: Lightbulb,
+  },
+  {
+    id: "house-painting",
+    title: "Painting Services",
+    image: "/images/partition-ceiling/6.jpeg",
+    desc: "Flawless wall and ceiling painting using genuine Nippon Odourless and Medifresh anti-bacterial paint. Full floor masking, furniture wrapping, and clean handover.",
+    badge: "Nippon Paint Specialist",
+    specs: ["Nippon 5101 Odour-Less wall sealer coat", "2 coats Nippon Medifresh anti-bacterial paint", "Comprehensive furniture and floor drop-sheet wrapping"],
+    href: "/house-painting-plastering",
+    icon: Paintbrush,
+  },
+  {
+    id: "plastering-services",
+    title: "Plastering Services",
+    image: "/images/partition-ceiling/4.jpeg",
+    desc: "Expert wall smoothing, multi-layer skim coating, plaster patching, and joint repair. Eliminates wall undulations, hairline cracks, and surface blemishes.",
+    badge: "Ultra-Smooth Skim Coat",
+    specs: ["Pre-mixed polymer-modified fine skim coating", "Fiberglass mesh reinforcement for crack bridging", "Laser-flat surface inspection prior to painting"],
+    href: "/house-painting-plastering",
+    icon: Hammer,
+  },
+  {
+    id: "flooring-carpet-services",
+    title: "Flooring & Carpet Services",
+    image: "/images/tiling/11.jpeg",
+    desc: "Swedish Bona 99% dust-free parquet sanding & varnishing, 100% waterproof SPC rigid vinyl click-lock flooring, and heavy-duty commercial acoustic carpet tiles.",
+    badge: "Bona Dust-Free System",
+    specs: ["Non-toxic Swedish Bona Traffic HD polyurethane", "100% waterproof SPC direct tile overlay", "High-density nylon commercial acoustic carpet tiles"],
+    href: "/flooring-carpet-services",
+    icon: Layers,
+  },
+  {
+    id: "toilet-renovation",
+    title: "Toilet & Bathroom Renovation",
     image: "/images/tiling/12.jpeg",
-    desc: "Our plumbing services cover everything from water supply systems and concealed drainage lines to leak repairs and pipe installations. With rapid response and licensed plumbers, we ensure durability and zero leakages.",
-  },
-  {
-    title: "Solar Panel Installation",
-    image: "/images/door-window/WhatsApp_Image_2026-10-05_at_5.52.24_PM.jpeg",
-    desc: "Reduce electricity bills and embrace sustainability with our eco-friendly solar panel solutions tailored for landed residential and commercial properties in Singapore.",
-  },
-  {
-    title: "Vinyl & SPC Flooring",
-    image: "/images/carpentry/1.jpeg",
-    desc: "Scratch-resistant, 100% waterproof luxury vinyl tiles with seamless click-lock installation. Perfect for living rooms, bedrooms, and high-traffic commercial spaces.",
-  },
-  {
-    title: "Timber & WPC Decking",
-    image: "/images/carpentry/3.jpeg",
-    desc: "Enhance your outdoor living areas with premium timber and wood-plastic composite (WPC) decking for balconies, patios, planters, and swimming pool surrounds.",
-  },
-  {
-    title: "Handyman Services",
-    image: "/images/door-window/6.jpeg",
-    desc: "Quick fixes and small maintenance tasks: furniture assembly, wall mounting, door lock repairs, curtain track fixing, and general home upkeep.",
-  },
-  {
-    title: "Door & Window Installation",
-    image: "/images/door-window/1.jpeg",
-    desc: "Timber doors, sliding glass doors, aluminium casement windows, and bi-fold toilet doors designed to improve home security and thermal insulation.",
-  },
-  {
-    title: "Air-Conditioning Service & Installation",
-    image: "/images/partition-ceiling/11.jpeg",
-    desc: "Chemical washing, routine servicing, refrigerant gas top-up, and brand new multi-split system installation for residential and commercial units.",
-  },
-  {
-    title: "Marble Polishing",
-    image: "/images/tiling/3.jpeg",
-    desc: "Restore the luxurious shine of your marble floors and vanity countertops. We remove stains, scratches, and dullness using diamond-grinding techniques.",
-  },
-  {
-    title: "Gardening & Landscape Maintenance",
-    image: "/images/door-window/8.jpeg",
-    desc: "Lawn trimming, plant fertilizing, automated irrigation system installation, and landscape beautification for landed homes and commercial grounds.",
-  },
-  {
-    title: "Metal Works & Fabrication",
-    image: "/images/door-window/3.jpeg",
-    desc: "Custom mild steel main entrance gates, window grilles, glass balcony railings, and structural steel framing built with high precision.",
+    desc: "Turnkey bathroom overhauls: regulated pneumatic hacking, dual-layer SikaTop waterproofing, concealed PUB piping, tiling, and sanitary ware fit-out.",
+    badge: "Signature Wet Trade",
+    specs: ["Mandatory 48-hour water ponding leak test", "PUB certified SS304 stainless steel piping", "R10 anti-slip floor tiles with clean fall to drain"],
+    href: "/toilet-renovation-in-singapore",
+    icon: Droplets,
   },
 ];
 
 export default function ServicesPage() {
   return (
     <div className="bg-white">
-      {/* Page Banner */}
-      <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[75vh] lg:min-h-[85vh] flex items-center py-20 lg:py-28">
-        <div
-          className="absolute inset-0 bg-cover bg-center pointer-events-none transition-transform duration-1000 scale-105"
-          style={{
-            backgroundImage:
-              "url('/images/tiling/44.jpeg')",
-            opacity: 0.70,
-          }}
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-[#16263F] text-white min-h-screen flex items-center py-20 lg:py-28">
+        <img
+          src="/images/tiling/44.jpeg"
+          alt="Renovation Services in Singapore"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-transform duration-1000"
+          style={{ opacity: 0.85 }}
         />
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
             background:
-              "linear-gradient(105deg, rgba(22, 38, 63, 0.95) 0%, rgba(22, 38, 63, 0.82) 42%, rgba(22, 38, 63, 0.35) 75%, rgba(22, 38, 63, 0.60) 100%)",
+              "linear-gradient(90deg, rgba(22, 38, 63, 0.94) 0%, rgba(22, 38, 63, 0.78) 45%, rgba(22, 38, 63, 0.25) 75%, rgba(22, 38, 63, 0.55) 100%)",
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-12">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#8CCB6B]/40 bg-[#8CCB6B]/10 px-4 py-1.5 text-xs font-semibold text-[#8CCB6B] mb-5">
-              <span className="w-2 h-2 rounded-full bg-[#8CCB6B] animate-pulse" />
-              <span>18 Services · One Team</span>
-            </span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#8CCB6B]/40 bg-[#8CCB6B]/15 px-4 py-1.5 text-xs font-bold text-white mb-6 backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-[#A3E635]" />
+              <span>Direct In-House Renovation Contractor · Singapore</span>
+            </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
-              Our All Services
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.12]">
+              Specialized Renovation Trades <br />
+              <span className="text-[#8CCB6B]">Engineered by Direct Craftsmen</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8">
-              Eighteen construction, renovation, and maintenance services for homes and
-              businesses across Singapore, handled seamlessly by our in-house team.
+            <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-md">
+              We specialize strictly in what we build best. From whole-house renovations and master tiling to soundproof
+              windows, false ceilings, painting, plastering, and flooring — executed with zero middleman markups.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20free%20quotation.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20renovation%20services.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl hover:scale-[1.02] transition-all"
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
               >
                 <MessageCircle className="w-5 h-5 fill-current" />
-                <span>Free Quotation on WhatsApp</span>
+                <span>WhatsApp Floor Plan For Quote</span>
               </a>
 
-              <a
-                href={`tel:${siteConfig.contact.phoneTel}`}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all"
+              <Link
+                href="/book"
+                className="inline-flex items-center gap-2 px-7 py-4 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 text-white font-bold text-sm backdrop-blur-md transition-all"
               >
-                <Phone className="w-4 h-4 text-[#8CCB6B]" />
-                <span>Call {siteConfig.contact.phonePrimary}</span>
-              </a>
+                <CalendarCheck className="w-4 h-4 text-[#A3E635]" />
+                <span>Book Free Site Inspection</span>
+              </Link>
+            </div>
+
+            {/* Quick Metrics */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/20">
+              <div>
+                <p className="text-xl sm:text-2xl font-black text-white">100%</p>
+                <p className="text-xs text-slate-300 font-medium">In-House Employed</p>
+              </div>
+              <div>
+                <p className="text-xl sm:text-2xl font-black text-[#A3E635]">Save 25%</p>
+                <p className="text-xs text-slate-300 font-medium">No ID Markups</p>
+              </div>
+              <div>
+                <p className="text-xl sm:text-2xl font-black text-white">BCA / HDB</p>
+                <p className="text-xs text-slate-300 font-medium">Approved Permits</p>
+              </div>
+              <div>
+                <p className="text-xl sm:text-2xl font-black text-[#A3E635]">12 Mos</p>
+                <p className="text-xs text-slate-300 font-medium">Warranty Guarantee</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core 6 Services Bento Grid */}
-      <section className="py-20 bg-white">
+      {/* Trust Strip */}
+      <section className="bg-[#0F172A] py-8 text-white border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-14">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
-              Primary Trades
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A]">
-              Core Renovation Services
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {siteConfig.coreServices.map((service) => (
-              <div
-                key={service.id}
-                className="group relative overflow-hidden rounded-2xl bg-[#16263F] shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
-              >
-                <div className="relative h-80 w-full overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#16263F] via-[#16263F]/70 to-transparent opacity-95" />
-
-                  <div className="absolute top-4 left-4 z-10 flex gap-2">
-                    {service.badge && (
-                      <span className="rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white border border-white/20">
-                        {service.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="absolute inset-x-0 bottom-0 z-10 p-6 flex flex-col justify-end">
-                    <h3 className="text-2xl font-extrabold text-white mb-2 group-hover:text-[#8CCB6B] transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-white/80 line-clamp-3 leading-relaxed mb-4">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center justify-between pt-3 border-t border-white/15">
-                      <Link
-                        href={`/${service.id}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8CCB6B] hover:underline"
-                      >
-                        <span>View details</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                      <a
-                        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi%20MACNEL%2C%20I%20am%20inquiring%20about%20${encodeURIComponent(
-                          service.title
-                        )}.`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-white/80 hover:text-white"
-                      >
-                        Get Quote
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="flex items-center justify-center gap-3">
+              <ShieldCheck className="w-6 h-6 text-[#A3E635]" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wide">BCA Registered Contractor</span>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <Building2 className="w-6 h-6 text-[#A3E635]" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wide">HDB &amp; MCST Permitted</span>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <CheckCircle2 className="w-6 h-6 text-[#A3E635]" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wide">Itemized Milestone Quotes</span>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <Sparkles className="w-6 h-6 text-[#A3E635]" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wide">Singapore Direct Pricing</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Twelve More Trades Section (Matching Reference Site) */}
-      <section className="py-20 bg-[#F2F6F9] border-t border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-3">
-              Twelve More Trades, One Dependable Team
-            </h2>
-            <p className="text-base text-slate-600">
-              No need to coordinate with multiple third-party sub-contractors.
-            </p>
-          </div>
+      {/* Core Services Grid */}
+      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
+            Craftsmanship Directory
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
+            Our Core Renovation Capabilities
+          </h2>
+          <p className="text-base text-slate-600 mt-3 font-normal">
+            Every trade is staffed with full-time master builders. Click any trade to explore detailed specifications or request an immediate quotation.
+          </p>
+        </div>
 
-          <div className="space-y-16">
-            {fullServicesList.map((service, index) => {
-              const isEven = index % 2 === 1;
-              return (
-                <div
-                  key={service.title}
-                  className={`flex flex-col gap-8 sm:items-center ${
-                    isEven ? "sm:flex-row-reverse" : "sm:flex-row"
-                  }`}
-                >
-                  <div className="w-full sm:w-1/2 rounded-2xl overflow-hidden h-64 shadow-md">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {mainServices.map((service, idx) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={idx}
+                className="group rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl hover:border-[#8CCB6B]/60 transition-all duration-500 flex flex-col justify-between"
+              >
+                {/* Visual Image Header */}
+                <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
+                  <div className="absolute top-3 left-3 bg-[#16263F]/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20 shadow-sm flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 text-[#A3E635]" />
+                    <span>{service.badge}</span>
                   </div>
 
-                  <div className="flex-1">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#2C6BA6] mb-1 block">
-                      Trade {(index + 7).toString().padStart(2, "0")}
-                    </span>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                  <div className="absolute bottom-3 right-3 w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md text-[#16263F] shadow-lg flex items-center justify-center group-hover:bg-[#8CCB6B] group-hover:text-white transition-colors duration-300">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Content Body */}
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-extrabold text-[#0F172A] mb-2 group-hover:text-[#2C6BA6] transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-5">
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal mb-5">
                       {service.desc}
                     </p>
+
+                    <div className="space-y-2 mb-6 pt-3 border-t border-slate-100">
+                      {service.specs.map((spec, sIdx) => (
+                        <div key={sIdx} className="flex items-start gap-2 text-[11px] text-slate-700 font-medium">
+                          <Check className="w-3.5 h-3.5 text-[#4E9A3C] shrink-0 mt-0.5" />
+                          <span className="leading-tight">{spec}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Row */}
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <Link
+                      href={service.href}
+                      className="inline-flex items-center gap-1 text-xs font-bold text-[#16263F] hover:text-[#2C6BA6] transition-colors"
+                    >
+                      <span>Explore Scope</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+
                     <a
-                      href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(
+                      href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20${encodeURIComponent(
                         service.title
                       )}.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2C6BA6] hover:text-[#4E9A3C] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8CCB6B]/15 hover:bg-[#8CCB6B] text-[#16263F] hover:text-white text-[11px] font-bold transition-all"
                     >
-                      <span>Inquire about {service.title}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>Quote</span>
                     </a>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-16 bg-[#16263F] text-white text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-3xl font-extrabold mb-4">Ready to start your renovation?</h2>
-          <p className="text-white/75 text-sm sm:text-base mb-8">
-            Contact us today for a free on-site consultation and transparent quotation.
+      {/* Bottom CTA Banner */}
+      <section className="bg-gradient-to-r from-[#16263F] to-[#2C6BA6] text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
+            Need a Renovation Quote with Direct Contractor Rates?
+          </h2>
+          <p className="text-base text-slate-200 max-w-2xl mx-auto mb-8 font-normal">
+            Send us your floor plan or schedule a free site survey. We will provide an itemized, transparent quotation
+            within 24 hours.
           </p>
-          <a
-            href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20free%20quotation.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl"
-          >
-            <MessageCircle className="w-5 h-5 fill-current" />
-            <span>Chat on WhatsApp for Free Quote</span>
-          </a>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20renovation.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"
+            >
+              <MessageCircle className="w-5 h-5 fill-current" />
+              <span>WhatsApp Us: +65 9187 8887</span>
+            </a>
+
+            <Link
+              href="/book"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-[#16263F] font-bold text-sm shadow-xl hover:bg-slate-100 transition-all"
+            >
+              <CalendarCheck className="w-4 h-4 text-[#2C6BA6]" />
+              <span>Book Site Inspection</span>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
