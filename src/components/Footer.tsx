@@ -39,49 +39,57 @@ export function Footer() {
               <li>
                 <Link
                   href="/toilet-renovation-in-singapore"
-                  className="hover:text-[#8CCB6B] transition-colors"
+                  className="hover:text-[#A3E635] transition-colors"
                 >
                   Toilet Renovation (Hacking to Handover)
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/house-painting-plastering"
-                  className="hover:text-[#8CCB6B] transition-colors"
+                  href="/house-renovation"
+                  className="hover:text-[#A3E635] transition-colors"
                 >
-                  House Painting &amp; Plastering
+                  House Renovation (Turnkey Home Renovation)
                 </Link>
               </li>
               <li>
                 <Link
                   href="/tiling-works"
-                  className="hover:text-[#8CCB6B] transition-colors"
+                  className="hover:text-[#A3E635] transition-colors"
                 >
-                  Floor &amp; Wall Tiling Works
+                  Tiling Services &amp; Tile Installation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/house-painting-plastering"
+                  className="hover:text-[#A3E635] transition-colors"
+                >
+                  Painting Services SG &amp; Plastering
                 </Link>
               </li>
               <li>
                 <Link
                   href="/false-ceiling"
-                  className="hover:text-[#8CCB6B] transition-colors"
+                  className="hover:text-[#A3E635] transition-colors"
                 >
-                  False Ceiling &amp; Cove Lights
+                  False Ceiling &amp; Partition Contractor
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/electrical-works-rewiring"
-                  className="hover:text-[#8CCB6B] transition-colors"
+                  href="/door-window-services"
+                  className="hover:text-[#A3E635] transition-colors"
                 >
-                  Electrical Works &amp; Rewiring
+                  Door &amp; Window Replacement &amp; Repair
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/carpentry-services"
-                  className="hover:text-[#8CCB6B] transition-colors"
+                  href="/flooring-carpet-services"
+                  className="hover:text-[#A3E635] transition-colors"
                 >
-                  Custom Carpentry &amp; Cabinets
+                  Flooring &amp; Carpet Services
                 </Link>
               </li>
             </ul>

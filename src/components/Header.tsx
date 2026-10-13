@@ -19,6 +19,9 @@ import {
   Sparkles,
   ArrowRight,
   CalendarCheck,
+  Home,
+  DoorOpen,
+  Layers,
 } from "lucide-react";
 
 export function Header() {
@@ -37,28 +40,40 @@ export function Header() {
       icon: <Droplets className="w-4 h-4 text-brand-accent" />,
     },
     {
-      title: "House Painting & Plastering",
-      href: "/house-painting-plastering",
-      desc: "Smooth surfaces & durable premium coatings",
-      icon: <Paintbrush className="w-4 h-4 text-brand-accent" />,
+      title: "House Renovation",
+      href: "/house-renovation",
+      desc: "Turnkey home renovation & contractor services",
+      icon: <Home className="w-4 h-4 text-brand-accent" />,
     },
     {
       title: "Floor & Wall Tiling",
       href: "/tiling-works",
-      desc: "Laser-aligned tiles with waterproof grouting",
+      desc: "Tile floor installers & bathroom tilers",
       icon: <Grid3X3 className="w-4 h-4 text-brand-accent" />,
     },
     {
-      title: "False Ceiling & Lighting",
+      title: "House Painting & Plastering",
+      href: "/house-painting-plastering",
+      desc: "Nippon paint & complete plastering services",
+      icon: <Paintbrush className="w-4 h-4 text-brand-accent" />,
+    },
+    {
+      title: "False Ceiling & Partition",
       href: "/false-ceiling",
-      desc: "Cove lights, L-box & minimalist ceilings",
+      desc: "Ceiling designer & partition contractor",
       icon: <Lightbulb className="w-4 h-4 text-brand-accent" />,
     },
     {
-      title: "Electrical Works / Rewiring",
-      href: "/electrical-works-rewiring",
-      desc: "EMA certified rewiring, DB box & power points",
-      icon: <Zap className="w-4 h-4 text-brand-accent" />,
+      title: "Door & Window Services",
+      href: "/door-window-services",
+      desc: "Front door replacement & window repair",
+      icon: <DoorOpen className="w-4 h-4 text-brand-accent" />,
+    },
+    {
+      title: "Flooring & Carpet Services",
+      href: "/flooring-carpet-services",
+      desc: "Hardwood refinishing & carpet installation",
+      icon: <Layers className="w-4 h-4 text-brand-accent" />,
     },
     {
       title: "Custom Carpentry Services",

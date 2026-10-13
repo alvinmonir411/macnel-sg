@@ -18,6 +18,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about-us", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/contact-us", priority: 0.9, changeFrequency: "monthly" as const },
     {
+      path: "/house-renovation",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      path: "/door-window-services",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      path: "/flooring-carpet-services",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
+    {
       path: "/house-painting-plastering",
       priority: 0.85,
       changeFrequency: "weekly" as const,
