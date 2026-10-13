@@ -6,22 +6,29 @@ export function Hero() {
   return (
     <section
       style={{ backgroundColor: "var(--dark-bg, #16263F)" }}
-      className="relative overflow-hidden bg-[#16263F] text-white"
+      className="relative overflow-hidden bg-[#16263F] text-white min-h-[calc(100vh-4.5rem)] lg:min-h-screen flex items-center"
     >
-      {/* Background Image with Controlled Opacity */}
+      {/* Background Image with Natural Color & High Impact */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center pointer-events-none transition-transform duration-1000 scale-105"
         style={{
           backgroundImage:
-            "url('/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg')",
+            "url('/images/partition-ceiling/12.jpeg')",
+          opacity: 0.68,
         }}
       />
-      {/* Deep Navy Gradient Overlays for Guaranteed Text Legibility */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#16263F] via-[#16263F]/95 to-[#16263F]/85 pointer-events-none" />
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#2C6BA6]/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 left-10 w-96 h-96 bg-[#8CCB6B]/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Directional Gradient Overlay: deep readability on left, crystal clear vibrant view on right */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(105deg, rgba(22, 38, 63, 0.95) 0%, rgba(22, 38, 63, 0.84) 38%, rgba(22, 38, 63, 0.36) 72%, rgba(22, 38, 63, 0.62) 100%)",
+        }}
+      />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#2C6BA6]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 left-10 w-96 h-96 bg-[#8CCB6B]/25 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 pb-20 lg:pb-28">
+      <div className="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 w-full">
         <div className="grid gap-12 lg:gap-14 lg:grid-cols-[1.25fr_.85fr] items-center">
           {/* Left Column: Headlines & CTA */}
           <div className="flex flex-col gap-6 items-start">
@@ -89,10 +96,10 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Column: High-Contrast Spotlight Card */}
+          {/* Right Column: High-Contrast Glassmorphic Card */}
           <div
-            style={{ backgroundColor: "rgba(30, 51, 82, 0.95)" }}
-            className="rounded-2xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden bg-[#1E3352]/95 border border-slate-600/80 backdrop-blur-xl"
+            style={{ backgroundColor: "rgba(22, 38, 63, 0.82)" }}
+            className="rounded-2xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden bg-[#16263F]/85 border border-white/20 backdrop-blur-xl"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#8CCB6B]/20 rounded-full blur-2xl pointer-events-none" />
 

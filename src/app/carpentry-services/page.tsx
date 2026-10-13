@@ -12,16 +12,23 @@ export const metadata: Metadata = {
 export default function CarpentryPage() {
   return (
     <div className="bg-white">
-      <section className="relative overflow-hidden bg-[#16263F] text-white py-20">
+      <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[75vh] lg:min-h-[85vh] flex items-center py-20 lg:py-24">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+          className="absolute inset-0 bg-cover bg-center pointer-events-none transition-transform duration-1000 scale-105"
           style={{
-            backgroundImage: "url('/images/carpentry/2.jpeg')",
+            backgroundImage: "url('/images/carpentry/5.jpeg')",
+            opacity: 0.70,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/75" />
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(105deg, rgba(22, 38, 63, 0.95) 0%, rgba(22, 38, 63, 0.82) 42%, rgba(22, 38, 63, 0.35) 75%, rgba(22, 38, 63, 0.60) 100%)",
+          }}
+        />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <Link
             href="/services"
             className="inline-flex items-center gap-1.5 text-xs text-[#8CCB6B] hover:underline mb-6"

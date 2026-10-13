@@ -53,17 +53,24 @@ export default function ToiletRenovationPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#16263F] text-white py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[80vh] lg:min-h-screen flex items-center py-20 lg:py-24">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+          className="absolute inset-0 bg-cover bg-center pointer-events-none transition-transform duration-1000 scale-105"
           style={{
             backgroundImage:
-              "url('/images/tiling/3.jpeg')",
+              "url('/images/tiling/13.jpeg')",
+            opacity: 0.70,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/75" />
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(105deg, rgba(22, 38, 63, 0.95) 0%, rgba(22, 38, 63, 0.82) 42%, rgba(22, 38, 63, 0.35) 75%, rgba(22, 38, 63, 0.60) 100%)",
+          }}
+        />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-[1.2fr_.8fr] gap-12 items-center">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-[#8CCB6B]/50 bg-[#8CCB6B]/15 px-4 py-1.5 text-xs font-bold text-white mb-5">
