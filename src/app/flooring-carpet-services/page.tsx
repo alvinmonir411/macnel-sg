@@ -105,7 +105,7 @@ export default function FlooringCarpetPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <img
-              src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=1000&auto=format&fit=crop"
+              src="/images/carpentry/5.jpeg"
               alt="Hardwood floor refinishing and carpet installation"
               className="w-full h-96 object-cover"
             />

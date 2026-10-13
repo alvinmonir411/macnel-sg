@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+        url: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
         width: 1200,
         height: 630,
         alt: "MACNEL Construction & Renovation Services Singapore",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MACNEL Construction Pte. Ltd | Renovation Contractor Singapore",
     description: siteConfig.description,
-    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"],
+    images: ["/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg"],
   },
   robots: {
     index: true,

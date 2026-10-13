@@ -72,7 +72,7 @@ export default function ElectricalPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
             <img
-              src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1000&auto=format&fit=crop"
+              src="/images/partition-ceiling/12.jpeg"
               alt="Electrical works and rewiring"
               className="w-full h-80 object-cover"
             />

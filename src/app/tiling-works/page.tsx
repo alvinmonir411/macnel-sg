@@ -105,7 +105,7 @@ export default function TilingPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <img
-              src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop"
+              src="/images/tiling/11.jpeg"
               alt="Tile installation companies near me in Singapore"
               className="w-full h-96 object-cover"
             />

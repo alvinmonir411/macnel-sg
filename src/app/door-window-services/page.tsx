@@ -106,14 +106,14 @@ export default function DoorWindowPage() {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 aspect-[4/5]">
               <img
-                src="/Door&window/1.jpeg"
+                src="/images/door-window/1.jpeg"
                 alt="Door and window replacement in Singapore"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200 aspect-[4/5] mt-6">
               <img
-                src="/Door&window/3.jpeg"
+                src="/images/door-window/3.jpeg"
                 alt="Replacement front door installation"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />

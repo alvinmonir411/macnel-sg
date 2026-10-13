@@ -74,7 +74,7 @@ export function ToiletSpotlight() {
           <div className="lg:sticky lg:top-28 rounded-2xl overflow-hidden border border-slate-200/80 bg-white shadow-xl">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop"
+                src="/images/tiling/11.jpeg"
                 alt="Bathroom renovation in progress"
                 className="w-full h-full object-cover"
                 loading="lazy"

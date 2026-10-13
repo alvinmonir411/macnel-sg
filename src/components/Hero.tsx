@@ -10,10 +10,10 @@ export function Hero() {
     >
       {/* Background Image with Controlled Opacity */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity pointer-events-none"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1800&auto=format&fit=crop')",
+            "url('/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg')",
         }}
       />
       {/* Deep Navy Gradient Overlays for Guaranteed Text Legibility */}

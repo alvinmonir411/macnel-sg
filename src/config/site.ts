@@ -121,7 +121,7 @@ export const siteConfig = {
       title: "House Painting & Plastering",
       description:
         "Transform your home or office with a flawless finish. Our team of expert painters and plastering specialists deliver smooth surfaces, vibrant colors, and durable coatings that last for years.",
-      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/partition-ceiling/6.jpeg",
       tag: "Best Seller",
       badge: "Interior & Exterior",
     },
@@ -130,7 +130,7 @@ export const siteConfig = {
       title: "Tiling Works",
       description:
         "Enhance your interiors with elegant floor tiles and stylish wall designs. Accurate installation, durable finishes, waterproof grouting, and bespoke patterns for kitchens, living rooms, and toilets.",
-      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop",
+      image: "/images/tiling/2.jpeg",
       badge: "Floor & Wall",
     },
     {
@@ -138,7 +138,7 @@ export const siteConfig = {
       title: "False Ceiling & Lighting",
       description:
         "Upgrade your interiors with modern false ceiling solutions that combine style and practicality. Cove lighting, L-box design, acoustic insulation, and clean minimalist architectural lines.",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
+      image: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
       badge: "Cove & LED Design",
     },
     {
@@ -146,7 +146,7 @@ export const siteConfig = {
       title: "Electrical Works / Rewiring",
       description:
         "Ensure safety and efficiency with our certified electrical services. From full house rewiring and distribution board (DB) upgrades to modern power points and smart lighting setups.",
-      image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1000&auto=format&fit=crop",
+      image: "/images/partition-ceiling/8.jpeg",
       badge: "EMA Certified Standard",
     },
     {
@@ -154,7 +154,7 @@ export const siteConfig = {
       title: "Custom Carpentry Services",
       description:
         "Bespoke kitchen cabinets, built-in wardrobes, feature walls, and custom TV consoles crafted with premium laminates, soft-closing hinges, and millimeter-level precision.",
-      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1000&auto=format&fit=crop",
+      image: "/images/carpentry/1.jpeg",
       badge: "Custom Fabrication",
     },
     {
@@ -162,7 +162,7 @@ export const siteConfig = {
       title: "Toilet Renovation in Singapore",
       description:
         "Complete end-to-end bathroom transformation: hacking, membrane waterproofing, plumbing, modern floor/wall tiles, and high-end sanitary fittings, all managed by one in-house team.",
-      image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1200&auto=format&fit=crop",
+      image: "/images/tiling/12.jpeg",
       tag: "Signature Service",
       badge: "Hacking to Handover",
     },

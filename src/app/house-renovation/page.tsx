@@ -106,7 +106,7 @@ export default function HouseRenovationPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
+              src="/images/house-reno/1.jpeg"
               alt="House renovation company Singapore"
               className="w-full h-96 object-cover"
             />

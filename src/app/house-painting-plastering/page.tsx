@@ -105,7 +105,7 @@ export default function PaintingPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <img
-              src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1000&auto=format&fit=crop"
+              src="/images/partition-ceiling/10.jpeg"
               alt="Professional painting services sg and plastering"
               className="w-full h-96 object-cover"
             />

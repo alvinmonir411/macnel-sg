@@ -17,7 +17,7 @@ export default function AboutUsPage() {
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
           style={{
             backgroundImage:
-              "url('https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-027.jpg')",
+              "url('/images/carpentry/2.jpeg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/80" />
@@ -89,7 +89,7 @@ export default function AboutUsPage() {
 
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
             <img
-              src="https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-080.jpg"
+              src="/images/tiling/13.jpeg"
               alt="MACNEL Construction team on site"
               className="w-full h-full object-cover"
             />

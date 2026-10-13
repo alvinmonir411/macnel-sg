@@ -12,62 +12,62 @@ export const metadata: Metadata = {
 const fullServicesList = [
   {
     title: "Partition Works",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-partition-works.jpg",
+    image: "/images/partition-ceiling/1.jpeg",
     desc: "Our partition solutions are designed to create functional, flexible, and stylish spaces for both homes and offices. Whether you need to divide a large hall into smaller rooms, add privacy to your workspace, or create customized layouts, we provide durable and modern drywall and acoustic partition systems.",
   },
   {
     title: "House Renovation",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-house-renovation.jpg",
+    image: "/images/house-reno/1.jpeg",
     desc: "Give your property a complete makeover with our comprehensive renovation services. From flooring upgrades and wall finishes to electrical rewiring and plumbing improvements, we handle every aspect from concept planning to final handover.",
   },
   {
     title: "Plumbing Works",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-plumbing-works.jpg",
+    image: "/images/tiling/12.jpeg",
     desc: "Our plumbing services cover everything from water supply systems and concealed drainage lines to leak repairs and pipe installations. With rapid response and licensed plumbers, we ensure durability and zero leakages.",
   },
   {
     title: "Solar Panel Installation",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-solar-panel-installation.jpg",
+    image: "/images/door-window/WhatsApp_Image_2026-10-05_at_5.52.24_PM.jpeg",
     desc: "Reduce electricity bills and embrace sustainability with our eco-friendly solar panel solutions tailored for landed residential and commercial properties in Singapore.",
   },
   {
     title: "Vinyl & SPC Flooring",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-vinyl-flooring.jpg",
+    image: "/images/carpentry/1.jpeg",
     desc: "Scratch-resistant, 100% waterproof luxury vinyl tiles with seamless click-lock installation. Perfect for living rooms, bedrooms, and high-traffic commercial spaces.",
   },
   {
     title: "Timber & WPC Decking",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-timber-wpc-decking.jpg",
+    image: "/images/carpentry/3.jpeg",
     desc: "Enhance your outdoor living areas with premium timber and wood-plastic composite (WPC) decking for balconies, patios, planters, and swimming pool surrounds.",
   },
   {
     title: "Handyman Services",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-handyman-services.jpg",
+    image: "/images/door-window/6.jpeg",
     desc: "Quick fixes and small maintenance tasks: furniture assembly, wall mounting, door lock repairs, curtain track fixing, and general home upkeep.",
   },
   {
     title: "Door & Window Installation",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-door-window-installation.jpg",
+    image: "/images/door-window/1.jpeg",
     desc: "Timber doors, sliding glass doors, aluminium casement windows, and bi-fold toilet doors designed to improve home security and thermal insulation.",
   },
   {
     title: "Air-Conditioning Service & Installation",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-air-conditioning-service-installation.jpg",
+    image: "/images/partition-ceiling/11.jpeg",
     desc: "Chemical washing, routine servicing, refrigerant gas top-up, and brand new multi-split system installation for residential and commercial units.",
   },
   {
     title: "Marble Polishing",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-marble-polishing.jpg",
+    image: "/images/tiling/3.jpeg",
     desc: "Restore the luxurious shine of your marble floors and vanity countertops. We remove stains, scratches, and dullness using diamond-grinding techniques.",
   },
   {
     title: "Gardening & Landscape Maintenance",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-marble-polishing-b.jpg",
+    image: "/images/door-window/8.jpeg",
     desc: "Lawn trimming, plant fertilizing, automated irrigation system installation, and landscape beautification for landed homes and commercial grounds.",
   },
   {
     title: "Metal Works & Fabrication",
-    image: "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-metal-works.jpg",
+    image: "/images/door-window/3.jpeg",
     desc: "Custom mild steel main entrance gates, window grilles, glass balcony railings, and structural steel framing built with high precision.",
   },
 ];
@@ -81,7 +81,7 @@ export default function ServicesPage() {
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
           style={{
             backgroundImage:
-              "url('https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-083.jpg')",
+              "url('/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/80" />

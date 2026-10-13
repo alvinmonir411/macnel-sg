@@ -35,14 +35,18 @@ const toiletSubServices = [
 ];
 
 const toiletPhotos = [
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-005.jpg",
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-012.jpg",
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-014.jpg",
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-078.jpg",
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-083.jpg",
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-080.jpg",
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-031.jpg",
-  "https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-015.jpg",
+  "/images/tiling/2.jpeg",
+  "/images/tiling/3.jpeg",
+  "/images/tiling/4.jpeg",
+  "/images/tiling/5.jpeg",
+  "/images/tiling/6.jpeg",
+  "/images/tiling/7.jpeg",
+  "/images/tiling/8.jpeg",
+  "/images/tiling/9.jpeg",
+  "/images/tiling/11.jpeg",
+  "/images/tiling/12.jpeg",
+  "/images/tiling/13.jpeg",
+  "/images/tiling/33.jpeg",
 ];
 
 export default function ToiletRenovationPage() {
@@ -54,7 +58,7 @@ export default function ToiletRenovationPage() {
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
           style={{
             backgroundImage:
-              "url('https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-080.jpg')",
+              "url('/images/tiling/3.jpeg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/75" />
@@ -101,7 +105,7 @@ export default function ToiletRenovationPage() {
             {/* Right highlight image */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-600">
               <img
-                src="https://mljchiaabgvdzdsfobxs.supabase.co/storage/v1/object/public/media/uploads/macnelconsg/mc-080.jpg"
+                src="/images/tiling/12.jpeg"
                 alt="Toilet renovation showcase"
                 className="w-full h-80 sm:h-96 object-cover"
               />

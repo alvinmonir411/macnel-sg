@@ -105,7 +105,7 @@ export default function FalseCeilingPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
+              src="/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg"
               alt="False ceiling contractor singapore and partition for living room"
               className="w-full h-96 object-cover"
             />

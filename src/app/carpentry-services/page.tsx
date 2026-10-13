@@ -72,7 +72,7 @@ export default function CarpentryPage() {
 
           <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
             <img
-              src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1000&auto=format&fit=crop"
+              src="/images/carpentry/4.jpeg"
               alt="Custom kitchen cabinetry carpentry"
               className="w-full h-80 object-cover"
             />
