@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { BookingSystem } from "@/components/BookingSystem";
 import { siteConfig } from "@/config/site";
@@ -49,7 +50,15 @@ export default function BookPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
 
         {/* World-Class Booking System Component */}
-        <BookingSystem />
+        <Suspense
+          fallback={
+            <div className="p-16 text-center text-slate-500 font-bold bg-white rounded-3xl border border-slate-200">
+              Loading booking calendar...
+            </div>
+          }
+        >
+          <BookingSystem />
+        </Suspense>
 
         {/* Trust Guarantees Below */}
         <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">

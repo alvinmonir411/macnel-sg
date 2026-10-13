@@ -19,6 +19,7 @@ import {
   ShieldCheck,
   Building2,
   BadgeCheck,
+  CalendarCheck,
 } from "lucide-react";
 
 interface MainService {
@@ -242,27 +243,39 @@ export function OtherServices() {
                     </div>
                   </div>
 
-                  {/* Action Row */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                  {/* Action Area */}
+                  <div className="pt-4 border-t border-slate-100 space-y-2.5">
+                    {/* Primary Action: Book Now (Auto-selects service on /book) */}
                     <Link
-                      href={service.href}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-[#16263F] hover:text-[#2C6BA6] transition-colors"
+                      href={`/book?service=${encodeURIComponent(service.id)}`}
+                      className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl brand-gradient text-white text-xs font-bold shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all"
                     >
-                      <span>Explore Scope</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      <CalendarCheck className="w-3.5 h-3.5" />
+                      <span>Book Free Inspection</span>
                     </Link>
 
-                    <a
-                      href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20${encodeURIComponent(
-                        service.title
-                      )}.`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8CCB6B]/15 hover:bg-[#8CCB6B] text-[#16263F] hover:text-white text-[11px] font-bold transition-all"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>Quote</span>
-                    </a>
+                    {/* Secondary Actions: Explore Scope + WhatsApp Quote */}
+                    <div className="flex items-center justify-between gap-2 pt-1">
+                      <Link
+                        href={service.href}
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-[#16263F] hover:text-[#2C6BA6] transition-colors"
+                      >
+                        <span>Explore Scope</span>
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+
+                      <a
+                        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20${encodeURIComponent(
+                          service.title
+                        )}.`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 hover:bg-[#8CCB6B] text-emerald-800 hover:text-white border border-emerald-200 hover:border-[#8CCB6B] text-[11px] font-bold transition-all"
+                      >
+                        <MessageCircle className="w-3 h-3" />
+                        <span>WhatsApp</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

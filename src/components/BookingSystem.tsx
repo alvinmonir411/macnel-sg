@@ -28,7 +28,9 @@ import {
   Check,
   Download,
   CalendarCheck,
+  DoorOpen,
 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 interface ServiceOption {
   id: string;
@@ -44,13 +46,14 @@ interface ServiceOption {
 }
 
 export function BookingSystem() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState<number>(1);
 
   // Step 1: Service
   const [selectedService, setSelectedService] = useState<string>(
-    "toilet-renovation"
+    "house-renovation"
   );
-  const [serviceDetail, setServiceDetail] = useState<string>("Master + Common (2 Toilets)");
+  const [serviceDetail, setServiceDetail] = useState<string>("HDB BTO Whole Unit Transformation");
 
   // Step 2: Property
   const [propertyType, setPropertyType] = useState<string>("Condominium");
@@ -73,14 +76,133 @@ export function BookingSystem() {
   const [bookingId, setBookingId] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  // Services Catalog for Advanced Engine
+  // Services Catalog for Advanced Engine (Core 8 Renovation Trades)
   const services: ServiceOption[] = [
+    {
+      id: "house-renovation",
+      name: "House Renovation",
+      category: "Turnkey Package",
+      duration: "60 min consultation",
+      badge: "Full Turnkey",
+      icon: <Home className="w-5 h-5 text-brand-accent" />,
+      specificQuestions: {
+        label: "Key focus of the whole house renovation:",
+        options: [
+          "HDB BTO Whole Unit Transformation",
+          "HDB Resale Full Gut Overhaul",
+          "Condominium Modernization & Joinery",
+          "Landed Multi-Storey Renovation",
+        ],
+      },
+    },
+    {
+      id: "tiling-services",
+      name: "Floor & Wall Tiling Services",
+      category: "Masonry & Wet Trade",
+      duration: "45 min inspection",
+      badge: "BCA Certified",
+      icon: <Grid3X3 className="w-5 h-5 text-brand-accent" />,
+      specificQuestions: {
+        label: "Where are the tiles to be laid?",
+        options: [
+          "Living room & Bedrooms (600x1200 Slabs)",
+          "Bathroom floor & walls (Anti-slip)",
+          "Kitchen floor & wall backsplash",
+          "Balcony anti-slip & outdoor patio tiles",
+        ],
+      },
+    },
+    {
+      id: "door-window",
+      name: "Door & Window Services",
+      category: "BCA Approved Installers",
+      duration: "30 min measurement",
+      badge: "BCA Approved",
+      icon: <DoorOpen className="w-5 h-5 text-brand-accent" />,
+      specificQuestions: {
+        label: "What door or window works are needed?",
+        options: [
+          "Aluminium sliding & casement window replacement",
+          "Soundproof acoustic double glazing (-42dB)",
+          "Fire-rated main entrance timber door & gate",
+          "Trackless toilet bi-fold / slide & swing doors",
+        ],
+      },
+    },
+    {
+      id: "false-ceiling-partition",
+      name: "False Ceiling & Partition",
+      category: "Interior Architecture",
+      duration: "30 min consultation",
+      badge: "Saint-Gobain",
+      icon: <Lightbulb className="w-5 h-5 text-brand-accent" />,
+      specificQuestions: {
+        label: "Type of false ceiling or partition design:",
+        options: [
+          "L-box perimeter with cove lights & pelmets",
+          "Full flat drop ceiling with recessed LED spots",
+          "Acoustic drywall room partition divider",
+          "Curtain pelmet & aircon duct concealment",
+        ],
+      },
+    },
+    {
+      id: "painting-services",
+      name: "Painting Services",
+      category: "Nippon Paint Specialist",
+      duration: "30 min measurement",
+      badge: "Nippon Paint",
+      icon: <Paintbrush className="w-5 h-5 text-brand-accent" />,
+      specificQuestions: {
+        label: "What scope of painting do you require?",
+        options: [
+          "Whole house (Walls + Ceilings) 3-coat system",
+          "Nippon Odourless / Medifresh anti-bacterial",
+          "Interior walls only",
+          "Exterior facade / Balcony painting",
+        ],
+      },
+    },
+    {
+      id: "plastering-services",
+      name: "Plastering Services",
+      category: "Surface Preparation",
+      duration: "30 min inspection",
+      badge: "Skim Coat",
+      icon: <Hammer className="w-5 h-5 text-brand-accent" />,
+      specificQuestions: {
+        label: "Scope of plastering / skim coating needed:",
+        options: [
+          "Whole house fine skim coating & wall leveling",
+          "Hairline crack bridging & mesh repair",
+          "Patching post-electrical conduit hacking",
+          "Ceiling water leak stain plaster repair",
+        ],
+      },
+    },
+    {
+      id: "flooring-carpet-services",
+      name: "Flooring & Carpet Services",
+      category: "Surfaces & Flooring",
+      duration: "45 min measurement",
+      badge: "Bona System",
+      icon: <Layers className="w-5 h-5 text-brand-accent" />,
+      specificQuestions: {
+        label: "Type of flooring or carpet service:",
+        options: [
+          "Bona dust-free parquet sanding & varnishing",
+          "100% waterproof SPC vinyl click-lock overlay",
+          "Commercial nylon acoustic carpet tiles",
+          "Natural marble diamond crystallization & polishing",
+        ],
+      },
+    },
     {
       id: "toilet-renovation",
       name: "Toilet & Bathroom Renovation",
       category: "Full Wet Trade",
       duration: "45 min on-site measurement",
-      badge: "Most Booked",
+      badge: "Signature",
       icon: <Droplets className="w-5 h-5 text-brand-accent" />,
       specificQuestions: {
         label: "How many toilets need renovation?",
@@ -92,104 +214,49 @@ export function BookingSystem() {
         ],
       },
     },
-    {
-      id: "house-painting",
-      name: "Whole House Painting & Plastering",
-      category: "Surfaces",
-      duration: "30 min measurement",
-      icon: <Paintbrush className="w-5 h-5 text-brand-accent" />,
-      specificQuestions: {
-        label: "What scope of painting do you require?",
-        options: [
-          "Whole house (Walls + Ceilings)",
-          "Walls only",
-          "Touch-up & patch cracks/skimming",
-          "Exterior / Balcony only",
-        ],
-      },
-    },
-    {
-      id: "tiling-works",
-      name: "Floor & Wall Tiling Works",
-      category: "Masonry",
-      duration: "45 min inspection",
-      icon: <Grid3X3 className="w-5 h-5 text-brand-accent" />,
-      specificQuestions: {
-        label: "Where are the tiles to be laid?",
-        options: [
-          "Living room & Bedrooms",
-          "Kitchen floor & wall backsplash",
-          "Balcony anti-slip tiles",
-          "Hollow tile injection / Repair only",
-        ],
-      },
-    },
-    {
-      id: "false-ceiling",
-      name: "False Ceiling & Cove Lighting",
-      category: "Interior Architecture",
-      duration: "30 min consultation",
-      icon: <Lightbulb className="w-5 h-5 text-brand-accent" />,
-      specificQuestions: {
-        label: "Type of false ceiling design:",
-        options: [
-          "Full flat ceiling with LED downlights",
-          "L-box perimeter with cove lights",
-          "Curtain pelmets & aircon concealment",
-          "Moisture-resistant toilet ceiling",
-        ],
-      },
-    },
-    {
-      id: "electrical-rewiring",
-      name: "Electrical Works & Rewiring",
-      category: "EMA Certified",
-      duration: "45 min site test",
-      icon: <Zap className="w-5 h-5 text-brand-accent" />,
-      specificQuestions: {
-        label: "Primary electrical requirement:",
-        options: [
-          "Full house rewiring + DB box replacement",
-          "Additional power sockets & lighting points",
-          "Emergency power trip & safety check",
-          "Cooker hob & water heater point wiring",
-        ],
-      },
-    },
-    {
-      id: "carpentry-services",
-      name: "Custom Carpentry & Cabinetry",
-      category: "Custom Fabrication",
-      duration: "60 min measurement",
-      icon: <Hammer className="w-5 h-5 text-brand-accent" />,
-      specificQuestions: {
-        label: "What cabinetry do you need fabricated?",
-        options: [
-          "Full Kitchen Cabinets + Countertop",
-          "Built-in Master Bedroom Wardrobe",
-          "Living Room TV Feature Wall & Console",
-          "Shoe Cabinet & Settee Bench",
-        ],
-      },
-    },
-    {
-      id: "full-house-renovation",
-      name: "Complete Turnkey Home Renovation",
-      category: "Turnkey Package",
-      duration: "60 min consultation",
-      badge: "VIP Consult",
-      icon: <Sparkles className="w-5 h-5 text-brand-accent" />,
-      specificQuestions: {
-        label: "Key focus of the full renovation:",
-        options: [
-          "Whole unit overhaul (All trades)",
-          "Kitchen + 2 Toilets package",
-          "Flooring + Painting + Electrical",
-          "Commercial / Office fit-out",
-        ],
-      },
-    },
   ];
+
+  // Read URL query parameter "?service=..." and auto-select matching trade
+  useEffect(() => {
+    const serviceParam = searchParams?.get("service");
+    if (!serviceParam) return;
+
+    const param = serviceParam.toLowerCase().trim();
+
+    const aliasMap: Record<string, string> = {
+      "house-renovation": "house-renovation",
+      "full-house-renovation": "house-renovation",
+      "house": "house-renovation",
+      "tiling-services": "tiling-services",
+      "tiling-works": "tiling-services",
+      "tiling": "tiling-services",
+      "door-window": "door-window",
+      "door-window-services": "door-window",
+      "false-ceiling": "false-ceiling-partition",
+      "false-ceiling-partition": "false-ceiling-partition",
+      "painting-services": "painting-services",
+      "house-painting": "painting-services",
+      "painting": "painting-services",
+      "plastering-services": "plastering-services",
+      "plastering": "plastering-services",
+      "flooring-carpet-services": "flooring-carpet-services",
+      "flooring": "flooring-carpet-services",
+      "toilet-renovation": "toilet-renovation",
+      "toilet-renovation-in-singapore": "toilet-renovation",
+    };
+
+    const targetId = aliasMap[param] || param;
+    const match = services.find(
+      (s) => s.id === targetId || s.id.includes(targetId) || targetId.includes(s.id)
+    );
+
+    if (match) {
+      setSelectedService(match.id);
+      if (match.specificQuestions.options.length > 0) {
+        setServiceDetail(match.specificQuestions.options[0]);
+      }
+    }
+  }, [searchParams]);
 
   const [availableDates, setAvailableDates] = useState<
     Array<{ iso: string; dayName: string; monthDay: string; fullDate: string }>
