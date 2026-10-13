@@ -111,11 +111,11 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl brand-gradient p-0.5 shadow-lg group-hover:scale-105 transition-transform flex items-center justify-center">
-              <div className="w-full h-full bg-[#16263F] rounded-[10px] flex items-center justify-center">
-                <Hammer className="w-5 h-5 text-[#A3E635]" />
-              </div>
-            </div>
+            <img
+              src="/macnel-icon.svg"
+              alt="MACNEL Logo"
+              className="w-12 h-12 rounded-xl group-hover:scale-105 transition-transform shadow-md"
+            />
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-black text-2xl tracking-tight text-white drop-shadow-sm">

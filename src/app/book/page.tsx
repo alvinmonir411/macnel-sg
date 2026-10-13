@@ -11,24 +11,35 @@ export const metadata: Metadata = {
 
 export default function BookPage() {
   return (
-    <div className="bg-[#F8FAFC] min-h-screen py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Top Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-accent-soft bg-brand-accent-soft px-4 py-1.5 text-xs font-semibold text-brand-dark mb-4">
-            <Clock className="w-3.5 h-3.5 text-brand-accent-dark" />
+    <div className="bg-[#F8FAFC] min-h-screen">
+      {/* Hero Header Banner */}
+      <section className="relative overflow-hidden bg-[#16263F] text-white py-16 lg:py-24 mb-12">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+          style={{
+            backgroundImage: "url('/images/tiling/11.jpeg')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/75" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#8CCB6B]/40 bg-[#8CCB6B]/15 px-4 py-1.5 text-xs font-bold text-white mb-4 shadow-sm">
+            <Clock className="w-3.5 h-3.5 text-[#A3E635]" />
             <span>Fast &amp; Free On-Site Measurement</span>
           </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
-            Book an Appointment
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+            Book a Free Site Inspection
           </h1>
 
-          <p className="text-base text-slate-600 leading-relaxed">
-            Pick a day and time that works best for you. Our licensed project engineers
-            will visit your property with measuring gear and material samples.
+          <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed drop-shadow-sm">
+            Pick a date and time that suits you. Our site engineer will arrive on time
+            with measuring tools, laser levels, and material samples — 100% free with zero obligation.
           </p>
         </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
 
         {/* World-Class Booking System Component */}
         <BookingSystem />

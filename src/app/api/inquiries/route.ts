@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { connection } from "next/server";
 import { saveInquiry, sql } from "@/lib/db";
 
 export async function POST(request: Request) {
@@ -34,6 +35,7 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
+  await connection();
   try {
     const inquiries = await sql`
       SELECT * FROM inquiries ORDER BY created_at DESC LIMIT 50;

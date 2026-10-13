@@ -12,8 +12,16 @@ export const metadata: Metadata = {
 export default function CarpentryPage() {
   return (
     <div className="bg-white">
-      <section className="relative bg-[#16263F] text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-[#16263F] text-white py-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+          style={{
+            backgroundImage: "url('/images/carpentry/2.jpeg')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/75" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/services"
             className="inline-flex items-center gap-1.5 text-xs text-[#8CCB6B] hover:underline mb-6"

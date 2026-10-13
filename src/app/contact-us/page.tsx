@@ -53,6 +53,14 @@ export default function ContactUsPage() {
     <div className="bg-white">
       {/* Page Banner */}
       <section className="relative overflow-hidden bg-[#16263F] text-white py-20 lg:py-24">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+          style={{
+            backgroundImage: "url('/images/partition-ceiling/1.jpeg')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/75" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#8CCB6B]/40 bg-[#8CCB6B]/10 px-4 py-1.5 text-xs font-semibold text-[#8CCB6B] mb-4">
             <span>Direct Contractor · Rapid Response</span>

@@ -103,3 +103,41 @@ export async function saveInquiry(inquiry: InquiryRecord) {
   `;
   return result[0];
 }
+
+export async function getBookedSlotsForDate(date: string): Promise<string[]> {
+  const rows = await sql`
+    SELECT time_slot FROM bookings
+    WHERE inspection_date = ${date}
+      AND status != 'cancelled';
+  `;
+  return rows.map((r: any) => String(r.time_slot));
+}
+
+export async function updateBookingStatus(id: string, status: string) {
+  const result = await sql`
+    UPDATE bookings
+    SET status = ${status}
+    WHERE id = ${id}
+    RETURNING *;
+  `;
+  return result[0];
+}
+
+export async function deleteBooking(id: string) {
+  const result = await sql`
+    DELETE FROM bookings
+    WHERE id = ${id}
+    RETURNING *;
+  `;
+  return result[0];
+}
+
+export async function deleteInquiry(id: number) {
+  const result = await sql`
+    DELETE FROM inquiries
+    WHERE id = ${id}
+    RETURNING *;
+  `;
+  return result[0];
+}
+

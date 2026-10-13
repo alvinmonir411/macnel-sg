@@ -9,16 +9,26 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-14 border-b border-white/10">
           {/* Brand Info */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2C6BA6] to-[#4E9A3C] p-0.5 shadow flex items-center justify-center">
-                <div className="w-full h-full bg-[#16263F] rounded-[9px] flex items-center justify-center">
-                  <Hammer className="w-5 h-5 text-[#8CCB6B]" />
+            <Link href="/" className="flex items-center gap-3 mb-4 group">
+              <img
+                src="/macnel-icon.svg"
+                alt="MACNEL SG Logo"
+                className="w-11 h-11 rounded-xl shadow group-hover:scale-105 transition-transform"
+              />
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-extrabold text-xl tracking-tight text-white">
+                    MACNEL
+                  </span>
+                  <span className="text-[9px] font-black uppercase tracking-wider bg-[#8CCB6B]/25 text-[#A3E635] border border-[#8CCB6B]/50 px-1.5 py-0.5 rounded shadow-sm">
+                    SG
+                  </span>
                 </div>
+                <p className="text-[10px] text-slate-300 tracking-wider uppercase font-semibold">
+                  Construction &amp; Renovation
+                </p>
               </div>
-              <span className="font-extrabold text-xl tracking-tight text-white">
-                MACNEL SG
-              </span>
-            </div>
+            </Link>
             <p className="text-xs sm:text-sm text-white/70 leading-relaxed mb-6">
               Professional direct construction and renovation services across Singapore.
               From minor hacking and electrical rewiring to complete luxury bathroom
@@ -194,6 +204,12 @@ export function Footer() {
             <span>Free On-Site Consultation</span>
             <span>No Obligation Quotation</span>
             <span>Direct Contractor Rate</span>
+            <Link
+              href="/admin"
+              className="text-[#8CCB6B]/70 hover:text-[#8CCB6B] transition-colors font-medium flex items-center gap-1"
+            >
+              <span>Admin Portal</span>
+            </Link>
           </div>
         </div>
       </div>

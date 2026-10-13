@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { connection } from "next/server";
 import { saveBooking, sql } from "@/lib/db";
 
 export async function POST(request: Request) {
@@ -12,9 +13,29 @@ export async function POST(request: Request) {
       );
     }
 
+    // Double-booking check: prevent booking a slot that is already reserved
+    if (body.selectedDate && body.selectedSlot) {
+      const existing = await sql`
+        SELECT id FROM bookings
+        WHERE inspection_date = ${body.selectedDate}
+          AND time_slot = ${body.selectedSlot}
+          AND status != 'cancelled'
+        LIMIT 1;
+      `;
+
+      if (existing.length > 0) {
+        return NextResponse.json(
+          {
+            error: `The slot (${body.selectedSlot}) on ${body.selectedDate} has already been reserved. Please pick another available time.`,
+          },
+          { status: 409 }
+        );
+      }
+    }
+
     const bookingId =
       body.bookingId ||
-      `MC-${Date.now().toString().slice(-6)}-${Math.floor(10 + Math.random() * 90)}`;
+      `MC-SG-${Math.floor(1000 + Math.random() * 9000)}`;
 
     const saved = await saveBooking({
       id: bookingId,
@@ -45,11 +66,38 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  await connection();
   try {
-    const bookings = await sql`
-      SELECT * FROM bookings ORDER BY created_at DESC LIMIT 50;
+    const { searchParams } = new URL(request.url);
+    const status = searchParams.get("status");
+    const date = searchParams.get("date");
+    const search = searchParams.get("search");
+
+    let bookings = await sql`
+      SELECT * FROM bookings ORDER BY created_at DESC LIMIT 200;
     `;
+
+    if (status && status !== "all") {
+      bookings = bookings.filter((b: any) => b.status === status);
+    }
+
+    if (date && date !== "all") {
+      bookings = bookings.filter((b: any) => b.inspection_date === date);
+    }
+
+    if (search && search.trim()) {
+      const q = search.trim().toLowerCase();
+      bookings = bookings.filter(
+        (b: any) =>
+          b.client_name?.toLowerCase().includes(q) ||
+          b.client_phone?.toLowerCase().includes(q) ||
+          b.id?.toLowerCase().includes(q) ||
+          b.postal_code?.toLowerCase().includes(q) ||
+          b.service_name?.toLowerCase().includes(q)
+      );
+    }
+
     return NextResponse.json({ bookings });
   } catch (error) {
     console.error("Failed to fetch bookings:", error);

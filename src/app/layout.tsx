@@ -66,6 +66,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: "/macnel-icon.svg",
+    shortcut: "/macnel-icon.svg",
+    apple: "/macnel-icon.svg",
+  },
 };
 
 export default function RootLayout({

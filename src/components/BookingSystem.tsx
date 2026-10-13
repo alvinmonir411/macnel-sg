@@ -218,6 +218,9 @@ export function BookingSystem() {
     }
   }, []);
 
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
+  const [isLoadingSlots, setIsLoadingSlots] = useState<boolean>(false);
+
   const timeSlots = [
     { time: "09:30 AM – 10:30 AM", period: "Morning", badge: "Fastest" },
     { time: "11:00 AM – 12:00 PM", period: "Morning", badge: "Popular" },
@@ -225,6 +228,38 @@ export function BookingSystem() {
     { time: "03:00 PM – 04:00 PM", period: "Afternoon", badge: "Available" },
     { time: "04:30 PM – 05:30 PM", period: "Late Afternoon", badge: "Available" },
   ];
+
+  // Fetch slot availability from Neon DB whenever selectedDate changes
+  useEffect(() => {
+    if (!selectedDate) return;
+    let isCancelled = false;
+    setIsLoadingSlots(true);
+
+    fetch(`/api/bookings/availability?date=${selectedDate}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!isCancelled && data.bookedSlots) {
+          setBookedSlots(data.bookedSlots);
+          // If currently selected slot is already booked, pick first free slot
+          if (data.bookedSlots.includes(selectedSlot)) {
+            const firstFree = timeSlots.find(
+              (s) => !data.bookedSlots.includes(s.time)
+            );
+            if (firstFree) {
+              setSelectedSlot(firstFree.time);
+            }
+          }
+        }
+      })
+      .catch((err) => console.error("Error loading availability:", err))
+      .finally(() => {
+        if (!isCancelled) setIsLoadingSlots(false);
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [selectedDate]);
 
   const currentServiceObj = services.find((s) => s.id === selectedService) || services[0];
 
@@ -242,7 +277,7 @@ export function BookingSystem() {
       setBookingId(generated);
 
       try {
-        await fetch("/api/bookings", {
+        const res = await fetch("/api/bookings", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -263,11 +298,24 @@ export function BookingSystem() {
             additionalNotes,
           }),
         });
+
+        const data = await res.json();
+        if (!res.ok) {
+          alert(data.error || "This time slot is already reserved. Please select another available slot.");
+          // Refresh booked slots and return to step 3
+          fetch(`/api/bookings/availability?date=${selectedDate}`)
+            .then((r) => r.json())
+            .then((d) => d.bookedSlots && setBookedSlots(d.bookedSlots));
+          setStep(3);
+          return;
+        }
+
+        setStep(5);
       } catch (err) {
         console.error("Failed to persist booking to Neon database:", err);
+        setStep(5);
       } finally {
         setIsSubmitting(false);
-        setStep(5);
       }
     } else {
       setStep((prev) => Math.min(prev + 1, 5));
@@ -614,34 +662,47 @@ export function BookingSystem() {
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {timeSlots.map((slot) => {
-                  const isSelected = selectedSlot === slot.time;
+                  const isBooked = bookedSlots.includes(slot.time);
+                  const isSelected = selectedSlot === slot.time && !isBooked;
+
                   return (
                     <button
                       type="button"
                       key={slot.time}
-                      onClick={() => setSelectedSlot(slot.time)}
+                      disabled={isBooked}
+                      onClick={() => !isBooked && setSelectedSlot(slot.time)}
                       className={`flex items-center justify-between p-4 rounded-xl border text-xs sm:text-sm font-semibold transition-all ${
-                        isSelected
-                          ? "border-brand-primary bg-brand-primary-soft text-slate-900 shadow-sm"
-                          : "border-slate-200 bg-white text-slate-700 hover:border-slate-300"
+                        isBooked
+                          ? "border-red-200 bg-red-50/60 text-slate-400 cursor-not-allowed opacity-75"
+                          : isSelected
+                          ? "border-brand-primary bg-brand-primary-soft text-slate-900 shadow-sm ring-1 ring-brand-primary"
+                          : "border-slate-200 bg-white text-slate-700 hover:border-brand-primary/40 hover:bg-slate-50"
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
                         <Clock
                           className={`w-4 h-4 ${
-                            isSelected ? "text-brand-primary" : "text-slate-400"
+                            isBooked
+                              ? "text-red-400"
+                              : isSelected
+                              ? "text-brand-primary"
+                              : "text-slate-400"
                           }`}
                         />
-                        <span>{slot.time}</span>
+                        <span className={isBooked ? "line-through opacity-70" : ""}>
+                          {slot.time}
+                        </span>
                       </div>
                       <span
                         className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                          isSelected
+                          isBooked
+                            ? "bg-red-100 text-red-700 border border-red-200"
+                            : isSelected
                             ? "bg-brand-primary text-white"
-                            : "bg-slate-100 text-slate-500"
+                            : "bg-emerald-50 text-emerald-700 border border-emerald-200"
                         }`}
                       >
-                        {slot.badge}
+                        {isBooked ? "🔴 Booked" : isSelected ? "Selected" : "🟢 Available"}
                       </span>
                     </button>
                   );

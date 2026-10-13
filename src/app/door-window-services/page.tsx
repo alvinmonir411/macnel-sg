@@ -27,7 +27,15 @@ export default function DoorWindowPage() {
         style={{ backgroundColor: "var(--dark-bg, #16263F)" }}
         className="relative overflow-hidden bg-[#16263F] text-white py-20 lg:py-24"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+          style={{
+            backgroundImage: "url('/images/door-window/1.jpeg')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#16263F] via-[#16263F]/90 to-[#16263F]/75" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/services"
             className="inline-flex items-center gap-1.5 text-xs text-[#A3E635] hover:underline mb-6 font-bold"
