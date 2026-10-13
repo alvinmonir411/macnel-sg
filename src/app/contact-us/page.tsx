@@ -15,8 +15,27 @@ export default function ContactUsPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Persist to Neon PostgreSQL Database
+    try {
+      fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          service: formData.service,
+          message: `${formData.address ? `Address: ${formData.address}. ` : ""}${formData.message || ""}`,
+          source: "contact-form",
+        }),
+      }).catch((err) => console.error("Error saving inquiry:", err));
+    } catch (err) {
+      console.error(err);
+    }
+
     // Generate pre-filled WhatsApp message
     const msg = `Hello MACNEL Construction,%0A%0ANew Quotation Inquiry:%0A- Name: ${encodeURIComponent(
       formData.name

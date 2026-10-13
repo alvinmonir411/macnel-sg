@@ -71,6 +71,7 @@ export function BookingSystem() {
 
   // Step 5: Confirmation Reference
   const [bookingId, setBookingId] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   // Services Catalog for Advanced Engine
   const services: ServiceOption[] = [
@@ -227,18 +228,47 @@ export function BookingSystem() {
 
   const currentServiceObj = services.find((s) => s.id === selectedService) || services[0];
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     if (step === 4) {
       // Validate step 4
       if (!clientName.trim() || !clientPhone.trim()) {
         alert("Please enter your name and contact number.");
         return;
       }
+      setIsSubmitting(true);
       // Generate ID
       const randomNum = Math.floor(1000 + Math.random() * 9000);
       const generated = `MC-SG-${randomNum}`;
       setBookingId(generated);
-      setStep(5);
+
+      try {
+        await fetch("/api/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            bookingId: generated,
+            clientName,
+            clientPhone,
+            clientEmail,
+            selectedService,
+            serviceName: currentServiceObj.name,
+            serviceDetail,
+            propertyType,
+            propertySize,
+            timeline,
+            selectedDate,
+            selectedSlot,
+            postalCode,
+            unitNumber,
+            additionalNotes,
+          }),
+        });
+      } catch (err) {
+        console.error("Failed to persist booking to Neon database:", err);
+      } finally {
+        setIsSubmitting(false);
+        setStep(5);
+      }
     } else {
       setStep((prev) => Math.min(prev + 1, 5));
     }
@@ -864,10 +894,17 @@ export function BookingSystem() {
 
             <button
               type="button"
+              disabled={isSubmitting}
               onClick={handleNextStep}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl brand-gradient text-white font-bold text-xs sm:text-sm shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all ml-auto"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl brand-gradient text-white font-bold text-xs sm:text-sm shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all ml-auto disabled:opacity-75 disabled:cursor-not-allowed"
             >
-              <span>{step === 4 ? "Complete Appointment" : "Continue"}</span>
+              <span>
+                {isSubmitting
+                  ? "Saving to Database..."
+                  : step === 4
+                  ? "Complete Appointment"
+                  : "Continue"}
+              </span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
