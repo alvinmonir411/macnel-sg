@@ -337,7 +337,7 @@ export function QuoteCalculator() {
                 {/* Email (Optional) */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Email Address <span className="text-slate-400 font-normal">(Optional)</span>
+                    Email Address <span className="text-slate-600 font-medium">(Optional)</span>
                   </label>
                   <input
                     type="email"
@@ -354,7 +354,7 @@ export function QuoteCalculator() {
                 {/* Preferred Date/Time */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Preferred Site Visit Slot <span className="text-slate-400 font-normal">(Optional)</span>
+                    Preferred Site Visit Slot <span className="text-slate-600 font-medium">(Optional)</span>
                   </label>
                   <input
                     type="text"
@@ -428,9 +428,9 @@ export function QuoteCalculator() {
                 href={generateWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-xl transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-black text-sm shadow-xl transition-all"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
+                <MessageCircle className="w-4 h-4 fill-slate-950" />
                 <span>Send to WhatsApp</span>
               </a>
             </div>

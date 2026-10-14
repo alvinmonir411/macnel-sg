@@ -129,9 +129,9 @@ export function ContactLocationSection() {
                 )}%2C%20I%20would%20like%20to%20arrange%20a%20showroom%20visit.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold shadow-md hover:scale-[1.01] transition-all"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-slate-950 text-xs sm:text-sm font-black shadow-md hover:scale-[1.01] transition-all"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
+                <MessageCircle className="w-4 h-4 fill-slate-950" />
                 <span>Arrange Showroom Appointment</span>
               </a>
             </div>

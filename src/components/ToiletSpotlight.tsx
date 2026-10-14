@@ -60,12 +60,12 @@ export function ToiletSpotlight() {
                     className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 hover:border-brand-primary/40 transition-colors"
                   >
                     <div className="flex items-center gap-2.5 mb-1.5">
-                      <span className="text-xs font-extrabold text-brand-primary bg-brand-primary-soft px-2 py-0.5 rounded">
+                      <span className="text-xs font-black text-[#166534] bg-emerald-100 border border-emerald-200 px-2 py-0.5 rounded">
                         {step.step}
                       </span>
                       <h4 className="text-sm font-bold text-slate-900">{step.title}</h4>
                     </div>
-                    <p className="text-xs text-slate-500 leading-relaxed">{step.desc}</p>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">{step.desc}</p>
                   </div>
                 ))}
               </div>

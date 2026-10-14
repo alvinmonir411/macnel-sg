@@ -43,7 +43,7 @@ export function CookieConsentBanner() {
             <p className="font-normal mb-3">
               We use minimal cookies for site performance and inquiry functionality in accordance with the Singapore PDPA.{" "}
               <Link href="/privacy-policy" className="text-[#8CCB6B] underline hover:text-white">
-                Learn more
+                Learn more in our Privacy Policy
               </Link>.
             </p>
 

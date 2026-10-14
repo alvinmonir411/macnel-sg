@@ -177,6 +177,14 @@ export default function RootLayout({
       className={`${montserrat.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <head>
+        {/* Instant LCP Image Preload: Eliminates resource discovery delay for sub-2s LCP */}
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          href="/hero-poster.webp"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

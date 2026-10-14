@@ -143,9 +143,9 @@ export function Hero() {
               )}%2C%20I%20would%20like%20a%20free%20renovation%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm sm:text-base shadow-xl shadow-green-950/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-black text-sm sm:text-base shadow-xl shadow-green-950/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              <MessageCircle className="w-5 h-5 fill-current shrink-0" />
+              <MessageCircle className="w-5 h-5 fill-slate-950 shrink-0" />
               <span>WhatsApp for Free Quote</span>
             </a>
 

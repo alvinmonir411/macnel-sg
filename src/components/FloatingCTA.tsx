@@ -28,10 +28,10 @@ export function FloatingCTA() {
             )}%2C%20I%20would%20like%20a%20free%20quotation.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:scale-95 text-white font-bold text-sm shadow-lg transition-all"
+            className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:scale-95 text-slate-950 font-black text-sm shadow-lg transition-all"
             aria-label={`Chat on WhatsApp with ${name}`}
           >
-            <MessageCircle className="w-4 h-4 fill-current" />
+            <MessageCircle className="w-4 h-4 fill-slate-950" />
             <span>WhatsApp</span>
           </a>
         </div>

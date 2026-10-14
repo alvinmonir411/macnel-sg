@@ -81,14 +81,14 @@ export function CredentialsBar() {
                 <Building2 className="w-5 h-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 block mb-0.5">
                   Registered Entity
                 </span>
                 <p className="text-sm font-bold text-slate-900 truncate leading-snug">
                   {cleanLegalName}
                 </p>
                 <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-[11px] font-mono font-bold text-slate-800">
-                  <span className="text-slate-400 font-sans font-medium text-[10px]">UEN:</span>
+                  <span className="text-slate-600 font-sans font-medium text-[10px]">UEN:</span>
                   <span>{cleanUen}</span>
                 </div>
               </div>
@@ -103,7 +103,7 @@ export function CredentialsBar() {
                 <HardHat className="w-5 h-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 block mb-0.5">
                   Statutory Licenses
                 </span>
                 <p className="text-sm font-bold text-slate-900 truncate leading-snug">
@@ -125,7 +125,7 @@ export function CredentialsBar() {
                 <ShieldCheck className="w-5 h-5 text-[#16a34a]" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 block mb-0.5">
                   Insurance Protection
                 </span>
                 <p className="text-sm font-bold text-slate-900 truncate leading-snug">
@@ -147,7 +147,7 @@ export function CredentialsBar() {
                 <Award className="w-5 h-5 text-amber-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 block mb-0.5">
                   Singapore Track Record
                 </span>
                 <p className="text-sm font-bold text-slate-900 leading-snug">

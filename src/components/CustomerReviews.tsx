@@ -191,12 +191,16 @@ export function CustomerReviews() {
               type="button"
               onClick={() => setCurrentIndex(idx)}
               aria-label={`Go to slide ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === idx
-                  ? "w-8 bg-[#166534]"
-                  : "w-2 bg-slate-300 hover:bg-slate-400"
-              }`}
-            />
+              className="p-2 cursor-pointer flex items-center justify-center min-w-[28px] min-h-[28px]"
+            >
+              <span
+                className={`h-2 rounded-full transition-all duration-300 block ${
+                  currentIndex === idx
+                    ? "w-8 bg-[#166534]"
+                    : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

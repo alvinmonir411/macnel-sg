@@ -95,7 +95,7 @@ export function AboutSection() {
                   <Building2 className="w-4 h-4 text-slate-600" />
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[11px] font-bold uppercase">Registered Entity</span>
+                  <span className="text-slate-600 block text-[11px] font-bold uppercase">Registered Entity</span>
                   <span className="font-bold text-slate-900 text-sm">{clean(legalName)}</span>
                 </div>
               </div>
@@ -104,7 +104,7 @@ export function AboutSection() {
                   <HardHat className="w-4 h-4 text-[#16a34a]" />
                 </div>
                 <div>
-                  <span className="text-slate-400 block text-[11px] font-bold uppercase">ACRA UEN &amp; Directory</span>
+                  <span className="text-slate-600 block text-[11px] font-bold uppercase">ACRA UEN &amp; Directory</span>
                   <span className="font-bold text-slate-900 text-sm">UEN: {clean(uen)} · {clean(hdbLicense)}</span>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export function AboutSection() {
                     <Award className="w-4 h-4 text-[#2C6BA6]" />
                   </div>
                   <div>
-                    <span className="text-slate-400 block text-[11px] font-bold uppercase">BCA Registry</span>
+                    <span className="text-slate-600 block text-[11px] font-bold uppercase">BCA Registry</span>
                     <span className="font-bold text-slate-900 text-sm">{clean(bcaLicense)}</span>
                   </div>
                 </div>

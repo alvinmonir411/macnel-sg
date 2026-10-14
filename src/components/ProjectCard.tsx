@@ -105,8 +105,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
               onClick={(e) => toggleTab("before", e)}
               className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
                 currentTab === "before"
-                  ? "bg-amber-600 text-white font-black shadow-sm"
-                  : "text-slate-300 hover:text-white"
+                  ? "bg-amber-700 text-white font-black shadow-sm"
+                  : "text-slate-200 hover:text-white"
               }`}
             >
               Before
@@ -116,8 +116,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
               onClick={(e) => toggleTab("after", e)}
               className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
                 currentTab === "after"
-                  ? "bg-[#16a34a] text-white font-black shadow-sm"
-                  : "text-slate-300 hover:text-white"
+                  ? "bg-[#15803d] text-white font-black shadow-sm"
+                  : "text-slate-200 hover:text-white"
               }`}
             >
               After
