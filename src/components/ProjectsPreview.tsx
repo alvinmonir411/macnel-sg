@@ -156,13 +156,19 @@ export function ProjectsPreview() {
                 </div>
 
                 {/* Footer Action */}
-                <div className="p-6 pt-0">
+                <div className="p-6 pt-0 flex items-center gap-2">
+                  <Link
+                    href={`/projects/${proj.id}`}
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/10 hover:bg-[#8CCB6B] hover:text-slate-900 border border-white/15 text-xs font-bold transition-all text-white"
+                  >
+                    <span>View Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                   <Link
                     href="/book"
-                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/10 hover:bg-[#8CCB6B] hover:text-slate-900 border border-white/15 text-xs font-bold transition-all"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366] hover:text-slate-950 border border-[#25D366]/40 text-[#8CCB6B] text-xs font-bold transition-all"
                   >
-                    <span>Book Free Site Inspection</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <span>Book Visit</span>
                   </Link>
                 </div>
               </div>

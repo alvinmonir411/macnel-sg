@@ -126,14 +126,20 @@ export default function ProjectsPage() {
                 </div>
               </div>
 
-              {/* Bottom CTA */}
-              <div className="p-6 pt-0">
+              {/* Bottom CTAs */}
+              <div className="p-6 pt-0 space-y-2.5">
+                <Link
+                  href={`/projects/${proj.id}`}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/10 hover:bg-[#8CCB6B] text-white hover:text-slate-950 text-xs sm:text-sm font-bold border border-white/20 transition-all duration-300"
+                >
+                  <span>View Project Details &amp; Scope</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
                 <Link
                   href="/book"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold shadow-lg transition-all"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366] text-[#8CCB6B] hover:text-slate-950 text-xs font-bold border border-[#25D366]/40 transition-all"
                 >
-                  <span>Book Free Site Inspection</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Book Free Inspection For Similar Flat</span>
                 </Link>
               </div>
             </div>

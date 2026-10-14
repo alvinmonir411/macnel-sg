@@ -2,6 +2,7 @@
   {
     "id": "proj-1",
     "isPlaceholder": true,
+    "category": "House Renovation",
     "title": "TODO_REPLACE: 4-Room BTO Full Home Makeover",
     "propertyType": "TODO_REPLACE: 4-Room HDB BTO",
     "location": "TODO_REPLACE: Tampines GreenCourt",
@@ -10,36 +11,66 @@
       "TODO_REPLACE: Living & Bedroom False Ceilings with Cove Lighting",
       "TODO_REPLACE: Full Kitchen Cabinetry with Quartz Countertop",
       "TODO_REPLACE: 2x Bathroom Tiling & Sika Waterproofing",
-      "TODO_REPLACE: Nippon Paint Odourless Full Home Painting"
+      "TODO_REPLACE: Nippon Paint Odourless Full Home Painting",
+      "TODO_REPLACE: Whole House Heavy-Duty Vinyl Flooring Overlay"
     ],
     "durationDays": "TODO_REPLACE: 38 Days",
     "costRange": "TODO_REPLACE: S$28,000 – S$35,000",
     "beforeImage": "/images/projects/proj-1-before.jpg",
     "afterImage": "/images/projects/proj-1-after.jpg",
-    "summary": "TODO_REPLACE: Direct-to-builder complete interior fit-out delivered on time with zero variation orders."
+    "gallery": [
+      "/images/projects/proj-1-before.jpg",
+      "/images/projects/proj-1-after.jpg",
+      "/images/house-reno/1.jpeg",
+      "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg"
+    ],
+    "summary": "TODO_REPLACE: Direct-to-builder complete interior fit-out delivered on time with zero variation orders.",
+    "description": "TODO_REPLACE: This newly collected 4-room BTO flat required a turnkey transformation from bare screed to a warm, contemporary home. Working directly with our lead builder, the homeowners chose an open-concept layout with architectural drop ceilings, custom kitchen cabinetry, and complete surface finishing. By coordinating all trades in-house—from masonry to false ceiling and painting—we completed the handover 5 days ahead of schedule.",
+    "keyHighlights": [
+      "Zero middleman ID markups — 100% direct builder quotation",
+      "HDB renovation permit submitted and approved within 48 hours",
+      "Saint-Gobain moisture-resistant ceiling boards with warm ambient LEDs",
+      "Certified 48-hour bathroom water ponding test with zero seepage"
+    ]
   },
   {
     "id": "proj-2",
     "isPlaceholder": true,
+    "category": "Toilet Renovation",
     "title": "TODO_REPLACE: Master Bathroom & Kitchen Tiling Overhaul",
     "propertyType": "TODO_REPLACE: 3-Room Resale Flat",
     "location": "TODO_REPLACE: Bedok South",
     "sizeSqft": "TODO_REPLACE: 72 sqm (775 sqft)",
     "scopeOfWork": [
-      "TODO_REPLACE: Complete Hacking down to Bare Slab",
+      "TODO_REPLACE: Complete Hacking down to Bare Concrete Slab",
       "TODO_REPLACE: Dual-Coat SikaTop 107 Waterproofing Membrane",
       "TODO_REPLACE: 600x600 Homogeneous Floor & Wall Tiling",
-      "TODO_REPLACE: Stainless Steel Piping & Sanitary Ware Installation"
+      "TODO_REPLACE: Stainless Steel SS304 Piping & Sanitary Ware Installation",
+      "TODO_REPLACE: Trackless Aluminium Bi-Fold Bathroom Door"
     ],
     "durationDays": "TODO_REPLACE: 12 Days",
     "costRange": "TODO_REPLACE: S$9,500 – S$12,500",
     "beforeImage": "/images/projects/proj-2-before.jpg",
     "afterImage": "/images/projects/proj-2-after.jpg",
-    "summary": "TODO_REPLACE: Replaced 25-year-old leaking pipes and cracked tiles with modern anti-slip tiling and certified 48-hour ponding test."
+    "gallery": [
+      "/images/projects/proj-2-before.jpg",
+      "/images/projects/proj-2-after.jpg",
+      "/images/tiling/13.jpeg",
+      "/images/tiling/11.jpeg"
+    ],
+    "summary": "TODO_REPLACE: Replaced 25-year-old leaking pipes and cracked tiles with modern anti-slip tiling and certified 48-hour ponding test.",
+    "description": "TODO_REPLACE: An aging 3-room resale flat with persistent ceiling water seepage to the lower floor. Our team executed full pneumatic hacking down to the bare structural slab, applied dual-coat elastomeric waterproofing membrane, and conducted a mandatory 48-hour water ponding inspection before laying 600x600 anti-slip homogeneous porcelain tiles.",
+    "keyHighlights": [
+      "Dual-coat SikaTop Seal 107 polymer waterproofing system",
+      "3D laser leveling with precision 45° mitred external edge joints",
+      "PUB-licensed SS304 concealed water piping with pressure test",
+      "12-month written workmanship & waterproofing warranty"
+    ]
   },
   {
     "id": "proj-3",
     "isPlaceholder": true,
+    "category": "Condo Renovation",
     "title": "TODO_REPLACE: 3-Bedroom Private Condominium Rejuvenation",
     "propertyType": "TODO_REPLACE: Private Condominium",
     "location": "TODO_REPLACE: Thomson Grand",
@@ -48,12 +79,126 @@
       "TODO_REPLACE: Swedish Bona 99% Dust-Free Parquet Sanding & Matte Lacquer",
       "TODO_REPLACE: Master Bedroom Full-Height Wardrobe Carpentry",
       "TODO_REPLACE: Trackless Heavy-Duty Aluminium Glass Sliding Doors",
-      "TODO_REPLACE: Feature Wall Skim Coating & Painting"
+      "TODO_REPLACE: Feature Wall Skim Coating & Painting",
+      "TODO_REPLACE: Marble Floor Diamond Pad Polishing & Sealing"
     ],
     "durationDays": "TODO_REPLACE: 16 Days",
     "costRange": "TODO_REPLACE: S$14,000 – S$18,000",
-    "beforeImage": "/images/projects/proj-3-before.jpg",
-    "afterImage": "/images/projects/proj-3-after.jpg",
-    "summary": "TODO_REPLACE: Condominium upgrade strictly adhering to MCST work permits, lift protective padding, and quiet-hour protocols."
+    "beforeImage": "/images/house-reno/1.jpeg",
+    "afterImage": "/images/tiling/9.jpeg",
+    "gallery": [
+      "/images/house-reno/1.jpeg",
+      "/images/tiling/9.jpeg",
+      "/images/door-window/1.jpeg",
+      "/images/carpentry/2.jpeg"
+    ],
+    "summary": "TODO_REPLACE: Condominium upgrade strictly adhering to MCST work permits, lift protective padding, and quiet-hour protocols.",
+    "description": "TODO_REPLACE: Fast-track condominium refurbishment for incoming tenants. Works included diamond-pad marble restoration, dust-free solid timber parquet re-varnishing, bespoke wardrobe joinery, and architectural French arched glass partition doors.",
+    "keyHighlights": [
+      "Full MCST compliance: S$2,000 deposit handling, lift padding & quiet hours",
+      "Bona Swedish dust-free 3-stage rotary sanding with non-toxic matte lacquer",
+      "Direct workshop carpentry fabricated with solid plywood and Blum soft-close",
+      "Comprehensive public liability insurance coverage up to S$1,000,000"
+    ]
+  },
+  {
+    "id": "proj-4",
+    "isPlaceholder": true,
+    "category": "Toilet Renovation",
+    "title": "TODO_REPLACE: Executive Bathroom Waterproofing & Modern Mosaic Tiling",
+    "propertyType": "TODO_REPLACE: 5-Room Resale HDB",
+    "location": "TODO_REPLACE: Marine Parade",
+    "sizeSqft": "TODO_REPLACE: 65 sqft",
+    "scopeOfWork": [
+      "TODO_REPLACE: Pneumatic Jackhammer Hacking of Old Ceramic Tiles",
+      "TODO_REPLACE: Sika Water-Stop Grout & Liquid Membrane Barrier",
+      "TODO_REPLACE: Feature Wall Geometric Mosaic & Non-Slip Floor Tiling",
+      "TODO_REPLACE: Concealed Hot/Cold Mixer Piping & Tempered Glass Screen"
+    ],
+    "durationDays": "TODO_REPLACE: 10 Days",
+    "costRange": "TODO_REPLACE: S$8,800 – S$11,200",
+    "beforeImage": "/images/tiling/3.jpeg",
+    "afterImage": "/images/tiling/7.jpeg",
+    "gallery": [
+      "/images/tiling/3.jpeg",
+      "/images/tiling/7.jpeg",
+      "/images/tiling/13.jpeg",
+      "/images/tiling/38.jpeg"
+    ],
+    "summary": "TODO_REPLACE: Turnkey bathroom overhaul solving severe dampness with designer mosaic feature tiling and certified plumbing.",
+    "description": "TODO_REPLACE: Homeowners in Marine Parade experienced hollow wall tiles and deteriorating silicone joints. We hacked the bathroom to bare concrete, reinforced all pipe penetrations with waterproof collar rings, and laid modern anti-slip patterned tiles with a vertical mosaic shower feature wall.",
+    "keyHighlights": [
+      "Polymer-modified tile adhesive applied with 100% back-buttering",
+      "48-hour HDB water ponding leak test certified prior to screeding",
+      "10mm toughened safety glass shower screen with stainless steel SS316 brackets",
+      "Rapid 10-day handover with zero disruption to neighboring units"
+    ]
+  },
+  {
+    "id": "proj-5",
+    "isPlaceholder": true,
+    "category": "Carpentry",
+    "title": "TODO_REPLACE: Custom Full-Height Wardrobe & Bedroom Joinery",
+    "propertyType": "TODO_REPLACE: 4-Room Resale Flat",
+    "location": "TODO_REPLACE: Punggol Waterway",
+    "sizeSqft": "TODO_REPLACE: 140 sqft (Bedroom)",
+    "scopeOfWork": [
+      "TODO_REPLACE: In-House Workshop Fabrication of Solid Marine Plywood Carcass",
+      "TODO_REPLACE: Lamitak High-Pressure Laminate Finish with ABS Edging",
+      "TODO_REPLACE: Blum Soft-Close Concealed Hinges & Undermount Drawer Runners",
+      "TODO_REPLACE: Integrated Warm LED Strip Lighting with Hidden Sensor"
+    ],
+    "durationDays": "TODO_REPLACE: 8 Days (Installation 2 Days)",
+    "costRange": "TODO_REPLACE: S$4,200 – S$5,800",
+    "beforeImage": "/images/partition-ceiling/12.jpeg",
+    "afterImage": "/images/carpentry/2.jpeg",
+    "gallery": [
+      "/images/partition-ceiling/12.jpeg",
+      "/images/carpentry/2.jpeg",
+      "/images/carpentry/1.jpeg",
+      "/images/carpentry/4.jpeg"
+    ],
+    "summary": "TODO_REPLACE: Precision custom carpentry fabricated in our local workshop with zero VOC materials and premium Austrian Blum hardware.",
+    "description": "TODO_REPLACE: Built-in bedroom storage solution maximizing floor-to-ceiling height without bulky filler gaps. Fabricated in our local Singapore workshop using formaldehyde-tested solid plywood and Lamitak designer laminates, then installed on-site in just 2 days.",
+    "keyHighlights": [
+      "100% Solid grade-A marine plywood carcass — no chipboard or MDF",
+      "Laser-trimmed 1mm ABS trimming to prevent peeling and sharp corners",
+      "Genuine Blum soft-closing systems with lifetime mechanical warranty",
+      "Direct factory pricing without interior designer intermediary fees"
+    ]
+  },
+  {
+    "id": "proj-6",
+    "isPlaceholder": true,
+    "category": "False Ceiling",
+    "title": "TODO_REPLACE: Living Hall False Ceiling & Cove Lighting Pelmet",
+    "propertyType": "TODO_REPLACE: 3-Room Resale HDB",
+    "location": "TODO_REPLACE: Bukit Timah",
+    "sizeSqft": "TODO_REPLACE: 320 sqft (Living/Dining)",
+    "scopeOfWork": [
+      "TODO_REPLACE: Heavy-Duty Zinc Galvanized Steel Main/Cross Channel Framing",
+      "TODO_REPLACE: Saint-Gobain Gyproc 9mm Moisture-Resistant Plasterboards",
+      "TODO_REPLACE: Concealed Cove Lighting Troughs & Recessed Downlight Cutouts",
+      "TODO_REPLACE: 3-Coat Skim Coating with Anti-Crack Fiberglass Joint Mesh",
+      "TODO_REPLACE: Nippon Paint Odour-Less Anti-Mould Ceiling White"
+    ],
+    "durationDays": "TODO_REPLACE: 5 Days",
+    "costRange": "TODO_REPLACE: S$2,800 – S$3,900",
+    "beforeImage": "/images/partition-ceiling/4.jpeg",
+    "afterImage": "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
+    "gallery": [
+      "/images/partition-ceiling/4.jpeg",
+      "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
+      "/images/partition-ceiling/12.jpeg",
+      "/images/partition-ceiling/6.jpeg"
+    ],
+    "summary": "TODO_REPLACE: Architectural floating ceiling with warm indirect perimeter illumination and acoustic insulation.",
+    "description": "TODO_REPLACE: Transformed a low-beam HDB living hall by concealing aircon trunking and electrical wiring behind an elegant floating drop ceiling. The cove lighting pelmets provide gentle ambient glow without harsh ceiling glare.",
+    "keyHighlights": [
+      "Hot-dipped galvanized steel channels resistant to tropical humidity",
+      "Saint-Gobain certified fire-rated and moisture-resistant gypsum boards",
+      "Zero hairline crack guarantee with fiberglass mesh taped joints",
+      "Concealed wiring tested and certified by licensed EMA electricians"
+    ]
   }
 ]
