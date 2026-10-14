@@ -51,7 +51,7 @@ export default function AboutPage() {
             Honest Craftsmanship, Dedicated On-Site Supervision.
           </h1>
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-            {companyStory.replace("TODO_REPLACE: ", "")}
+            {companyStory.replace(/^TODO_REPLACE:\s*/i, "")}
           </p>
         </div>
 
@@ -65,29 +65,29 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm text-slate-200">
             <div className="p-4 rounded-xl bg-black/20 border border-white/10">
               <span className="text-xs text-slate-400 block mb-1">Company Legal Name</span>
-              <span className="font-bold text-white text-base">{legalName}</span>
+              <span className="font-bold text-white text-base">{legalName.replace(/^TODO_REPLACE:\s*/i, "")}</span>
             </div>
             <div className="p-4 rounded-xl bg-black/20 border border-white/10">
               <span className="text-xs text-slate-400 block mb-1">ACRA UEN Number</span>
-              <span className="font-bold text-white text-base font-mono">{uen}</span>
+              <span className="font-bold text-white text-base font-mono">{uen.replace(/^TODO_REPLACE:\s*/i, "")}</span>
             </div>
             <div className="p-4 rounded-xl bg-black/20 border border-white/10">
               <span className="text-xs text-slate-400 block mb-1">HDB Renovation Directory</span>
-              <span className="font-bold text-white text-base">{hdbLicense}</span>
+              <span className="font-bold text-white text-base">{hdbLicense.replace(/^TODO_REPLACE:\s*/i, "")}</span>
             </div>
             {bcaLicense && (
               <div className="p-4 rounded-xl bg-black/20 border border-white/10">
                 <span className="text-xs text-slate-400 block mb-1">BCA Contractor Registry</span>
-                <span className="font-bold text-white text-base">{bcaLicense}</span>
+                <span className="font-bold text-white text-base">{bcaLicense.replace(/^TODO_REPLACE:\s*/i, "")}</span>
               </div>
             )}
             <div className="p-4 rounded-xl bg-black/20 border border-white/10">
               <span className="text-xs text-slate-400 block mb-1">Work Injury Compensation (WIC)</span>
-              <span className="font-bold text-white text-base">{insurance.workInjuryCompensation}</span>
+              <span className="font-bold text-white text-base">{insurance.workInjuryCompensation.replace(/^TODO_REPLACE:\s*/i, "")}</span>
             </div>
             <div className="p-4 rounded-xl bg-black/20 border border-white/10">
               <span className="text-xs text-slate-400 block mb-1">Public Liability Insurance</span>
-              <span className="font-bold text-white text-base">{insurance.publicLiability}</span>
+              <span className="font-bold text-white text-base">{insurance.publicLiability.replace(/^TODO_REPLACE:\s*/i, "")}</span>
             </div>
           </div>
         </div>
@@ -107,29 +107,35 @@ export default function AboutPage() {
             {members.map((m) => (
               <div
                 key={m.id}
-                className="rounded-2xl bg-white/5 border border-white/10 overflow-hidden flex flex-col justify-between shadow-xl"
+                className="group rounded-3xl bg-white/5 border border-white/10 overflow-hidden flex flex-col justify-between shadow-xl hover:border-[#8CCB6B]/40 transition-all duration-300"
               >
                 <div>
-                  <div className="aspect-[4/3] w-full bg-slate-900">
+                  <div className="relative aspect-[4/3] w-full bg-slate-900 overflow-hidden">
                     <ProjectImage
                       src={m.photo}
-                      alt={m.name.replace("TODO_REPLACE: ", "")}
+                      alt={m.name.replace(/^TODO_REPLACE:\s*/i, "")}
                       fallbackText="Add team photo"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-3 left-3 bg-[#0A1424]/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20 shadow-sm flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                      <span>{m.credentials.replace(/^TODO_REPLACE:\s*/i, "")}</span>
+                    </div>
                   </div>
                   <div className="p-6">
                     <span className="text-xs font-bold text-[#8CCB6B] block mb-1">
-                      {m.role.replace("TODO_REPLACE: ", "")}
+                      {m.role.replace(/^TODO_REPLACE:\s*/i, "")}
                     </span>
                     <h3 className="text-xl font-bold text-white mb-1">
-                      {m.name.replace("TODO_REPLACE: ", "")}
+                      {m.name.replace(/^TODO_REPLACE:\s*/i, "")}
                     </h3>
-                    <p className="text-xs text-amber-300 font-semibold mb-3">
-                      {m.experience.replace("TODO_REPLACE: ", "")}
+                    <p className="text-xs text-amber-300 font-semibold mb-3 flex items-center gap-1.5">
+                      <Award className="w-3.5 h-3.5 text-amber-400" />
+                      <span>{m.experience.replace(/^TODO_REPLACE:\s*/i, "")}</span>
                     </p>
                     <p className="text-sm text-slate-300 leading-relaxed font-normal">
-                      {m.bio.replace("TODO_REPLACE: ", "")}
+                      {m.bio.replace(/^TODO_REPLACE:\s*/i, "")}
                     </p>
                   </div>
                 </div>

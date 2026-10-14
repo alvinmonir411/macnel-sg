@@ -41,7 +41,7 @@
       "experience": "TODO_REPLACE: 20+ Years in Singapore Construction",
       "credentials": "TODO_REPLACE: BCA Certified CoreTrade Specialist",
       "bio": "TODO_REPLACE: Oversees all on-site structural works, waterproofing membranes, and permit compliance with HDB and condo management.",
-      "photo": ""
+      "photo": "/images/team/team-1.jpg"
     },
     {
       "id": "member-2",
@@ -51,7 +51,7 @@
       "experience": "TODO_REPLACE: 16 Years Hands-On Experience",
       "credentials": "TODO_REPLACE: BCA Registered Tiling Craftsman",
       "bio": "TODO_REPLACE: Specializes in large-format slab installations, mitred joint edging, and zero-hollow buttering techniques.",
-      "photo": ""
+      "photo": "/images/team/team-2.jpg"
     },
     {
       "id": "member-3",
@@ -61,7 +61,7 @@
       "experience": "TODO_REPLACE: 14 Years in Singapore",
       "credentials": "TODO_REPLACE: Solid Plywood & Blum Specialist",
       "bio": "TODO_REPLACE: Coordinates in-house workshop fabrication for custom kitchen cabinetry, wardrobes, and architectural ceiling details.",
-      "photo": ""
+      "photo": "/images/team/team-3.jpg"
     }
   ]
 }

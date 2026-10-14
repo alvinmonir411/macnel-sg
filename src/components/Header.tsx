@@ -145,67 +145,68 @@ export function Header() {
 
   return (
     <header
-      style={{ backgroundColor: "var(--dark-bg, #16263F)" }}
-      className="sticky top-0 z-50 bg-[#16263F] border-b border-slate-700/80 text-white shadow-xl shadow-black/25 transition-all"
+      className="sticky top-0 z-50 bg-[#0A1424]/90 backdrop-blur-xl border-b border-white/[0.08] text-white shadow-[0_4px_30px_rgba(0,0,0,0.4)] transition-all"
     >
+      {/* Luminous Top Hairline Accent */}
+      <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#8CCB6B]/60 to-transparent pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4 xl:gap-8">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0 group py-1">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#2C6BA6] to-[#16263F] border border-[#8CCB6B]/40 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform shrink-0">
-              <Hammer className="w-5 h-5 text-[#A3E635]" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1E3A5F] to-[#0A1628] border border-[#8CCB6B]/40 ring-1 ring-white/10 flex items-center justify-center text-white shadow-[0_0_15px_rgba(140,203,107,0.2)] group-hover:border-[#8CCB6B] transition-all shrink-0">
+              <Hammer className="w-4 h-4 text-[#8CCB6B] group-hover:scale-110 transition-transform" />
             </div>
             <div className="flex flex-col shrink-0">
               <div className="flex items-center gap-2">
-                <span className="font-black text-lg sm:text-xl tracking-tight text-white whitespace-nowrap drop-shadow-sm">
+                <span className="font-extrabold text-lg lg:text-[1.2rem] tracking-tight text-white whitespace-nowrap drop-shadow-sm">
                   Renovation Contractor
                 </span>
-                <span className="text-[10px] font-black uppercase tracking-wider bg-[#8CCB6B]/25 text-[#A3E635] border border-[#8CCB6B]/50 px-1.5 py-0.5 rounded shadow-sm shrink-0">
+                <span className="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-[#8CCB6B] to-[#A3E635] text-[#0A1424] px-1.5 py-0.5 rounded shadow-[0_2px_8px_rgba(140,203,107,0.35)] shrink-0">
                   SG
                 </span>
               </div>
-              <p className="text-[10px] text-slate-300 tracking-wider uppercase font-semibold whitespace-nowrap mt-0.5">
-                Direct Contractor · Singapore
+              <p className="text-[9.5px] text-slate-300 tracking-[0.18em] uppercase font-bold whitespace-nowrap mt-0.5 flex items-center gap-1.5">
+                <span>Direct Builder</span>
+                <span className="w-1 h-1 rounded-full bg-[#8CCB6B]" />
+                <span>Licensed SG</span>
               </p>
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-semibold">
+          {/* Desktop Nav Links - Capsule Floating Bar */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 text-xs xl:text-sm font-semibold bg-white/[0.04] border border-white/[0.08] rounded-full p-1.5 backdrop-blur-md shadow-inner">
             <Link
               href="/"
-              className={`py-2 transition-colors relative whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
                 pathname === "/"
-                  ? "text-[#A3E635] font-bold"
-                  : "text-slate-100 hover:text-[#A3E635]"
+                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
+                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>Home</span>
-              {pathname === "/" && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#A3E635] rounded-full" />
-              )}
             </Link>
 
             {/* ALL 18 SERVICES MEGA DROPDOWN */}
             <div
               ref={dropdownRef}
-              className="relative py-2"
+              className="relative"
               onMouseEnter={() => setDesktopDropdownOpen(true)}
               onMouseLeave={() => setDesktopDropdownOpen(false)}
             >
               <button
                 type="button"
                 onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
-                className={`flex items-center gap-1.5 transition-colors focus:outline-none whitespace-nowrap ${
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium focus:outline-none whitespace-nowrap cursor-pointer ${
                   isServicesActive
-                    ? "text-[#A3E635] font-bold"
-                    : "text-slate-100 hover:text-[#A3E635]"
+                    ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
+                    : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
                 }`}
               >
                 <span>Services</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    desktopDropdownOpen ? "rotate-180 text-[#A3E635]" : ""
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    desktopDropdownOpen ? "rotate-180 text-[#8CCB6B]" : "text-slate-400"
                   }`}
                 />
               </button>
@@ -214,8 +215,8 @@ export function Header() {
               {desktopDropdownOpen && (
                 <div className="absolute top-full -left-48 w-[760px] pt-3 z-50">
                   <div
-                    style={{ backgroundColor: "#16263F" }}
-                    className="rounded-2xl bg-[#16263F] border border-slate-700/90 p-5 shadow-2xl shadow-black/80 backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200"
+                    style={{ backgroundColor: "#0B1528" }}
+                    className="rounded-2xl bg-[#0B1528]/95 border border-white/10 p-5 shadow-2xl shadow-black/80 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200"
                   >
                     <div className="px-1 pb-3 flex items-center justify-between border-b border-slate-700/80 mb-4">
                       <div className="flex items-center gap-2">
@@ -334,10 +335,10 @@ export function Header() {
 
             <Link
               href="/projects"
-              className={`py-2 transition-colors relative whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
                 pathname === "/projects" || pathname === "/project-gallery"
-                  ? "text-[#8CCB6B] font-bold"
-                  : "text-slate-100 hover:text-[#8CCB6B]"
+                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
+                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>Projects</span>
@@ -345,10 +346,10 @@ export function Header() {
 
             <Link
               href="/pricing"
-              className={`py-2 transition-colors relative whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
                 pathname === "/pricing"
-                  ? "text-[#8CCB6B] font-bold"
-                  : "text-slate-100 hover:text-[#8CCB6B]"
+                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
+                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>Pricing</span>
@@ -356,10 +357,10 @@ export function Header() {
 
             <Link
               href="/about"
-              className={`py-2 transition-colors relative whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
                 pathname === "/about" || pathname === "/about-us"
-                  ? "text-[#8CCB6B] font-bold"
-                  : "text-slate-100 hover:text-[#8CCB6B]"
+                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
+                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>About Us</span>
@@ -367,10 +368,10 @@ export function Header() {
 
             <Link
               href="/contact-us"
-              className={`py-2 transition-colors relative whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
                 pathname === "/contact-us"
-                  ? "text-[#8CCB6B] font-bold"
-                  : "text-slate-100 hover:text-[#8CCB6B]"
+                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
+                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>Contact</span>
@@ -383,34 +384,38 @@ export function Header() {
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-slate-200 hover:text-white transition-all text-xs font-semibold shadow-sm group shrink-0"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/25 text-slate-200 hover:text-white transition-all text-xs font-medium backdrop-blur-sm shadow-inner group shrink-0 cursor-pointer"
               title="Search renovation trades (⌘K / /)"
             >
               <Search className="w-3.5 h-3.5 text-[#8CCB6B] group-hover:scale-110 transition-transform" />
-              <span className="hidden xl:inline text-slate-200">Search</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/20 text-[10px] font-mono text-[#8CCB6B]">
+              <span className="hidden xl:inline text-slate-300">Search</span>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/15 text-[10px] font-mono text-slate-300">
                 ⌘K
               </kbd>
             </button>
 
-            {/* Free Quote -> Direct WhatsApp */}
+            {/* Free Quote -> Direct WhatsApp with Live Online Indicator */}
             <a
               href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
                 siteConfig.name
               )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl border border-[#25D366]/60 bg-[#25D366]/20 text-[#4ADE80] hover:bg-[#25D366]/30 transition-all shadow-sm shrink-0 whitespace-nowrap"
-              title="Chat on WhatsApp"
+              className="flex items-center gap-2 text-xs font-bold px-3.5 py-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 transition-all shadow-sm shrink-0 whitespace-nowrap"
+              title="Chat directly on WhatsApp"
             >
-              <MessageCircle className="w-3.5 h-3.5 fill-current text-[#25D366]" />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <MessageCircle className="w-3.5 h-3.5 fill-current text-emerald-400" />
               <span className="text-white font-bold">WhatsApp</span>
             </a>
 
-            {/* Book Free Site Inspection (Rule C.4) */}
+            {/* Book Free Site Inspection (Rule C.4) - Ultra-Premium Luminous CTA */}
             <Link
               href="/book"
-              className="flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-xl brand-gradient text-white shadow-lg hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 whitespace-nowrap"
+              className="flex items-center gap-2 text-xs font-extrabold px-4 py-2 rounded-xl bg-gradient-to-r from-[#8CCB6B] to-[#73B950] hover:from-[#9DE07A] hover:to-[#82C85F] text-[#0A1424] shadow-[0_2px_14px_rgba(140,203,107,0.35)] hover:shadow-[0_4px_22px_rgba(140,203,107,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 whitespace-nowrap"
             >
               <CalendarCheck className="w-3.5 h-3.5" />
               <span>Book Free Site Inspection</span>
