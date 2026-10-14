@@ -31,18 +31,13 @@ export function Hero() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [shouldMountVideo, setShouldMountVideo] = useState(false);
 
-  // ⚡ ZERO LOAD TIME PENALTY TECHNIQUE:
-  // 1. Mobile devices (< 1024px) load the ultra-lightweight 9.2KB mobile poster.
-  //    No heavy video streams on mobile, saving mobile data and maximizing speed.
-  // 2. On desktop, ambient video is deferred until after initial page load and idle thread.
+  // Defer desktop ambient video until idle thread
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const isMobile = window.innerWidth < 1024;
     const isDataSaver = (navigator as any)?.connection?.saveData === true;
-    if (isMobile || isDataSaver) {
-      return;
-    }
+    if (isMobile || isDataSaver) return;
 
     const activateVideo = () => setShouldMountVideo(true);
 
@@ -67,36 +62,31 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-[#0A1124] text-white min-h-[92vh] lg:min-h-screen flex flex-col justify-between">
-      {/* 📱 Ambient Architectural Glow & Subtle Blueprint Grid */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(140,203,107,0.22),transparent)] z-[1]" />
-      <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-20 z-[1]" />
-
-      {/* 🖼️ High-End Renovation Interior Background Showcase (Mobile: 9.2KB WebP, Desktop: 24KB WebP) */}
+      {/* 🖼️ High-End Modern Singapore Renovation Background Showcase */}
       <picture className="absolute inset-0 w-full h-full pointer-events-none">
         <source
           media="(max-width: 768px)"
-          srcSet="/hero-poster-mobile.webp"
+          srcSet="/hero-modern-mobile.webp"
           type="image/webp"
         />
         <source
           media="(min-width: 769px)"
-          srcSet="/hero-poster.webp"
+          srcSet="/hero-modern-desktop.webp"
           type="image/webp"
         />
         <img
-          src="/hero-poster.webp"
+          src="/hero-modern-desktop.webp"
           alt="Direct Renovation Contractor Singapore"
           fetchPriority="high"
           loading="eager"
           decoding="sync"
           className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${
-            videoLoaded ? "opacity-0" : "opacity-75 sm:opacity-85"
+            videoLoaded ? "opacity-0" : "opacity-80 sm:opacity-90"
           }`}
         />
       </picture>
 
-      {/* 🎬 High-Definition Ambient Video (Desktop Only & Deferred Mount):
-          Zero mobile bandwidth usage; zero interference with initial page paint. */}
+      {/* 🎬 Deferred Ambient Desktop Video */}
       {shouldMountVideo && (
         <video
           autoPlay
@@ -113,63 +103,64 @@ export function Hero() {
         </video>
       )}
 
-      {/* 📐 Natural Architectural Vignette:
-          Ensures 100% crystal text contrast while letting the warm home interior shine through */}
+      {/* 📐 Warm Luxury Architectural Vignette:
+          Lets the warm fluted wood, cove ceiling & modern living room shine through */}
       <div
-        className="absolute inset-0 z-[2] pointer-events-none"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(10, 17, 36, 0.88) 0%, rgba(10, 17, 36, 0.65) 35%, rgba(10, 17, 36, 0.82) 75%, #0A1124 100%)",
+            "linear-gradient(180deg, rgba(10, 17, 36, 0.72) 0%, rgba(10, 17, 36, 0.38) 25%, rgba(10, 17, 36, 0.65) 60%, rgba(10, 17, 36, 0.95) 100%)",
         }}
       />
 
+      {/* Ambient Top Emerald Radial Glow */}
+      <div className="absolute top-0 inset-x-0 h-96 pointer-events-none bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(140,203,107,0.18),transparent)] z-[2]" />
+
       {/* Main Content Area */}
-      <div className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-36 pb-10 w-full flex-1 flex flex-col justify-center">
-        <div className="max-w-3xl flex flex-col items-start gap-5 sm:gap-6">
-          {/* Authentic Contractor Pill */}
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm">
+      <div className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-36 pb-8 w-full flex-1 flex flex-col justify-center">
+        <div className="max-w-3xl flex flex-col items-start gap-4 sm:gap-6">
+          {/* Top Verified Contractor Pill */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-[#0A1628]/80 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-emerald-300 shadow-md">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8CCB6B] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8CCB6B]" />
             </span>
-            <span className="font-bold tracking-wide">Direct Singapore Builder</span>
-            <span className="text-white/40">|</span>
+            <span className="font-bold text-white">Direct Builder</span>
+            <span className="text-white/30">|</span>
             <span className="text-slate-200 font-medium">HDB &amp; BCA Compliant</span>
           </div>
 
-          {/* Editorial Headline: Crisp, Confident, Human with Subtle Luminous Accent */}
+          {/* Editorial Headline: Crisp, Confident, Balanced */}
           <h1 className="font-extrabold tracking-tight text-white text-3xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] leading-[1.12]">
-            Direct to builder{" "}
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-[#8CCB6B]">
-              renovation.
-            </span>
+            Direct to builder <br />
+            <span>renovation</span>
+            <span className="text-[#8CCB6B]">.</span>
           </h1>
 
-          {/* Genuine, Honest Subtitle */}
-          <p className="text-sm sm:text-base lg:text-xl text-slate-100 font-normal leading-relaxed max-w-2xl drop-shadow-sm">
+          {/* Genuine Subtitle */}
+          <p className="text-sm sm:text-base lg:text-xl text-slate-100 font-normal leading-relaxed max-w-2xl drop-shadow">
             Skip interior design sales markups and work directly with certified
             in-house tilers, carpenters, and ceiling specialists. Honest pricing,
             transparent quotes, and dedicated site supervision across Singapore.
           </p>
 
-          {/* 💎 3 Sleek Trust Value Chips */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5 w-full max-w-2xl pt-0.5">
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/[0.08] border border-white/15 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
+          {/* 💎 3 Sleek Glass Trust Chips (Inline, Space-Efficient) */}
+          <div className="flex flex-wrap items-center gap-2 pt-0.5">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
               <Check className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
-              <span>0% ID Middleman Markup</span>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/[0.08] border border-white/15 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
+              <span>Zero ID Markup</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
               <ShieldCheck className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
-              <span>Written Workmanship Warranty</span>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/[0.08] border border-white/15 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
+              <span>Written Warranty</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
-              <span>Milestone Contract Payments</span>
-            </div>
+              <span>Milestone Contract</span>
+            </span>
           </div>
 
-          {/* Primary Action Buttons & Quick Search */}
+          {/* Primary Action Buttons: Clean 2-CTA Stack on Mobile */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 w-full sm:w-auto">
             {/* WhatsApp CTA (Highest converting in Singapore) */}
             <a
@@ -193,54 +184,30 @@ export function Hero() {
               <span>Book Free Site Inspection</span>
               <ArrowRight className="w-4 h-4 ml-0.5 opacity-70" />
             </Link>
-
-            {/* Quick Spotlight Search Trigger */}
-            <button
-              type="button"
-              onClick={() => setSearchModalOpen(true)}
-              aria-label="Search renovation services"
-              className="inline-flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/20 text-white text-xs sm:text-sm backdrop-blur-md transition-all cursor-pointer"
-              title="Search renovation services"
-            >
-              <Search className="w-4 h-4 text-[#8CCB6B]" />
-              <span>Search Trades</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-[10px] font-mono text-slate-200">
-                ⌘K
-              </kbd>
-            </button>
           </div>
 
-          {/* Verified Credentials & Social Proof */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-xs sm:text-sm text-slate-200">
-            <div className="flex items-center gap-1.5">
+          {/* Verified Credentials & Social Proof Bar */}
+          <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-200">
+            <div className="inline-flex items-center gap-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
               <div className="flex text-amber-400">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-current" />
                 ))}
               </div>
               <span className="font-extrabold text-white">4.9 / 5.0</span>
-              <span className="text-slate-300">(180+ Reviews)</span>
+              <span className="text-slate-300 text-[11px]">(180+ Reviews)</span>
             </div>
 
-            <div className="hidden sm:inline-block text-white/30">|</div>
-
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-[#8CCB6B]" />
+            <div className="inline-flex items-center gap-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
               <span>12+ Years Track Record</span>
-            </div>
-
-            <div className="hidden sm:inline-block text-white/30">|</div>
-
-            <div className="flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-[#8CCB6B]" />
-              <span>Direct In-House Craftsmen</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* 🛠️ Bottom Architectural Trade Navigator */}
-      <div className="relative z-[3] border-t border-white/15 bg-black/40 backdrop-blur-md">
+      <div className="relative z-[3] border-t border-white/15 bg-black/50 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
           <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar text-xs font-medium text-slate-300">
             <span className="text-[11px] uppercase tracking-wider text-slate-400 font-bold shrink-0 hidden md:inline">

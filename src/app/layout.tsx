@@ -177,12 +177,12 @@ export default function RootLayout({
       className={`${montserrat.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <head>
-        {/* ⚡ High-Priority Hero Image Preloads: 9.2KB for Mobile (<768px), 24KB for Desktop */}
+        {/* ⚡ High-Priority Modern Renovation Hero Image Preloads */}
         <link
           rel="preload"
           as="image"
           type="image/webp"
-          href="/hero-poster-mobile.webp"
+          href="/hero-modern-mobile.webp"
           media="(max-width: 768px)"
           fetchPriority="high"
         />
@@ -190,7 +190,7 @@ export default function RootLayout({
           rel="preload"
           as="image"
           type="image/webp"
-          href="/hero-poster.webp"
+          href="/hero-modern-desktop.webp"
           media="(min-width: 769px)"
           fetchPriority="high"
         />

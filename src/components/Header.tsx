@@ -153,20 +153,20 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4 xl:gap-8">
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group py-1">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#1E3A5F] to-[#0A1628] border border-[#8CCB6B]/40 ring-1 ring-white/10 flex items-center justify-center text-white shadow-[0_0_15px_rgba(140,203,107,0.2)] group-hover:border-[#8CCB6B] transition-all shrink-0">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group py-1">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#1E3A5F] to-[#0A1628] border border-[#8CCB6B]/40 ring-1 ring-white/10 flex items-center justify-center text-white shadow-[0_0_15px_rgba(140,203,107,0.2)] group-hover:border-[#8CCB6B] transition-all shrink-0">
               <Hammer className="w-4 h-4 text-[#8CCB6B] group-hover:scale-110 transition-transform" />
             </div>
             <div className="flex flex-col shrink-0">
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-lg lg:text-[1.2rem] tracking-tight text-white whitespace-nowrap drop-shadow-sm">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-extrabold text-sm sm:text-lg lg:text-[1.2rem] tracking-tight text-white whitespace-nowrap drop-shadow-sm">
                   Renovation Contractor
                 </span>
-                <span className="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-[#8CCB6B] to-[#A3E635] text-[#0A1424] px-1.5 py-0.5 rounded shadow-[0_2px_8px_rgba(140,203,107,0.35)] shrink-0">
+                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-[#8CCB6B] to-[#A3E635] text-[#0A1424] px-1.5 py-0.5 rounded shadow-[0_2px_8px_rgba(140,203,107,0.35)] shrink-0">
                   SG
                 </span>
               </div>
-              <p className="text-[9.5px] text-slate-300 tracking-[0.18em] uppercase font-bold whitespace-nowrap mt-0.5 flex items-center gap-1.5">
+              <p className="text-[8.5px] sm:text-[9.5px] text-slate-300 tracking-[0.16em] uppercase font-bold whitespace-nowrap mt-0.5 flex items-center gap-1.5">
                 <span>Direct Builder</span>
                 <span className="w-1 h-1 rounded-full bg-[#8CCB6B]" />
                 <span>Licensed SG</span>
@@ -423,41 +423,35 @@ export function Header() {
           </div>
 
           {/* Mobile Actions & Hamburger */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
             {/* Mobile Search Button */}
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 border border-white/20 transition-all"
+              className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 border border-white/15 transition-all"
               aria-label="Search services"
               title="Search services"
             >
-              <Search className="w-4 h-4 text-[#A3E635]" />
+              <Search className="w-4 h-4 text-[#8CCB6B]" />
             </button>
 
-            <Link
-              href="/book"
-              className="sm:hidden px-3 py-1.5 rounded-lg brand-gradient text-white text-xs font-bold flex items-center gap-1.5 shadow"
-            >
-              <CalendarCheck className="w-3.5 h-3.5" />
-              <span>Book</span>
-            </Link>
-
+            {/* Mobile WhatsApp Quick Action */}
             <a
               href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
                 siteConfig.name
               )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-[#25D366] text-white"
+              className="p-2 rounded-xl bg-[#25D366] text-slate-950 hover:bg-[#20ba59] transition-all shadow"
               aria-label="WhatsApp"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
+              <MessageCircle className="w-4 h-4 fill-slate-950" />
             </a>
 
+            {/* Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none"
+              className="p-2 rounded-xl text-white hover:bg-white/10 focus:outline-none"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? (
