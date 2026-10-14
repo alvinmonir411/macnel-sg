@@ -1,11 +1,12 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
+import projectsData from "../../data/projects.json";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const buildDate = new Date().toISOString();
 
-  const routes = [
+  const staticRoutes = [
     { path: "", priority: 1.0, changeFrequency: "weekly" as const },
     { path: "/book", priority: 1.0, changeFrequency: "weekly" as const },
     { path: "/services", priority: 0.95, changeFrequency: "weekly" as const },
@@ -65,7 +66,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return routes.map((r) => ({
+  const projectRoutes = projectsData.map((p) => ({
+    path: `/projects/${p.id}`,
+    priority: 0.8,
+    changeFrequency: "monthly" as const,
+  }));
+
+  const allRoutes = [...staticRoutes, ...projectRoutes];
+
+  return allRoutes.map((r) => ({
     url: `${baseUrl}${r.path}`,
     lastModified: buildDate,
     changeFrequency: r.changeFrequency,
