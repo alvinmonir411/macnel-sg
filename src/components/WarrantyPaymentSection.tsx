@@ -1,5 +1,3 @@
-"use client";
-
 import warrantyData from "../../data/warrantyTerms.json";
 import {
   ShieldCheck,

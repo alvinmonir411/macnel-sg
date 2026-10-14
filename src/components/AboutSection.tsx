@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import teamData from "../../data/team.json";
 import { siteConfig } from "@/config/site";
