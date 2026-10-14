@@ -1,16 +1,50 @@
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
 import { CredentialsBar } from "@/components/CredentialsBar";
 import { OtherServices } from "@/components/OtherServices";
-import { CustomerReviews } from "@/components/CustomerReviews";
-import { ProjectsPreview } from "@/components/ProjectsPreview";
-import { AboutSection } from "@/components/AboutSection";
-import { PricingSection } from "@/components/PricingSection";
-import { WarrantyPaymentSection } from "@/components/WarrantyPaymentSection";
-import { ToiletSpotlight } from "@/components/ToiletSpotlight";
-import { WhyChooseUs } from "@/components/WhyChooseUs";
-import { QuoteCalculator } from "@/components/QuoteCalculator";
-import { ContactLocationSection } from "@/components/ContactLocationSection";
-import { FAQSection } from "@/components/FAQSection";
+
+// ⚡ Code-split below-the-fold components with SSR enabled
+// Eliminates main-thread blocking on initial mobile paint while preserving 100% SEO
+const CustomerReviews = dynamic(
+  () => import("@/components/CustomerReviews").then((mod) => mod.CustomerReviews),
+  { ssr: true }
+);
+const ProjectsPreview = dynamic(
+  () => import("@/components/ProjectsPreview").then((mod) => mod.ProjectsPreview),
+  { ssr: true }
+);
+const AboutSection = dynamic(
+  () => import("@/components/AboutSection").then((mod) => mod.AboutSection),
+  { ssr: true }
+);
+const PricingSection = dynamic(
+  () => import("@/components/PricingSection").then((mod) => mod.PricingSection),
+  { ssr: true }
+);
+const WarrantyPaymentSection = dynamic(
+  () => import("@/components/WarrantyPaymentSection").then((mod) => mod.WarrantyPaymentSection),
+  { ssr: true }
+);
+const ToiletSpotlight = dynamic(
+  () => import("@/components/ToiletSpotlight").then((mod) => mod.ToiletSpotlight),
+  { ssr: true }
+);
+const WhyChooseUs = dynamic(
+  () => import("@/components/WhyChooseUs").then((mod) => mod.WhyChooseUs),
+  { ssr: true }
+);
+const QuoteCalculator = dynamic(
+  () => import("@/components/QuoteCalculator").then((mod) => mod.QuoteCalculator),
+  { ssr: true }
+);
+const ContactLocationSection = dynamic(
+  () => import("@/components/ContactLocationSection").then((mod) => mod.ContactLocationSection),
+  { ssr: true }
+);
+const FAQSection = dynamic(
+  () => import("@/components/FAQSection").then((mod) => mod.FAQSection),
+  { ssr: true }
+);
 
 export default function Home() {
   return (

@@ -69,18 +69,29 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0A1124] text-white min-h-[92vh] lg:min-h-screen flex flex-col justify-between">
       {/* ⚡ Instant Sub-Second LCP Hero Image:
-          Optimized responsive WebP with Next.js image priority for mobile & desktop */}
-      <Image
-        src="/hero-poster.webp"
-        alt="Direct Renovation Contractor Singapore"
-        fill
-        priority
-        sizes="100vw"
-        quality={80}
-        className={`object-cover object-center pointer-events-none transition-opacity duration-1000 ${
-          videoLoaded ? "opacity-0" : "opacity-90"
-        }`}
-      />
+          Direct CDN static WebP (9.2KB mobile, 24KB desktop) with zero serverless cold-start delay */}
+      <picture>
+        <source
+          media="(max-width: 768px)"
+          srcSet="/hero-poster-mobile.webp"
+          type="image/webp"
+        />
+        <source
+          media="(min-width: 769px)"
+          srcSet="/hero-poster.webp"
+          type="image/webp"
+        />
+        <img
+          src="/hero-poster.webp"
+          alt="Direct Renovation Contractor Singapore"
+          fetchPriority="high"
+          loading="eager"
+          decoding="sync"
+          className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none ${
+            videoLoaded ? "opacity-0" : "opacity-90"
+          }`}
+        />
+      </picture>
 
       {/* 🎬 High-Definition Ambient Video (Desktop Only & Deferred Mount):
           Zero mobile bandwidth usage; zero interference with initial page paint. */}
