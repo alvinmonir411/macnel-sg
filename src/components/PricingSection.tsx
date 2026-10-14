@@ -12,9 +12,9 @@ export function PricingSection() {
   const activeCategory = categories[activeCategoryIndex] || categories[0];
 
   return (
-    <section id="pricing" className="py-20 lg:py-28 bg-[#F1F5F9]/90 text-slate-900 border-b border-slate-200/80 relative overflow-hidden">
-      {/* Subtle Architectural Fine Grid Texture */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#CBD5E1_1px,transparent_1px),linear-gradient(to_bottom,#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
+    <section id="pricing" className="py-20 lg:py-28 bg-[#F8FAFC] text-slate-900 border-b border-slate-200/70 relative overflow-hidden">
+      {/* Subtle Architectural Dot Pattern - Matching Core Services Style */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-50" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">

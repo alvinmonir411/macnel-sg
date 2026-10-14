@@ -61,9 +61,9 @@ export function CustomerReviews() {
     : null;
 
   return (
-    <section id="reviews" className="py-20 lg:py-24 bg-[#F1F5F9]/85 text-slate-900 relative border-b border-slate-200/80 overflow-hidden">
-      {/* Subtle Architectural Cross Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#CBD5E1_1px,transparent_1px),linear-gradient(to_bottom,#CBD5E1_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-45" />
+    <section id="reviews" className="py-20 lg:py-24 bg-[#F8FAFC] text-slate-900 relative border-b border-slate-200/70 overflow-hidden">
+      {/* Subtle Architectural Dot Pattern - Matching Core Services Style */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none opacity-55" />
 
       {reviewSchema && (
         <script
@@ -106,7 +106,7 @@ export function CustomerReviews() {
                 type="button"
                 onClick={prevSlide}
                 aria-label="Previous reviews"
-                className="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 shadow-sm hover:shadow flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                className="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 hover:text-slate-900 shadow-sm flex items-center justify-center transition-all cursor-pointer active:scale-95"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -115,7 +115,7 @@ export function CustomerReviews() {
                 type="button"
                 onClick={nextSlide}
                 aria-label="Next reviews"
-                className="w-10 h-10 rounded-xl bg-[#16263F] hover:bg-[#1E3352] text-white shadow-sm hover:shadow flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                className="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-[#166534] text-slate-700 hover:text-[#166534] shadow-sm flex items-center justify-center transition-all cursor-pointer active:scale-95"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -193,7 +193,7 @@ export function CustomerReviews() {
               aria-label={`Go to slide ${idx + 1}`}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 currentIndex === idx
-                  ? "w-8 bg-[#16263F]"
+                  ? "w-8 bg-[#166534]"
                   : "w-2 bg-slate-300 hover:bg-slate-400"
               }`}
             />
