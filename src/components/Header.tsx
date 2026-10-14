@@ -409,7 +409,7 @@ export function Header() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <MessageCircle className="w-3.5 h-3.5 fill-current text-emerald-400" />
-              <span className="text-white font-bold">WhatsApp</span>
+              <span className="text-white font-bold">Quote Now</span>
             </a>
 
             {/* Book Free Site Inspection (Rule C.4) - Ultra-Premium Luminous CTA */}

@@ -32,7 +32,7 @@ export function WhyChooseUs() {
     },
     {
       icon: <Hammer className="w-6 h-6 text-brand-accent" />,
-      title: claims.showTradeCount ? "One-Stop Solution (18+ Trades)" : "One-Stop Direct Construction",
+      title: "One-Stop Solution (8 Core Trades)",
       desc: "From hacking, electrical rewiring, and false ceilings to tiling, plumbing, and bespoke carpentry—every core trade is handled harmoniously by one team.",
     },
   ];

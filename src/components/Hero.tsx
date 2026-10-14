@@ -12,18 +12,25 @@ import {
   ShieldCheck,
   Check,
   Sparkles,
+  Home as HomeIcon,
+  Grid3X3,
+  DoorOpen,
+  Layers,
+  Paintbrush,
+  Droplets,
+  Hammer,
 } from "lucide-react";
 import { ServiceSearchModal } from "@/components/ServiceSearchModal";
 
 const CORE_TRADES = [
-  { name: "House Renovation", href: "/house-renovation" },
-  { name: "Tiling Works", href: "/tiling-works" },
-  { name: "Doors & Windows", href: "/door-window-services" },
-  { name: "False Ceiling", href: "/false-ceiling" },
-  { name: "Painting & Plastering", href: "/house-painting-plastering" },
-  { name: "Flooring & Carpet", href: "/flooring-carpet-services" },
-  { name: "Toilet Renovation", href: "/toilet-renovation-in-singapore" },
-  { name: "Custom Carpentry", href: "/carpentry-services" },
+  { name: "House Renovation", href: "/house-renovation", icon: HomeIcon },
+  { name: "Tiling Works", href: "/tiling-works", icon: Grid3X3 },
+  { name: "Doors & Windows", href: "/door-window-services", icon: DoorOpen },
+  { name: "False Ceiling", href: "/false-ceiling", icon: Layers },
+  { name: "Painting & Plastering", href: "/house-painting-plastering", icon: Paintbrush },
+  { name: "Flooring & Carpet", href: "/flooring-carpet-services", icon: Layers },
+  { name: "Toilet Renovation", href: "/toilet-renovation-in-singapore", icon: Droplets },
+  { name: "Custom Carpentry", href: "/carpentry-services", icon: Hammer },
 ];
 
 export function Hero() {
@@ -61,7 +68,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[#0A1124] text-white min-h-[92vh] lg:min-h-screen flex flex-col justify-between">
+    <section className="relative overflow-hidden bg-[#0A1124] text-white min-h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-5rem)] flex flex-col justify-between">
       {/* 🖼️ High-End Modern Singapore Renovation Background Showcase */}
       <picture className="absolute inset-0 w-full h-full pointer-events-none">
         <source
@@ -109,18 +116,18 @@ export function Hero() {
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(10, 17, 36, 0.72) 0%, rgba(10, 17, 36, 0.38) 25%, rgba(10, 17, 36, 0.65) 60%, rgba(10, 17, 36, 0.95) 100%)",
+            "linear-gradient(180deg, rgba(10, 17, 36, 0.70) 0%, rgba(10, 17, 36, 0.35) 25%, rgba(10, 17, 36, 0.60) 65%, #0A1124 100%)",
         }}
       />
 
       {/* Ambient Top Emerald Radial Glow */}
-      <div className="absolute top-0 inset-x-0 h-96 pointer-events-none bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(140,203,107,0.18),transparent)] z-[2]" />
+      <div className="absolute top-0 inset-x-0 h-80 pointer-events-none bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(140,203,107,0.18),transparent)] z-[2]" />
 
-      {/* Main Content Area */}
-      <div className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-36 pb-8 w-full flex-1 flex flex-col justify-center">
-        <div className="max-w-3xl flex flex-col items-start gap-4 sm:gap-6">
+      {/* Main Content Area - Perfectly vertically centered within viewport */}
+      <div className="relative z-[3] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-6 w-full flex-1 flex flex-col justify-center">
+        <div className="max-w-3xl flex flex-col items-start gap-3 sm:gap-4 lg:gap-4 xl:gap-5">
           {/* Top Verified Contractor Pill */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-[#0A1628]/80 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-emerald-300 shadow-md">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-[#0A1628]/80 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-emerald-300 shadow-md">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8CCB6B] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8CCB6B]" />
@@ -131,14 +138,14 @@ export function Hero() {
           </div>
 
           {/* Editorial Headline: Crisp, Confident, Balanced */}
-          <h1 className="font-extrabold tracking-tight text-white text-3xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] leading-[1.12]">
+          <h1 className="font-extrabold tracking-tight text-white text-3xl sm:text-4xl lg:text-5xl xl:text-[3.8rem] leading-[1.12]">
             Direct to builder <br />
             <span>renovation</span>
             <span className="text-[#8CCB6B]">.</span>
           </h1>
 
           {/* Genuine Subtitle */}
-          <p className="text-sm sm:text-base lg:text-xl text-slate-100 font-normal leading-relaxed max-w-2xl drop-shadow">
+          <p className="text-xs sm:text-sm lg:text-base text-slate-100 font-normal leading-relaxed max-w-2xl drop-shadow">
             Skip interior design sales markups and work directly with certified
             in-house tilers, carpenters, and ceiling specialists. Honest pricing,
             transparent quotes, and dedicated site supervision across Singapore.
@@ -146,30 +153,30 @@ export function Hero() {
 
           {/* 💎 3 Sleek Glass Trust Chips (Inline, Space-Efficient) */}
           <div className="flex flex-wrap items-center gap-2 pt-0.5">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-[11px] sm:text-xs font-semibold text-white shadow-sm">
               <Check className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
               <span>Zero ID Markup</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-[11px] sm:text-xs font-semibold text-white shadow-sm">
               <ShieldCheck className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
               <span>Written Warranty</span>
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-xs font-semibold text-white shadow-sm">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-[11px] sm:text-xs font-semibold text-white shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
               <span>Milestone Contract</span>
             </span>
           </div>
 
           {/* Primary Action Buttons: Clean 2-CTA Stack on Mobile */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 w-full sm:w-auto">
-            {/* WhatsApp CTA (Highest converting in Singapore) */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1 w-full sm:w-auto">
+            {/* WhatsApp CTA */}
             <a
               href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
                 siteConfig.name
               )}%2C%20I%20would%20like%20a%20free%20renovation%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-black text-sm sm:text-base shadow-[0_4px_25px_rgba(37,211,102,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-slate-950 font-black text-sm sm:text-base shadow-[0_4px_25px_rgba(37,211,102,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <MessageCircle className="w-5 h-5 fill-slate-950 shrink-0" />
               <span>WhatsApp for Free Quote</span>
@@ -178,7 +185,7 @@ export function Hero() {
             {/* Book Site Visit CTA */}
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold text-sm sm:text-base backdrop-blur-md hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold text-sm sm:text-base backdrop-blur-md hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <CalendarCheck className="w-4 h-4 shrink-0 text-[#8CCB6B]" />
               <span>Book Free Site Inspection</span>
@@ -187,42 +194,53 @@ export function Hero() {
           </div>
 
           {/* Verified Credentials & Social Proof Bar */}
-          <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-slate-200">
-            <div className="inline-flex items-center gap-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
+          <div className="flex flex-wrap items-center gap-3 pt-0.5 text-xs text-slate-200">
+            <div className="inline-flex items-center gap-1.5 bg-black/40 border border-white/15 px-2.5 py-1 rounded-lg backdrop-blur-sm">
               <div className="flex text-amber-400">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                  <Star key={i} className="w-3 h-3 fill-current" />
                 ))}
               </div>
-              <span className="font-extrabold text-white">4.9 / 5.0</span>
-              <span className="text-slate-300 text-[11px]">(180+ Reviews)</span>
+              <span className="font-extrabold text-white text-[11px] sm:text-xs">4.9 / 5.0</span>
+              <span className="text-slate-300 text-[10px] sm:text-[11px]">(180+ Reviews)</span>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
+            <div className="inline-flex items-center gap-1.5 bg-black/40 border border-white/15 px-2.5 py-1 rounded-lg backdrop-blur-sm">
               <ShieldCheck className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
-              <span>12+ Years Track Record</span>
+              <span className="text-[10px] sm:text-[11px]">12+ Years Track Record</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 🛠️ Bottom Architectural Trade Navigator */}
-      <div className="relative z-[3] border-t border-white/15 bg-black/50 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-          <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar text-xs font-medium text-slate-300">
-            <span className="text-[11px] uppercase tracking-wider text-slate-400 font-bold shrink-0 hidden md:inline">
-              Our 8 Core Trades:
-            </span>
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              {CORE_TRADES.map((trade) => (
-                <Link
-                  key={trade.href}
-                  href={trade.href}
-                  className="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 hover:text-white border border-white/10 hover:border-[#8CCB6B]/50 transition-all whitespace-nowrap text-slate-200"
-                >
-                  {trade.name}
-                </Link>
-              ))}
+      {/* 🛠️ Bottom Architectural 8 Core Trades Dock - Always visible above the fold without scrolling */}
+      <div className="relative z-[3] border-t border-white/15 bg-black/60 backdrop-blur-md shrink-0 py-2.5 sm:py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2 lg:gap-4">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8CCB6B] animate-pulse" />
+              <span className="text-[11px] uppercase tracking-wider text-slate-300 font-bold whitespace-nowrap">
+                Our 8 Core Trades:
+              </span>
+            </div>
+
+            {/* 8 Services Cards Grid: Fits completely on desktop without scrollbar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1.5 sm:gap-2 flex-1">
+              {CORE_TRADES.map((trade) => {
+                const Icon = trade.icon;
+                return (
+                  <Link
+                    key={trade.href}
+                    href={trade.href}
+                    className="group flex items-center justify-center gap-1.5 px-2 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/[0.06] hover:bg-white/[0.15] border border-white/10 hover:border-[#8CCB6B]/60 transition-all text-center shadow-sm"
+                  >
+                    <Icon className="w-3 h-3 text-[#8CCB6B] group-hover:scale-110 transition-transform shrink-0" />
+                    <span className="text-[10px] sm:text-[11px] font-semibold text-slate-200 group-hover:text-white truncate">
+                      {trade.name}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -169,7 +169,7 @@ export default function DoorWindowPage() {
             className="inline-flex items-center gap-2 text-xs text-[#A3E635] hover:underline mb-6 font-bold uppercase tracking-wider"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to All 18 Services</span>
+            <span>Back to All Services</span>
           </Link>
 
           <div className="max-w-3xl">

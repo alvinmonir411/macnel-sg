@@ -135,8 +135,8 @@ export default function AboutUsPage() {
                 <p className="text-xs text-slate-300 font-medium">In-House Tradesmen</p>
               </div>
               <div>
-                <p className="text-xl sm:text-2xl font-black text-[#A3E635]">18+</p>
-                <p className="text-xs text-slate-300 font-medium">Specialized Trades</p>
+                <p className="text-xl sm:text-2xl font-black text-[#A3E635]">8</p>
+                <p className="text-xs text-slate-300 font-medium">Core Trades</p>
               </div>
               <div>
                 <p className="text-xl sm:text-2xl font-black text-white">BCA / HDB</p>
