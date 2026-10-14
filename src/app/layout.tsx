@@ -146,11 +146,12 @@ export default function RootLayout({
       className={`${montserrat.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <head>
-        {/* Preload Critical LCP Hero Image for immediate < 1.2s paint */}
+        {/* Preload Critical LCP Hero Image for immediate < 1.0s first paint */}
         <link
           rel="preload"
           as="image"
-          href="/images/partition-ceiling/12.jpeg"
+          type="image/webp"
+          href="/hero-poster.webp"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
