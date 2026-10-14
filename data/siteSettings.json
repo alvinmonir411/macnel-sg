@@ -1,0 +1,33 @@
+{
+  "marketing": {
+    "gtmId": "",
+    "gtmEnabled": false,
+    "ga4Id": "",
+    "ga4Enabled": false,
+    "metaPixelId": "",
+    "metaPixelEnabled": false,
+    "tiktokPixelId": "",
+    "tiktokPixelEnabled": false,
+    "customHeadScripts": "",
+    "customBodyScripts": ""
+  },
+  "contact": {
+    "whatsapp": "6589361834",
+    "phonePrimary": "+65 8936 1834",
+    "phoneSecondary": "+65 6789 0123",
+    "email": "contact@renovationcontractor.sg",
+    "address": "280 Woodlands Industrial Park E5, #02-14 Harvest @ Woodlands, Singapore 757322",
+    "operatingHours": "Monday to Saturday: 9:00 AM – 6:30 PM (Sundays by Appointment)",
+    "showroomNote": "Visiting our material showroom? Please book a 30-minute advance slot so our senior supervisor can prepare tile & laminate samples for your unit type."
+  },
+  "credentials": {
+    "uen": "202312345A",
+    "hdbLicense": "HDB Registered Directory HB-00-0000X",
+    "bcaLicense": "BCA Registered Contractor (CR06 / General Builder)",
+    "bizSafe": "bizSAFE Level 3 Certified",
+    "yearsInBusiness": "12"
+  },
+  "security": {
+    "adminPin": "macnel2026"
+  }
+}

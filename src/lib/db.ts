@@ -141,3 +141,81 @@ export async function deleteInquiry(id: number) {
   return result[0];
 }
 
+export async function getSettings() {
+  try {
+    await sql`
+      CREATE TABLE IF NOT EXISTS site_settings (
+        key VARCHAR(100) PRIMARY KEY,
+        value JSONB NOT NULL,
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `;
+
+    const rows = await sql`
+      SELECT key, value FROM site_settings;
+    `;
+
+    if (rows.length > 0) {
+      const dbSettings: any = {};
+      for (const row of rows) {
+        dbSettings[row.key] = row.value;
+      }
+      return dbSettings;
+    }
+  } catch (err) {
+    console.warn("Neon DB getSettings fallback to JSON:", err);
+  }
+
+  // Fallback to local JSON file
+  try {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const filePath = path.join(process.cwd(), "data", "siteSettings.json");
+    const content = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(content);
+  } catch (e) {
+    console.error("Failed to read siteSettings.json fallback:", e);
+    return null;
+  }
+}
+
+export async function saveSettings(category: string, value: any) {
+  // 1. Save to Neon PostgreSQL
+  try {
+    await sql`
+      CREATE TABLE IF NOT EXISTS site_settings (
+        key VARCHAR(100) PRIMARY KEY,
+        value JSONB NOT NULL,
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `;
+
+    await sql`
+      INSERT INTO site_settings (key, value, updated_at)
+      VALUES (${category}, ${JSON.stringify(value)}, NOW())
+      ON CONFLICT (key)
+      DO UPDATE SET value = ${JSON.stringify(value)}, updated_at = NOW();
+    `;
+  } catch (err) {
+    console.warn("Neon DB saveSettings warning:", err);
+  }
+
+  // 2. Also update local JSON file cache
+  try {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const filePath = path.join(process.cwd(), "data", "siteSettings.json");
+    let currentData: any = {};
+    try {
+      const content = await fs.readFile(filePath, "utf-8");
+      currentData = JSON.parse(content);
+    } catch {}
+    currentData[category] = value;
+    await fs.writeFile(filePath, JSON.stringify(currentData, null, 2), "utf-8");
+  } catch (e) {
+    console.error("Failed to write to siteSettings.json:", e);
+  }
+
+  return { success: true };
+}
+

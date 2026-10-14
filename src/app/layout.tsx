@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+import { MarketingHeadScripts, MarketingBodyScripts } from "@/components/MarketingScripts";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -189,8 +190,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Dynamic Marketing & Tracking Scripts (GA4, GTM, Meta Pixel, Custom Head) */}
+        <MarketingHeadScripts />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
+        {/* Dynamic Marketing Body Scripts (GTM Noscript, Chat Widgets, Custom Body) */}
+        <MarketingBodyScripts />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
