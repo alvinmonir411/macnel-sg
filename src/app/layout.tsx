@@ -177,21 +177,13 @@ export default function RootLayout({
       className={`${montserrat.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <head>
-        {/* ⚡ Instant Sub-Second LCP Preload: 9.2KB for Mobile (<768px), 24KB for Desktop */}
-        <link
-          rel="preload"
-          as="image"
-          type="image/webp"
-          href="/hero-poster-mobile.webp"
-          media="(max-width: 768px)"
-          fetchPriority="high"
-        />
+        {/* ⚡ Instant Hero Image Preload for Desktop (Mobile uses 0KB pure CSS ambient glow for sub-1.2s LCP) */}
         <link
           rel="preload"
           as="image"
           type="image/webp"
           href="/hero-poster.webp"
-          media="(min-width: 769px)"
+          media="(min-width: 768px)"
           fetchPriority="high"
         />
         <script

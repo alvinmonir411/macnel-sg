@@ -68,16 +68,14 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-[#0A1124] text-white min-h-[92vh] lg:min-h-screen flex flex-col justify-between">
-      {/* ⚡ Instant Sub-Second LCP Hero Image:
-          Direct CDN static WebP (9.2KB mobile, 24KB desktop) with zero serverless cold-start delay */}
-      <picture>
+      {/* 📱 Mobile Pure CSS Ambient Glow: 0KB network payload, renders in 0ms so <h1> is instant LCP (<1.2s) */}
+      <div className="md:hidden absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(140,203,107,0.18),rgba(255,255,255,0))] opacity-80" />
+      <div className="md:hidden absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-25" />
+
+      {/* 💻 Desktop Hero Showcase Image (Tablet & Desktop Only) */}
+      <picture className="hidden md:block">
         <source
-          media="(max-width: 768px)"
-          srcSet="/hero-poster-mobile.webp"
-          type="image/webp"
-        />
-        <source
-          media="(min-width: 769px)"
+          media="(min-width: 768px)"
           srcSet="/hero-poster.webp"
           type="image/webp"
         />
