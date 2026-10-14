@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import projectsData from "../../../../data/projects.json";
 import { siteConfig } from "@/config/site";
-import { ProjectDetailClient } from "./ProjectDetailClient";
+import { ProjectDetailClient } from "@/components/ProjectDetailClient";
+
 import {
   Calendar,
   Banknote,

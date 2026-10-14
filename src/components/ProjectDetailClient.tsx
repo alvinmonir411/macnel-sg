@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ProjectImage } from "@/components/ProjectImage";
-import { Sparkles, Layers, ZoomIn } from "lucide-react";
 
 interface ProjectDetailClientProps {
   project: {
@@ -21,9 +20,10 @@ export function ProjectDetailClient({
   const [activeTab, setActiveTab] = useState<"after" | "before">("after");
   const [selectedImage, setSelectedImage] = useState<string>(project.afterImage);
 
-  const allImages = project.gallery && project.gallery.length > 0
-    ? project.gallery
-    : [project.afterImage, project.beforeImage];
+  const allImages =
+    project.gallery && project.gallery.length > 0
+      ? project.gallery
+      : [project.afterImage, project.beforeImage];
 
   const handleToggle = (tab: "after" | "before") => {
     setActiveTab(tab);
