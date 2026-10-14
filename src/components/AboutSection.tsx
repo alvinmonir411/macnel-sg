@@ -180,9 +180,13 @@ export function AboutSection() {
                 <span>Direct Photos From Our Singapore Job Sites</span>
               </h3>
             </div>
-            <span className="text-xs text-slate-500 font-medium">
-              Daily WhatsApp photo updates for homeowners
-            </span>
+            <Link
+              href="/project-gallery"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#166534] hover:text-[#15803d] transition-colors"
+            >
+              <span>View full job site gallery</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
