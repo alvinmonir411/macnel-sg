@@ -30,6 +30,7 @@ export interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const [currentTab, setCurrentTab] = useState<"after" | "before">("after");
+  const [hasInteractedBefore, setHasInteractedBefore] = useState(false);
 
   const clean = (val: string | undefined) =>
     val ? val.replace(/^TODO_REPLACE:\s*/i, "").trim() : "";
@@ -37,18 +38,24 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const toggleTab = (tab: "after" | "before", e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (tab === "before") setHasInteractedBefore(true);
     setCurrentTab(tab);
   };
 
-  const currentImg =
-    currentTab === "after" ? project.afterImage : project.beforeImage;
+  const handleCardClick = () => {
+    setHasInteractedBefore(true);
+    setCurrentTab((prev) => (prev === "after" ? "before" : "after"));
+  };
 
   return (
-    <div className="group rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:border-[#16a34a]/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+    <div
+      onMouseEnter={() => setHasInteractedBefore(true)}
+      className="group rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:border-[#16a34a]/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+    >
       <div>
         {/* Interactive Image Frame */}
         <div
-          onClick={() => setCurrentTab((prev) => (prev === "after" ? "before" : "after"))}
+          onClick={handleCardClick}
           className="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden cursor-pointer select-none group/img"
           title="Click to toggle Before / After view"
         >
@@ -65,18 +72,20 @@ export function ProjectCard({ project }: ProjectCardProps) {
             />
           </div>
 
-          {/* Before Image */}
-          <div
-            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
-              currentTab === "before" ? "opacity-100 z-1" : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <ProjectImage
-              src={project.beforeImage}
-              alt={`${clean(project.title)} (Before Renovation)`}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
+          {/* Before Image: Only mounted after first hover or click to eliminate initial bandwidth penalty */}
+          {hasInteractedBefore && (
+            <div
+              className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                currentTab === "before" ? "opacity-100 z-1" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              <ProjectImage
+                src={project.beforeImage}
+                alt={`${clean(project.title)} (Before Renovation)`}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+          )}
 
           {/* Subtle bottom gradient for readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/25 pointer-events-none z-10" />

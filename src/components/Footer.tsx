@@ -168,42 +168,46 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Social Icons (Rule A.4) */}
-            <div className="mt-5 pt-4 border-t border-white/10 flex items-center gap-3">
-              {socials.googleBusiness && (
-                <a
-                  href={socials.googleBusiness.replace("TODO_REPLACE: ", "")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-300 hover:text-white transition-all"
-                  title="Google Business Profile"
-                >
-                  Google
-                </a>
-              )}
-              {socials.facebook && (
-                <a
-                  href={socials.facebook.replace("TODO_REPLACE: ", "")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-300 hover:text-white transition-all"
-                  title="Facebook"
-                >
-                  Facebook
-                </a>
-              )}
-              {socials.instagram && (
-                <a
-                  href={socials.instagram.replace("TODO_REPLACE: ", "")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-300 hover:text-white transition-all"
-                  title="Instagram"
-                >
-                  Instagram
-                </a>
-              )}
-            </div>
+            {/* Social Icons: Only rendered if verified live URLs are provided */}
+            {((socials.googleBusiness && !socials.googleBusiness.includes("TODO_REPLACE") && !socials.googleBusiness.includes("your-business")) ||
+              (socials.facebook && !socials.facebook.includes("TODO_REPLACE") && !socials.facebook.includes("your-business")) ||
+              (socials.instagram && !socials.instagram.includes("TODO_REPLACE") && !socials.instagram.includes("your-business"))) && (
+              <div className="mt-5 pt-4 border-t border-white/10 flex items-center gap-3">
+                {socials.googleBusiness && !socials.googleBusiness.includes("TODO_REPLACE") && !socials.googleBusiness.includes("your-business") && (
+                  <a
+                    href={socials.googleBusiness}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-300 hover:text-white transition-all"
+                    title="Google Business Profile"
+                  >
+                    Google
+                  </a>
+                )}
+                {socials.facebook && !socials.facebook.includes("TODO_REPLACE") && !socials.facebook.includes("your-business") && (
+                  <a
+                    href={socials.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-300 hover:text-white transition-all"
+                    title="Facebook"
+                  >
+                    Facebook
+                  </a>
+                )}
+                {socials.instagram && !socials.instagram.includes("TODO_REPLACE") && !socials.instagram.includes("your-business") && (
+                  <a
+                    href={socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-300 hover:text-white transition-all"
+                    title="Instagram"
+                  >
+                    Instagram
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </div>
 

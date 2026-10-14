@@ -114,11 +114,11 @@ export function Hero() {
       <div className="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-36 pb-12 w-full flex-1 flex flex-col justify-center">
         <div className="max-w-3xl flex flex-col items-start gap-6 sm:gap-7">
           {/* Authentic Contractor Pill */}
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-slate-100 shadow-sm">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#8CCB6B]" />
             <span>Direct Singapore Renovation Contractor</span>
-            <span className="text-white/40">|</span>
-            <span className="text-slate-200 font-normal">HDB &amp; BCA Compliant</span>
+            <span className="text-white/70">|</span>
+            <span className="text-white font-medium">HDB &amp; BCA Compliant</span>
           </div>
 
           {/* Editorial Headline: Crisp, Confident, Human (No Cheesy Rainbow Gradients) */}
@@ -128,7 +128,7 @@ export function Hero() {
           </h1>
 
           {/* Genuine, Honest Subtitle */}
-          <p className="text-base sm:text-lg lg:text-xl text-slate-200/95 font-normal leading-relaxed max-w-2xl drop-shadow-sm">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-100 font-normal leading-relaxed max-w-2xl drop-shadow-sm">
             Skip interior design sales markups and work directly with certified
             in-house tilers, carpenters, and ceiling specialists. Honest pricing,
             transparent quotes, and dedicated site supervision across Singapore.
@@ -163,12 +163,13 @@ export function Hero() {
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-black/30 hover:bg-black/50 border border-white/15 text-slate-300 hover:text-white text-xs sm:text-sm backdrop-blur-md transition-all cursor-pointer"
+              aria-label="Search renovation services"
+              className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/20 text-white text-xs sm:text-sm backdrop-blur-md transition-all cursor-pointer"
               title="Search renovation services"
             >
               <Search className="w-4 h-4 text-[#8CCB6B]" />
               <span className="hidden sm:inline">Search Trades</span>
-              <kbd className="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-[10px] font-mono text-slate-300">
+              <kbd className="px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-[10px] font-mono text-slate-200">
                 ⌘K
               </kbd>
             </button>

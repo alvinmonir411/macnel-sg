@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ImageOff, Camera } from "lucide-react";
+import Image from "next/image";
+import { Camera } from "lucide-react";
 
 interface ProjectImageProps {
   src?: string;
@@ -9,6 +10,8 @@ interface ProjectImageProps {
   className?: string;
   fallbackText?: string;
   aspectRatio?: string;
+  priority?: boolean;
+  sizes?: string;
 }
 
 export function ProjectImage({
@@ -17,6 +20,8 @@ export function ProjectImage({
   className = "",
   fallbackText = "Add real project photo",
   aspectRatio,
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 }: ProjectImageProps) {
   const [hasError, setHasError] = useState(false);
 
@@ -42,11 +47,13 @@ export function ProjectImage({
   }
 
   return (
-    <img
+    <Image
       src={src}
       alt={alt}
+      fill
+      sizes={sizes}
+      priority={priority}
       onError={() => setHasError(true)}
-      loading="lazy"
       className={`object-cover object-center ${className}`}
     />
   );

@@ -160,43 +160,48 @@ export function ContactLocationSection() {
             <span>Connect with our official profiles:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {socials.googleBusiness && (
-              <a
-                href={socials.googleBusiness.replace("TODO_REPLACE: ", "")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
-              >
-                <span>Google Business</span>
-                <ExternalLink className="w-3 h-3 text-[#16a34a]" />
-              </a>
-            )}
+          {/* Social Links: Only rendered when verified non-placeholder URLs are configured */}
+          {((socials.googleBusiness && !socials.googleBusiness.includes("TODO_REPLACE") && !socials.googleBusiness.includes("your-business")) ||
+            (socials.facebook && !socials.facebook.includes("TODO_REPLACE") && !socials.facebook.includes("your-business")) ||
+            (socials.instagram && !socials.instagram.includes("TODO_REPLACE") && !socials.instagram.includes("your-business"))) && (
+            <div className="flex flex-wrap items-center gap-3">
+              {socials.googleBusiness && !socials.googleBusiness.includes("TODO_REPLACE") && !socials.googleBusiness.includes("your-business") && (
+                <a
+                  href={socials.googleBusiness}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
+                >
+                  <span>Google Business</span>
+                  <ExternalLink className="w-3 h-3 text-[#16a34a]" />
+                </a>
+              )}
 
-            {socials.facebook && (
-              <a
-                href={socials.facebook.replace("TODO_REPLACE: ", "")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
-              >
-                <span>Facebook</span>
-                <ExternalLink className="w-3 h-3 text-[#16a34a]" />
-              </a>
-            )}
+              {socials.facebook && !socials.facebook.includes("TODO_REPLACE") && !socials.facebook.includes("your-business") && (
+                <a
+                  href={socials.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
+                >
+                  <span>Facebook</span>
+                  <ExternalLink className="w-3 h-3 text-[#16a34a]" />
+                </a>
+              )}
 
-            {socials.instagram && (
-              <a
-                href={socials.instagram.replace("TODO_REPLACE: ", "")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
-              >
-                <span>Instagram</span>
-                <ExternalLink className="w-3 h-3 text-[#16a34a]" />
-              </a>
-            )}
-          </div>
+              {socials.instagram && !socials.instagram.includes("TODO_REPLACE") && !socials.instagram.includes("your-business") && (
+                <a
+                  href={socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
+                >
+                  <span>Instagram</span>
+                  <ExternalLink className="w-3 h-3 text-[#16a34a]" />
+                </a>
+              )}
+            </div>
+          )}
 
           {/* Awards / Media Mentions: Hidden if empty array (Rule B.9) */}
           {awards.length > 0 && (
