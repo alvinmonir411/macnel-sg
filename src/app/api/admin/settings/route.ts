@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSettings, saveSettings } from "@/lib/db";
+import { isAuthenticated } from "@/lib/auth";
 
 export async function GET() {
   try {
@@ -16,24 +17,21 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    const authenticated = await isAuthenticated();
+    if (!authenticated) {
+      return NextResponse.json(
+        { error: "Unauthorized. Valid admin session required." },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
-    const { category, data, pin } = body;
+    const { category, data } = body;
 
     if (!category || data === undefined) {
       return NextResponse.json(
         { error: "Category and data are required." },
         { status: 400 }
-      );
-    }
-
-    // Verify PIN if updating security or settings
-    const currentSettings = await getSettings();
-    const validPin = currentSettings?.security?.adminPin || "macnel2026";
-
-    if (pin && pin !== validPin) {
-      return NextResponse.json(
-        { error: "Invalid Admin PIN. Authentication failed." },
-        { status: 401 }
       );
     }
 

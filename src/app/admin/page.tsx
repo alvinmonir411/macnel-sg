@@ -173,13 +173,25 @@ export default function AdminDashboardPage() {
   const [showPinModal, setShowPinModal] = useState<boolean>(false);
   const [newPin, setNewPin] = useState<string>("");
   const [pinChangeMsg, setPinChangeMsg] = useState<string>("");
+  const [loggingIn, setLoggingIn] = useState<boolean>(false);
+  const [authChecking, setAuthChecking] = useState<boolean>(true);
 
-  // Check auth from session storage on mount
+  // Check server-side HTTP-only session on mount
   useEffect(() => {
-    const savedAuth = sessionStorage.getItem("macnel_admin_auth");
-    if (savedAuth === "true") {
-      setIsAuthenticated(true);
-    }
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("/api/admin/auth");
+        const data = await res.json();
+        if (data.authenticated) {
+          setIsAuthenticated(true);
+        }
+      } catch (err) {
+        console.warn("Auth check failed:", err);
+      } finally {
+        setAuthChecking(false);
+      }
+    };
+    checkAuth();
   }, []);
 
   // Fetch all bookings, inquiries, and settings
@@ -224,21 +236,68 @@ export default function AdminDashboardPage() {
     }
   }, [isAuthenticated]);
 
-  // Handle Authentication
-  const handleLogin = (e: React.FormEvent) => {
+  // Handle Server-Side Authentication
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (pinInput.trim() === DEFAULT_ADMIN_PIN || pinInput.trim() === "macnel2026") {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("macnel_admin_auth", "true");
-      setPinError("");
-    } else {
-      setPinError("Invalid Master Access PIN. Please try again.");
+    setLoggingIn(true);
+    setPinError("");
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "login", pin: pinInput }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setIsAuthenticated(true);
+        setPinError("");
+        setPinInput("");
+      } else {
+        setPinError(data.error || "Invalid PIN. Access denied.");
+      }
+    } catch (err) {
+      setPinError("Connection error while authenticating.");
+    } finally {
+      setLoggingIn(false);
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "logout" }),
+      });
+    } catch {}
     setIsAuthenticated(false);
-    sessionStorage.removeItem("macnel_admin_auth");
+  };
+
+  const handleChangePin = async () => {
+    if (!newPin || newPin.trim().length < 4) {
+      setPinChangeMsg("PIN must be at least 4 characters.");
+      return;
+    }
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "change-pin", newPin: newPin.trim() }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setPinChangeMsg("Security PIN updated successfully!");
+        setTimeout(() => {
+          setShowPinModal(false);
+          setPinChangeMsg("");
+          setNewPin("");
+        }, 1800);
+      } else {
+        setPinChangeMsg(data.error || "Failed to update PIN.");
+      }
+    } catch (err) {
+      setPinChangeMsg("Error updating PIN.");
+    }
   };
 
   // Status updates
@@ -451,7 +510,7 @@ export default function AdminDashboardPage() {
                   type={showPin ? "text" : "password"}
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value)}
-                  placeholder="Enter PIN (Default: macnel2026)"
+                  placeholder="Enter Admin Password (13663)"
                   className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 font-mono text-sm tracking-widest focus:outline-none focus:border-[#16a34a] focus:bg-white focus:ring-2 focus:ring-emerald-500/20"
                   autoFocus
                 />
@@ -473,10 +532,11 @@ export default function AdminDashboardPage() {
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-[#166534] text-white font-bold text-sm shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+              disabled={loggingIn}
+              className="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-[#166534] text-white font-bold text-sm shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
             >
               <ShieldCheck className="w-4 h-4" />
-              <span>Unlock Admin Dashboard</span>
+              <span>{loggingIn ? "Verifying Credentials..." : "Unlock Admin Dashboard"}</span>
             </button>
           </form>
 
@@ -541,6 +601,19 @@ export default function AdminDashboardPage() {
               <span>View Site</span>
               <ExternalLink className="w-3.5 h-3.5 text-[#16a34a]" />
             </Link>
+
+            <button
+              onClick={() => {
+                setShowPinModal(true);
+                setPinChangeMsg("");
+                setNewPin("");
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all cursor-pointer"
+              title="Change master security password"
+            >
+              <Lock className="w-3.5 h-3.5 text-amber-600" />
+              <span className="hidden sm:inline">Change Pass</span>
+            </button>
 
             <button
               onClick={handleLogout}
@@ -1578,6 +1651,69 @@ export default function AdminDashboardPage() {
           </div>
         )}
       </div>
+
+      {/* Change Security PIN Modal */}
+      {showPinModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 text-slate-900">
+            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-6 h-6" />
+            </div>
+
+            <h3 className="text-xl font-bold text-slate-900 text-center mb-1">
+              Change Master Security PIN
+            </h3>
+            <p className="text-xs text-slate-500 text-center mb-6">
+              Enter your new master access PIN below. This updates your login password instantly.
+            </p>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                  New Security PIN / Passcode
+                </label>
+                <input
+                  type="text"
+                  value={newPin}
+                  onChange={(e) => setNewPin(e.target.value)}
+                  placeholder="Enter new PIN (min 4 chars)"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm tracking-wider focus:outline-none focus:border-[#16a34a] focus:bg-white"
+                  autoFocus
+                />
+              </div>
+
+              {pinChangeMsg && (
+                <div
+                  className={`p-3 rounded-xl text-xs font-semibold ${
+                    pinChangeMsg.includes("successfully")
+                      ? "bg-emerald-50 text-[#166534] border border-emerald-200"
+                      : "bg-rose-50 text-rose-600 border border-rose-200"
+                  }`}
+                >
+                  {pinChangeMsg}
+                </div>
+              )}
+
+              <div className="flex items-center gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowPinModal(false)}
+                  className="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleChangePin}
+                  className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-[#166534] text-white text-xs font-bold shadow-md transition-all cursor-pointer"
+                >
+                  Save New PIN
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
