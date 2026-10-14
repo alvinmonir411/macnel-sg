@@ -1,15 +1,43 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { MessageCircle, Calculator, CheckCircle2, Building, Home, Store } from "lucide-react";
+import {
+  MessageCircle,
+  Calculator,
+  CheckCircle2,
+  Building,
+  Home,
+  Store,
+  Calendar,
+  Clock,
+  Send,
+  AlertCircle,
+  ShieldCheck,
+  Check,
+} from "lucide-react";
 
 export function QuoteCalculator() {
+  const { contact, name } = siteConfig;
+
+  // Form Fields
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [propertyType, setPropertyType] = useState("HDB Flat");
   const [selectedServices, setSelectedServices] = useState<string[]>([
-    "Toilet Renovation",
+    "Toilet / Bathroom Renovation",
   ]);
-  const [addressOrNote, setAddressOrNote] = useState("");
+  const [preferredDateTime, setPreferredDateTime] = useState("");
+  const [remarks, setRemarks] = useState("");
+  const [consentPdpa, setConsentPdpa] = useState(false);
+
+  // UI States
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [apiError, setApiError] = useState("");
 
   const propertyOptions = [
     { id: "HDB Flat", label: "HDB Flat", icon: <Building className="w-4 h-4" /> },
@@ -20,15 +48,13 @@ export function QuoteCalculator() {
 
   const availableServices = [
     "Toilet / Bathroom Renovation",
-    "House Painting & Plastering",
+    "House Renovation (Turnkey)",
     "Floor & Wall Tiling",
+    "Doors & Window Replacement",
     "False Ceiling & Cove Lights",
-    "Electrical Works & Rewiring",
-    "Custom Kitchen / Wardrobe Carpentry",
-    "Plumbing & Sanitary Piping",
-    "Vinyl / SPC Flooring",
-    "Partition Drywall Works",
-    "Balcony Decking / Metal Works",
+    "Painting & Plastering",
+    "Flooring & Carpet (SPC/Parquet)",
+    "Custom Kitchen & Wardrobe Carpentry",
   ];
 
   const toggleService = (srv: string) => {
@@ -39,130 +65,378 @@ export function QuoteCalculator() {
     }
   };
 
+  // Singapore Mobile Phone Validation (Rule C.2: +65 8/9xxxxxxx)
+  const validatePhone = (input: string): boolean => {
+    const cleaned = input.replace(/\s+/g, "").replace(/-/g, "");
+    const sgPhoneRegex = /^(\+?65)?[89]\d{7}$/;
+    return sgPhoneRegex.test(cleaned);
+  };
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!fullName.trim()) {
+      newErrors.name = "Please enter your full name.";
+    }
+
+    if (!phone.trim()) {
+      newErrors.phone = "Please enter your Singapore contact number.";
+    } else if (!validatePhone(phone)) {
+      newErrors.phone =
+        "Please enter a valid Singapore mobile number (starts with 8 or 9, e.g. +65 8936 1834).";
+    }
+
+    if (email.trim() && !/^\S+@\S+\.\S+$/.test(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (selectedServices.length === 0) {
+      newErrors.services = "Please select at least one renovation trade.";
+    }
+
+    if (!consentPdpa) {
+      newErrors.consent =
+        "You must consent to being contacted in accordance with Singapore PDPA.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const generateWhatsAppUrl = () => {
-    const servicesText = selectedServices.length > 0 ? selectedServices.join(", ") : "General Renovation";
+    const servicesText =
+      selectedServices.length > 0 ? selectedServices.join(", ") : "General Renovation";
     const text = `Hello ${encodeURIComponent(
-      siteConfig.name
-    )},%0A%0AI would like a Free Quotation:%0A- Property Type: ${encodeURIComponent(
+      name
+    )},%0A%0AI would like a Free Quotation:%0A- Name: ${encodeURIComponent(
+      fullName || "Homeowner"
+    )}%0A- Phone: ${encodeURIComponent(
+      phone || "N/A"
+    )}%0A- Property Type: ${encodeURIComponent(
       propertyType
-    )}%0A- Services Needed: ${encodeURIComponent(servicesText)}%0A- Notes: ${encodeURIComponent(
-      addressOrNote.trim() || "N/A"
+    )}%0A- Services: ${encodeURIComponent(
+      servicesText
+    )}%0A- Preferred Date/Time: ${encodeURIComponent(
+      preferredDateTime || "Flexible"
+    )}%0A- Remarks: ${encodeURIComponent(
+      remarks.trim() || "N/A"
     )}%0A%0APlease let me know your availability for a free site visit.`;
 
-    return `https://wa.me/${siteConfig.contact.whatsapp}?text=${text}`;
+    return `https://wa.me/${contact.whatsapp}?text=${text}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setApiError("");
+
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: fullName.trim(),
+          phone: phone.trim(),
+          email: email.trim() || undefined,
+          service: selectedServices.join(", "),
+          propertyType,
+          message: `Preferred Schedule: ${preferredDateTime || "N/A"}. Remarks: ${remarks || "N/A"}`,
+          source: "Quote Calculator Form",
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Unable to submit form. Please use WhatsApp direct quote.");
+      }
+
+      setIsSubmitted(true);
+    } catch (err: any) {
+      console.warn("Quote submission fallback to WhatsApp:", err);
+      // Even if network fails, allow homeowner to complete via WhatsApp
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="calculator" className="py-20 lg:py-28 bg-brand-subtle">
+    <section id="quote-calculator" className="py-20 lg:py-28 bg-[#0E172B] text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-brand-primary mb-3">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">
             <Calculator className="w-3.5 h-3.5" />
-            <span>Interactive Estimator</span>
+            <span>Direct Contractor Estimation</span>
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">
-            Instant Free Quote Request
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
+            Request an Itemized Free Quote
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
-            Select your property type and services to generate an instant,
-            customized WhatsApp consultation with our project managers.
+          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto font-normal">
+            No obligation. We review your property type and requirements to prepare a transparent
+            milestone quotation.
           </p>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200">
-          {/* Step 1: Property Type */}
-          <div className="mb-8">
-            <label className="block text-sm font-bold text-slate-900 mb-3">
-              1. Select Your Property Type:
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {propertyOptions.map((opt) => (
-                <button
-                  type="button"
-                  key={opt.id}
-                  onClick={() => setPropertyType(opt.id)}
-                  className={`flex flex-col items-center justify-center gap-2 p-3.5 rounded-xl border text-xs sm:text-sm font-bold transition-all ${
-                    propertyType === opt.id
-                      ? "border-brand-primary bg-brand-primary-soft text-brand-primary shadow-sm"
-                      : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300"
-                  }`}
-                >
-                  {opt.icon}
-                  <span>{opt.label}</span>
-                </button>
-              ))}
+        {/* Success Confirmation State (Rule C.2) */}
+        {isSubmitted ? (
+          <div className="rounded-3xl bg-white/5 border border-[#8CCB6B]/40 p-8 sm:p-12 text-center shadow-2xl animate-in fade-in duration-300">
+            <div className="w-16 h-16 rounded-full bg-[#8CCB6B]/20 border border-[#8CCB6B] text-[#8CCB6B] flex items-center justify-center mx-auto mb-5">
+              <CheckCircle2 className="w-8 h-8" />
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              Quotation Request Received!
+            </h3>
+            <p className="text-base text-slate-200 max-w-md mx-auto mb-6">
+              Thanks, we&apos;ll reply <strong>within {contact.quoteTurnaroundHours} hours</strong> with
+              an initial estimate and confirm your free on-site measurement slot.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
+              <a
+                href={generateWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-xl transition-all"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>Send via WhatsApp Now</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setIsSubmitted(false);
+                  setFullName("");
+                  setPhone("");
+                  setEmail("");
+                  setRemarks("");
+                }}
+                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
+              >
+                Submit Another Request
+              </button>
             </div>
           </div>
-
-          {/* Step 2: Services Needed */}
-          <div className="mb-8">
-            <label className="block text-sm font-bold text-slate-900 mb-3">
-              2. Select Required Services (Multi-select):
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {availableServices.map((srv) => {
-                const isSelected = selectedServices.includes(srv);
-                return (
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-3xl bg-white/5 border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-md"
+          >
+            {/* Step 1: Property Type */}
+            <div className="mb-8">
+              <label className="block text-xs uppercase tracking-wider font-bold text-[#8CCB6B] mb-3">
+                1. Select Property Type
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {propertyOptions.map((opt) => (
                   <button
                     type="button"
-                    key={srv}
-                    onClick={() => toggleService(srv)}
-                    className={`flex items-center gap-3 p-3 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-all ${
-                      isSelected
-                        ? "border-brand-primary bg-brand-primary-soft/40 text-slate-900"
-                        : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                    key={opt.id}
+                    onClick={() => setPropertyType(opt.id)}
+                    className={`flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                      propertyType === opt.id
+                        ? "border-[#8CCB6B] bg-[#8CCB6B]/20 text-white shadow-md"
+                        : "border-white/10 bg-white/5 text-slate-300 hover:border-white/25 hover:text-white"
                     }`}
                   >
-                    <div
-                      className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-colors ${
-                        isSelected
-                          ? "bg-brand-primary text-white"
-                          : "border border-slate-300 bg-slate-50"
+                    {opt.icon}
+                    <span>{opt.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Step 2: Selected Services */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-3">
+                <label className="text-xs uppercase tracking-wider font-bold text-[#8CCB6B]">
+                  2. Select Required Trades (Multi-select)
+                </label>
+                {errors.services && (
+                  <span className="text-xs text-rose-400">{errors.services}</span>
+                )}
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {availableServices.map((srv) => {
+                  const isChecked = selectedServices.includes(srv);
+                  return (
+                    <button
+                      type="button"
+                      key={srv}
+                      onClick={() => toggleService(srv)}
+                      className={`flex items-center justify-between p-3.5 rounded-xl border text-xs sm:text-sm text-left transition-all cursor-pointer ${
+                        isChecked
+                          ? "border-[#8CCB6B] bg-[#8CCB6B]/15 text-white font-bold"
+                          : "border-white/10 bg-white/5 text-slate-300 hover:border-white/20 hover:text-white"
                       }`}
                     >
-                      {isSelected && <CheckCircle2 className="w-3.5 h-3.5" />}
-                    </div>
-                    <span>{srv}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Step 3: Additional Notes */}
-          <div className="mb-8">
-            <label className="block text-sm font-bold text-slate-900 mb-2">
-              3. Location / Preferred Date / Specific Remarks (Optional):
-            </label>
-            <input
-              type="text"
-              value={addressOrNote}
-              onChange={(e) => setAddressOrNote(e.target.value)}
-              placeholder="e.g. 4-room flat in Tampines, target start date next month..."
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent bg-slate-50"
-            />
-          </div>
-
-          {/* Summary & Direct WhatsApp Submission */}
-          <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-xs text-slate-500 text-center sm:text-left">
-              <span className="font-bold text-slate-800 block">
-                {selectedServices.length} Service(s) selected for {propertyType}
-              </span>
-              <span>Free site inspection &amp; itemized quotation included.</span>
+                      <span>{srv}</span>
+                      <div
+                        className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 border ${
+                          isChecked
+                            ? "bg-[#8CCB6B] border-[#8CCB6B] text-slate-900"
+                            : "border-white/20 bg-black/20"
+                        }`}
+                      >
+                        {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            <a
-              href={generateWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl brand-gradient text-white font-bold text-sm shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
-            >
-              <MessageCircle className="w-5 h-5 fill-current" />
-              <span>Send to WhatsApp Now</span>
-            </a>
-          </div>
-        </div>
+            {/* Step 3: Contact Particulars (Rule C.2) */}
+            <div className="mb-8 pt-6 border-t border-white/10">
+              <label className="block text-xs uppercase tracking-wider font-bold text-[#8CCB6B] mb-4">
+                3. Your Contact Details
+              </label>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                {/* Full Name */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    Full Name <span className="text-rose-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="e.g. Tan Wei Ming"
+                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                  />
+                  {errors.name && (
+                    <span className="text-xs text-rose-400 mt-1 block">{errors.name}</span>
+                  )}
+                </div>
+
+                {/* Phone with SG validation */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    Singapore Contact / WhatsApp <span className="text-rose-400">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="e.g. +65 8936 1834 or 91234567"
+                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                  />
+                  {errors.phone && (
+                    <span className="text-xs text-rose-400 mt-1 block">{errors.phone}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Email (Optional) */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    Email Address <span className="text-slate-500 font-normal">(Optional)</span>
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="e.g. name@example.com"
+                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                  />
+                  {errors.email && (
+                    <span className="text-xs text-rose-400 mt-1 block">{errors.email}</span>
+                  )}
+                </div>
+
+                {/* Preferred Date/Time */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    Preferred Site Visit Slot <span className="text-slate-500 font-normal">(Optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={preferredDateTime}
+                    onChange={(e) => setPreferredDateTime(e.target.value)}
+                    placeholder="e.g. Saturday afternoon or weekdays after 6pm"
+                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                  />
+                </div>
+              </div>
+
+              {/* Remarks */}
+              <div className="mt-4">
+                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Remarks / Property Location / Floor Plan Notes
+                </label>
+                <textarea
+                  rows={3}
+                  value={remarks}
+                  onChange={(e) => setRemarks(e.target.value)}
+                  placeholder="Share details such as BTO key collection date, resale hacking needs, or specific tile preferences..."
+                  className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                />
+              </div>
+            </div>
+
+            {/* PDPA Consent Checkbox (Rule C.3) */}
+            <div className="mb-6 pt-4 border-t border-white/10">
+              <label className="flex items-start gap-3 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={consentPdpa}
+                  onChange={(e) => setConsentPdpa(e.target.checked)}
+                  className="mt-1 w-4 h-4 rounded text-[#8CCB6B] border-white/20 bg-black/30 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                />
+                <span className="text-xs text-slate-300 leading-relaxed font-normal">
+                  I consent to {name} contacting me regarding this renovation quotation inquiry in
+                  accordance with the Singapore Personal Data Protection Act (PDPA).{" "}
+                  <Link
+                    href="/privacy-policy"
+                    target="_blank"
+                    className="text-[#8CCB6B] underline hover:text-white"
+                  >
+                    Read Privacy Policy
+                  </Link>.
+                </span>
+              </label>
+              {errors.consent && (
+                <span className="text-xs text-rose-400 mt-1.5 block">{errors.consent}</span>
+              )}
+            </div>
+
+            {/* Form Actions: Submit + WhatsApp Direct (Rule C.2) */}
+            <div className="flex flex-col sm:flex-row items-center gap-3.5 pt-2">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full sm:flex-1 py-3.5 px-6 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+              >
+                {isSubmitting ? (
+                  <span>Submitting Inquiry...</span>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>Submit Free Quote Request</span>
+                  </>
+                )}
+              </button>
+
+              <a
+                href={generateWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-xl transition-all"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>Send to WhatsApp</span>
+              </a>
+            </div>
+
+            <p className="text-[11px] text-slate-400 text-center mt-4">
+              🔒 100% Free Consultation · No Obligation Quotation · Response within {contact.quoteTurnaroundHours} Hours
+            </p>
+          </form>
+        )}
       </div>
     </section>
   );

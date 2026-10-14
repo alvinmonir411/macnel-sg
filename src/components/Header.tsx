@@ -333,22 +333,33 @@ export function Header() {
             </div>
 
             <Link
-              href="/project-gallery"
+              href="/projects"
               className={`py-2 transition-colors relative whitespace-nowrap ${
-                pathname === "/project-gallery"
-                  ? "text-[#A3E635] font-bold"
-                  : "text-slate-100 hover:text-[#A3E635]"
+                pathname === "/projects" || pathname === "/project-gallery"
+                  ? "text-[#8CCB6B] font-bold"
+                  : "text-slate-100 hover:text-[#8CCB6B]"
               }`}
             >
-              <span>Gallery</span>
+              <span>Projects</span>
             </Link>
 
             <Link
-              href="/about-us"
+              href="/pricing"
               className={`py-2 transition-colors relative whitespace-nowrap ${
-                pathname === "/about-us"
-                  ? "text-[#A3E635] font-bold"
-                  : "text-slate-100 hover:text-[#A3E635]"
+                pathname === "/pricing"
+                  ? "text-[#8CCB6B] font-bold"
+                  : "text-slate-100 hover:text-[#8CCB6B]"
+              }`}
+            >
+              <span>Pricing</span>
+            </Link>
+
+            <Link
+              href="/about"
+              className={`py-2 transition-colors relative whitespace-nowrap ${
+                pathname === "/about" || pathname === "/about-us"
+                  ? "text-[#8CCB6B] font-bold"
+                  : "text-slate-100 hover:text-[#8CCB6B]"
               }`}
             >
               <span>About Us</span>
@@ -358,15 +369,15 @@ export function Header() {
               href="/contact-us"
               className={`py-2 transition-colors relative whitespace-nowrap ${
                 pathname === "/contact-us"
-                  ? "text-[#A3E635] font-bold"
-                  : "text-slate-100 hover:text-[#A3E635]"
+                  ? "text-[#8CCB6B] font-bold"
+                  : "text-slate-100 hover:text-[#8CCB6B]"
               }`}
             >
               <span>Contact</span>
             </Link>
           </nav>
 
-          {/* Action CTAs: Search + Free Quote (WhatsApp) + Book Now */}
+          {/* Action CTAs: Search + Free Quote (WhatsApp) + Book Free Site Inspection */}
           <div className="hidden sm:flex items-center gap-2.5 shrink-0">
             {/* Search Trigger Button (Desktop) */}
             <button
@@ -375,9 +386,9 @@ export function Header() {
               className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-slate-200 hover:text-white transition-all text-xs font-semibold shadow-sm group shrink-0"
               title="Search renovation trades (⌘K / /)"
             >
-              <Search className="w-3.5 h-3.5 text-[#A3E635] group-hover:scale-110 transition-transform" />
+              <Search className="w-3.5 h-3.5 text-[#8CCB6B] group-hover:scale-110 transition-transform" />
               <span className="hidden xl:inline text-slate-200">Search</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/20 text-[10px] font-mono text-[#A3E635]">
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/20 text-[10px] font-mono text-[#8CCB6B]">
                 ⌘K
               </kbd>
             </button>
@@ -393,16 +404,16 @@ export function Header() {
               title="Chat on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5 fill-current text-[#25D366]" />
-              <span className="text-white font-bold">Free Quote</span>
+              <span className="text-white font-bold">WhatsApp</span>
             </a>
 
-            {/* Book Now -> Advanced Booking System */}
+            {/* Book Free Site Inspection (Rule C.4) */}
             <Link
               href="/book"
               className="flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-xl brand-gradient text-white shadow-lg hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 whitespace-nowrap"
             >
               <CalendarCheck className="w-3.5 h-3.5" />
-              <span>Book Now</span>
+              <span>Book Free Site Inspection</span>
             </Link>
           </div>
 
@@ -537,27 +548,35 @@ export function Header() {
           </Link>
 
           <Link
-            href="/project-gallery"
+            href="/projects"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
+            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
           >
-            Project Gallery
+            Completed Projects
           </Link>
 
           <Link
-            href="/about-us"
+            href="/pricing"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
+            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
           >
-            About Us
+            Pricing Guide
+          </Link>
+
+          <Link
+            href="/about"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
+          >
+            About Us &amp; Standards
           </Link>
 
           <Link
             href="/contact-us"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
+            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
           >
-            Contact
+            Contact &amp; Showroom
           </Link>
 
           <div className="pt-4 border-t border-slate-700/80 flex flex-col gap-2.5">
@@ -567,7 +586,7 @@ export function Header() {
               className="flex items-center justify-center gap-2 py-3 rounded-xl brand-gradient text-white font-bold text-sm shadow-md"
             >
               <CalendarCheck className="w-4 h-4" />
-              <span>Book Appointment Now</span>
+              <span>Book Free Site Inspection</span>
             </Link>
 
             <a

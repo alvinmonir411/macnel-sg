@@ -1,0 +1,67 @@
+{
+  "companyStory": "TODO_REPLACE: Founded by seasoned builders in Singapore, Renovation Contractor SG was established to bridge the gap between homeowners and on-site craftsmen. We eliminate confusing sales markups by having our certified project directors and master tilers communicate directly with clients from day one. With decades of collective on-site experience across HDB estates, condominiums, and landed houses, we hold ourselves accountable to high craftsmanship and on-time handovers.",
+  "workingProcess": [
+    {
+      "step": "1",
+      "title": "On-Site Measurement & Consultation",
+      "desc": "We visit your property for detailed site measurements, inspect existing masonry/piping conditions, and understand your exact requirements."
+    },
+    {
+      "step": "2",
+      "title": "Itemized Written Quotation",
+      "desc": "Receive a 100% itemized quotation with clear material specs, scope of works, and zero hidden variation buffers."
+    },
+    {
+      "step": "3",
+      "title": "Permits & Milestone Contract",
+      "desc": "We sign a formal Singapore renovation contract with milestone payment dates and submit all HDB/BCA renovation permits."
+    },
+    {
+      "step": "4",
+      "title": "Daily Supervised Construction",
+      "desc": "Our in-house master craftsmen execute hacking, piping, waterproofing, tiling, and carpentry with daily photo updates on WhatsApp."
+    },
+    {
+      "step": "5",
+      "title": "Rigorous Quality & Defect Checks",
+      "desc": "Mandatory 48-hour waterproofing ponding tests and joint laser-alignment defect checks before cleaning."
+    },
+    {
+      "step": "6",
+      "title": "Handover & Warranty Issuance",
+      "desc": "Final walkthrough inspection, handover of keys, and issuance of our signed written workmanship warranty."
+    }
+  ],
+  "members": [
+    {
+      "id": "member-1",
+      "isPlaceholder": true,
+      "name": "TODO_REPLACE: Vincent Tan",
+      "role": "TODO_REPLACE: Managing Director & Lead Project Supervisor",
+      "experience": "TODO_REPLACE: 20+ Years in Singapore Construction",
+      "credentials": "TODO_REPLACE: BCA Certified CoreTrade Specialist",
+      "bio": "TODO_REPLACE: Oversees all on-site structural works, waterproofing membranes, and permit compliance with HDB and condo management.",
+      "photo": ""
+    },
+    {
+      "id": "member-2",
+      "isPlaceholder": true,
+      "name": "TODO_REPLACE: David Wong",
+      "role": "TODO_REPLACE: Senior Master Tiler & Masonry Lead",
+      "experience": "TODO_REPLACE: 16 Years Hands-On Experience",
+      "credentials": "TODO_REPLACE: BCA Registered Tiling Craftsman",
+      "bio": "TODO_REPLACE: Specializes in large-format slab installations, mitred joint edging, and zero-hollow buttering techniques.",
+      "photo": ""
+    },
+    {
+      "id": "member-3",
+      "isPlaceholder": true,
+      "name": "TODO_REPLACE: Alex Lim",
+      "role": "TODO_REPLACE: Factory Carpentry & Fit-Out Director",
+      "experience": "TODO_REPLACE: 14 Years in Singapore",
+      "credentials": "TODO_REPLACE: Solid Plywood & Blum Specialist",
+      "bio": "TODO_REPLACE: Coordinates in-house workshop fabrication for custom kitchen cabinetry, wardrobes, and architectural ceiling details.",
+      "photo": ""
+    }
+  ]
+}

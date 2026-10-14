@@ -1,0 +1,59 @@
+[
+  {
+    "id": "proj-1",
+    "isPlaceholder": true,
+    "title": "TODO_REPLACE: 4-Room BTO Full Home Makeover",
+    "propertyType": "TODO_REPLACE: 4-Room HDB BTO",
+    "location": "TODO_REPLACE: Tampines GreenCourt",
+    "sizeSqft": "TODO_REPLACE: 93 sqm (1,001 sqft)",
+    "scopeOfWork": [
+      "TODO_REPLACE: Living & Bedroom False Ceilings with Cove Lighting",
+      "TODO_REPLACE: Full Kitchen Cabinetry with Quartz Countertop",
+      "TODO_REPLACE: 2x Bathroom Tiling & Sika Waterproofing",
+      "TODO_REPLACE: Nippon Paint Odourless Full Home Painting"
+    ],
+    "durationDays": "TODO_REPLACE: 38 Days",
+    "costRange": "TODO_REPLACE: S$28,000 – S$35,000",
+    "beforeImage": "/images/projects/proj-1-before.jpg",
+    "afterImage": "/images/projects/proj-1-after.jpg",
+    "summary": "TODO_REPLACE: Direct-to-builder complete interior fit-out delivered on time with zero variation orders."
+  },
+  {
+    "id": "proj-2",
+    "isPlaceholder": true,
+    "title": "TODO_REPLACE: Master Bathroom & Kitchen Tiling Overhaul",
+    "propertyType": "TODO_REPLACE: 3-Room Resale Flat",
+    "location": "TODO_REPLACE: Bedok South",
+    "sizeSqft": "TODO_REPLACE: 72 sqm (775 sqft)",
+    "scopeOfWork": [
+      "TODO_REPLACE: Complete Hacking down to Bare Slab",
+      "TODO_REPLACE: Dual-Coat SikaTop 107 Waterproofing Membrane",
+      "TODO_REPLACE: 600x600 Homogeneous Floor & Wall Tiling",
+      "TODO_REPLACE: Stainless Steel Piping & Sanitary Ware Installation"
+    ],
+    "durationDays": "TODO_REPLACE: 12 Days",
+    "costRange": "TODO_REPLACE: S$9,500 – S$12,500",
+    "beforeImage": "/images/projects/proj-2-before.jpg",
+    "afterImage": "/images/projects/proj-2-after.jpg",
+    "summary": "TODO_REPLACE: Replaced 25-year-old leaking pipes and cracked tiles with modern anti-slip tiling and certified 48-hour ponding test."
+  },
+  {
+    "id": "proj-3",
+    "isPlaceholder": true,
+    "title": "TODO_REPLACE: 3-Bedroom Private Condominium Rejuvenation",
+    "propertyType": "TODO_REPLACE: Private Condominium",
+    "location": "TODO_REPLACE: Thomson Grand",
+    "sizeSqft": "TODO_REPLACE: 1,184 sqft",
+    "scopeOfWork": [
+      "TODO_REPLACE: Swedish Bona 99% Dust-Free Parquet Sanding & Matte Lacquer",
+      "TODO_REPLACE: Master Bedroom Full-Height Wardrobe Carpentry",
+      "TODO_REPLACE: Trackless Heavy-Duty Aluminium Glass Sliding Doors",
+      "TODO_REPLACE: Feature Wall Skim Coating & Painting"
+    ],
+    "durationDays": "TODO_REPLACE: 16 Days",
+    "costRange": "TODO_REPLACE: S$14,000 – S$18,000",
+    "beforeImage": "/images/projects/proj-3-before.jpg",
+    "afterImage": "/images/projects/proj-3-after.jpg",
+    "summary": "TODO_REPLACE: Condominium upgrade strictly adhering to MCST work permits, lift protective padding, and quiet-hour protocols."
+  }
+]

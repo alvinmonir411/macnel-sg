@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown, HelpCircle, ShieldCheck } from "lucide-react";
 
 export function FAQSection() {
   const { faqs } = siteConfig;
@@ -12,19 +12,39 @@ export function FAQSection() {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
+  // FAQPage JSON-LD Schema (Rule B.10)
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-white">
+    <section id="faq" className="py-20 lg:py-28 bg-[#0E172B] text-white relative">
+      {/* FAQPage JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#2C6BA6] mb-3">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Got Questions?</span>
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0F172A] mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
             Frequently Asked Questions
           </h2>
-          <p className="text-sm sm:text-base text-slate-600">
-            Clear, straightforward answers about our renovation and repair process.
+          <p className="text-sm sm:text-base text-slate-300 font-normal">
+            Clear, honest answers about permits, milestone payments, warranties, and timelines.
           </p>
         </div>
 
@@ -34,17 +54,17 @@ export function FAQSection() {
             return (
               <div
                 key={index}
-                className="rounded-2xl border border-slate-200 overflow-hidden transition-all bg-[#F8FAFC]"
+                className="rounded-2xl border border-white/10 overflow-hidden transition-all bg-white/5 hover:border-[#8CCB6B]/40"
               >
                 <button
                   type="button"
                   onClick={() => toggle(index)}
-                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-bold text-slate-900 text-base sm:text-lg focus:outline-none"
+                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-bold text-white text-base sm:text-lg focus:outline-none cursor-pointer"
                 >
-                  <span className="pr-4">{faq.q}</span>
+                  <span className="pr-4 leading-snug">{faq.q}</span>
                   <div
-                    className={`w-7 h-7 rounded-full bg-slate-200/60 flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 bg-[#2C6BA6] text-white" : "text-slate-600"
+                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 bg-[#8CCB6B] text-slate-900" : "bg-white/10 text-slate-300"
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -52,7 +72,7 @@ export function FAQSection() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-200/60 pt-4 bg-white">
+                  <div className="px-5 sm:px-6 pb-6 text-sm sm:text-base text-slate-300 leading-relaxed border-t border-white/10 pt-4 bg-black/20 font-normal">
                     {faq.a}
                   </div>
                 )}

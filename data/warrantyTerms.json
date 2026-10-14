@@ -1,0 +1,67 @@
+{
+  "contractNotice": "All terms, milestone percentages, warranties, and itemized scopes are stated in a binding written contract before any physical work begins.",
+  "tradeWarranties": [
+    {
+      "trade": "Waterproofing Membrane",
+      "duration": "TODO_REPLACE: 5-Year Leak-Proof Warranty",
+      "covered": "Membrane delamination, water ponding leakage, ceiling seepage to floor below",
+      "notCovered": "Post-handover drilling into floor slab by 3rd parties, structural building movement"
+    },
+    {
+      "trade": "Floor & Wall Tiling",
+      "duration": "TODO_REPLACE: 12-Month Workmanship Warranty",
+      "covered": "Hollow tiles, tile debonding, hairline grout cracking, uneven joint rectification",
+      "notCovered": "Physical impact chipping from dropped heavy objects, cleaning with harsh unauthorized acids"
+    },
+    {
+      "trade": "Custom Carpentry",
+      "duration": "TODO_REPLACE: 12-Month Workmanship Warranty",
+      "covered": "Door hinge sagging, drawer track misalignment, edge banding delamination",
+      "notCovered": "Direct water soaking of internal carcass boards, deliberate overloading beyond shelf limits"
+    },
+    {
+      "trade": "Electrical & Concealed Plumbing",
+      "duration": "TODO_REPLACE: 6-Month Workmanship Warranty",
+      "covered": "Joint leakages, concealed pipe connection defects, breaker wiring faults",
+      "notCovered": "Client-supplied light fixtures, external appliances, user short-circuits"
+    }
+  ],
+  "paymentSchedule": [
+    {
+      "percentage": "10%",
+      "milestone": "Deposit & Mobilization",
+      "description": "Upon contract confirmation, architectural layout finalization, and HDB/BCA permit submission."
+    },
+    {
+      "percentage": "40%",
+      "milestone": "Site Commencement & Hacking",
+      "description": "Upon site protection setup, commencement of hacking, and delivery of raw building materials."
+    },
+    {
+      "percentage": "30%",
+      "milestone": "Wet Works & Core Construction",
+      "description": "Upon completion of piping, waterproofing ponding test clearance, masonry, tiling, and false ceiling framing."
+    },
+    {
+      "percentage": "15%",
+      "milestone": "Fixtures & Carpentry Installation",
+      "description": "Upon installation of custom cabinetry, doors, sanitary wares, electrical fittings, and initial painting."
+    },
+    {
+      "percentage": "5%",
+      "milestone": "Final Handover & Defect Clearance",
+      "description": "Only after joint defect walkthrough inspection, final acid washing, and formal handover of keys."
+    }
+  ],
+  "sampleQuotation": {
+    "downloadUrl": "/docs/sample-quotation.pdf",
+    "checklist": [
+      "100% itemized line items with exact unit prices (per sqft / foot run)",
+      "Clear material brands specified (e.g. Nippon Paint, Sika, Blum, Saint-Gobain)",
+      "Exact milestone payment schedule and timeline breakdown",
+      "No hidden buffers or surprise variation clauses",
+      "Formal company UEN, registration details, and licensed scope",
+      "Signed structural warranty coverage duration per trade"
+    ]
+  }
+}

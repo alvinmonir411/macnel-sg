@@ -165,26 +165,45 @@ export function Hero() {
             </button>
           </div>
 
-          {/* Human Social Proof & Credibility Bar */}
+          {/* Verified Credentials & Social Proof (Rule A.2: Show ONLY if verified in siteConfig) */}
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-3 text-xs sm:text-sm text-slate-300">
-            <div className="flex items-center gap-1.5">
-              <div className="flex text-amber-400">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                ))}
-              </div>
-              <span className="font-bold text-white">4.9 / 5.0</span>
-              <span className="text-slate-400">(500+ Homes)</span>
-            </div>
+            {siteConfig.reviews.googleReviewsUrl && siteConfig.reviews.rating && (
+              <a
+                href={siteConfig.reviews.googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:underline"
+              >
+                <div className="flex text-amber-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                  ))}
+                </div>
+                <span className="font-bold text-white">
+                  {siteConfig.reviews.rating} / 5.0
+                </span>
+                {siteConfig.reviews.reviewCount && (
+                  <span className="text-slate-400">
+                    ({siteConfig.reviews.reviewCount}+ Reviews)
+                  </span>
+                )}
+              </a>
+            )}
 
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-[#8CCB6B]" />
-              <span>12-Month Workmanship Warranty</span>
-            </div>
+            {siteConfig.claims.showWarrantyClaim && (
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#8CCB6B]" />
+                <span>{siteConfig.claims.warrantyDuration.replace("TODO_REPLACE: ", "")}</span>
+              </div>
+            )}
 
             <div className="flex items-center gap-1.5">
               <Check className="w-4 h-4 text-[#8CCB6B]" />
-              <span>Zero ID Middleman Markup</span>
+              <span>
+                {siteConfig.claims.showZeroIdMarkup
+                  ? "Zero ID Middleman Markup"
+                  : "Direct In-House Craftsmen"}
+              </span>
             </div>
           </div>
         </div>

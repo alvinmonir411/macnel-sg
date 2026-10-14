@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = {
   title: "About Us | Renovation Contractor SG - Singapore Direct Contractor",
   description:
-    "Learn about Renovation Contractor SG — Singapore's premier direct renovation contractor. In-house craftsmen handling 18+ specialized trades with zero ID markups.",
+    "Learn about Renovation Contractor SG — direct renovation contractor in Singapore. In-house craftsmen handling core renovation trades with scheduled milestones and written warranties.",
 };
 
 export default function AboutUsPage() {

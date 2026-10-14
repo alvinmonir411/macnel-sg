@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -28,7 +29,6 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: siteConfig.seoKeywords,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
@@ -80,53 +80,83 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const socialsList = Object.values(siteConfig.socials).filter(
+    (url) => url && !url.includes("TODO_REPLACE")
+  );
+
+  const businessSchema: Record<string, any> = {
+    "@type": "HomeAndConstructionBusiness",
+    "@id": `${siteConfig.url}/#business`,
+    name: siteConfig.name,
+    legalName: siteConfig.legalName.replace("TODO_REPLACE: ", ""),
+    url: siteConfig.url,
+    description: siteConfig.description,
+    telephone: siteConfig.contact.phonePrimary,
+    email: siteConfig.contact.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.contact.address.replace("TODO_REPLACE: ", ""),
+      addressCountry: "SG",
+      addressLocality: "Singapore",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "1.3090",
+      longitude: "103.8560",
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    ],
+    areaServed: {
+      "@type": "Country",
+      name: "Singapore",
+    },
+    sameAs: socialsList.length > 0 ? socialsList : undefined,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Renovation & Construction Services",
+      itemListElement: siteConfig.coreServices.map((service, index) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+        },
+        position: index + 1,
+      })),
+    },
+  };
+
+  // Rule E.2: Add aggregateRating ONLY if real review data exists
+  if (
+    siteConfig.reviews.rating !== null &&
+    siteConfig.reviews.reviewCount !== null &&
+    siteConfig.reviews.googleReviewsUrl
+  ) {
+    businessSchema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: siteConfig.reviews.rating,
+      reviewCount: siteConfig.reviews.reviewCount,
+      bestRating: 5,
+    };
+  }
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "HomeAndConstructionBusiness",
-        "@id": `${siteConfig.url}/#business`,
-        name: siteConfig.name,
-        url: siteConfig.url,
-        description: siteConfig.description,
-        telephone: siteConfig.contact.phonePrimary,
-        email: siteConfig.contact.email,
-        address: {
-          "@type": "PostalAddress",
-          addressCountry: "SG",
-          addressLocality: "Singapore",
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: "1.3521",
-          longitude: "103.8198",
-        },
-        openingHoursSpecification: [
-          {
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            opens: "09:00",
-            closes: "18:00",
-          },
-        ],
-        areaServed: {
-          "@type": "Country",
-          name: "Singapore",
-        },
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Renovation & Construction Services",
-          itemListElement: siteConfig.coreServices.map((service, index) => ({
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: service.title,
-              description: service.description,
-            },
-            position: index + 1,
-          })),
-        },
-      },
+      businessSchema,
       {
         "@type": "WebSite",
         "@id": `${siteConfig.url}/#website`,
@@ -165,6 +195,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingCTA />
+        <CookieConsentBanner />
       </body>
     </html>
   );

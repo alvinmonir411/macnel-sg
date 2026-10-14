@@ -1,6 +1,9 @@
 import { ShieldCheck, Users, Banknote, Clock, Award, Hammer } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export function WhyChooseUs() {
+  const { claims, name } = siteConfig;
+
   const reasons = [
     {
       icon: <Users className="w-6 h-6 text-brand-accent" />,
@@ -9,17 +12,17 @@ export function WhyChooseUs() {
     },
     {
       icon: <Banknote className="w-6 h-6 text-brand-accent" />,
-      title: "Transparent & Honest Pricing",
-      desc: "Detailed itemized quotes with zero hidden markups or surprise variations. What we quote is what you pay, with honest advice on material costs.",
+      title: "Itemized Written Quotations",
+      desc: "Detailed transparent quotes with zero hidden markups or surprise variations. What we quote is what you pay, with honest advice on material costs.",
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-brand-accent" />,
       title: "Workmanship & Waterproofing Warranty",
-      desc: "All waterproofing works undergo stringent ponding leak inspections, and our carpentry, tiling, and piping come backed with full workmanship warranties.",
+      desc: "All waterproofing works undergo stringent ponding leak inspections, and our carpentry, tiling, and piping come backed with full written warranties.",
     },
     {
       icon: <Clock className="w-6 h-6 text-brand-accent" />,
-      title: "On-Time Handover Guarantee",
+      title: "Guaranteed Milestone Timelines",
       desc: "We adhere strictly to scheduled timelines. Dedicated project supervisors monitor daily progress to ensure on-time delivery without cutting corners.",
     },
     {
@@ -29,8 +32,8 @@ export function WhyChooseUs() {
     },
     {
       icon: <Hammer className="w-6 h-6 text-brand-accent" />,
-      title: "One-Stop Solution (18+ Trades)",
-      desc: "From hacking, electrical rewiring, and false ceilings to tiling, plumbing, and bespoke carpentry—every single trade is handled harmoniously by one team.",
+      title: claims.showTradeCount ? "One-Stop Solution (18+ Trades)" : "One-Stop Direct Construction",
+      desc: "From hacking, electrical rewiring, and false ceilings to tiling, plumbing, and bespoke carpentry—every core trade is handled harmoniously by one team.",
     },
   ];
 
@@ -45,7 +48,7 @@ export function WhyChooseUs() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-[#A3E635] mb-3">
+          <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">
             Why Homeowners Choose Us
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
@@ -64,7 +67,7 @@ export function WhyChooseUs() {
               style={{ backgroundColor: "rgba(30, 51, 82, 0.95)" }}
               className="rounded-2xl p-6 sm:p-8 border border-slate-600/70 shadow-xl hover:border-[#8CCB6B]/50 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#8CCB6B]/20 border border-[#8CCB6B]/40 flex items-center justify-center mb-5 text-[#A3E635]">
+              <div className="w-12 h-12 rounded-xl bg-[#8CCB6B]/20 border border-[#8CCB6B]/40 flex items-center justify-center mb-5 text-[#8CCB6B]">
                 {item.icon}
               </div>
               <h3 className="text-xl font-bold text-white mb-2.5">{item.title}</h3>

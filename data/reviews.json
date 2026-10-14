@@ -1,0 +1,39 @@
+{
+  "isRealData": false,
+  "googleReviewsUrl": "",
+  "reviews": [
+    {
+      "id": "rev-1",
+      "isPlaceholder": true,
+      "customerName": "TODO_REPLACE: Tan Wei Ming",
+      "propertyTypeArea": "TODO_REPLACE: 4-room HDB, Tampines",
+      "rating": 5,
+      "date": "TODO_REPLACE: 2026-02-15",
+      "reviewText": "TODO_REPLACE: Direct contractor who was completely upfront about hacking permits and waterproofing curing time. Handover was on schedule and the tiling alignment was flawless.",
+      "photo": "",
+      "googleReviewLink": ""
+    },
+    {
+      "id": "rev-2",
+      "isPlaceholder": true,
+      "customerName": "TODO_REPLACE: Sarah Lim",
+      "propertyTypeArea": "TODO_REPLACE: 3-bedder Condo, Bukit Timah",
+      "rating": 5,
+      "date": "TODO_REPLACE: 2026-01-20",
+      "reviewText": "TODO_REPLACE: False ceiling with cove lighting and master wardrobe carpentry were executed cleanly. What was quoted in the milestone contract was exactly what we paid.",
+      "photo": "",
+      "googleReviewLink": ""
+    },
+    {
+      "id": "rev-3",
+      "isPlaceholder": true,
+      "customerName": "TODO_REPLACE: Keith Tan",
+      "propertyTypeArea": "TODO_REPLACE: 5-room Resale, Jurong West",
+      "rating": 5,
+      "date": "TODO_REPLACE: 2025-11-10",
+      "reviewText": "TODO_REPLACE: Complete toilet overhaul done in 9 days. Tested ponding with zero seepage into the lower floor. Very responsive via WhatsApp throughout.",
+      "photo": "",
+      "googleReviewLink": ""
+    }
+  ]
+}
