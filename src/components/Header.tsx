@@ -149,32 +149,32 @@ export function Header() {
       className="sticky top-0 z-50 bg-[#16263F] border-b border-slate-700/80 text-white shadow-xl shadow-black/25 transition-all"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 gap-4 xl:gap-8">
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2C6BA6] to-[#16263F] border border-[#8CCB6B]/40 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-              <Hammer className="w-6 h-6 text-[#A3E635]" />
+          <Link href="/" className="flex items-center gap-3 shrink-0 group py-1">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#2C6BA6] to-[#16263F] border border-[#8CCB6B]/40 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform shrink-0">
+              <Hammer className="w-5 h-5 text-[#A3E635]" />
             </div>
-            <div>
+            <div className="flex flex-col shrink-0">
               <div className="flex items-center gap-2">
-                <span className="font-black text-xl sm:text-2xl tracking-tight text-white drop-shadow-sm">
+                <span className="font-black text-lg sm:text-xl tracking-tight text-white whitespace-nowrap drop-shadow-sm">
                   Renovation Contractor
                 </span>
-                <span className="text-[10px] font-black uppercase tracking-wider bg-[#8CCB6B]/25 text-[#A3E635] border border-[#8CCB6B]/50 px-1.5 py-0.5 rounded shadow-sm">
+                <span className="text-[10px] font-black uppercase tracking-wider bg-[#8CCB6B]/25 text-[#A3E635] border border-[#8CCB6B]/50 px-1.5 py-0.5 rounded shadow-sm shrink-0">
                   SG
                 </span>
               </div>
-              <p className="text-[11px] text-slate-300 tracking-wider uppercase font-semibold">
-                Direct Renovation Contractor
+              <p className="text-[10px] text-slate-300 tracking-wider uppercase font-semibold whitespace-nowrap mt-0.5">
+                Direct Contractor · Singapore
               </p>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-semibold">
             <Link
               href="/"
-              className={`py-2 transition-colors relative ${
+              className={`py-2 transition-colors relative whitespace-nowrap ${
                 pathname === "/"
                   ? "text-[#A3E635] font-bold"
                   : "text-slate-100 hover:text-[#A3E635]"
@@ -196,7 +196,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
-                className={`flex items-center gap-1.5 transition-colors focus:outline-none ${
+                className={`flex items-center gap-1.5 transition-colors focus:outline-none whitespace-nowrap ${
                   isServicesActive
                     ? "text-[#A3E635] font-bold"
                     : "text-slate-100 hover:text-[#A3E635]"
@@ -317,7 +317,7 @@ export function Header() {
                     <div className="mt-4 pt-3 border-t border-slate-700/80 px-2 flex items-center justify-between">
                       <div className="flex items-center gap-2 text-xs text-slate-300">
                         <span className="w-2 h-2 rounded-full bg-[#A3E635] animate-pulse" />
-                        <span>All 18 services executed directly without third-party markups.</span>
+                        <span>All core services executed directly without third-party markups.</span>
                       </div>
                       <Link
                         href="/book"
@@ -333,33 +333,19 @@ export function Header() {
             </div>
 
             <Link
-              href="/toilet-renovation-in-singapore"
-              className={`py-2 transition-colors relative flex items-center gap-1.5 ${
-                pathname === "/toilet-renovation-in-singapore"
-                  ? "text-[#A3E635] font-bold"
-                  : "text-slate-100 hover:text-[#A3E635]"
-              }`}
-            >
-              <span>Toilet Renovation</span>
-              <span className="bg-[#A3E635] text-[#16263F] text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-sm">
-                Featured
-              </span>
-            </Link>
-
-            <Link
               href="/project-gallery"
-              className={`py-2 transition-colors relative ${
+              className={`py-2 transition-colors relative whitespace-nowrap ${
                 pathname === "/project-gallery"
                   ? "text-[#A3E635] font-bold"
                   : "text-slate-100 hover:text-[#A3E635]"
               }`}
             >
-              <span>Project Gallery</span>
+              <span>Gallery</span>
             </Link>
 
             <Link
               href="/about-us"
-              className={`py-2 transition-colors relative ${
+              className={`py-2 transition-colors relative whitespace-nowrap ${
                 pathname === "/about-us"
                   ? "text-[#A3E635] font-bold"
                   : "text-slate-100 hover:text-[#A3E635]"
@@ -370,7 +356,7 @@ export function Header() {
 
             <Link
               href="/contact-us"
-              className={`py-2 transition-colors relative ${
+              className={`py-2 transition-colors relative whitespace-nowrap ${
                 pathname === "/contact-us"
                   ? "text-[#A3E635] font-bold"
                   : "text-slate-100 hover:text-[#A3E635]"
@@ -381,17 +367,16 @@ export function Header() {
           </nav>
 
           {/* Action CTAs: Search + Free Quote (WhatsApp) + Book Now */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
             {/* Search Trigger Button (Desktop) */}
             <button
               type="button"
               onClick={() => setSearchModalOpen(true)}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-slate-200 hover:text-white transition-all text-xs font-semibold shadow-sm group"
+              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-slate-200 hover:text-white transition-all text-xs font-semibold shadow-sm group shrink-0"
               title="Search renovation trades (⌘K / /)"
             >
               <Search className="w-3.5 h-3.5 text-[#A3E635] group-hover:scale-110 transition-transform" />
-              <span className="hidden xl:inline text-slate-200">Search Trades...</span>
-              <span className="xl:hidden">Search</span>
+              <span className="hidden xl:inline text-slate-200">Search</span>
               <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/20 text-[10px] font-mono text-[#A3E635]">
                 ⌘K
               </kbd>
@@ -404,19 +389,19 @@ export function Header() {
               )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-bold px-3 py-2 rounded-xl border border-[#25D366] bg-[#25D366]/20 text-[#4ADE80] hover:bg-[#25D366]/30 transition-all shadow-sm"
+              className="flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded-xl border border-[#25D366]/60 bg-[#25D366]/20 text-[#4ADE80] hover:bg-[#25D366]/30 transition-all shadow-sm shrink-0 whitespace-nowrap"
               title="Chat on WhatsApp"
             >
-              <MessageCircle className="w-4 h-4 fill-current text-[#25D366]" />
+              <MessageCircle className="w-3.5 h-3.5 fill-current text-[#25D366]" />
               <span className="text-white font-bold">Free Quote</span>
             </a>
 
             {/* Book Now -> Advanced Booking System */}
             <Link
               href="/book"
-              className="flex items-center gap-2 text-xs font-bold px-3.5 py-2 rounded-xl brand-gradient text-white shadow-lg hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-xl brand-gradient text-white shadow-lg hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 whitespace-nowrap"
             >
-              <CalendarCheck className="w-4 h-4" />
+              <CalendarCheck className="w-3.5 h-3.5" />
               <span>Book Now</span>
             </Link>
           </div>
