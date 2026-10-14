@@ -17,8 +17,11 @@ export function ContactLocationSection() {
   const { contact, socials, awards, name } = siteConfig;
 
   return (
-    <section id="contact-location" className="py-20 lg:py-28 bg-[#121F33] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact-location" className="py-20 lg:py-28 bg-[#121F33] text-white relative overflow-hidden">
+      {/* Subtle Architectural Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
+      <div className="absolute bottom-0 right-10 w-96 h-96 bg-[#2C6BA6]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-2.5">

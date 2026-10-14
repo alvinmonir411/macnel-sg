@@ -43,6 +43,8 @@ export function WhyChooseUs() {
       style={{ backgroundColor: "var(--dark-bg, #16263F)" }}
       className="py-20 lg:py-28 bg-[#16263F] text-white relative overflow-hidden"
     >
+      {/* Subtle Architectural Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#2C6BA6]/25 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#8CCB6B]/20 rounded-full blur-3xl pointer-events-none" />
 

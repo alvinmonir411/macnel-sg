@@ -34,6 +34,39 @@
       "reviewText": "TODO_REPLACE: Complete toilet overhaul done in 9 days. Tested ponding with zero seepage into the lower floor. Very responsive via WhatsApp throughout.",
       "photo": "",
       "googleReviewLink": ""
+    },
+    {
+      "id": "rev-4",
+      "isPlaceholder": true,
+      "customerName": "TODO_REPLACE: Marcus Lee",
+      "propertyTypeArea": "TODO_REPLACE: 5-room BTO, Punggol",
+      "rating": 5,
+      "date": "TODO_REPLACE: 2025-10-05",
+      "reviewText": "TODO_REPLACE: Parquet sanding & Bona dust-free varnishing restored our 15-year old flooring back to brand new condition. No dust trapped in the air conditioning units at all.",
+      "photo": "",
+      "googleReviewLink": ""
+    },
+    {
+      "id": "rev-5",
+      "isPlaceholder": true,
+      "customerName": "TODO_REPLACE: Eileen Goh",
+      "propertyTypeArea": "TODO_REPLACE: Executive Apartment, Pasir Ris",
+      "rating": 5,
+      "date": "TODO_REPLACE: 2025-09-18",
+      "reviewText": "TODO_REPLACE: BCA-certified window replacement and front fire-rated door installed within 1 day. High level of safety and site tidiness with daily photo updates.",
+      "photo": "",
+      "googleReviewLink": ""
+    },
+    {
+      "id": "rev-6",
+      "isPlaceholder": true,
+      "customerName": "TODO_REPLACE: Desmond Wong",
+      "propertyTypeArea": "TODO_REPLACE: Freehold Condo, Katong",
+      "rating": 5,
+      "date": "TODO_REPLACE: 2025-08-22",
+      "reviewText": "TODO_REPLACE: Transparent milestone billing with zero hidden variations. In-house electrician and plumber handled all wet trade coordination smoothly.",
+      "photo": "",
+      "googleReviewLink": ""
     }
   ]
 }

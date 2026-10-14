@@ -162,8 +162,12 @@ export function QuoteCalculator() {
   };
 
   return (
-    <section id="quote-calculator" className="py-20 lg:py-28 bg-[#0E172B] text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="quote-calculator" className="py-20 lg:py-28 bg-[#0E172B] text-white relative overflow-hidden">
+      {/* Subtle Architectural Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
+      <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#2C6BA6]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-[#8CCB6B]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">

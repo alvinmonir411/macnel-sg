@@ -177,8 +177,10 @@ export function OtherServices() {
   ] as const;
 
   return (
-    <section id="services" className="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden border-b border-slate-200/70">
+      {/* Subtle Architectural Dot Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Eyebrow & Section Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-3xl">

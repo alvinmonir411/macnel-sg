@@ -22,8 +22,13 @@ export function ProjectsPreview() {
   };
 
   return (
-    <section id="portfolio" className="py-20 lg:py-28 bg-[#121F33] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" className="py-20 lg:py-28 bg-gradient-to-b from-[#0A1124] via-[#0F1E36] to-[#0A1124] text-white relative overflow-hidden">
+      {/* Technical Blueprint Grid Texture */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:36px_36px] pointer-events-none opacity-40" />
+      {/* Ambient Gallery Lighting */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#2C6BA6]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-20 w-96 h-96 bg-[#8CCB6B]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>

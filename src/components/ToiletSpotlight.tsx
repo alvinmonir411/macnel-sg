@@ -5,8 +5,10 @@ export function ToiletSpotlight() {
   const { toiletProcessSteps } = siteConfig;
 
   return (
-    <section id="toilet-renovation" className="py-20 lg:py-28 bg-brand-subtle">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="toilet-renovation" className="py-20 lg:py-28 bg-[#F8FAFC] relative overflow-hidden border-b border-slate-200/70">
+      {/* Subtle Architectural Dot Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.25fr_1fr] items-start">
           {/* Left: Detailed Overview */}
           <div>
