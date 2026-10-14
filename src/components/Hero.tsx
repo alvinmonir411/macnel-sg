@@ -25,21 +25,21 @@ export function Hero() {
     >
       {/* ⚡ Critical LCP Fast-Paint Image:
           Eager, high-priority preload paints in < 1.0s,
-          locking in a < 2.5s LCP score on Google PageSpeed Insights. */}
+          locking in a < 2.5s LCP score on Google PageSpeed Insights.
+          Fades out completely once video starts playing to avoid any ghosting. */}
       <img
         src="/images/partition-ceiling/12.jpeg"
         alt="Renovation Contractor Singapore Master Builders"
         fetchPriority="high"
         loading="eager"
         decoding="sync"
-        className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
-          videoLoaded ? "opacity-35" : "opacity-75"
+        className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${
+          videoLoaded ? "opacity-0" : "opacity-85"
         }`}
       />
 
-      {/* 🎬 High-Impact Ambient Renovation Video:
-          Preload metadata ensures zero bandwidth competition with LCP rendering path.
-          Autoplay, loop, muted, playsInline. */}
+      {/* 🎬 Crystal Clear High-Definition Renovation Video:
+          Full natural colors, true lighting, zero blend-mode haze. */}
       <video
         autoPlay
         loop
@@ -47,21 +47,19 @@ export function Hero() {
         playsInline
         preload="metadata"
         onPlay={() => setVideoLoaded(true)}
-        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none opacity-55 mix-blend-screen transition-opacity duration-1000 scale-105"
+        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none opacity-90 transition-opacity duration-700"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Directional Gradient Overlay: deep readability on left, crystal clear vibrant video on right */}
+      {/* Directional Shading: only darkens left side behind text, leaving video 100% crystal clear on center & right */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
-            "linear-gradient(105deg, rgba(22, 38, 63, 0.95) 0%, rgba(22, 38, 63, 0.85) 42%, rgba(22, 38, 63, 0.38) 75%, rgba(22, 38, 63, 0.65) 100%)",
+            "linear-gradient(90deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.72) 38%, rgba(15, 23, 42, 0.08) 68%, rgba(15, 23, 42, 0.25) 100%)",
         }}
       />
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#2C6BA6]/30 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 left-10 w-96 h-96 bg-[#8CCB6B]/25 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 w-full">
         <div className="grid gap-12 lg:gap-14 lg:grid-cols-[1.25fr_.85fr] items-center">
