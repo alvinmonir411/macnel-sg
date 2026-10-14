@@ -27,9 +27,9 @@ export function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-[#0E172B] text-white relative overflow-hidden">
-      {/* Subtle Architectural Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
+    <section id="faq" className="py-20 lg:py-28 bg-[#F8FAFC] text-slate-900 relative overflow-hidden border-b border-slate-200/70">
+      {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
 
       {/* FAQPage JSON-LD Structured Data */}
       <script
@@ -39,14 +39,14 @@ export function FAQSection() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">
-            <HelpCircle className="w-3.5 h-3.5" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#166534] mb-3">
+            <HelpCircle className="w-3.5 h-3.5 text-[#16a34a]" />
             <span>Got Questions?</span>
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A] mb-3">
             Frequently Asked Questions
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 font-normal">
+          <p className="text-sm sm:text-base text-slate-600 font-normal">
             Clear, honest answers about permits, milestone payments, warranties, and timelines.
           </p>
         </div>
@@ -57,17 +57,17 @@ export function FAQSection() {
             return (
               <div
                 key={index}
-                className="rounded-2xl border border-white/10 overflow-hidden transition-all bg-white/5 hover:border-[#8CCB6B]/40"
+                className="rounded-2xl border border-slate-200/90 overflow-hidden transition-all bg-white shadow-sm hover:border-[#16a34a]/40"
               >
                 <button
                   type="button"
                   onClick={() => toggle(index)}
-                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-bold text-white text-base sm:text-lg focus:outline-none cursor-pointer"
+                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-bold text-slate-900 text-base sm:text-lg focus:outline-none cursor-pointer hover:text-[#166534] transition-colors"
                 >
                   <span className="pr-4 leading-snug">{faq.q}</span>
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 bg-[#8CCB6B] text-slate-900" : "bg-white/10 text-slate-300"
+                      isOpen ? "rotate-180 bg-[#16a34a] text-white" : "bg-slate-100 text-slate-600"
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -75,7 +75,7 @@ export function FAQSection() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 text-sm sm:text-base text-slate-300 leading-relaxed border-t border-white/10 pt-4 bg-black/20 font-normal">
+                  <div className="px-5 sm:px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4 bg-slate-50/60 font-normal">
                     {faq.a}
                   </div>
                 )}

@@ -40,23 +40,20 @@ export function WhyChooseUs() {
   return (
     <section
       id="why-us"
-      style={{ backgroundColor: "var(--dark-bg, #16263F)" }}
-      className="py-20 lg:py-28 bg-[#16263F] text-white relative overflow-hidden"
+      className="py-20 lg:py-28 bg-[#F8FAFC] text-slate-900 relative overflow-hidden border-b border-slate-200/70"
     >
-      {/* Subtle Architectural Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#2C6BA6]/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#8CCB6B]/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">
+          <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-[#166534] mb-3">
             Why Homeowners Choose Us
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A] mb-4">
             Reliable, Licensed &amp; Trusted in Singapore
           </h2>
-          <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
             Renovation shouldn&apos;t be stressful. We combine experienced craftsmen,
             transparent project management, and premium quality materials for long-lasting results.
           </p>
@@ -66,14 +63,13 @@ export function WhyChooseUs() {
           {reasons.map((item, index) => (
             <div
               key={index}
-              style={{ backgroundColor: "rgba(30, 51, 82, 0.95)" }}
-              className="rounded-2xl p-6 sm:p-8 border border-slate-600/70 shadow-xl hover:border-[#8CCB6B]/50 transition-all duration-300"
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-[#16a34a]/50 hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#8CCB6B]/20 border border-[#8CCB6B]/40 flex items-center justify-center mb-5 text-[#8CCB6B]">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-5 text-[#166534]">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-2.5">{item.title}</h3>
-              <p className="text-sm text-slate-200 leading-relaxed font-normal">{item.desc}</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-2.5">{item.title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed font-normal">{item.desc}</p>
             </div>
           ))}
         </div>

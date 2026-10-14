@@ -17,29 +17,28 @@ export function WarrantyPaymentSection() {
     warrantyData;
 
   return (
-    <section id="warranty-terms" className="py-20 lg:py-28 bg-[#0B132B] text-white relative overflow-hidden">
-      {/* Technical Blueprint Grid Texture */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
-      <div className="absolute top-1/3 -right-20 w-80 h-80 bg-[#8CCB6B]/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="warranty-terms" className="py-20 lg:py-28 bg-[#F8FAFC] text-slate-900 relative overflow-hidden border-b border-slate-200/70">
+      {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-2.5">
+          <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#166534] mb-2.5">
             Legal &amp; Contractual Protection
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A] mb-4">
             Warranty &amp; Milestone Payment Terms
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
             Every renovation with us is bound by a formal Singapore contract.
             Transparent warranty durations by trade and milestone payments tied directly to verified site progress.
           </p>
         </div>
 
         {/* Written Contract Notice (Rule B.6) */}
-        <div className="mb-14 rounded-2xl bg-[#16263F] border border-[#8CCB6B]/40 p-4 sm:p-5 flex items-center gap-3 text-xs sm:text-sm text-slate-200 shadow-xl">
-          <FileCheck className="w-5 h-5 text-[#8CCB6B] shrink-0" />
-          <span className="font-semibold text-white">
+        <div className="mb-14 rounded-2xl bg-emerald-50/90 border border-emerald-200/90 p-4 sm:p-5 flex items-center gap-3 text-xs sm:text-sm text-slate-800 shadow-sm">
+          <FileCheck className="w-5 h-5 text-[#16a34a] shrink-0" />
+          <span className="font-semibold text-slate-900">
             {contractNotice}
           </span>
         </div>
@@ -47,42 +46,42 @@ export function WarrantyPaymentSection() {
         {/* 2-Column Grid (Rule B.6) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
           {/* Column 1: Warranty by Trade */}
-          <div className="rounded-3xl bg-white/5 border border-white/10 p-6 sm:p-8 flex flex-col justify-between">
+          <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <ShieldCheck className="w-6 h-6 text-[#8CCB6B]" />
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <ShieldCheck className="w-6 h-6 text-[#16a34a]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
                   Workmanship Warranty by Trade
                 </h3>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {tradeWarranties.map((w, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl bg-black/25 border border-white/10"
+                    className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-bold text-white text-sm sm:text-base">
+                      <span className="font-bold text-slate-900 text-sm sm:text-base">
                         {w.trade}
                       </span>
-                      <span className="text-xs font-bold text-[#8CCB6B] bg-[#8CCB6B]/15 px-2.5 py-0.5 rounded-full border border-[#8CCB6B]/30">
+                      <span className="text-xs font-bold text-[#166534] bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-200">
                         {w.duration.replace("TODO_REPLACE: ", "")}
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mt-3 pt-2 border-t border-white/10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mt-3 pt-2 border-t border-slate-200/70">
                       <div>
-                        <span className="text-emerald-400 font-bold block mb-1 flex items-center gap-1">
-                          <CheckCircle2 className="w-3.5 h-3.5" /> Covered:
+                        <span className="text-[#166534] font-bold block mb-1 flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#16a34a]" /> Covered:
                         </span>
-                        <p className="text-slate-300 leading-relaxed">{w.covered}</p>
+                        <p className="text-slate-600 leading-relaxed">{w.covered}</p>
                       </div>
                       <div>
-                        <span className="text-slate-400 font-bold block mb-1 flex items-center gap-1">
-                          <XCircle className="w-3.5 h-3.5 text-rose-400" /> Exclusions:
+                        <span className="text-slate-700 font-bold block mb-1 flex items-center gap-1">
+                          <XCircle className="w-3.5 h-3.5 text-rose-500" /> Exclusions:
                         </span>
-                        <p className="text-slate-400 leading-relaxed">{w.notCovered}</p>
+                        <p className="text-slate-500 leading-relaxed">{w.notCovered}</p>
                       </div>
                     </div>
                   </div>
@@ -92,29 +91,29 @@ export function WarrantyPaymentSection() {
           </div>
 
           {/* Column 2: Milestone Payment Timeline */}
-          <div className="rounded-3xl bg-white/5 border border-white/10 p-6 sm:p-8 flex flex-col justify-between">
+          <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <Calendar className="w-6 h-6 text-[#8CCB6B]" />
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <Calendar className="w-6 h-6 text-[#16a34a]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
                   Milestone Progress Payment Schedule
                 </h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 {paymentSchedule.map((p, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-4 p-4 rounded-xl bg-black/25 border border-white/10"
+                    className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-[#8CCB6B]/20 text-[#8CCB6B] font-black text-sm sm:text-base flex items-center justify-center shrink-0 border border-[#8CCB6B]/30">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-100 text-[#166534] font-black text-sm sm:text-base flex items-center justify-center shrink-0 border border-emerald-200 shadow-sm">
                       {p.percentage}
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-white mb-1">
+                      <h4 className="text-sm font-bold text-slate-900 mb-1">
                         {p.milestone}
                       </h4>
-                      <p className="text-xs text-slate-300 leading-relaxed">
+                      <p className="text-xs text-slate-600 leading-relaxed font-normal">
                         {p.description}
                       </p>
                     </div>

@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import projectsData from "../../../data/projects.json";
 import { siteConfig } from "@/config/site";
-import { ProjectImage } from "@/components/ProjectImage";
+import { ProjectCard } from "@/components/ProjectCard";
 import Link from "next/link";
 import {
-  Calendar,
-  Banknote,
-  Maximize2,
-  MapPin,
-  CheckCircle2,
   ArrowRight,
   ShieldCheck,
+  Sparkles,
+  CalendarCheck,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -27,142 +24,62 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="bg-[#0B132B] text-white min-h-screen py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="bg-[#F8FAFC] text-slate-900 min-h-screen py-16 sm:py-24 relative overflow-hidden border-b border-slate-200/70">
+      {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">
-            Real Workmanship Portfolio
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-[#166534] mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[#16a34a]" />
+            <span>Verified Workmanship Portfolio</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0F172A] mb-4 leading-tight">
             Completed Renovation Projects
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
             Every home is built with direct on-site craftsmanship. Browse our recent
             transformations across HDB flats, condominiums, and landed homes in Singapore.
+            Click any project to inspect the full brief and itemized scope.
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        {/* Compact, Interactive Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {projectsData.map((proj) => (
-            <div
-              key={proj.id}
-              className="rounded-3xl bg-white/5 border border-white/10 overflow-hidden flex flex-col justify-between shadow-2xl hover:border-[#8CCB6B]/40 transition-all"
-            >
-              <div>
-                {/* Images side by side or toggle */}
-                <div className="grid grid-cols-2 gap-0.5 bg-slate-900 aspect-[16/10] overflow-hidden">
-                  <div className="relative h-full w-full">
-                    <ProjectImage
-                      src={proj.beforeImage}
-                      alt={`${proj.title} Before`}
-                      className="w-full h-full object-cover"
-                    />
-                    <span className="absolute bottom-2 left-2 bg-black/70 backdrop-blur-md text-[10px] font-bold px-2 py-0.5 rounded text-slate-300">
-                      Before
-                    </span>
-                  </div>
-                  <div className="relative h-full w-full">
-                    <ProjectImage
-                      src={proj.afterImage}
-                      alt={`${proj.title} After`}
-                      className="w-full h-full object-cover"
-                    />
-                    <span className="absolute bottom-2 left-2 bg-[#8CCB6B] text-slate-900 text-[10px] font-black px-2 py-0.5 rounded">
-                      After
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-[#8CCB6B] flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5" />
-                      {proj.location.replace("TODO_REPLACE: ", "")}
-                    </span>
-                    <span className="text-[11px] px-2 py-0.5 rounded bg-white/10 text-slate-300 font-medium">
-                      {proj.propertyType.replace("TODO_REPLACE: ", "")}
-                    </span>
-                  </div>
-
-                  <h2 className="text-xl font-bold text-white mb-2 leading-snug">
-                    {proj.title.replace("TODO_REPLACE: ", "")}
-                  </h2>
-
-                  <p className="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed font-normal">
-                    {proj.summary.replace("TODO_REPLACE: ", "")}
-                  </p>
-
-                  {/* Metadata */}
-                  <div className="grid grid-cols-2 gap-2 py-3 border-y border-white/10 text-xs text-slate-300 mb-4">
-                    <div className="flex items-center gap-1.5">
-                      <Maximize2 className="w-3.5 h-3.5 text-slate-400" />
-                      <span>{proj.sizeSqft.replace("TODO_REPLACE: ", "")}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                      <span>{proj.durationDays.replace("TODO_REPLACE: ", "")}</span>
-                    </div>
-                    <div className="col-span-2 flex items-center gap-1.5 font-bold text-white pt-1">
-                      <Banknote className="w-3.5 h-3.5 text-[#8CCB6B]" />
-                      <span>Cost: {proj.costRange.replace("TODO_REPLACE: ", "")}</span>
-                    </div>
-                  </div>
-
-                  {/* Scope */}
-                  <div className="space-y-1.5">
-                    <span className="text-[11px] uppercase tracking-wider text-slate-400 font-bold block">
-                      Executed Scope:
-                    </span>
-                    {proj.scopeOfWork.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-1.5 text-xs text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0 mt-0.5" />
-                        <span>{item.replace("TODO_REPLACE: ", "")}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom CTAs */}
-              <div className="p-6 pt-0 space-y-2.5">
-                <Link
-                  href={`/projects/${proj.id}`}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white/10 hover:bg-[#8CCB6B] text-white hover:text-slate-950 text-xs sm:text-sm font-bold border border-white/20 transition-all duration-300"
-                >
-                  <span>View Project Details &amp; Scope</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/book"
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366] text-[#8CCB6B] hover:text-slate-950 text-xs font-bold border border-[#25D366]/40 transition-all"
-                >
-                  <span>Book Free Inspection For Similar Flat</span>
-                </Link>
-              </div>
-            </div>
+            <ProjectCard key={proj.id} project={proj} />
           ))}
         </div>
 
         {/* Quality Guarantee Box */}
-        <div className="rounded-3xl bg-white/5 border border-white/10 p-8 sm:p-12 text-center max-w-4xl mx-auto">
-          <ShieldCheck className="w-12 h-12 text-[#8CCB6B] mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-white mb-2">
-            Want Similar Craftsmanship for Your Home?
+        <div className="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-sm">
+          <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-[#166534] border border-emerald-100 flex items-center justify-center mx-auto mb-4">
+            <ShieldCheck className="w-8 h-8 text-[#16a34a]" />
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-3">
+            Want Similar Direct-to-Builder Quality for Your Home?
           </h3>
-          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
+          <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto mb-8 font-normal leading-relaxed">
             We inspect your site, check floor plan layouts, and provide an itemized quote with
-            scheduled milestone guarantees. Zero obligation.
+            scheduled milestone guarantees. Zero ID markups, 100% direct accountability.
           </p>
-          <Link
-            href="/book"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-transform"
-          >
-            <span>Book Free Site Inspection</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/book"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-transform"
+            >
+              <CalendarCheck className="w-4 h-4" />
+              <span>Book Free Site Inspection</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-sm sm:text-base shadow-sm transition-all"
+            >
+              <span>View Indicative Pricing Guide</span>
+            </Link>
+          </div>
         </div>
       </div>
     </main>

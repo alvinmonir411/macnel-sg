@@ -162,22 +162,21 @@ export function QuoteCalculator() {
   };
 
   return (
-    <section id="quote-calculator" className="py-20 lg:py-28 bg-[#0E172B] text-white relative overflow-hidden">
-      {/* Subtle Architectural Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
-      <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#2C6BA6]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-[#8CCB6B]/15 rounded-full blur-3xl pointer-events-none" />
+    <section id="quote-calculator" className="py-20 lg:py-28 bg-[#F8FAFC] text-slate-900 relative overflow-hidden border-b border-slate-200/70">
+      {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
+
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-3">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#166534] mb-3">
             <Calculator className="w-3.5 h-3.5" />
             <span>Direct Contractor Estimation</span>
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A] mb-3">
             Request an Itemized Free Quote
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto font-normal">
+          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto font-normal">
             No obligation. We review your property type and requirements to prepare a transparent
             milestone quotation.
           </p>
@@ -185,14 +184,14 @@ export function QuoteCalculator() {
 
         {/* Success Confirmation State (Rule C.2) */}
         {isSubmitted ? (
-          <div className="rounded-3xl bg-white/5 border border-[#8CCB6B]/40 p-8 sm:p-12 text-center shadow-2xl animate-in fade-in duration-300">
-            <div className="w-16 h-16 rounded-full bg-[#8CCB6B]/20 border border-[#8CCB6B] text-[#8CCB6B] flex items-center justify-center mx-auto mb-5">
+          <div className="rounded-3xl bg-white border border-emerald-300 p-8 sm:p-12 text-center shadow-xl animate-in fade-in duration-300">
+            <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-300 text-[#166534] flex items-center justify-center mx-auto mb-5">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] mb-3">
               Quotation Request Received!
             </h3>
-            <p className="text-base text-slate-200 max-w-md mx-auto mb-6">
+            <p className="text-base text-slate-600 max-w-md mx-auto mb-6">
               Thanks, we&apos;ll reply <strong>within {contact.quoteTurnaroundHours} hours</strong> with
               an initial estimate and confirm your free on-site measurement slot.
             </p>
@@ -217,7 +216,7 @@ export function QuoteCalculator() {
                   setEmail("");
                   setRemarks("");
                 }}
-                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/20 transition-all cursor-pointer"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs sm:text-sm border border-slate-300 transition-all cursor-pointer"
               >
                 Submit Another Request
               </button>
@@ -226,11 +225,11 @@ export function QuoteCalculator() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="rounded-3xl bg-white/5 border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-md"
+            className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-10 shadow-xl"
           >
             {/* Step 1: Property Type */}
             <div className="mb-8">
-              <label className="block text-xs uppercase tracking-wider font-bold text-[#8CCB6B] mb-3">
+              <label className="block text-xs uppercase tracking-wider font-bold text-[#166534] mb-3">
                 1. Select Property Type
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -241,8 +240,8 @@ export function QuoteCalculator() {
                     onClick={() => setPropertyType(opt.id)}
                     className={`flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                       propertyType === opt.id
-                        ? "border-[#8CCB6B] bg-[#8CCB6B]/20 text-white shadow-md"
-                        : "border-white/10 bg-white/5 text-slate-300 hover:border-white/25 hover:text-white"
+                        ? "border-[#16a34a] bg-emerald-50 text-[#166534] shadow-sm"
+                        : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white hover:text-slate-900"
                     }`}
                   >
                     {opt.icon}
@@ -255,11 +254,11 @@ export function QuoteCalculator() {
             {/* Step 2: Selected Services */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-3">
-                <label className="text-xs uppercase tracking-wider font-bold text-[#8CCB6B]">
+                <label className="text-xs uppercase tracking-wider font-bold text-[#166534]">
                   2. Select Required Trades (Multi-select)
                 </label>
                 {errors.services && (
-                  <span className="text-xs text-rose-400">{errors.services}</span>
+                  <span className="text-xs text-rose-500">{errors.services}</span>
                 )}
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -272,16 +271,16 @@ export function QuoteCalculator() {
                       onClick={() => toggleService(srv)}
                       className={`flex items-center justify-between p-3.5 rounded-xl border text-xs sm:text-sm text-left transition-all cursor-pointer ${
                         isChecked
-                          ? "border-[#8CCB6B] bg-[#8CCB6B]/15 text-white font-bold"
-                          : "border-white/10 bg-white/5 text-slate-300 hover:border-white/20 hover:text-white"
+                          ? "border-[#16a34a] bg-emerald-50/80 text-[#166534] font-bold shadow-sm"
+                          : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white hover:text-slate-900"
                       }`}
                     >
                       <span>{srv}</span>
                       <div
                         className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 border ${
                           isChecked
-                            ? "bg-[#8CCB6B] border-[#8CCB6B] text-slate-900"
-                            : "border-white/20 bg-black/20"
+                            ? "bg-[#16a34a] border-[#16a34a] text-white"
+                            : "border-slate-300 bg-white"
                         }`}
                       >
                         {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -293,43 +292,43 @@ export function QuoteCalculator() {
             </div>
 
             {/* Step 3: Contact Particulars (Rule C.2) */}
-            <div className="mb-8 pt-6 border-t border-white/10">
-              <label className="block text-xs uppercase tracking-wider font-bold text-[#8CCB6B] mb-4">
+            <div className="mb-8 pt-6 border-t border-slate-200">
+              <label className="block text-xs uppercase tracking-wider font-bold text-[#166534] mb-4">
                 3. Your Contact Details
               </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 {/* Full Name */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Full Name <span className="text-rose-400">*</span>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Full Name <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Tan Wei Ming"
-                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#16a34a] focus:ring-2 focus:ring-emerald-500/20"
                   />
                   {errors.name && (
-                    <span className="text-xs text-rose-400 mt-1 block">{errors.name}</span>
+                    <span className="text-xs text-rose-500 mt-1 block">{errors.name}</span>
                   )}
                 </div>
 
                 {/* Phone with SG validation */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Singapore Contact / WhatsApp <span className="text-rose-400">*</span>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Singapore Contact / WhatsApp <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="e.g. +65 8936 1834 or 91234567"
-                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#16a34a] focus:ring-2 focus:ring-emerald-500/20"
                   />
                   {errors.phone && (
-                    <span className="text-xs text-rose-400 mt-1 block">{errors.phone}</span>
+                    <span className="text-xs text-rose-500 mt-1 block">{errors.phone}</span>
                   )}
                 </div>
               </div>
@@ -337,39 +336,39 @@ export function QuoteCalculator() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Email (Optional) */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Email Address <span className="text-slate-500 font-normal">(Optional)</span>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Email Address <span className="text-slate-400 font-normal">(Optional)</span>
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="e.g. name@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#16a34a] focus:ring-2 focus:ring-emerald-500/20"
                   />
                   {errors.email && (
-                    <span className="text-xs text-rose-400 mt-1 block">{errors.email}</span>
+                    <span className="text-xs text-rose-500 mt-1 block">{errors.email}</span>
                   )}
                 </div>
 
                 {/* Preferred Date/Time */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Preferred Site Visit Slot <span className="text-slate-500 font-normal">(Optional)</span>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Preferred Site Visit Slot <span className="text-slate-400 font-normal">(Optional)</span>
                   </label>
                   <input
                     type="text"
                     value={preferredDateTime}
                     onChange={(e) => setPreferredDateTime(e.target.value)}
                     placeholder="e.g. Saturday afternoon or weekdays after 6pm"
-                    className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#16a34a] focus:ring-2 focus:ring-emerald-500/20"
                   />
                 </div>
               </div>
 
               {/* Remarks */}
               <div className="mt-4">
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                   Remarks / Property Location / Floor Plan Notes
                 </label>
                 <textarea
@@ -377,34 +376,34 @@ export function QuoteCalculator() {
                   value={remarks}
                   onChange={(e) => setRemarks(e.target.value)}
                   placeholder="Share details such as BTO key collection date, resale hacking needs, or specific tile preferences..."
-                  className="w-full px-4 py-3 rounded-xl bg-black/30 border border-white/15 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#8CCB6B]"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#16a34a] focus:ring-2 focus:ring-emerald-500/20"
                 />
               </div>
             </div>
 
             {/* PDPA Consent Checkbox (Rule C.3) */}
-            <div className="mb-6 pt-4 border-t border-white/10">
+            <div className="mb-6 pt-4 border-t border-slate-200">
               <label className="flex items-start gap-3 cursor-pointer select-none">
                 <input
                   type="checkbox"
                   checked={consentPdpa}
                   onChange={(e) => setConsentPdpa(e.target.checked)}
-                  className="mt-1 w-4 h-4 rounded text-[#8CCB6B] border-white/20 bg-black/30 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                  className="mt-1 w-4 h-4 rounded text-[#16a34a] border-slate-300 bg-white focus:ring-[#16a34a] cursor-pointer"
                 />
-                <span className="text-xs text-slate-300 leading-relaxed font-normal">
+                <span className="text-xs text-slate-600 leading-relaxed font-normal">
                   I consent to {name} contacting me regarding this renovation quotation inquiry in
                   accordance with the Singapore Personal Data Protection Act (PDPA).{" "}
                   <Link
                     href="/privacy-policy"
                     target="_blank"
-                    className="text-[#8CCB6B] underline hover:text-white"
+                    className="text-[#166534] underline hover:text-[#15803d]"
                   >
                     Read Privacy Policy
                   </Link>.
                 </span>
               </label>
               {errors.consent && (
-                <span className="text-xs text-rose-400 mt-1.5 block">{errors.consent}</span>
+                <span className="text-xs text-rose-500 mt-1.5 block">{errors.consent}</span>
               )}
             </div>
 
@@ -413,7 +412,7 @@ export function QuoteCalculator() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:flex-1 py-3.5 px-6 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                className="w-full sm:flex-1 py-3.5 px-6 rounded-xl bg-[#0F172A] hover:bg-[#166534] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.01] active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <span>Submitting Inquiry...</span>
@@ -436,7 +435,7 @@ export function QuoteCalculator() {
               </a>
             </div>
 
-            <p className="text-[11px] text-slate-400 text-center mt-4">
+            <p className="text-[11px] text-slate-500 text-center mt-4">
               🔒 100% Free Consultation · No Obligation Quotation · Response within {contact.quoteTurnaroundHours} Hours
             </p>
           </form>

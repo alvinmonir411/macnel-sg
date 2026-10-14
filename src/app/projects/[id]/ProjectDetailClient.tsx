@@ -44,7 +44,7 @@ export function ProjectDetailClient({
   return (
     <div className="space-y-4">
       {/* Main Image Frame with Floating Before/After Pill Switcher */}
-      <div className="relative rounded-3xl overflow-hidden bg-slate-950 border border-white/15 shadow-2xl aspect-[16/10] sm:aspect-[16/9] w-full">
+      <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-200/90 shadow-xl aspect-[16/10] sm:aspect-[16/9] w-full">
         <ProjectImage
           src={selectedImage}
           alt={`${cleanTitle} - ${isCurrentBefore ? "Before Renovation" : "Completed Renovation"}`}
@@ -85,8 +85,8 @@ export function ProjectDetailClient({
           <span
             className={`px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-wider backdrop-blur-md border shadow-lg ${
               isCurrentBefore
-                ? "bg-amber-500/90 text-slate-950 border-amber-300"
-                : "bg-[#166534]/90 text-white border-emerald-400"
+                ? "bg-amber-500/95 text-slate-950 border-amber-300"
+                : "bg-[#166534]/95 text-white border-emerald-400"
             }`}
           >
             {isCurrentBefore ? "Initial Site Condition (Before)" : "Completed Handover (After)"}
@@ -110,10 +110,10 @@ export function ProjectDetailClient({
                 type="button"
                 key={idx}
                 onClick={() => handleSelectThumb(img)}
-                className={`relative aspect-[16/10] rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                className={`relative aspect-[16/10] rounded-xl overflow-hidden border-2 transition-all cursor-pointer bg-white shadow-sm ${
                   isSelected
-                    ? "border-[#8CCB6B] shadow-[0_0_15px_rgba(140,203,107,0.4)] scale-[1.02]"
-                    : "border-white/15 opacity-70 hover:opacity-100 hover:border-white/40"
+                    ? "border-[#16a34a] shadow-[0_0_15px_rgba(22,163,74,0.3)] scale-[1.03]"
+                    : "border-slate-200/90 opacity-80 hover:opacity-100 hover:border-slate-400"
                 }`}
               >
                 <img

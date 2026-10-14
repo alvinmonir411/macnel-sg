@@ -17,20 +17,20 @@ export function ContactLocationSection() {
   const { contact, socials, awards, name } = siteConfig;
 
   return (
-    <section id="contact-location" className="py-20 lg:py-28 bg-[#121F33] text-white relative overflow-hidden">
-      {/* Subtle Architectural Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1E293B_1px,transparent_1px),linear-gradient(to_bottom,#1E293B_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none opacity-40" />
-      <div className="absolute bottom-0 right-10 w-96 h-96 bg-[#2C6BA6]/20 rounded-full blur-3xl pointer-events-none" />
+    <section id="contact-location" className="py-20 lg:py-28 bg-[#F8FAFC] text-slate-900 relative overflow-hidden border-b border-slate-200/70">
+      {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#8CCB6B] mb-2.5">
+          <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#166534] mb-2.5">
             Physical Presence &amp; Support
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A] mb-4">
             Visit Our Office &amp; Material Library
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
             {contact.showroomNote.replace("TODO_REPLACE: ", "")}
           </p>
         </div>
@@ -38,26 +38,26 @@ export function ContactLocationSection() {
         {/* 2-Column Grid: Details on Left, Map on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch mb-16">
           {/* Left Column: Direct Contact Information */}
-          <div className="lg:col-span-5 rounded-3xl bg-white/5 border border-white/10 p-6 sm:p-8 flex flex-col justify-between">
+          <div className="lg:col-span-5 rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <Building2 className="w-6 h-6 text-[#8CCB6B]" />
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <Building2 className="w-6 h-6 text-[#16a34a]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
                   Office &amp; Contact Details
                 </h3>
               </div>
 
-              <div className="space-y-6 text-sm text-slate-200">
+              <div className="space-y-6 text-sm text-slate-700">
                 {/* Address */}
                 <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <MapPin className="w-4 h-4 text-[#8CCB6B]" />
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin className="w-4 h-4 text-[#16a34a]" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-slate-400 block mb-1">
+                    <span className="text-xs uppercase font-bold text-slate-500 block mb-1">
                       Office / Showroom Location
                     </span>
-                    <span className="font-semibold text-white leading-relaxed block">
+                    <span className="font-semibold text-slate-900 leading-relaxed block">
                       {contact.address.replace("TODO_REPLACE: ", "")}
                     </span>
                   </div>
@@ -65,21 +65,21 @@ export function ContactLocationSection() {
 
                 {/* Phones */}
                 <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Phone className="w-4 h-4 text-[#8CCB6B]" />
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0 mt-0.5">
+                    <Phone className="w-4 h-4 text-[#16a34a]" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-slate-400 block mb-1">
+                    <span className="text-xs uppercase font-bold text-slate-500 block mb-1">
                       Direct Hotline &amp; Consultation
                     </span>
                     <div className="space-y-1">
                       <a
                         href={`tel:${contact.phoneTel}`}
-                        className="font-bold text-white hover:text-[#8CCB6B] transition-colors block"
+                        className="font-bold text-slate-900 hover:text-[#166534] transition-colors block"
                       >
                         {contact.phonePrimary}
                       </a>
-                      <span className="text-xs text-slate-400 block">
+                      <span className="text-xs text-slate-500 block">
                         Secondary: {contact.phoneSecondary}
                       </span>
                     </div>
@@ -88,16 +88,16 @@ export function ContactLocationSection() {
 
                 {/* Email */}
                 <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Mail className="w-4 h-4 text-[#8CCB6B]" />
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0 mt-0.5">
+                    <Mail className="w-4 h-4 text-[#16a34a]" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-slate-400 block mb-1">
+                    <span className="text-xs uppercase font-bold text-slate-500 block mb-1">
                       Email Inquiries
                     </span>
                     <a
                       href={`mailto:${contact.email}`}
-                      className="font-bold text-white hover:text-[#8CCB6B] transition-colors block"
+                      className="font-bold text-slate-900 hover:text-[#166534] transition-colors block"
                     >
                       {contact.email}
                     </a>
@@ -106,14 +106,14 @@ export function ContactLocationSection() {
 
                 {/* Operating Hours */}
                 <div className="flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Clock className="w-4 h-4 text-[#8CCB6B]" />
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0 mt-0.5">
+                    <Clock className="w-4 h-4 text-[#16a34a]" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-slate-400 block mb-1">
+                    <span className="text-xs uppercase font-bold text-slate-500 block mb-1">
                       Operating Hours
                     </span>
-                    <span className="font-semibold text-white block">
+                    <span className="font-semibold text-slate-900 block">
                       {contact.operatingHours}
                     </span>
                   </div>
@@ -122,14 +122,14 @@ export function ContactLocationSection() {
             </div>
 
             {/* Quick Action */}
-            <div className="pt-8 mt-6 border-t border-white/10">
+            <div className="pt-8 mt-6 border-t border-slate-100">
               <a
                 href={`https://wa.me/${contact.whatsapp}?text=Hello%20${encodeURIComponent(
                   name
                 )}%2C%20I%20would%20like%20to%20arrange%20a%20showroom%20visit.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold shadow-lg transition-all"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold shadow-md hover:scale-[1.01] transition-all"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
                 <span>Arrange Showroom Appointment</span>
@@ -138,7 +138,7 @@ export function ContactLocationSection() {
           </div>
 
           {/* Right Column: Embedded Lazy-Loaded Google Map */}
-          <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-white/10 bg-black/40 min-h-[380px] shadow-2xl relative">
+          <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-200/90 bg-slate-100 min-h-[380px] shadow-sm relative">
             <iframe
               src={contact.googleMapsEmbedUrl}
               width="100%"
@@ -154,9 +154,9 @@ export function ContactLocationSection() {
         </div>
 
         {/* Social Proof Strip & Verified Profiles (Rule B.9) */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 text-xs text-slate-400">
-            <Globe className="w-4 h-4 text-[#8CCB6B]" />
+        <div className="pt-8 border-t border-slate-200/80 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2 text-xs text-slate-500">
+            <Globe className="w-4 h-4 text-[#16a34a]" />
             <span>Connect with our official profiles:</span>
           </div>
 
@@ -166,10 +166,10 @@ export function ContactLocationSection() {
                 href={socials.googleBusiness.replace("TODO_REPLACE: ", "")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-200 hover:text-white transition-all flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
               >
                 <span>Google Business</span>
-                <ExternalLink className="w-3 h-3 text-[#8CCB6B]" />
+                <ExternalLink className="w-3 h-3 text-[#16a34a]" />
               </a>
             )}
 
@@ -178,10 +178,10 @@ export function ContactLocationSection() {
                 href={socials.facebook.replace("TODO_REPLACE: ", "")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-200 hover:text-white transition-all flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
               >
                 <span>Facebook</span>
-                <ExternalLink className="w-3 h-3 text-[#8CCB6B]" />
+                <ExternalLink className="w-3 h-3 text-[#16a34a]" />
               </a>
             )}
 
@@ -190,10 +190,10 @@ export function ContactLocationSection() {
                 href={socials.instagram.replace("TODO_REPLACE: ", "")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-xs text-slate-200 hover:text-white transition-all flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
               >
                 <span>Instagram</span>
-                <ExternalLink className="w-3 h-3 text-[#8CCB6B]" />
+                <ExternalLink className="w-3 h-3 text-[#16a34a]" />
               </a>
             )}
           </div>
@@ -201,12 +201,12 @@ export function ContactLocationSection() {
           {/* Awards / Media Mentions: Hidden if empty array (Rule B.9) */}
           {awards.length > 0 && (
             <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-amber-400" />
+              <Award className="w-4 h-4 text-amber-500" />
               <div className="flex flex-wrap gap-2">
                 {awards.map((award, i) => (
                   <span
                     key={i}
-                    className="text-xs bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded"
+                    className="text-xs bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-1 rounded-lg font-medium"
                   >
                     {award}
                   </span>
