@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Door & Window Replacement & Repair Singapore | BCA Approved - MACNEL",
+  title: "Door & Window Replacement & Repair Singapore | BCA Approved - Renovation Contractor SG",
   description:
     "BCA-approved door & window replacement and repair services in Singapore. Front doors, acoustic double-glazed windows, toilet bi-fold doors, and sliding track repairs.",
   keywords: siteConfig.serviceKeywords.doorAndWindow,
@@ -190,7 +190,7 @@ export default function DoorWindowPage() {
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20door%20and%20window%20replacement.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20door%20and%20window%20replacement.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -356,7 +356,7 @@ export default function DoorWindowPage() {
                 </div>
 
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi%20MACNEL%2C%20I%20want%20to%20consult%20about%20${encodeURIComponent(
+                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi%20Renovation%20Contractor%20SG%2C%20I%20want%20to%20consult%20about%20${encodeURIComponent(
                     glass.type
                   )}.`}
                   target="_blank"
@@ -441,7 +441,7 @@ export default function DoorWindowPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20door%20and%20window%20quotation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20door%20and%20window%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"

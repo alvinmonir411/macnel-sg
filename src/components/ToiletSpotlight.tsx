@@ -109,7 +109,9 @@ export function ToiletSpotlight() {
               </div>
 
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                  siteConfig.name
+                )}%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl brand-gradient text-white font-bold text-sm shadow-md hover:opacity-95 transition-all"

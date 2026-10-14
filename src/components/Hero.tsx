@@ -1,8 +1,22 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { MessageCircle, ArrowRight, ShieldCheck, Clock, CheckCircle2 } from "lucide-react";
+import {
+  MessageCircle,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  CheckCircle2,
+  Search,
+} from "lucide-react";
+import { ServiceSearchModal } from "@/components/ServiceSearchModal";
 
 export function Hero() {
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [heroSearchQuery, setHeroSearchQuery] = useState("");
+
   return (
     <section
       style={{ backgroundColor: "var(--dark-bg, #16263F)" }}
@@ -35,7 +49,7 @@ export function Hero() {
             {/* Pill Badge */}
             <span className="inline-flex items-center gap-2.5 rounded-full border border-[#8CCB6B]/40 bg-[#8CCB6B]/15 px-4 py-1.5 text-xs sm:text-sm font-bold text-white shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#A3E635] animate-pulse" />
-              <span>MACNEL Construction Pte. Ltd · Singapore</span>
+              <span>{siteConfig.name} · Singapore Direct Contractor</span>
             </span>
 
             {/* Main Headline */}
@@ -51,10 +65,53 @@ export function Hero() {
               landed homes, and commercial spaces across Singapore.
             </p>
 
+            {/* Live Interactive Service Search Bar */}
+            <div className="w-full max-w-xl">
+              <div
+                onClick={() => setSearchModalOpen(true)}
+                className="cursor-pointer group relative flex items-center gap-3 px-4 py-3 sm:py-3.5 rounded-2xl bg-white/15 hover:bg-white/20 border border-white/30 hover:border-[#A3E635] shadow-2xl backdrop-blur-xl transition-all"
+              >
+                <Search className="w-5 h-5 text-[#A3E635] group-hover:scale-110 transition-transform shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <span className="text-xs sm:text-sm text-slate-100 group-hover:text-white transition-colors block truncate font-medium">
+                    Search any service (e.g. Bathroom Tilers, False Ceiling, Door Replacement)...
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="hidden sm:inline-block text-[10px] font-bold uppercase tracking-wider text-[#16263F] bg-[#A3E635] px-2 py-0.5 rounded shadow-sm">
+                    Search Trades
+                  </span>
+                  <kbd className="hidden md:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/20 text-[10px] font-mono text-[#A3E635]">
+                    ⌘K
+                  </kbd>
+                </div>
+              </div>
+
+              {/* Popular Search Suggestions Pills */}
+              <div className="flex flex-wrap items-center gap-1.5 pt-2.5 text-xs text-slate-200">
+                <span className="text-[11px] font-bold text-[#A3E635]">Popular:</span>
+                {["Bathroom Tilers", "False Ceiling", "Door Replacement", "Nippon Paint", "SPC Flooring", "Toilet Renovation"].map((chip) => (
+                  <button
+                    key={chip}
+                    type="button"
+                    onClick={() => {
+                      setHeroSearchQuery(chip);
+                      setSearchModalOpen(true);
+                    }}
+                    className="text-[11px] font-medium text-slate-100 hover:text-white bg-white/10 hover:bg-white/25 px-2.5 py-0.5 rounded-full border border-white/20 hover:border-[#A3E635] transition-all"
+                  >
+                    {chip}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3.5 pt-2">
+            <div className="flex flex-wrap gap-3.5 pt-1">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20free%20quotation.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                  siteConfig.name
+                )}%2C%20I%20would%20like%20a%20free%20quotation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -161,6 +218,16 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Hero Interactive Search Modal */}
+      <ServiceSearchModal
+        isOpen={searchModalOpen}
+        onClose={() => {
+          setSearchModalOpen(false);
+          setHeroSearchQuery("");
+        }}
+        initialQuery={heroSearchQuery}
+      />
     </section>
   );
 }

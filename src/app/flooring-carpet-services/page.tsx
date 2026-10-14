@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Flooring & Carpet Installation Services Singapore | Hardwood & SPC - MACNEL",
+  title: "Flooring & Carpet Installation Services Singapore | Hardwood & SPC - Renovation Contractor SG",
   description:
     "Professional flooring and carpet contractors in Singapore. Solid hardwood parquet sanding & varnishing, 100% waterproof SPC vinyl, commercial carpet tiles & marble floor polishing.",
   keywords: siteConfig.serviceKeywords.flooringAndCarpet,
@@ -181,7 +181,7 @@ export default function FlooringCarpetPage() {
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20flooring%20and%20carpet%20services.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20flooring%20and%20carpet%20services.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -398,7 +398,7 @@ export default function FlooringCarpetPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20flooring%20quotation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20flooring%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"

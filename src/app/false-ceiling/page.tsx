@@ -48,7 +48,7 @@ const ceilingStandards = [
     step: "01",
     title: "Heavy-Duty Galvanised Metal Stud Framework",
     image: "/images/partition-ceiling/4.jpeg",
-    desc: "We never use cheap thin metal channels that bend under ceiling weight. MACNEL frames ceilings with heavy-duty galvanised steel furring channels spaced at strict 400mm centers, suspended with zinc-coated threaded steel rods anchored to concrete slabs.",
+    desc: "We never use cheap thin metal channels that bend under ceiling weight. Renovation Contractor SG frames ceilings with heavy-duty galvanised steel furring channels spaced at strict 400mm centers, suspended with zinc-coated threaded steel rods anchored to concrete slabs.",
   },
   {
     step: "02",
@@ -115,13 +115,13 @@ export default function FalseCeilingPage() {
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
               Looking for an experienced false ceiling contractor in Singapore?
-              MACNEL designs and installs seamless false ceilings for living rooms, LED cove light troughs,
+              Renovation Contractor SG designs and installs seamless false ceilings for living rooms, LED cove light troughs,
               curtain pelmets, and acoustic room partitions with zero sagging or hairline cracks.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20false%20ceiling%20and%20partition%20works.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20false%20ceiling%20and%20partition%20works.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -317,7 +317,7 @@ export default function FalseCeilingPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20false%20ceiling%20and%20partition%20works.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20false%20ceiling%20and%20partition%20works.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"

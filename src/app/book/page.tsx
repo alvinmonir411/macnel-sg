@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { ShieldCheck, Clock, Award, Phone, MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Book an Appointment | Free Site Inspection | MACNEL Construction",
+  title: `Book an Appointment | Free Site Inspection | ${siteConfig.name}`,
   description:
     "Schedule a free on-site consultation and quotation in Singapore. Direct licensed contractor for toilet renovation, painting, tiling, false ceiling, and electrical works.",
 };

@@ -115,13 +115,13 @@ export default function PaintingPage() {
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
               Looking for professional house painters or plaster wall repair in Singapore?
-              MACNEL delivers smooth, blemish-free walls, certified Nippon painting, and complete
+              Renovation Contractor SG delivers smooth, blemish-free walls, certified Nippon painting, and complete
               plastering services with full floor protection and spotless cleanup.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20painting%20and%20plastering%20services.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20painting%20and%20plastering%20services.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -317,7 +317,7 @@ export default function PaintingPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20painting%20and%20plastering%20services.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20painting%20and%20plastering%20services.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"

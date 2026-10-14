@@ -37,7 +37,7 @@ export default function ContactUsPage() {
     }
 
     // Generate pre-filled WhatsApp message
-    const msg = `Hello MACNEL Construction,%0A%0ANew Quotation Inquiry:%0A- Name: ${encodeURIComponent(
+    const msg = `Hello ${encodeURIComponent(siteConfig.name)},%0A%0ANew Quotation Inquiry:%0A- Name: ${encodeURIComponent(
       formData.name
     )}%0A- Phone: ${encodeURIComponent(formData.phone)}%0A- Service: ${encodeURIComponent(
       formData.service
@@ -73,7 +73,7 @@ export default function ContactUsPage() {
             <span>Direct Contractor · Rapid Response</span>
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Contact MACNEL Construction
+            Contact {siteConfig.name}
           </h1>
           <p className="text-base sm:text-lg text-white/80 leading-relaxed">
             Get in touch for a free site assessment, itemized quotation, or technical advice
@@ -115,7 +115,7 @@ export default function ContactUsPage() {
                 </a>
 
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20free%20quotation.`}
+                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20a%20free%20quotation.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200 hover:border-[#25D366] transition-all group"
@@ -172,7 +172,7 @@ export default function ContactUsPage() {
             {/* Google Maps Embed */}
             <div className="rounded-2xl overflow-hidden aspect-[16/9] border border-slate-200 shadow-sm mt-4">
               <iframe
-                title="MACNEL Construction Singapore Location"
+                title={`${siteConfig.name} Singapore Location`}
                 src="https://www.google.com/maps?q=Jalan%20Besar%20Plaza%2C%20101%20Kitchener%20Road%2C%20Singapore%20208511&z=16&output=embed"
                 className="w-full h-full border-0"
                 allowFullScreen={false}

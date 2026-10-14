@@ -248,7 +248,7 @@ export default function AdminDashboardPage() {
   const getClientWhatsAppUrl = (b: Booking) => {
     const text =
       `Hello ${encodeURIComponent(b.client_name)},%0A%0A` +
-      `This is MACNEL Construction regarding your site inspection (*ID: ${b.id}*).%0A%0A` +
+      `This is Renovation Contractor SG regarding your site inspection (*ID: ${b.id}*).%0A%0A` +
       `*Service:* ${encodeURIComponent(b.service_name)}%0A` +
       `*Date:* ${encodeURIComponent(b.inspection_date || "N/A")}%0A` +
       `*Time:* ${encodeURIComponent(b.time_slot || "N/A")}%0A` +
@@ -272,7 +272,7 @@ export default function AdminDashboardPage() {
             Internal Operations
           </span>
           <h1 className="text-2xl font-extrabold text-slate-900 mb-2">
-            MACNEL Admin Portal
+            Renovation Contractor SG Admin Portal
           </h1>
           <p className="text-xs text-slate-500 mb-6">
             Enter your management passkey to access site bookings, slot availability, and client records.
@@ -326,7 +326,7 @@ export default function AdminDashboardPage() {
             </div>
             <div>
               <span className="font-extrabold text-base tracking-tight text-white block">
-                MACNEL Admin
+                Renovation Contractor SG Admin
               </span>
               <span className="text-[10px] text-[#8CCB6B] flex items-center gap-1.5 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8CCB6B] animate-pulse" />
@@ -820,7 +820,7 @@ export default function AdminDashboardPage() {
                       <a
                         href={`https://wa.me/${inq.phone.replace(/\D/g, "")}?text=Hello%20${encodeURIComponent(
                           inq.name
-                        )}%2C%20thank%20you%20for%20contacting%20MACNEL%20Construction.`}
+                        )}%2C%20thank%20you%20for%20contacting%20Renovation Contractor SG%20Construction.`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100"

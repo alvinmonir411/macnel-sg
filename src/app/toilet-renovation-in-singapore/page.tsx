@@ -192,14 +192,14 @@ export default function ToiletRenovationPage() {
 
               <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed max-w-xl drop-shadow-sm">
                 An old, leaking toilet ruins the comfort of your whole home.
-                Skip middleman markup brokers — MACNEL coordinates hacking,
+                Skip middleman markup brokers — Renovation Contractor SG coordinates hacking,
                 3-coat waterproofing, laser tiling, and plumbing under one direct in-house team.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-3.5 pt-2">
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
+                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -428,14 +428,14 @@ export default function ToiletRenovationPage() {
               Direct Contractor vs Interior Design (ID) Agency
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
-              Why thousands of Singapore homeowners work directly with MACNEL:
+              Why thousands of Singapore homeowners work directly with Renovation Contractor SG:
             </p>
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-xl">
             <div className="grid grid-cols-3 bg-[#16263F] text-white p-4 sm:p-5 font-bold text-xs sm:text-sm">
               <div>Aspect</div>
-              <div className="text-[#A3E635]">MACNEL Construction (Direct)</div>
+              <div className="text-[#A3E635]">Renovation Contractor SG (Direct)</div>
               <div className="text-slate-300">Third-Party ID Firm</div>
             </div>
 
@@ -533,7 +533,7 @@ export default function ToiletRenovationPage() {
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"

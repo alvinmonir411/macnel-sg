@@ -10,22 +10,20 @@ export function Footer() {
           {/* Brand Info */}
           <div>
             <Link href="/" className="flex items-center gap-3 mb-4 group">
-              <img
-                src="/macnel-icon.svg"
-                alt="MACNEL SG Logo"
-                className="w-11 h-11 rounded-xl shadow group-hover:scale-105 transition-transform"
-              />
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#2C6BA6] to-[#16263F] border border-[#8CCB6B]/40 flex items-center justify-center text-white shadow group-hover:scale-105 transition-transform">
+                <Hammer className="w-5 h-5 text-[#A3E635]" />
+              </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
                   <span className="font-extrabold text-xl tracking-tight text-white">
-                    MACNEL
+                    Renovation Contractor
                   </span>
                   <span className="text-[9px] font-black uppercase tracking-wider bg-[#8CCB6B]/25 text-[#A3E635] border border-[#8CCB6B]/50 px-1.5 py-0.5 rounded shadow-sm">
                     SG
                   </span>
                 </div>
                 <p className="text-[10px] text-slate-300 tracking-wider uppercase font-semibold">
-                  Construction &amp; Renovation
+                  Direct Renovation Contractor
                 </p>
               </div>
             </Link>

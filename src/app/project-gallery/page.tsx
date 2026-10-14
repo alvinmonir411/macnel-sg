@@ -144,7 +144,7 @@ export default function ProjectGalleryPage() {
           </p>
 
           <a
-            href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20saw%20your%20project%20gallery%20and%20would%20like%20a%20quotation.`}
+            href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20saw%20your%20project%20gallery%20and%20would%20like%20a%20quotation.`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl"
@@ -207,7 +207,7 @@ export default function ProjectGalleryPage() {
                     Handover Completed
                   </span>
                   <a
-                    href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi%20MACNEL%2C%20I%20like%20your%20project%20"${encodeURIComponent(
+                    href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi%20Renovation%20Contractor%20SG%2C%20I%20like%20your%20project%20"${encodeURIComponent(
                       project.title
                     )}"%20and%20would%20like%20a%20quote.`}
                     target="_blank"

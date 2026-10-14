@@ -126,13 +126,13 @@ export default function TilingWorksPage() {
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
               Searching for professional tile installers or floor tile contractors near you?
-              MACNEL executes millimeter-accurate floor and wall tile installation, bathroom tile
+              Renovation Contractor SG executes millimeter-accurate floor and wall tile installation, bathroom tile
               replacements, and commercial tiling across Singapore with full polymer adhesive bonding.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20tiling%20services.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20tiling%20services.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -225,7 +225,7 @@ export default function TilingWorksPage() {
               Trade Craftsmanship
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">
-              Why MACNEL Tiling Outlasts Others
+              Why Renovation Contractor SG Tiling Outlasts Others
             </h2>
             <p className="text-base text-slate-600">
               Good tiling is not just about placing a tile on wet cement. It is a rigorous engineering process.
@@ -328,7 +328,7 @@ export default function TilingWorksPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20tiling%20services.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20tiling%20services.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"

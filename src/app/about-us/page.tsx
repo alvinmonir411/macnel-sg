@@ -20,9 +20,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | MACNEL Construction Pte. Ltd - Singapore Direct Contractor",
+  title: "About Us | Renovation Contractor SG - Singapore Direct Contractor",
   description:
-    "Learn about MACNEL Construction Pte. Ltd — Singapore's premier direct renovation contractor. In-house craftsmen handling 18+ specialized trades with zero ID markups.",
+    "Learn about Renovation Contractor SG — Singapore's premier direct renovation contractor. In-house craftsmen handling 18+ specialized trades with zero ID markups.",
 };
 
 export default function AboutUsPage() {
@@ -78,7 +78,7 @@ export default function AboutUsPage() {
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-screen flex items-center py-20 lg:py-28">
         <img
           src="/images/house-reno/1.jpeg"
-          alt="About MACNEL Construction Singapore"
+          alt="About Renovation Contractor SG Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-transform duration-1000"
           style={{ opacity: 0.85 }}
         />
@@ -103,14 +103,14 @@ export default function AboutUsPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-md">
-              At MACNEL Construction Pte. Ltd., we eliminate the bloated overhead of design sales agencies. We own our
+              At Renovation Contractor SG., we eliminate the bloated overhead of design sales agencies. We own our
               carpentry workshop, employ our own tilers, and deliver turnkey renovations with uncompromising structural
               integrity.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20renovation%20services.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20renovation%20services.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -167,7 +167,7 @@ export default function AboutUsPage() {
               a 20% to 35% margin while diluting quality control.
             </p>
             <p className="text-base text-slate-600 leading-relaxed mb-6 font-normal">
-              MACNEL Construction was established to restore pure builder craftsmanship. When you work with us, you deal
+              Renovation Contractor SG was established to restore pure builder craftsmanship. When you work with us, you deal
               directly with the master tradesmen responsible for your hacking, waterproofing, tiling, electrical, and
               custom cabinetry.
             </p>
@@ -190,7 +190,7 @@ export default function AboutUsPage() {
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
             <img
               src="/images/tiling/13.jpeg"
-              alt="MACNEL on-site builder team"
+              alt="Renovation Contractor SG on-site builder team"
               className="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#16263F]/95 via-[#16263F]/30 to-transparent flex flex-col justify-end p-8 text-white">
@@ -271,7 +271,7 @@ export default function AboutUsPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20to%20visit%20or%20inquire%20about%20renovation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20to%20visit%20or%20inquire%20about%20renovation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"

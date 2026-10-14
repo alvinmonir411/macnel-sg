@@ -1,15 +1,15 @@
 export const siteConfig = {
-  name: "MACNEL Construction Pte. Ltd",
-  tagline: "Construction & Renovation, Handled by One Team",
+  name: "Renovation Contractor SG",
+  tagline: "Singapore Direct Renovation Contractor · Hacking to Handover",
   description:
-    "Professional construction and renovation services in Singapore: toilet renovation, painting, tiling, false ceiling, electrical rewiring, carpentry, and more. From hacking to handover with certified specialists.",
+    "Professional direct renovation contractor services in Singapore: tiling, door & window, false ceiling & partition, house painting & plastering, flooring & carpet, house renovation, and toilet renovation. Direct contractor pricing with zero ID markups.",
   url: "https://renovationcontractorsg.org",
   contact: {
     phonePrimary: "+65 8936 1834",
     phoneSecondary: "+65 9120 7650",
     phoneTel: "+6589361834",
     whatsapp: "6589361834",
-    email: "macnelconstruction@gmail.com",
+    email: "info@renovationcontractorsg.org",
     address: "Singapore",
     operatingHours: "Mon – Sat: 9:00 AM – 6:00 PM",
   },
@@ -113,7 +113,7 @@ export const siteConfig = {
     "hardwood floor installation",
     "floor polishing service",
     "direct renovation contractor",
-    "MACNEL Construction",
+    "Renovation Contractor SG",
   ],
   coreServices: [
     {
@@ -253,7 +253,7 @@ export const siteConfig = {
   faqs: [
     {
       q: "Do I need to hire separate contractors for plumbing, tiling, and electrical?",
-      a: "No! At MACNEL, our in-house team manages every trade — from hacking and waterproofing to plumbing, electrical, tiling, and carpentry. You have a single point of contact and zero coordination headaches.",
+      a: "No! At Renovation Contractor SG, our in-house team manages every trade — from hacking and waterproofing to plumbing, electrical, tiling, and carpentry. You have a single point of contact and zero coordination headaches.",
     },
     {
       q: "How long does a typical toilet renovation take?",

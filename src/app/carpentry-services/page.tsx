@@ -48,7 +48,7 @@ const joineryStandards = [
     step: "01",
     title: "100% Solid Marine-Grade Plywood (Zero Chipboard)",
     image: "/images/carpentry/4.jpeg",
-    desc: "Many mass-market contractors use cheap chipboard or MDF that swells, sags, and rots within 2 years in Singapore's humid climate. MACNEL uses only heavy-duty solid plywood carcasses that withstand heavy loads, moisture, and pests for decades.",
+    desc: "Many mass-market contractors use cheap chipboard or MDF that swells, sags, and rots within 2 years in Singapore's humid climate. Renovation Contractor SG uses only heavy-duty solid plywood carcasses that withstand heavy loads, moisture, and pests for decades.",
   },
   {
     step: "02",
@@ -115,13 +115,13 @@ export default function CarpentryPage() {
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
               Bring your dream spaces to life with custom fabricated furniture.
-              MACNEL crafts kitchen cabinets, full-height built-in wardrobes, suspended TV consoles,
+              Renovation Contractor SG crafts kitchen cabinets, full-height built-in wardrobes, suspended TV consoles,
               and bathroom vanities using solid marine plywood and genuine Blum hardware.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -317,7 +317,7 @@ export default function CarpentryPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"

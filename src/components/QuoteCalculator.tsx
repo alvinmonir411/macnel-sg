@@ -41,7 +41,9 @@ export function QuoteCalculator() {
 
   const generateWhatsAppUrl = () => {
     const servicesText = selectedServices.length > 0 ? selectedServices.join(", ") : "General Renovation";
-    const text = `Hello MACNEL Construction,%0A%0AI would like a Free Quotation:%0A- Property Type: ${encodeURIComponent(
+    const text = `Hello ${encodeURIComponent(
+      siteConfig.name
+    )},%0A%0AI would like a Free Quotation:%0A- Property Type: ${encodeURIComponent(
       propertyType
     )}%0A- Services Needed: ${encodeURIComponent(servicesText)}%0A- Notes: ${encodeURIComponent(
       addressOrNote.trim() || "N/A"

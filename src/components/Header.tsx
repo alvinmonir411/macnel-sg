@@ -27,14 +27,37 @@ import {
   Wind,
   Gem,
   ShieldCheck,
+  Search,
 } from "lucide-react";
+import { ServiceSearchModal } from "@/components/ServiceSearchModal";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  // Global keyboard shortcut for search (⌘K or Ctrl+K or /)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchModalOpen((prev) => !prev);
+      } else if (
+        e.key === "/" &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
+        e.preventDefault();
+        setSearchModalOpen(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Core Renovation Trades (Only the authentic services MACNEL sells)
   const coreServicesCol1 = [
@@ -129,22 +152,20 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <img
-              src="/macnel-icon.svg"
-              alt="MACNEL Logo"
-              className="w-12 h-12 rounded-xl group-hover:scale-105 transition-transform shadow-md"
-            />
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2C6BA6] to-[#16263F] border border-[#8CCB6B]/40 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+              <Hammer className="w-6 h-6 text-[#A3E635]" />
+            </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-black text-2xl tracking-tight text-white drop-shadow-sm">
-                  MACNEL
+                <span className="font-black text-xl sm:text-2xl tracking-tight text-white drop-shadow-sm">
+                  Renovation Contractor
                 </span>
                 <span className="text-[10px] font-black uppercase tracking-wider bg-[#8CCB6B]/25 text-[#A3E635] border border-[#8CCB6B]/50 px-1.5 py-0.5 rounded shadow-sm">
                   SG
                 </span>
               </div>
               <p className="text-[11px] text-slate-300 tracking-wider uppercase font-semibold">
-                Construction &amp; Renovation
+                Direct Renovation Contractor
               </p>
             </div>
           </Link>
@@ -359,14 +380,31 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Action CTAs: Free Quote (WhatsApp) + Book Now */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Action CTAs: Search + Free Quote (WhatsApp) + Book Now */}
+          <div className="hidden sm:flex items-center gap-2.5">
+            {/* Search Trigger Button (Desktop) */}
+            <button
+              type="button"
+              onClick={() => setSearchModalOpen(true)}
+              className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-slate-200 hover:text-white transition-all text-xs font-semibold shadow-sm group"
+              title="Search renovation trades (⌘K / /)"
+            >
+              <Search className="w-3.5 h-3.5 text-[#A3E635] group-hover:scale-110 transition-transform" />
+              <span className="hidden xl:inline text-slate-200">Search Trades...</span>
+              <span className="xl:hidden">Search</span>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/20 text-[10px] font-mono text-[#A3E635]">
+                ⌘K
+              </kbd>
+            </button>
+
             {/* Free Quote -> Direct WhatsApp */}
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20free%20quotation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                siteConfig.name
+              )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-xl border border-[#25D366] bg-[#25D366]/20 text-[#4ADE80] hover:bg-[#25D366]/30 transition-all shadow-sm"
+              className="flex items-center gap-2 text-xs font-bold px-3 py-2 rounded-xl border border-[#25D366] bg-[#25D366]/20 text-[#4ADE80] hover:bg-[#25D366]/30 transition-all shadow-sm"
               title="Chat on WhatsApp"
             >
               <MessageCircle className="w-4 h-4 fill-current text-[#25D366]" />
@@ -376,7 +414,7 @@ export function Header() {
             {/* Book Now -> Advanced Booking System */}
             <Link
               href="/book"
-              className="flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-xl brand-gradient text-white shadow-lg hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="flex items-center gap-2 text-xs font-bold px-3.5 py-2 rounded-xl brand-gradient text-white shadow-lg hover:opacity-95 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <CalendarCheck className="w-4 h-4" />
               <span>Book Now</span>
@@ -385,6 +423,17 @@ export function Header() {
 
           {/* Mobile Actions & Hamburger */}
           <div className="flex lg:hidden items-center gap-2">
+            {/* Mobile Search Button */}
+            <button
+              type="button"
+              onClick={() => setSearchModalOpen(true)}
+              className="p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 border border-white/20 transition-all"
+              aria-label="Search services"
+              title="Search services"
+            >
+              <Search className="w-4 h-4 text-[#A3E635]" />
+            </button>
+
             <Link
               href="/book"
               className="sm:hidden px-3 py-1.5 rounded-lg brand-gradient text-white text-xs font-bold flex items-center gap-1.5 shadow"
@@ -394,7 +443,9 @@ export function Header() {
             </Link>
 
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20free%20quotation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                siteConfig.name
+              )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg bg-[#25D366] text-white"
@@ -424,6 +475,26 @@ export function Header() {
           style={{ backgroundColor: "#16263F" }}
           className="lg:hidden border-t border-slate-700/80 bg-[#16263F] px-4 pt-4 pb-6 space-y-2 shadow-2xl"
         >
+          {/* Quick Search in Mobile Drawer */}
+          <div className="pb-2">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setSearchModalOpen(true);
+              }}
+              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-slate-200 text-xs font-semibold text-left hover:bg-white/15 transition-all shadow-sm"
+            >
+              <span className="flex items-center gap-2">
+                <Search className="w-4 h-4 text-[#A3E635]" />
+                <span>Search all services &amp; keywords...</span>
+              </span>
+              <span className="text-[10px] bg-black/40 px-2 py-0.5 rounded border border-white/20 font-mono text-[#A3E635]">
+                SEARCH
+              </span>
+            </button>
+          </div>
+
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
@@ -515,7 +586,9 @@ export function Header() {
             </Link>
 
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20free%20quotation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                siteConfig.name
+              )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-md"
@@ -526,6 +599,12 @@ export function Header() {
           </div>
         </div>
       )}
+
+      {/* Global Interactive Service Search Modal */}
+      <ServiceSearchModal
+        isOpen={searchModalOpen}
+        onClose={() => setSearchModalOpen(false)}
+      />
     </header>
   );
 }

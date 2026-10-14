@@ -265,7 +265,9 @@ export function OtherServices() {
                       </Link>
 
                       <a
-                        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20${encodeURIComponent(
+                        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                          siteConfig.name
+                        )}%2C%20I%20would%20like%20a%20quotation%20for%20${encodeURIComponent(
                           service.title
                         )}.`}
                         target="_blank"
@@ -298,13 +300,15 @@ export function OtherServices() {
               Need Multiple Renovation Trades Handled Seamlessly?
             </h3>
             <p className="text-sm text-slate-200 leading-relaxed mb-6 font-normal">
-              When you hire MACNEL for your Tiling, False Ceilings, Painting, Plastering, Doors, and Flooring, our dedicated
+              When you hire {siteConfig.name} for your Tiling, False Ceilings, Painting, Plastering, Doors, and Flooring, our dedicated
               in-house project foremen coordinate every stage with zero downtime, saving you thousands on middleman fees.
             </p>
 
             <div className="flex flex-wrap gap-4">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20have%20a%20renovation%20project%20and%20would%20like%20a%20direct%20quote.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                  siteConfig.name
+                )}%2C%20I%20have%20a%20renovation%20project%20and%20would%20like%20a%20direct%20quote.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl brand-gradient text-white text-xs font-bold shadow-lg hover:scale-105 transition-all"

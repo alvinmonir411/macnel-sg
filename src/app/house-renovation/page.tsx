@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "House Renovation Contractor Singapore | Turnkey Home Renovation - MACNEL",
+  title: "House Renovation Contractor Singapore | Turnkey Home Renovation - Renovation Contractor SG",
   description:
     "Top rated direct house renovation contractor in Singapore. Full turnkey home renovation for HDB BTO, resale flats, condominiums & landed homes with zero ID markups.",
   keywords: siteConfig.serviceKeywords.houseRenovation,
@@ -171,11 +171,11 @@ export default function HouseRenovationPage() {
   const faqs = [
     {
       q: "Do you handle all HDB renovation permits and approvals?",
-      a: "Yes. MACNEL handles all necessary HDB renovation permits, hacking endorsements, window replacement permits, and MCST condominium applications directly. You do not need to deal with any paperwork or municipal submissions.",
+      a: "Yes. Renovation Contractor SG handles all necessary HDB renovation permits, hacking endorsements, window replacement permits, and MCST condominium applications directly. You do not need to deal with any paperwork or municipal submissions.",
     },
     {
       q: "Can I do a whole house renovation without hiring an interior designer (ID)?",
-      a: "Absolutely. Over 60% of savvy Singaporean homeowners now hire direct contractors like MACNEL. If you already have floor plan layouts, Pinterest mood boards, or standard aesthetic requirements, you can save anywhere from $15,000 to $35,000 by working directly with our master builders.",
+      a: "Absolutely. Over 60% of savvy Singaporean homeowners now hire direct contractors like Renovation Contractor SG. If you already have floor plan layouts, Pinterest mood boards, or standard aesthetic requirements, you can save anywhere from $15,000 to $35,000 by working directly with our master builders.",
     },
     {
       q: "What is your payment milestone structure for whole house renovations?",
@@ -236,7 +236,7 @@ export default function HouseRenovationPage() {
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20whole%20house%20renovation.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20whole%20house%20renovation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -410,7 +410,7 @@ export default function HouseRenovationPage() {
                 </div>
 
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi%20MACNEL%2C%20I%20am%20interested%20in%20renovating%20my%20${encodeURIComponent(
+                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hi%20Renovation%20Contractor%20SG%2C%20I%20am%20interested%20in%20renovating%20my%20${encodeURIComponent(
                     prop.type
                   )}.`}
                   target="_blank"
@@ -435,7 +435,7 @@ export default function HouseRenovationPage() {
             Direct Contractor vs Interior Design (ID) Firm
           </h2>
           <p className="text-base text-slate-600 mt-3 font-normal">
-            Why pay an extra 20% to 35% commission just for an ID to call contractors like us? Work directly with MACNEL.
+            Why pay an extra 20% to 35% commission just for an ID to call contractors like us? Work directly with Renovation Contractor SG.
           </p>
         </div>
 
@@ -445,7 +445,7 @@ export default function HouseRenovationPage() {
               <tr className="bg-[#16263F] text-white">
                 <th className="py-4 px-6 text-left text-sm font-bold uppercase tracking-wider w-1/4">Evaluation Point</th>
                 <th className="py-4 px-6 text-left text-sm font-bold uppercase tracking-wider w-3/8 text-[#A3E635] bg-[#1a2d4b]">
-                  MACNEL Direct Contractor
+                  Renovation Contractor SG
                 </th>
                 <th className="py-4 px-6 text-left text-sm font-bold uppercase tracking-wider w-3/8 text-slate-300">
                   Typical Interior Design (ID) Firm
@@ -514,7 +514,7 @@ export default function HouseRenovationPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20MACNEL%2C%20I%20would%20like%20a%20quotation%20for%20house%20renovation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20house%20renovation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"

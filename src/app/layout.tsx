@@ -22,8 +22,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "MACNEL Construction Pte. Ltd | Renovation Contractor Singapore",
-    template: "%s | MACNEL Construction Pte. Ltd",
+    default: `${siteConfig.name} | Renovation Contractor Singapore`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: siteConfig.seoKeywords,
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "MACNEL Construction Pte. Ltd | Construction & Renovation Singapore",
+    title: `${siteConfig.name} | Renovation Contractor Singapore`,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
         url: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
         width: 1200,
         height: 630,
-        alt: "MACNEL Construction & Renovation Services Singapore",
+        alt: `${siteConfig.name} - Direct Renovation Contractor Singapore`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MACNEL Construction Pte. Ltd | Renovation Contractor Singapore",
+    title: `${siteConfig.name} | Renovation Contractor Singapore`,
     description: siteConfig.description,
     images: ["/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg"],
   },

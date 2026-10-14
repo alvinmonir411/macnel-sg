@@ -416,10 +416,10 @@ export function BookingSystem() {
     const icsData =
       `BEGIN:VCALENDAR\n` +
       `VERSION:2.0\n` +
-      `PRODID:-//MACNEL Construction Pte Ltd//Booking Engine//EN\n` +
+      `PRODID:-//${siteConfig.name}//Booking Engine//EN\n` +
       `BEGIN:VEVENT\n` +
-      `SUMMARY:MACNEL Renovation On-Site Inspection (${currentServiceObj.name})\n` +
-      `DESCRIPTION:Booking ID: ${bookingId}. Site engineer inspection for ${propertyType}. Scope: ${serviceDetail}. Contact: +65 8936 1834\n` +
+      `SUMMARY:${siteConfig.name} On-Site Inspection (${currentServiceObj.name})\n` +
+      `DESCRIPTION:Booking ID: ${bookingId}. Site engineer inspection for ${propertyType}. Scope: ${serviceDetail}. Contact: ${siteConfig.contact.phonePrimary}\n` +
       `LOCATION:Singapore ${postalCode} ${unitNumber}\n` +
       `STATUS:CONFIRMED\n` +
       `END:VEVENT\n` +
@@ -429,7 +429,7 @@ export function BookingSystem() {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `MACNEL-Booking-${bookingId}.ics`);
+    link.setAttribute("download", `Renovation-Contractor-SG-Booking-${bookingId}.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
