@@ -47,19 +47,19 @@ const ceilingStandards = [
   {
     step: "01",
     title: "Heavy-Duty Galvanised Metal Stud Framework",
-    image: "/images/partition-ceiling/4.jpeg",
+    image: "/images/doc-updates/image31.jpg",
     desc: "We never use cheap thin metal channels that bend under ceiling weight. Renovation Contractor SG frames ceilings with heavy-duty galvanised steel furring channels spaced at strict 400mm centers, suspended with zinc-coated threaded steel rods anchored to concrete slabs.",
   },
   {
     step: "02",
     title: "Saint-Gobain Gyproc Fire-Rated Boards",
-    image: "/images/partition-ceiling/10.jpeg",
+    image: "/images/doc-updates/image60.jpg",
     desc: "We use genuine Saint-Gobain Gyproc plasterboard certified for fire safety and environmental air quality. Boards are precision-cut with bevelled edges to create invisible seams after compound taping.",
   },
   {
     step: "03",
     title: "3-Coat Joint Taping (Zero Hairline Cracks)",
-    image: "/images/partition-ceiling/8.jpeg",
+    image: "/images/doc-updates/image66.jpg",
     desc: "Hairline cracks in false ceilings occur when joints are skimped. We embed high-tensile fiberglass perforated joint tape across all seams and apply three feathered coats of premixed joint compound, followed by fine mechanical sanding.",
   },
 ];

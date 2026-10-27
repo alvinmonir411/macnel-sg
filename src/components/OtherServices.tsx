@@ -62,7 +62,7 @@ const mainServicesList: MainService[] = [
       "3D laser leveling with zero tile lippage",
       "Waterproof anti-mold cement and epoxy grouting",
     ],
-    image: "/images/tiling/2.jpeg",
+    image: "/images/doc-updates/image20.jpg",
     href: "/tiling-works",
     icon: Grid3X3,
   },

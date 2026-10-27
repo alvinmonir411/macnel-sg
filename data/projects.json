@@ -50,10 +50,10 @@
     ],
     "durationDays": "TODO_REPLACE: 12 Days",
     "costRange": "TODO_REPLACE: S$9,500 – S$12,500",
-    "beforeImage": "/images/projects/proj-2-before.jpg",
+    "beforeImage": "/images/doc-updates/image24.jpg",
     "afterImage": "/images/projects/proj-2-after.jpg",
     "gallery": [
-      "/images/projects/proj-2-before.jpg",
+      "/images/doc-updates/image24.jpg",
       "/images/projects/proj-2-after.jpg",
       "/images/tiling/13.jpeg",
       "/images/tiling/11.jpeg"
@@ -85,10 +85,10 @@
     "durationDays": "TODO_REPLACE: 16 Days",
     "costRange": "TODO_REPLACE: S$14,000 – S$18,000",
     "beforeImage": "/images/house-reno/1.jpeg",
-    "afterImage": "/images/tiling/9.jpeg",
+    "afterImage": "/images/doc-updates/image70.jpg",
     "gallery": [
       "/images/house-reno/1.jpeg",
-      "/images/tiling/9.jpeg",
+      "/images/doc-updates/image70.jpg",
       "/images/door-window/1.jpeg",
       "/images/carpentry/2.jpeg"
     ],

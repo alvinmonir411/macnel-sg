@@ -23,7 +23,7 @@ const toiletProcessStages = [
   {
     step: "01",
     title: "Controlled Hacking & Site Demolition",
-    image: "/images/tiling/2.jpeg",
+    image: "/images/doc-updates/image62.jpg",
     tagline: "Dust-sealed protection & HDB approved debris disposal",
     desc: "We apply heavy-duty protective floor corrugated boards across all access hallways and lifts. Certified hacking teams safely remove existing wall and floor tiles, mortar screed, old copper pipes, and worn-out sanitary fixtures without damaging the underlying structural floor slab.",
     highlights: [
@@ -35,7 +35,7 @@ const toiletProcessStages = [
   {
     step: "02",
     title: "3-Coat Waterproofing & 24-Hr Ponding Test",
-    image: "/images/tiling/13.jpeg",
+    image: "/images/doc-updates/image79.jpg",
     tagline: "The most critical stage — zero leaks guaranteed",
     desc: "We apply two thick coats of elastomeric polymer-modified cementitious waterproofing membrane (SikaTop / K11) with fiberglass mesh reinforcement along all floor-to-wall corner joints (minimum 300mm upturn, 1800mm shower area). A strict 24-hour water ponding test is conducted and signed off before tiling starts.",
     highlights: [
@@ -47,7 +47,7 @@ const toiletProcessStages = [
   {
     step: "03",
     title: "Laser-Aligned Floor & Wall Tiling",
-    image: "/images/tiling/44.jpeg",
+    image: "/images/doc-updates/image47.jpg",
     tagline: "100% level gradient towards floor traps for instant drainage",
     desc: "Our master tilers screed the floor with exact 1:80 fall gradient to ensure zero stagnant puddles around your drain trap. We lay large format 600x600 or 600x1200 homogeneous porcelain tiles using premium polymer tile adhesive, checked with precision digital laser levels.",
     highlights: [
@@ -59,7 +59,7 @@ const toiletProcessStages = [
   {
     step: "04",
     title: "Concealed Stainless Steel / PPR Plumbing",
-    image: "/images/tiling/3.jpeg",
+    image: "/images/doc-updates/image90.jpg",
     tagline: "PUB licensed water service plumbing & leak prevention",
     desc: "All incoming hot and cold water pipes are routed with high-grade stainless steel or heat-fused PPR pipes concealed inside brick walls. Drainage lines, floor waste gullies, and inspection traps are repositioned with certified PUB licensed plumbers.",
     highlights: [

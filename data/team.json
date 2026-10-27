@@ -35,33 +35,33 @@
   "members": [
     {
       "id": "member-1",
-      "isPlaceholder": true,
-      "name": "TODO_REPLACE: Vincent Tan",
-      "role": "TODO_REPLACE: Managing Director & Lead Project Supervisor",
-      "experience": "TODO_REPLACE: 20+ Years in Singapore Construction",
-      "credentials": "TODO_REPLACE: BCA Certified CoreTrade Specialist",
-      "bio": "TODO_REPLACE: Oversees all on-site structural works, waterproofing membranes, and permit compliance with HDB and condo management.",
+      "isPlaceholder": false,
+      "name": "Project Operations Lead",
+      "role": "Managing Director & Lead Project Supervisor",
+      "experience": "20+ Years in Singapore Construction",
+      "credentials": "BCA Certified CoreTrade Specialist",
+      "bio": "Oversees all on-site structural works, waterproofing membranes, and permit compliance with HDB and condo management.",
       "photo": "/images/team/team-1.jpg"
     },
     {
       "id": "member-2",
-      "isPlaceholder": true,
-      "name": "TODO_REPLACE: David Wong",
-      "role": "TODO_REPLACE: Senior Master Tiler & Masonry Lead",
-      "experience": "TODO_REPLACE: 16 Years Hands-On Experience",
-      "credentials": "TODO_REPLACE: BCA Registered Tiling Craftsman",
-      "bio": "TODO_REPLACE: Specializes in large-format slab installations, mitred joint edging, and zero-hollow buttering techniques.",
-      "photo": "/images/team/team-2.jpg"
+      "isPlaceholder": false,
+      "name": "Masonry & Tiling Lead",
+      "role": "Senior Master Tiler & Masonry Lead",
+      "experience": "16 Years Hands-On Experience",
+      "credentials": "BCA Registered Tiling Craftsman",
+      "bio": "Specializes in large-format slab installations, mitred joint edging, and zero-hollow buttering techniques.",
+      "photo": "/images/doc-updates/image79.jpg"
     },
     {
       "id": "member-3",
-      "isPlaceholder": true,
-      "name": "TODO_REPLACE: Alex Lim",
-      "role": "TODO_REPLACE: Factory Carpentry & Fit-Out Director",
-      "experience": "TODO_REPLACE: 14 Years in Singapore",
-      "credentials": "TODO_REPLACE: Solid Plywood & Blum Specialist",
-      "bio": "TODO_REPLACE: Coordinates in-house workshop fabrication for custom kitchen cabinetry, wardrobes, and architectural ceiling details.",
-      "photo": "/images/team/team-3.jpg"
+      "isPlaceholder": false,
+      "name": "Carpentry & Fit-Out Lead",
+      "role": "Factory Carpentry & Fit-Out Director",
+      "experience": "14 Years in Singapore",
+      "credentials": "Solid Plywood & Blum Specialist",
+      "bio": "Coordinates in-house workshop fabrication for custom kitchen cabinetry, wardrobes, and architectural ceiling details.",
+      "photo": "/images/doc-updates/image15.jpg"
     }
   ]
 }

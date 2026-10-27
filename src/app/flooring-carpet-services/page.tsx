@@ -39,7 +39,7 @@ export default function FlooringCarpetPage() {
         "Matte, satin, or high-gloss sheen options",
         "Non-toxic, ultra-low VOC safe for children & pets",
       ],
-      image: "/images/tiling/11.jpeg",
+      image: "/images/doc-updates/image69.png",
       tag: "Hardwood Restoration",
     },
     {
@@ -53,7 +53,7 @@ export default function FlooringCarpetPage() {
         "Direct overlay on existing tiles without door hacking",
         "Integrated IXPE acoustic pad reduces step impact noise",
       ],
-      image: "/images/tiling/12.jpeg",
+      image: "/images/doc-updates/image40.jpg",
       tag: "SPC & Luxury Vinyl",
     },
     {
@@ -67,7 +67,7 @@ export default function FlooringCarpetPage() {
         "Flame retardant Class Bfl-s1 fire certified",
         "Tackifier adhesive enables easy single-tile replacement",
       ],
-      image: "/images/partition-ceiling/11.jpeg",
+      image: "/images/doc-updates/image85.png",
       tag: "Commercial Carpet",
     },
     {
@@ -81,7 +81,7 @@ export default function FlooringCarpetPage() {
         "Neutral pH stone penetrating sealer prevents wine/tea stains",
         "Restores natural veining contrast and slip resistance",
       ],
-      image: "/images/tiling/4.jpeg",
+      image: "/images/doc-updates/image76.jpg",
       tag: "Marble Crystallization",
     },
   ];

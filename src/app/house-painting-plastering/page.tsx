@@ -47,19 +47,19 @@ const paintingProcess = [
   {
     step: "01",
     title: "100% Furniture Wrapping & Floor Protection",
-    image: "/images/partition-ceiling/1.jpeg",
+    image: "/images/doc-updates/image41.jpg",
     desc: "Before opening a single can of paint, our team covers all flooring with heavy-duty corrugated cardboard and wraps sofas, electronics, and cabinetry in electrostatic dust-protection plastic sheets.",
   },
   {
     step: "02",
     title: "Surface Scraping, Plaster Patching & Skimming",
-    image: "/images/partition-ceiling/10.jpeg",
+    image: "/images/doc-updates/image68.jpg",
     desc: "We scrape off loose flaking paint, dig out old nail anchors, patch wall cracks with high-adhesion putty, and skim uneven patches until every square inch is glass-smooth.",
   },
   {
     step: "03",
     title: "Alkaline-Resistant Sealer & 2 Finish Coats",
-    image: "/images/partition-ceiling/11.jpeg",
+    image: "/images/doc-updates/image5.jpg",
     desc: "We apply a full coat of alkali-resistant sealer to block moisture and ensure color brilliance. Followed by two thick, uniform topcoats of authentic Nippon Paint applied with precision microfiber rollers.",
   },
 ];

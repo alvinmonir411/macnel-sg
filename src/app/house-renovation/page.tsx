@@ -40,47 +40,29 @@ export default function HouseRenovationPage() {
     },
     {
       phase: "Phase 02",
-      title: "M&E Infrastructure: EMA Rewiring & PUB Plumbing Rough-In",
-      subtitle: "Concealed Conduit Chasing & Stainless Steel Piping",
-      desc: "Licensed EMA electricians chase deep wall conduits for concealed sockets, smart home neutral wires, and LED cove drivers. Licensed PUB plumbers replace aged PVC with stainless steel SS304 or PPR hot/cold water distribution.",
-      specs: ["EMA licensed electrician certification", "PUB certified SS304 copper piping", "Dedicated aircon & oven 20A isolators", "Smart neutral-wire cabling layout"],
-      image: "/images/tiling/2.jpeg",
-      tag: "M&E Engineering",
-    },
-    {
-      phase: "Phase 03",
       title: "Wet Trade Masonry, Screeding & High-Precision Tiling",
       subtitle: "Laser-Guided Leveling with Zero-Hollow Bonding",
       desc: "Our master masons cast reinforced kerbs, shower drop kerbs, and pre-packed screed beds. Tiles are back-buttered with C2TE flexible cementitious adhesive and spaced with reusable leveling clips for flush, razor-sharp grout lines.",
       specs: ["C2TE heavy-duty polymer adhesive", "Double-coat SikaTop 107 seal", "Laser 3D horizontal floor leveling", "Micro-mitred 45° marble edges"],
-      image: "/images/tiling/3.jpeg",
+      image: "/images/doc-updates/image75.jpg",
       tag: "Wet Trade & Masonry",
     },
     {
-      phase: "Phase 04",
+      phase: "Phase 03",
       title: "Architectural False Ceilings, Pelmets & Drywall Partitions",
       subtitle: "Heavy-Duty Galvanised Framing & Anti-Crack Finishing",
       desc: "We construct seamless drop ceilings, cove lighting pelmets, and acoustic drywall acoustic dividers using Saint-Gobain 9mm/12mm moisture-resistant boards mounted on hot-dipped galvanised steel channel grids.",
       specs: ["Hot-dipped zinc galvanised studs", "Saint-Gobain Gyproc board", "3-coat fiber-reinforced joint tape", "Precision recessed spotlight cuts"],
-      image: "/images/partition-ceiling/1.jpeg",
+      image: "/images/doc-updates/image29.jpg",
       tag: "Ceiling & Partition",
     },
     {
-      phase: "Phase 05",
-      title: "In-House Bespoke Carpentry & Architectural Joinery",
-      subtitle: "Solid Marine Plywood with Blum Soft-Close Systems",
-      desc: "Fabricated directly in our carpentry workshop and dry-assembled prior to site delivery. We use only high-density marine plywood finished with high-pressure laminate (HPL) interiors and Blum Austrian soft-close hardware.",
-      specs: ["100% solid marine plywood core", "Blum CLIP top BLUMOTION hinges", "Heavy-duty 50kg tandem drawer runners", "Custom LED extrusion integration"],
-      image: "/images/carpentry/1.jpeg",
-      tag: "Custom Carpentry",
-    },
-    {
-      phase: "Phase 06",
+      phase: "Phase 04",
       title: "Premium Surface Painting, Chemical Wash & Handover",
       subtitle: "Multi-Coat Skim Coat & Zero-VOC Anti-Bacterial Coating",
       desc: "Complete wall skimming with pre-mixed skim coat removes all undulations before 1 sealer coat and 2 topcoats of Nippon Odourless or Benjamin Moore paint. Deep chemical acid cleaning and joint sealant touch-up completes the handover.",
       specs: ["Nippon 5101 odour-less wall sealer", "2 coats Nippon Medifresh anti-bacterial", "Full chemical acid cleaning", "12-month defect warranty cert"],
-      image: "/images/partition-ceiling/4.jpeg",
+      image: "/images/doc-updates/image25.jpg",
       tag: "Finishing & Handover",
     },
   ];
@@ -308,7 +290,7 @@ export default function HouseRenovationPage() {
             Systematic Methodology
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-            Our 6-Phase Turnkey Renovation Process
+            Our Master Turnkey Renovation Process
           </h2>
           <p className="text-base text-slate-600 mt-3 font-normal">
             Every step is coordinated directly by our senior on-site builders to ensure zero delays, tight budget control,
