@@ -2,8 +2,8 @@ import crypto from "crypto";
 import { cookies } from "next/headers";
 import { getSettings, saveSettings } from "@/lib/db";
 
-const AUTH_COOKIE_NAME = "macnel_admin_session";
-const SERVER_SECRET = process.env.ADMIN_SECRET_KEY || "macnel-sg-secure-salt-2026-xyz987!";
+const AUTH_COOKIE_NAME = "renovation_admin_session";
+const SERVER_SECRET = process.env.ADMIN_SECRET_KEY || "renovation-sg-secure-salt-2026-xyz987!";
 const SESSION_EXPIRY_MS = 4 * 60 * 60 * 1000; // 4 hours
 
 // In-memory rate limiting for brute force protection

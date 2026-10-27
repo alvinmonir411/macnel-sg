@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "upload:cloudinary": "node scripts/upload-cloudinary.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
+    "cloudinary": "^2.11.0",
     "lucide-react": "^1.56.0",
     "next": "16.4.3",
     "react": "19.3.0",

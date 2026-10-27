@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
+import { AiChatWidget } from "@/components/AiChatWidget";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { MarketingHeadScripts, MarketingBodyScripts } from "@/components/MarketingScripts";
 
@@ -208,6 +209,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingCTA />
+        <AiChatWidget />
         <CookieConsentBanner />
       </body>
     </html>

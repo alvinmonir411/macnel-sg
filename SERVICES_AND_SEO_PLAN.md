@@ -1,7 +1,7 @@
 # 🏛️ Master Services & SEO Architecture Plan
 
 > **Official Business Domain:** `https://renovationcontractorsg.org`  
-> **Brand Name:** MACNEL Construction Pte. Ltd. (Singapore)  
+> **Brand Name:** Renovation Contractor SG (Singapore)  
 > **Status:** Active & Mandatory Directive — All current and future development MUST follow this architecture at all times.
 
 ---
@@ -40,7 +40,7 @@ In addition to the 6 primary categories, the architecture maintains dedicated hi
 1. **Canonical Domain Base:**  
    Every page, sitemap link, OpenGraph tag, and canonical link MUST use `https://renovationcontractorsg.org`.
 2. **Metadata Rule:**  
-   - **Title Tag Format:** `<Service Name> | Renovation Contractor Singapore - MACNEL`
+   - **Title Tag Format:** `<Service Name> | Renovation Contractor Singapore`
    - **Meta Description:** Must feature primary keyword in the first 80 characters, mention in-house craftsmen, transparent quotes, and target Singapore residential/commercial properties.
    - **OpenGraph & Twitter Card:** Pre-configured with Singapore geotags (`en_SG`, `latitude: 1.3521`, `longitude: 103.8198`).
 3. **Structured Data (Schema.org):**  

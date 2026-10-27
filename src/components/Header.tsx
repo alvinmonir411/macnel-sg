@@ -59,7 +59,7 @@ export function Header() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Core Renovation Trades (Only the authentic services MACNEL sells)
+  // Core Renovation Trades (Only the authentic services Renovation Contractor SG sells)
   const coreServicesCol1 = [
     {
       title: "House Renovation",

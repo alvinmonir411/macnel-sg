@@ -15,7 +15,7 @@
     "whatsapp": "6589361834",
     "phonePrimary": "+65 8936 1834",
     "phoneSecondary": "+65 6789 0123",
-    "email": "contact@renovationcontractor.sg",
+    "email": "contact@renovationcontractorsg.org",
     "address": "280 Woodlands Industrial Park E5, #02-14 Harvest @ Woodlands, Singapore 757322",
     "operatingHours": "Monday to Saturday: 9:00 AM – 6:30 PM (Sundays by Appointment)",
     "showroomNote": "Visiting our material showroom? Please book a 30-minute advance slot so our senior supervisor can prepare tile & laminate samples for your unit type."
@@ -29,5 +29,22 @@
   },
   "security": {
     "adminPin": "13663"
+  },
+  "ai": {
+    "geminiApiKey": "",
+    "model": "gemini-2.5-flash",
+    "botName": "Renovation Contractor SG",
+    "botSubtitle": "AI assistant · replies instantly",
+    "whatsapp": "6589361834",
+    "welcomeMessageEn": "Hi! How can we help you today?",
+    "welcomeMessageBn": "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
+    "systemPrompt": "You are the official AI Assistant for Renovation Contractor SG (website: https://renovationcontractorsg.org), a premier direct renovation contractor in Singapore.\n\nKey Facts about us:\n- Direct Singapore contractor with 100% in-house tilers, carpenters, electricians, and painters (Zero interior design middleman markup, save 20-35%).\n- Specializations: Toilet Renovation, House Renovation (HDB, Condo, Landed, Commercial), Floor & Wall Tiling, False Ceiling & Partition, House Painting & Plastering, Door & Window Services, Flooring & Vinyl/Carpet, Carpentry & Cabinetry, Electrical Rewiring.\n- BCA Registered Contractor & HDB Registered Renovation Directory.\n- 12-Month Structural & Workmanship Warranty with fast 24-48 hr response.\n- Itemized transparent quotes with zero hidden costs.\n- Free on-site inspection and quote turnaround within 2 hours.\n- Phone / WhatsApp: +65 8936 1834 | Email: contact@renovationcontractorsg.org\n- Showroom/Office: 280 Woodlands Industrial Park E5, Singapore 757322.\n\nYour behavior:\n- Be polite, professional, concise, and helpful.\n- Always answer in the user's preferred language (English, Bangla, Arabic, Hindi, Urdu, Malay, Chinese, etc.).\n- Quote prices in SGD whenever giving general contractor ranges.\n- Encourage scheduling a free on-site inspection or connecting on WhatsApp at +65 8936 1834."
+  },
+  "cloudinary": {
+    "cloudName": "dgaiqqh7k",
+    "uploadPreset": "renovation_preset",
+    "folder": "renovation-contractor-sg",
+    "configured": true,
+    "totalUploaded": 186
   }
 }

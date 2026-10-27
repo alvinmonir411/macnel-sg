@@ -42,6 +42,10 @@ import {
   Maximize2,
   ArrowRight,
   Globe,
+  Bot,
+  Key,
+  Cpu,
+  HelpCircle,
 } from "lucide-react";
 
 interface Booking {
@@ -108,7 +112,18 @@ interface CredentialsConfig {
   yearsInBusiness: string;
 }
 
-const DEFAULT_ADMIN_PIN = "macnel2026";
+interface AiConfig {
+  geminiApiKey: string;
+  model: string;
+  botName: string;
+  botSubtitle: string;
+  whatsapp: string;
+  welcomeMessageEn: string;
+  welcomeMessageBn: string;
+  systemPrompt: string;
+}
+
+const DEFAULT_ADMIN_PIN = "13663";
 
 export default function AdminDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -118,7 +133,7 @@ export default function AdminDashboardPage() {
 
   // Active Tab
   const [activeTab, setActiveTab] = useState<
-    "overview" | "bookings" | "inquiries" | "marketing" | "company" | "projects" | "reviews"
+    "overview" | "bookings" | "inquiries" | "marketing" | "ai" | "company" | "projects" | "reviews"
   >("overview");
 
   // Data states
@@ -160,6 +175,21 @@ export default function AdminDashboardPage() {
     bizSafe: "bizSAFE Level 3 Certified",
     yearsInBusiness: "12",
   });
+
+  const [ai, setAi] = useState<AiConfig>({
+    geminiApiKey: "",
+    model: "gemini-2.5-flash",
+    botName: "Renovation Contractor SG",
+    botSubtitle: "AI assistant · replies instantly",
+    whatsapp: "6589361834",
+    welcomeMessageEn: "Hi! How can we help you today?",
+    welcomeMessageBn:
+      "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
+    systemPrompt: "",
+  });
+  const [showApiKey, setShowApiKey] = useState<boolean>(false);
+  const [testingAi, setTestingAi] = useState<boolean>(false);
+  const [testAiResult, setTestAiResult] = useState<{ success?: boolean; message?: string } | null>(null);
 
   // Filters for bookings
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -220,6 +250,7 @@ export default function AdminDashboardPage() {
           if (sData.settings.marketing) setMarketing(sData.settings.marketing);
           if (sData.settings.contact) setContact(sData.settings.contact);
           if (sData.settings.credentials) setCredentials(sData.settings.credentials);
+          if (sData.settings.ai) setAi((prev) => ({ ...prev, ...sData.settings.ai }));
         }
       }
     } catch (err) {
@@ -369,6 +400,52 @@ export default function AdminDashboardPage() {
     }
   };
 
+  // Test Gemini API Key Connection Live
+  const handleTestGeminiKey = async () => {
+    if (!ai.geminiApiKey || !ai.geminiApiKey.trim()) {
+      setTestAiResult({
+        success: false,
+        message: "Please enter a Gemini API Key first before testing.",
+      });
+      return;
+    }
+
+    try {
+      setTestingAi(true);
+      setTestAiResult(null);
+
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          testKey: ai.geminiApiKey.trim(),
+          testModel: ai.model,
+          messages: [{ role: "user", content: "Test ping from Admin Dashboard" }],
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.source === "gemini") {
+        setTestAiResult({
+          success: true,
+          message: `Connection Successful! Model (${data.model}) responded: "${data.reply?.slice(0, 100)}..."`,
+        });
+      } else {
+        setTestAiResult({
+          success: false,
+          message: data.error || data.apiError || "Connection failed. Please check the API key and quota.",
+        });
+      }
+    } catch (err: any) {
+      setTestAiResult({
+        success: false,
+        message: "Network test error: " + (err.message || String(err)),
+      });
+    } finally {
+      setTestingAi(false);
+    }
+  };
+
   // Export Bookings to CSV
   const exportBookingsToCSV = () => {
     if (bookings.length === 0) return alert("No booking records to export.");
@@ -404,7 +481,7 @@ export default function AdminDashboardPage() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `macnel_inspection_bookings_${new Date().toISOString().split("T")[0]}.csv`);
+    link.setAttribute("download", `renovation_contractor_inspections_${new Date().toISOString().split("T")[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -429,7 +506,7 @@ export default function AdminDashboardPage() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `macnel_quote_leads_${new Date().toISOString().split("T")[0]}.csv`);
+    link.setAttribute("download", `renovation_contractor_quotes_${new Date().toISOString().split("T")[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -493,7 +570,7 @@ export default function AdminDashboardPage() {
               Authorized Personnel Only
             </span>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Macnel SG Admin Portal
+              Renovation Contractor SG Admin Portal
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 mt-2">
               Enter your master security PIN to access live bookings, CRM leads, tracking pixels, and site controls.
@@ -570,7 +647,7 @@ export default function AdminDashboardPage() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-base sm:text-lg font-black text-[#0F172A] leading-tight">
-                  Macnel SG Control Center
+                  Renovation Contractor SG Control Center
                 </h1>
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-[#166534] border border-emerald-200">
                   Live
@@ -718,6 +795,7 @@ export default function AdminDashboardPage() {
             { id: "bookings", label: `Inspections (${bookings.length})`, icon: CalendarDays },
             { id: "inquiries", label: `Quote Leads (${inquiries.length})`, icon: Inbox },
             { id: "marketing", label: "Marketing & Pixels", icon: Radio, highlight: true },
+            { id: "ai", label: "AI & Gemini Key", icon: Bot, highlight: true },
             { id: "company", label: "Company & Contact", icon: Settings },
             { id: "projects", label: `Portfolio Projects (${projectsData.length})`, icon: Sparkles },
             { id: "reviews", label: `Reviews (${reviewsData.reviews.length})`, icon: Star },
@@ -801,7 +879,7 @@ export default function AdminDashboardPage() {
                         <a
                           href={`https://wa.me/${b.client_phone.replace(/\D/g, "")}?text=Hello%20${encodeURIComponent(
                             b.client_name
-                          )}%2C%20regarding%20your%20renovation%20inspection%20with%20Macnel%20SG...`}
+                          )}%2C%20regarding%20your%20renovation%20inspection%20with%20Renovation%20Contractor%20SG...`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="px-3 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs shadow-sm flex items-center gap-1 shrink-0"
@@ -1012,7 +1090,7 @@ export default function AdminDashboardPage() {
                           b.inspection_date || ""
                         )}%20at%20${encodeURIComponent(
                           b.time_slot || ""
-                        )}%20with%20Macnel%20Renovation%20SG...`}
+                        )}%20with%20Renovation%20Contractor%20SG...`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 py-2 px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
@@ -1108,7 +1186,7 @@ export default function AdminDashboardPage() {
                       <a
                         href={`https://wa.me/${inq.phone.replace(/\D/g, "")}?text=Hello%20${encodeURIComponent(
                           inq.name
-                        )}%2C%20thank%20you%20for%20requesting%20a%20renovation%20quote%20with%20Macnel%20SG...`}
+                        )}%2C%20thank%20you%20for%20requesting%20a%20renovation%20quote%20with%20Renovation%20Contractor%20SG...`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 py-2 px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
@@ -1335,6 +1413,304 @@ export default function AdminDashboardPage() {
                 >
                   <Save className="w-4 h-4" />
                   <span>{savingSettings ? "Saving Settings..." : "Save Marketing & Pixels"}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB: AI CHATBOT & GOOGLE GEMINI KEY */}
+        {activeTab === "ai" && (
+          <div className="space-y-8 animate-in fade-in duration-200">
+            {/* Header & Status Card */}
+            <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-100">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#166534]">
+                      AI Control Center
+                    </span>
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider border ${
+                        ai.geminiApiKey && ai.geminiApiKey.trim().length > 5
+                          ? "bg-emerald-50 text-emerald-700 border-emerald-300"
+                          : "bg-amber-50 text-amber-700 border-amber-300"
+                      }`}
+                    >
+                      {ai.geminiApiKey && ai.geminiApiKey.trim().length > 5
+                        ? "Gemini API Configured"
+                        : "Smart Fallback Active"}
+                    </span>
+                  </div>
+                  <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2.5">
+                    <Bot className="w-6 h-6 text-[#16a34a]" />
+                    <span>Google Gemini AI Chatbot</span>
+                  </h2>
+                  <p className="text-xs text-slate-500 mt-1 max-w-2xl leading-relaxed">
+                    Set your Gemini API key below. Just change or paste your key here and click &quot;Save AI Settings&quot;—the live chatbot on your website will immediately start answering customer questions using Google Gemini!
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://aistudio.google.com/app/apikey"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
+                  >
+                    <span>Get Free Key</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Live Test Alert Banner if any */}
+              {testAiResult && (
+                <div
+                  className={`p-4 rounded-2xl mb-6 text-xs sm:text-sm font-semibold flex items-start gap-2.5 shadow-xs animate-in fade-in ${
+                    testAiResult.success
+                      ? "bg-emerald-50 text-emerald-800 border border-emerald-300"
+                      : "bg-rose-50 text-rose-800 border border-rose-300"
+                  }`}
+                >
+                  {testAiResult.success ? (
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  ) : (
+                    <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+                  )}
+                  <div className="flex-1">
+                    <p className="font-bold">
+                      {testAiResult.success ? "Gemini Connection Test Passed!" : "Connection Test Failed"}
+                    </p>
+                    <p className="mt-0.5 text-xs opacity-90">{testAiResult.message}</p>
+                  </div>
+                  <button
+                    onClick={() => setTestAiResult(null)}
+                    className="text-slate-400 hover:text-slate-600 font-bold px-1"
+                  >
+                    ✕
+                  </button>
+                </div>
+              )}
+
+              {/* CARD 1: Gemini API Key & Connection */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+                <div className="lg:col-span-8 space-y-6">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                        <Key className="w-4 h-4 text-[#16a34a]" />
+                        <span>Google Gemini API Key</span>
+                      </label>
+                      <span className="text-[11px] text-slate-400">
+                        Supports Gemini 2.5 Flash, 2.0 Flash, 1.5 Flash
+                      </span>
+                    </div>
+
+                    <div className="relative">
+                      <input
+                        type={showApiKey ? "text" : "password"}
+                        value={ai.geminiApiKey}
+                        onChange={(e) => setAi({ ...ai, geminiApiKey: e.target.value })}
+                        placeholder="AIzaSy... (Paste your Google AI Studio API Key)"
+                        className="w-full px-4 py-3.5 pr-28 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-mono text-sm focus:outline-none focus:border-[#16a34a] focus:bg-white focus:ring-2 focus:ring-emerald-500/20"
+                      />
+                      <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setShowApiKey(!showApiKey)}
+                          className="px-2.5 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold transition-colors cursor-pointer"
+                        >
+                          {showApiKey ? "Hide" : "Show"}
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-1.5">
+                      Your key is securely stored in your private Neon database and server environment.
+                    </p>
+                  </div>
+
+                  {/* Model Selector & Test Button Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center gap-1.5">
+                        <Cpu className="w-3.5 h-3.5 text-blue-600" />
+                        <span>Gemini AI Model</span>
+                      </label>
+                      <select
+                        value={ai.model}
+                        onChange={(e) => setAi({ ...ai, model: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-[#16a34a] focus:bg-white"
+                      >
+                        <option value="gemini-2.5-flash">Gemini 2.5 Flash (Recommended - Fastest &amp; Smartest)</option>
+                        <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+                        <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+                        <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                        Verify Connection
+                      </label>
+                      <button
+                        type="button"
+                        onClick={handleTestGeminiKey}
+                        disabled={testingAi || !ai.geminiApiKey?.trim()}
+                        className="w-full py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all border border-slate-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                      >
+                        {testingAi ? (
+                          <>
+                            <RefreshCw className="w-3.5 h-3.5 animate-spin text-emerald-600" />
+                            <span>Testing API Key...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                            <span>Test Gemini Connection</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Guide Card */}
+                <div className="lg:col-span-4 bg-gradient-to-br from-blue-50 to-indigo-50/60 rounded-2xl border border-blue-200/80 p-5 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 text-blue-900 font-bold text-xs uppercase tracking-wider mb-2">
+                      <HelpCircle className="w-4 h-4 text-blue-600" />
+                      <span>Free Key in 3 Steps</span>
+                    </div>
+                    <ol className="text-xs text-slate-700 space-y-2 list-decimal list-inside leading-relaxed">
+                      <li>
+                        Go to{" "}
+                        <a
+                          href="https://aistudio.google.com/app/apikey"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-bold text-blue-700 underline"
+                        >
+                          Google AI Studio
+                        </a>
+                      </li>
+                      <li>Sign in with any Google account &amp; click <strong>Create API Key</strong></li>
+                      <li>Copy the key (starts with <code className="bg-white px-1 py-0.5 rounded text-[11px]">AIzaSy...</code>) and paste it on the left!</li>
+                    </ol>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-blue-200/60 text-[11px] text-blue-800 font-medium">
+                    ⚡ 100% Free tier available with generous monthly requests.
+                  </div>
+                </div>
+              </div>
+
+              {/* CARD 2: Chatbot Identity & Text Customization */}
+              <div className="pt-6 border-t border-slate-200">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center gap-2">
+                  <Bot className="w-4 h-4 text-[#16a34a]" />
+                  <span>Chatbot Widget Branding &amp; Greetings</span>
+                </h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                      Bot Header Name
+                    </label>
+                    <input
+                      type="text"
+                      value={ai.botName}
+                      onChange={(e) => setAi({ ...ai, botName: e.target.value })}
+                      placeholder="Renovation Contractor SG"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-[#16a34a] focus:bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                      Bot Subtitle
+                    </label>
+                    <input
+                      type="text"
+                      value={ai.botSubtitle}
+                      onChange={(e) => setAi({ ...ai, botSubtitle: e.target.value })}
+                      placeholder="AI assistant · replies instantly"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-[#16a34a] focus:bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                      WhatsApp Escalation Number
+                    </label>
+                    <input
+                      type="text"
+                      value={ai.whatsapp}
+                      onChange={(e) => setAi({ ...ai, whatsapp: e.target.value })}
+                      placeholder="6589361834"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono font-semibold focus:outline-none focus:border-[#16a34a] focus:bg-white"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                      Initial Greeting (English)
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={ai.welcomeMessageEn}
+                      onChange={(e) => setAi({ ...ai, welcomeMessageEn: e.target.value })}
+                      placeholder="Hi! How can we help you today?"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-[#16a34a] focus:bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                      Initial Greeting (Bangla)
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={ai.welcomeMessageBn}
+                      onChange={(e) => setAi({ ...ai, welcomeMessageBn: e.target.value })}
+                      placeholder="আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন..."
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-[#16a34a] focus:bg-white"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* CARD 3: Custom System Prompt */}
+              <div className="pt-6 border-t border-slate-200 mt-6">
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                    <Code2 className="w-4 h-4 text-[#16a34a]" />
+                    <span>Gemini AI Renovation Knowledge Base / System Instructions</span>
+                  </label>
+                  <span className="text-[11px] text-slate-400">
+                    Singapore renovation knowledge &amp; rules
+                  </span>
+                </div>
+                <textarea
+                  rows={6}
+                  value={ai.systemPrompt}
+                  onChange={(e) => setAi({ ...ai, systemPrompt: e.target.value })}
+                  placeholder="Enter custom instructions for Gemini (Leave blank to use our comprehensive built-in Singapore direct contractor knowledge base)..."
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900 text-emerald-400 font-mono text-xs leading-relaxed focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+                />
+              </div>
+
+              {/* Save Button Bar */}
+              <div className="mt-8 pt-6 border-t border-slate-200 flex items-center justify-end">
+                <button
+                  onClick={() => handleSaveSettings("ai", ai)}
+                  disabled={savingSettings}
+                  className="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-[#166534] text-white font-bold text-sm shadow-xl hover:scale-[1.01] transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>{savingSettings ? "Saving Settings..." : "Save Gemini & AI Settings"}</span>
                 </button>
               </div>
             </div>

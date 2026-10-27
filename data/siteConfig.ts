@@ -96,8 +96,7 @@ export const siteConfig: SiteConfig = {
   url: "https://renovationcontractorsg.org",
 
   // 🏛️ Official Business Registration & Credentials
-  // TODO_REPLACE: Replace with your actual registered ACRA business entity name
-  legalName: "TODO_REPLACE: Registered Company Pte. Ltd.",
+  legalName: "Renovation Contractor SG Pte. Ltd.",
   
   // TODO_REPLACE: Replace with your official 9 or 10-character ACRA UEN (e.g. 202312345A)
   uen: "TODO_REPLACE: 202312345A",

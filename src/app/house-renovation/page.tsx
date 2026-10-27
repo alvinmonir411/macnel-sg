@@ -125,27 +125,27 @@ export default function HouseRenovationPage() {
   const comparison = [
     {
       feature: "Cost Structure",
-      macnel: "Direct wholesale contractor prices (Save 20% - 35%)",
+      directContractor: "Direct wholesale contractor prices (Save 20% - 35%)",
       idFirm: "Heavily marked up to cover showroom rent & designer commissions",
     },
     {
       feature: "Workmanship & Craftsmen",
-      macnel: "100% In-house tilers, carpenters, electricians & painters",
+      directContractor: "100% In-house tilers, carpenters, electricians & painters",
       idFirm: "Outsourced to 3rd-party sub-contractors with variable quality",
     },
     {
       feature: "On-Site Communication",
-      macnel: "Direct coordination with senior site builders & project managers",
+      directContractor: "Direct coordination with senior site builders & project managers",
       idFirm: "Sales coordinator acts as middleman; messages often diluted",
     },
     {
       feature: "Quotations & Variations",
-      macnel: "Detailed itemized breakdown per foot run with zero hidden clauses",
+      directContractor: "Detailed itemized breakdown per foot run with zero hidden clauses",
       idFirm: "Lump sum packages with frequent costly variation orders (VO)",
     },
     {
       feature: "Defect Rectification",
-      macnel: "Fast direct response within 24–48 hours under 12-month warranty",
+      directContractor: "Fast direct response within 24–48 hours under 12-month warranty",
       idFirm: "Often delayed while the designer argues with their subcontractor",
     },
   ];
@@ -441,7 +441,7 @@ export default function HouseRenovationPage() {
                   <td className="py-4 px-6 font-semibold text-emerald-800 bg-emerald-50/40">
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{item.macnel}</span>
+                      <span>{item.directContractor}</span>
                     </div>
                   </td>
                   <td className="py-4 px-6 text-slate-600">{item.idFirm}</td>
