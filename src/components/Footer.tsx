@@ -10,6 +10,7 @@ import {
   Building2,
   FileCheck,
   Globe,
+  MessageCircle,
 } from "lucide-react";
 
 export function Footer() {
@@ -32,8 +33,8 @@ export function Footer() {
           {/* Brand Info & Legal Entity */}
           <div>
             <Link href="/" className="flex items-center gap-3 mb-4 group">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#2C6BA6] to-[#16263F] border border-[#8CCB6B]/40 flex items-center justify-center text-white shadow group-hover:scale-105 transition-transform">
-                <Hammer className="w-5 h-5 text-[#8CCB6B]" />
+              <div className="w-11 h-11 rounded-xl overflow-hidden border border-[#8CCB6B]/40 flex items-center justify-center bg-[#0B1A2E] shadow group-hover:scale-105 transition-transform shrink-0">
+                <img src="/macnel-icon.svg" alt={name} className="w-full h-full object-contain p-1" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
@@ -114,11 +115,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="hover:text-[#8CCB6B] transition-colors">
-                  Pricing Guide
-                </Link>
-              </li>
-              <li>
                 <Link
                   href="/contact-us"
                   className="hover:text-[#8CCB6B] transition-colors"
@@ -150,7 +146,18 @@ export function Footer() {
                   href={`tel:${contact.phoneTel}`}
                   className="hover:text-white transition-colors font-semibold"
                 >
-                  {contact.phonePrimary} / {contact.phoneSecondary}
+                  Call: {contact.phonePrimary}
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0" />
+                <a
+                  href={`https://wa.me/${contact.whatsapp}?text=Hello%20${encodeURIComponent(name)}%2C%20I%20would%20like%20a%20free%20quotation.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors font-semibold"
+                >
+                  WhatsApp: +65 {contact.whatsapp.slice(2)}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">

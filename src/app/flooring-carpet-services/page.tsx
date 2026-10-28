@@ -398,13 +398,13 @@ export default function FlooringCarpetPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20flooring%20quotation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20a%20flooring%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"
             >
               <MessageCircle className="w-5 h-5 fill-current" />
-              <span>WhatsApp Us: +65 9187 8887</span>
+              <span>WhatsApp: +65 {siteConfig.contact.whatsapp.slice(2)}</span>
             </a>
 
             <Link

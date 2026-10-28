@@ -159,17 +159,17 @@ export default function AdminDashboardPage() {
   });
 
   const [contact, setContact] = useState<ContactConfig>({
-    whatsapp: "6589361834",
-    phonePrimary: "+65 8936 1834",
-    phoneSecondary: "+65 6789 0123",
+    whatsapp: "6581704063",
+    phonePrimary: "+65 8653 1076",
+    phoneSecondary: "+65 8170 4063",
     email: "contact@renovationcontractor.sg",
-    address: "280 Woodlands Industrial Park E5, #02-14 Harvest @ Woodlands, Singapore 757322",
+    address: "101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511",
     operatingHours: "Monday to Saturday: 9:00 AM – 6:30 PM (Sundays by Appointment)",
     showroomNote: "Visiting our material showroom? Please book a 30-minute advance slot.",
   });
 
   const [credentials, setCredentials] = useState<CredentialsConfig>({
-    uen: "202312345A",
+    uen: "202402481G",
     hdbLicense: "HDB Registered Directory HB-00-0000X",
     bcaLicense: "BCA Registered Contractor (CR06 / General Builder)",
     bizSafe: "bizSAFE Level 3 Certified",
@@ -178,11 +178,11 @@ export default function AdminDashboardPage() {
 
   const [ai, setAi] = useState<AiConfig>({
     geminiApiKey: "",
-    model: "gemini-2.5-flash",
+    model: "gemini-2.0-flash",
     botName: "Renovation Contractor SG",
     botSubtitle: "AI assistant · replies instantly",
-    whatsapp: "6589361834",
-    welcomeMessageEn: "Hi! How can we help you today?",
+    whatsapp: "6581704063",
+    welcomeMessageEn: "Hi! Welcome to Renovation Contractor SG. How can we help you today?",
     welcomeMessageBn:
       "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
     systemPrompt: "",
@@ -1503,7 +1503,7 @@ export default function AdminDashboardPage() {
                         <span>Google Gemini API Key</span>
                       </label>
                       <span className="text-[11px] text-slate-400">
-                        Supports Gemini 2.5 Flash, 2.0 Flash, 1.5 Flash
+                        Supports Gemini 2.0 Flash, 1.5 Flash, 1.5 Pro
                       </span>
                     </div>
 
@@ -1542,8 +1542,7 @@ export default function AdminDashboardPage() {
                         onChange={(e) => setAi({ ...ai, model: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-semibold focus:outline-none focus:border-[#16a34a] focus:bg-white"
                       >
-                        <option value="gemini-2.5-flash">Gemini 2.5 Flash (Recommended - Fastest &amp; Smartest)</option>
-                        <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+                        <option value="gemini-2.0-flash">Gemini 2.0 Flash (Recommended - Fastest &amp; Smartest)</option>
                         <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
                         <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
                       </select>

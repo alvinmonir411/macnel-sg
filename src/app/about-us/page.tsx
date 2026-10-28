@@ -20,9 +20,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | Renovation Contractor SG - Singapore Direct Contractor",
+  title: "About Us | Renovation Contractor SG - Direct Singapore Contractor",
   description:
-    "Learn about Renovation Contractor SG — direct renovation contractor in Singapore. In-house craftsmen handling core renovation trades with scheduled milestones and written warranties.",
+    "Learn about Renovation Contractor SG (UEN: 202402481G) — direct renovation contractor in Singapore. In-house craftsmen handling core renovation trades with scheduled milestones and written warranties.",
 };
 
 export default function AboutUsPage() {
@@ -94,7 +94,7 @@ export default function AboutUsPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#8CCB6B]/40 bg-[#8CCB6B]/15 px-4 py-1.5 text-xs font-bold text-white mb-6 backdrop-blur-md">
               <ShieldCheck className="w-3.5 h-3.5 text-[#A3E635]" />
-              <span>Direct Renovation Contractor · Singapore Registered</span>
+              <span>Renovation Contractor SG · UEN: 202402481G</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.12]">
@@ -103,14 +103,14 @@ export default function AboutUsPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-md">
-              At Renovation Contractor SG., we eliminate the bloated overhead of design sales agencies. We own our
-              carpentry workshop, employ our own tilers, and deliver turnkey renovations with uncompromising structural
+              At Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD), we eliminate the bloated overhead of design sales agencies. We own our
+              carpentry workshop, employ our own tilers and plumbers, and deliver turnkey renovations with uncompromising structural
               integrity.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20renovation%20services.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20renovation%20services.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -167,8 +167,8 @@ export default function AboutUsPage() {
               a 20% to 35% margin while diluting quality control.
             </p>
             <p className="text-base text-slate-600 leading-relaxed mb-6 font-normal">
-              Renovation Contractor SG was established to restore pure builder craftsmanship. When you work with us, you deal
-              directly with the master tradesmen responsible for your hacking, waterproofing, tiling, electrical, and
+              Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD, UEN: 202402481G) was established to restore pure builder craftsmanship. When you work with us, you deal
+              directly with our Founder, Managing Director, and master tradesmen responsible for your hacking, waterproofing, piping, tiling, electrical, and
               custom cabinetry.
             </p>
 
@@ -187,18 +187,19 @@ export default function AboutUsPage() {
             </div>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-[#8CCB6B]/40 group">
             <img
-              src="/images/tiling/13.jpeg"
-              alt="Renovation Contractor SG on-site builder team"
-              className="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
+              src="/images/team/owner.jpg"
+              alt="Renovation Contractor SG Founder & Managing Director on site"
+              className="w-full h-[520px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#16263F]/95 via-[#16263F]/30 to-transparent flex flex-col justify-end p-8 text-white">
-              <span className="text-xs uppercase font-bold text-[#A3E635] tracking-wider mb-1">
-                Direct Workmanship Guarantee
+            <div className="absolute inset-0 bg-gradient-to-t from-[#16263F]/95 via-[#16263F]/35 to-transparent flex flex-col justify-end p-8 text-white">
+              <span className="text-xs uppercase font-bold text-[#A3E635] tracking-wider mb-1 flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#8CCB6B]" />
+                <span>Founder &amp; Managing Director On-Site</span>
               </span>
               <p className="text-xl font-bold">
-                From BTO &amp; Resale HDBs to High-End Condos &amp; Landed Bungalows.
+                Direct Hands-On Supervision from Founder to Handover
               </p>
               <p className="text-xs text-slate-300 mt-2">
                 Certified compliance with BCA SS CP5, PUB Code of Practice, and HDB renovation guidelines.
@@ -261,23 +262,23 @@ export default function AboutUsPage() {
             <span>Singapore Registered Business · UEN Verified</span>
           </div>
 
-          <h3 className="text-3xl sm:text-4xl font-extrabold mb-4">{siteConfig.name}</h3>
+          <h3 className="text-3xl sm:text-4xl font-extrabold mb-4">{siteConfig.legalName}</h3>
 
           <p className="text-slate-200 text-sm sm:text-base max-w-xl mx-auto mb-8 font-normal">
-            101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511
+            UEN: {siteConfig.uen} · 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511
             <br />
             Operations: Monday – Saturday, 9:00 AM – 6:00 PM
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20to%20visit%20or%20inquire%20about%20renovation.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.legalName)}%2C%20I%20would%20like%20to%20visit%20or%20inquire%20about%20renovation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#25D366] text-slate-950 font-black text-sm shadow-2xl hover:scale-105 transition-all"
             >
-              <MessageCircle className="w-5 h-5 fill-current" />
-              <span>WhatsApp Us: +65 9187 8887</span>
+              <MessageCircle className="w-5 h-5 fill-slate-950" />
+              <span>WhatsApp Us: +65 {siteConfig.contact.whatsapp.slice(2)}</span>
             </a>
 
             <a
@@ -285,7 +286,7 @@ export default function AboutUsPage() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-[#16263F] font-bold text-sm shadow-xl hover:bg-slate-100 transition-all"
             >
               <Phone className="w-4 h-4 text-[#2C6BA6]" />
-              <span>Call Direct Office</span>
+              <span>Call Hotline: {siteConfig.contact.phonePrimary}</span>
             </a>
           </div>
         </div>

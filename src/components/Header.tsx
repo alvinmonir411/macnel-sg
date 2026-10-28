@@ -28,6 +28,8 @@ import {
   Gem,
   ShieldCheck,
   Search,
+  MapPin,
+  Clock,
 } from "lucide-react";
 import { ServiceSearchModal } from "@/components/ServiceSearchModal";
 
@@ -36,8 +38,18 @@ export function Header() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  // Scroll detection for enhanced glassmorphism
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Global keyboard shortcut for search (⌘K or Ctrl+K or /)
   useEffect(() => {
@@ -144,44 +156,41 @@ export function Header() {
     allServicesList.some((item) => pathname === item.href);
 
   return (
-    <header
-      className="sticky top-0 z-50 bg-[#0A1424]/90 backdrop-blur-xl border-b border-white/[0.08] text-white shadow-[0_4px_30px_rgba(0,0,0,0.4)] transition-all"
-    >
-      {/* Luminous Top Hairline Accent */}
-      <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#8CCB6B]/60 to-transparent pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4 xl:gap-8">
-          {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group py-1">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#1E3A5F] to-[#0A1628] border border-[#8CCB6B]/40 ring-1 ring-white/10 flex items-center justify-center text-white shadow-[0_0_15px_rgba(140,203,107,0.2)] group-hover:border-[#8CCB6B] transition-all shrink-0">
-              <Hammer className="w-4 h-4 text-[#8CCB6B] group-hover:scale-110 transition-transform" />
+    <header className="sticky top-0 z-50 w-full transition-all duration-300">
+      {/* Compact Main Navbar */}
+      <div
+        className={`w-full transition-all duration-300 border-b border-white/10 ${
+          scrolled
+            ? "bg-[#091322]/95 backdrop-blur-2xl shadow-xl shadow-black/40 py-2 sm:py-2.5"
+            : "bg-[#0A1424]/90 backdrop-blur-xl shadow-md py-2 sm:py-2.5"
+        } px-3 sm:px-6 lg:px-8`}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 lg:gap-5">
+          {/* Brand Logo - Compact & Crisp */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group py-0.5">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border border-[#8CCB6B]/40 ring-1 ring-white/10 flex items-center justify-center bg-[#0B1A2E] shadow-[0_0_12px_rgba(140,203,107,0.25)] group-hover:border-[#8CCB6B] transition-all shrink-0">
+              <img src="/macnel-icon.svg" alt="Renovation Contractor SG" className="w-full h-full object-contain p-1" />
             </div>
             <div className="flex flex-col shrink-0">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="font-extrabold text-sm sm:text-lg lg:text-[1.2rem] tracking-tight text-white whitespace-nowrap drop-shadow-sm">
-                  Renovation Contractor
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-[#8CCB6B] to-[#A3E635] text-[#0A1424] px-1.5 py-0.5 rounded shadow-[0_2px_8px_rgba(140,203,107,0.35)] shrink-0">
-                  SG
-                </span>
-              </div>
-              <p className="text-[8.5px] sm:text-[9.5px] text-slate-300 tracking-[0.16em] uppercase font-bold whitespace-nowrap mt-0.5 flex items-center gap-1.5">
-                <span>Direct Builder</span>
-                <span className="w-1 h-1 rounded-full bg-[#8CCB6B]" />
-                <span>Licensed SG</span>
+              <span className="font-extrabold text-[13.5px] sm:text-[15.5px] tracking-tight text-white whitespace-nowrap drop-shadow-sm">
+                Renovation Contractor SG
+              </span>
+              <p className="text-[7.5px] sm:text-[8.5px] text-slate-300 tracking-[0.1em] uppercase font-bold whitespace-nowrap flex items-center gap-1.5">
+                <span className="text-[#8CCB6B]">Direct Builder SG</span>
+                <span className="w-1 h-1 rounded-full bg-[#8CCB6B] animate-pulse" />
+                <span>UEN: 202402481G</span>
               </p>
             </div>
           </Link>
 
-          {/* Desktop Nav Links - Capsule Floating Bar */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 text-xs xl:text-sm font-semibold bg-white/[0.04] border border-white/[0.08] rounded-full p-1.5 backdrop-blur-md shadow-inner">
+          {/* Desktop Nav Links */}
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 text-xs xl:text-[13px] font-semibold">
             <Link
               href="/"
-              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
+              className={`px-2.5 xl:px-3 py-1.5 rounded-lg transition-all font-semibold whitespace-nowrap ${
                 pathname === "/"
-                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
-                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
+                  ? "bg-white/[0.14] text-white shadow-sm ring-1 ring-white/20"
+                  : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>Home</span>
@@ -197,10 +206,10 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium focus:outline-none whitespace-nowrap cursor-pointer ${
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-all text-xs font-semibold focus:outline-none whitespace-nowrap cursor-pointer ${
                   isServicesActive
-                    ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
-                    : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
+                    ? "bg-white/[0.14] text-white shadow-sm ring-1 ring-white/20"
+                    : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
                 }`}
               >
                 <span>Services</span>
@@ -213,7 +222,7 @@ export function Header() {
 
               {/* Mega Dropdown Panel (All 18 Services) */}
               {desktopDropdownOpen && (
-                <div className="absolute top-full -left-48 w-[760px] pt-3 z-50">
+                <div className="absolute top-full -left-20 xl:left-1/2 xl:-translate-x-1/2 w-[720px] pt-3 z-50">
                   <div
                     style={{ backgroundColor: "#0B1528" }}
                     className="rounded-2xl bg-[#0B1528]/95 border border-white/10 p-5 shadow-2xl shadow-black/80 backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200"
@@ -335,32 +344,21 @@ export function Header() {
 
             <Link
               href="/projects"
-              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-full transition-all text-xs font-semibold whitespace-nowrap ${
                 pathname === "/projects" || pathname === "/project-gallery"
-                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
-                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
+                  ? "bg-white/[0.14] text-white shadow-sm ring-1 ring-white/20"
+                  : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>Projects</span>
             </Link>
 
             <Link
-              href="/pricing"
-              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
-                pathname === "/pricing"
-                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
-                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
-              }`}
-            >
-              <span>Pricing</span>
-            </Link>
-
-            <Link
               href="/about"
-              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-full transition-all text-xs font-semibold whitespace-nowrap ${
                 pathname === "/about" || pathname === "/about-us"
-                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
-                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
+                  ? "bg-white/[0.14] text-white shadow-sm ring-1 ring-white/20"
+                  : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>About Us</span>
@@ -368,10 +366,10 @@ export function Header() {
 
             <Link
               href="/contact-us"
-              className={`px-3.5 py-1.5 rounded-full transition-all text-xs xl:text-sm font-medium whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-full transition-all text-xs font-semibold whitespace-nowrap ${
                 pathname === "/contact-us"
-                  ? "bg-white/[0.12] text-white font-bold shadow-sm ring-1 ring-white/20"
-                  : "text-slate-200 hover:text-white hover:bg-white/[0.08]"
+                  ? "bg-white/[0.14] text-white shadow-sm ring-1 ring-white/20"
+                  : "text-slate-300 hover:text-white hover:bg-white/[0.08]"
               }`}
             >
               <span>Contact</span>
@@ -379,62 +377,28 @@ export function Header() {
           </nav>
 
           {/* Action CTAs: Search + Free Quote (WhatsApp) + Book Free Site Inspection */}
-          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
-            {/* Search Trigger Button (Desktop) */}
-            <button
-              type="button"
-              onClick={() => setSearchModalOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 hover:border-white/25 text-slate-200 hover:text-white transition-all text-xs font-medium backdrop-blur-sm shadow-inner group shrink-0 cursor-pointer"
-              title="Search renovation trades (⌘K / /)"
-            >
-              <Search className="w-3.5 h-3.5 text-[#8CCB6B] group-hover:scale-110 transition-transform" />
-              <span className="hidden xl:inline text-slate-300">Search</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded bg-black/40 border border-white/15 text-[10px] font-mono text-slate-300">
-                ⌘K
-              </kbd>
-            </button>
-
-            {/* Free Quote -> Direct WhatsApp with Live Online Indicator */}
+          {/* Action CTA: Book Free Site Inspection Only */}
+          <div className="hidden sm:flex items-center gap-2 xl:gap-3 shrink-0">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
-                siteConfig.name
-              )}%2C%20I%20would%20like%20a%20free%20quotation.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-bold px-3.5 py-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 transition-all shadow-sm shrink-0 whitespace-nowrap"
-              title="Chat directly on WhatsApp"
+              href={`tel:${siteConfig.contact.phoneTel}`}
+              className="hidden xl:inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/20 text-slate-200 hover:text-white transition-all whitespace-nowrap"
+              title={`Call hotline: ${siteConfig.contact.phonePrimary}`}
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <MessageCircle className="w-3.5 h-3.5 fill-current text-emerald-400" />
-              <span className="text-white font-bold">Quote Now</span>
+              <Phone className="w-3.5 h-3.5 text-[#8CCB6B]" />
+              <span>Call: {siteConfig.contact.phonePrimary}</span>
             </a>
 
-            {/* Book Free Site Inspection (Rule C.4) - Ultra-Premium Luminous CTA */}
             <Link
               href="/book"
-              className="flex items-center gap-2 text-xs font-extrabold px-4 py-2 rounded-xl bg-gradient-to-r from-[#8CCB6B] to-[#73B950] hover:from-[#9DE07A] hover:to-[#82C85F] text-[#0A1424] shadow-[0_2px_14px_rgba(140,203,107,0.35)] hover:shadow-[0_4px_22px_rgba(140,203,107,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 whitespace-nowrap"
+              className="flex items-center gap-1.5 text-xs font-extrabold px-3.5 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-[#8CCB6B] via-[#85C963] to-[#6EB648] hover:from-[#9DE07A] hover:to-[#7DC757] text-[#0A1424] shadow-[0_2px_14px_rgba(140,203,107,0.35)] hover:shadow-[0_4px_22px_rgba(140,203,107,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 whitespace-nowrap"
             >
-              <CalendarCheck className="w-3.5 h-3.5" />
-              <span>Book Free Site Inspection</span>
+              <CalendarCheck className="w-4 h-4" />
+              <span className="text-xs font-extrabold">Book Free Site Inspection</span>
             </Link>
           </div>
 
-          {/* Mobile Actions & Hamburger */}
-          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
-            {/* Mobile Search Button */}
-            <button
-              type="button"
-              onClick={() => setSearchModalOpen(true)}
-              className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 border border-white/15 transition-all"
-              aria-label="Search services"
-              title="Search services"
-            >
-              <Search className="w-4 h-4 text-[#8CCB6B]" />
-            </button>
-
+          {/* Mobile Actions: WhatsApp & Hamburger */}
+          <div className="flex lg:hidden items-center gap-2">
             {/* Mobile WhatsApp Quick Action */}
             <a
               href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
@@ -442,7 +406,7 @@ export function Header() {
               )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-xl bg-[#25D366] text-slate-950 hover:bg-[#20ba59] transition-all shadow"
+              className="p-1.5 rounded-lg bg-[#25D366] text-slate-950 hover:bg-[#20ba59] transition-all shadow"
               aria-label="WhatsApp"
             >
               <MessageCircle className="w-4 h-4 fill-slate-950" />
@@ -451,157 +415,139 @@ export function Header() {
             {/* Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-white hover:bg-white/10 focus:outline-none"
+              className="p-1.5 rounded-lg text-white hover:bg-white/10 focus:outline-none"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-white" />
+                <X className="w-5 h-5 text-white" />
               ) : (
-                <Menu className="w-6 h-6 text-white" />
+                <Menu className="w-5 h-5 text-white" />
               )}
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div
-          style={{ backgroundColor: "#16263F" }}
-          className="lg:hidden border-t border-slate-700/80 bg-[#16263F] px-4 pt-4 pb-6 space-y-2 shadow-2xl"
-        >
-          {/* Quick Search in Mobile Drawer */}
-          <div className="pb-2">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setSearchModalOpen(true);
-              }}
-              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-slate-200 text-xs font-semibold text-left hover:bg-white/15 transition-all shadow-sm"
-            >
-              <span className="flex items-center gap-2">
-                <Search className="w-4 h-4 text-[#A3E635]" />
-                <span>Search all services &amp; keywords...</span>
-              </span>
-              <span className="text-[10px] bg-black/40 px-2 py-0.5 rounded border border-white/20 font-mono text-[#A3E635]">
-                SEARCH
-              </span>
-            </button>
-          </div>
-
-          <Link
-            href="/"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
+        {/* Mobile Drawer */}
+        {mobileMenuOpen && (
+          <div
+            style={{ backgroundColor: "#0C172B" }}
+            className="lg:hidden mt-3 max-w-7xl mx-auto rounded-2xl bg-[#0C172B]/95 border border-white/15 px-4 pt-4 pb-6 space-y-2 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-200"
           >
-            Home
-          </Link>
-
-          <div>
-            <button
-              type="button"
-              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-              className="w-full flex items-center justify-between px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
-            >
-              <span>Services</span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${
-                  mobileServicesOpen ? "rotate-180 text-[#A3E635]" : ""
-                }`}
-              />
-            </button>
-
-            {mobileServicesOpen && (
-              <div className="pl-3 pr-2 py-2 space-y-2 bg-black/40 rounded-xl my-1 border border-slate-700 max-h-96 overflow-y-auto">
-                <Link
-                  href="/services"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-2.5 py-1.5 text-xs font-black text-[#A3E635] hover:underline"
-                >
-                  &rarr; View All Services Directory
-                </Link>
-
-                <div className="space-y-1">
-                  {allServicesList.map((s) => (
-                    <Link
-                      key={s.title}
-                      href={s.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block px-2.5 py-1.5 text-xs font-semibold text-slate-100 hover:text-white hover:bg-white/10 rounded-lg"
-                    >
-                      {s.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          <Link
-            href="/toilet-renovation-in-singapore"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
-          >
-            Toilet Renovation (Featured)
-          </Link>
-
-          <Link
-            href="/projects"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
-          >
-            Completed Projects
-          </Link>
-
-          <Link
-            href="/pricing"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
-          >
-            Pricing Guide
-          </Link>
-
-          <Link
-            href="/about"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
-          >
-            About Us &amp; Standards
-          </Link>
-
-          <Link
-            href="/contact-us"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
-          >
-            Contact &amp; Showroom
-          </Link>
-
-          <div className="pt-4 border-t border-slate-700/80 flex flex-col gap-2.5">
             <Link
-              href="/book"
+              href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 py-3 rounded-xl brand-gradient text-white font-bold text-sm shadow-md"
+              className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
             >
-              <CalendarCheck className="w-4 h-4" />
-              <span>Book Free Site Inspection</span>
+              Home
             </Link>
 
-            <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
-                siteConfig.name
-              )}%2C%20I%20would%20like%20a%20free%20quotation.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-md"
+            <div>
+              <button
+                type="button"
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                className="w-full flex items-center justify-between px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
+              >
+                <span>Services</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    mobileServicesOpen ? "rotate-180 text-[#A3E635]" : ""
+                  }`}
+                />
+              </button>
+
+              {mobileServicesOpen && (
+                <div className="pl-3 pr-2 py-2 space-y-2 bg-black/40 rounded-xl my-1 border border-slate-700 max-h-96 overflow-y-auto">
+                  <Link
+                    href="/services"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-2.5 py-1.5 text-xs font-black text-[#A3E635] hover:underline"
+                  >
+                    &rarr; View All Services Directory
+                  </Link>
+
+                  <div className="space-y-1">
+                    {allServicesList.map((s) => (
+                      <Link
+                        key={s.title}
+                        href={s.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-2.5 py-1.5 text-xs font-semibold text-slate-100 hover:text-white hover:bg-white/10 rounded-lg"
+                      >
+                        {s.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="/toilet-renovation-in-singapore"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#A3E635]"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span>WhatsApp for Free Quote</span>
-            </a>
+              Toilet Renovation (Featured)
+            </Link>
+
+            <Link
+              href="/projects"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
+            >
+              Completed Projects
+            </Link>
+
+            <Link
+              href="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
+            >
+              About Us &amp; Standards
+            </Link>
+
+            <Link
+              href="/contact-us"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 text-base font-bold rounded-lg text-white hover:text-[#8CCB6B]"
+            >
+              Contact &amp; Showroom
+            </Link>
+
+            <div className="pt-4 border-t border-slate-700/80 flex flex-col gap-2.5">
+              <Link
+                href="/book"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 py-3 rounded-xl brand-gradient text-white font-bold text-sm shadow-md"
+              >
+                <CalendarCheck className="w-4 h-4" />
+                <span>Book Free Site Inspection</span>
+              </Link>
+
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href={`tel:${siteConfig.contact.phoneTel}`}
+                  className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs shadow-md transition-all"
+                >
+                  <Phone className="w-4 h-4 text-[#8CCB6B]" />
+                  <span>Call Us</span>
+                </a>
+
+                <a
+                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                    siteConfig.name
+                  )}%2C%20I%20would%20like%20a%20free%20quotation.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-[#25D366] text-slate-950 font-bold text-xs shadow-md"
+                >
+                  <MessageCircle className="w-4 h-4 fill-slate-950" />
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Global Interactive Service Search Modal */}
       <ServiceSearchModal

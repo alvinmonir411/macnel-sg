@@ -1,5 +1,5 @@
 {
-  "companyStory": "TODO_REPLACE: Founded by seasoned builders in Singapore, Renovation Contractor SG was established to bridge the gap between homeowners and on-site craftsmen. We eliminate confusing sales markups by having our certified project directors and master tilers communicate directly with clients from day one. With decades of collective on-site experience across HDB estates, condominiums, and landed houses, we hold ourselves accountable to high craftsmanship and on-time handovers.",
+  "companyStory": "Founded by seasoned builders in Singapore, Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD) was established to bridge the gap between homeowners and on-site craftsmen. We eliminate confusing sales markups by having our certified project directors and master tradesmen communicate directly with clients from day one. With decades of collective on-site experience across HDB estates, condominiums, landed houses, and commercial premises, we hold ourselves accountable to high craftsmanship and on-time handovers.",
   "workingProcess": [
     {
       "step": "1",
@@ -36,12 +36,12 @@
     {
       "id": "member-1",
       "isPlaceholder": false,
-      "name": "Project Operations Lead",
+      "name": "Managing Director & Founder",
       "role": "Managing Director & Lead Project Supervisor",
-      "experience": "20+ Years in Singapore Construction",
+      "experience": "BCA Certified Direct Builder",
       "credentials": "BCA Certified CoreTrade Specialist",
-      "bio": "Oversees all on-site structural works, waterproofing membranes, and permit compliance with HDB and condo management.",
-      "photo": "/images/team/team-1.jpg"
+      "bio": "Founder & Director of Renovation Contractor SG. Direct on-site supervision, plumbing & sanitary installations, structural works, and quality control from hacking to final handover.",
+      "photo": "/images/team/owner.jpg"
     },
     {
       "id": "member-2",

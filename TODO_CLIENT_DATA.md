@@ -10,15 +10,18 @@ Use this checklist to replace all placeholder data with your official business i
 
 | Item | Field Name | Description | Current Placeholder |
 |---|---|---|---|
-| **[ ] Legal Entity Name** | `legalName` | Official registered ACRA company name | `TODO_REPLACE: Registered Company Pte. Ltd.` |
-| **[ ] ACRA UEN** | `uen` | Unique Entity Number (9-10 chars, e.g. `202312345A`) | `TODO_REPLACE: 202312345A` |
+| **[x] Legal Entity Name** | `legalName` | Official registered ACRA company name | `MACNEL CONSTRUCTION PTE LTD` |
+| **[x] ACRA UEN** | `uen` | Unique Entity Number (9-10 chars, e.g. `202402481G`) | `202402481G` |
 | **[ ] HDB Directory License** | `hdbLicense` | HDB Registered Renovation Contractor Directory No. (or leave `""`) | `TODO_REPLACE: HDB Registered Contractor No. HB-00-0000X` |
 | **[ ] BCA Registry License** | `bcaLicense` | BCA Registered Contractor / Builder License (or leave `""`) | `TODO_REPLACE: BCA Registered Contractor (CR06 / General Builder)` |
 | **[ ] Years in Business** | `yearsInBusiness` | Years operating in Singapore (e.g. `"12"`) | `TODO_REPLACE: 12` |
 | **[ ] Work Injury Compensation** | `insurance.workInjuryCompensation` | Insurer name & Policy Number | `TODO_REPLACE: Insured with NTUC Income (Policy #WIC-XXXXX)` |
 | **[ ] Public Liability Insurance** | `insurance.publicLiability` | Coverage amount & Policy Number | `TODO_REPLACE: S$1,000,000 Public Liability Coverage (Policy #PL-XXXXX)` |
-| **[ ] Office / Showroom Address** | `contact.address` | Registered office or showroom address | `TODO_REPLACE: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511` |
-| **[ ] Showroom Notice** | `contact.showroomNote` | Showroom visit instructions | `TODO_REPLACE: Showroom visits and material consultations available by appointment` |
+| **[x] Office / Showroom Address** | `contact.address` | Registered office or showroom address | `101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511` |
+| **[x] Direct Call Hotline** | `contact.phonePrimary` | Primary phone call number | `+65 8653 1076` |
+| **[x] WhatsApp Hotline** | `contact.whatsapp` | Primary WhatsApp messaging number | `+65 8170 4063 (6581704063)` |
+| **[x] Owner / Founder Photo** | `public/images/team/owner.jpg` | Verified owner photo on About page | Configured on `/about` and `/about-us` |
+| **[ ] Showroom Notice** | `contact.showroomNote` | Showroom visit instructions | `Showroom visits and material consultations available by appointment` |
 | **[ ] Google Maps Embed** | `contact.googleMapsEmbedUrl` | Google Maps `iframe` `src` URL for your address | Embed URL for Jalan Besar Plaza |
 | **[ ] Response Time** | `contact.quoteTurnaroundHours` | Number of hours to reply to quotes (e.g. `2` or `24`) | `2` |
 | **[ ] Google Reviews URL** | `reviews.googleReviewsUrl` | Verified Google Business Review link (leave `""` until verified) | `""` *(Rating badge stays hidden until real URL is provided)* |

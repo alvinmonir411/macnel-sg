@@ -4,7 +4,6 @@ import { OtherServices } from "@/components/OtherServices";
 import { CustomerReviews } from "@/components/CustomerReviews";
 import { ProjectsPreview } from "@/components/ProjectsPreview";
 import { AboutSection } from "@/components/AboutSection";
-import { PricingSection } from "@/components/PricingSection";
 import { WarrantyPaymentSection } from "@/components/WarrantyPaymentSection";
 import { ToiletSpotlight } from "@/components/ToiletSpotlight";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
@@ -33,10 +32,7 @@ export default function Home() {
       {/* 6. About Us, Team Leadership & 6-Step Working Process (RSC: 0KB Client JS) */}
       <AboutSection />
 
-      {/* 7. Transparent Indicative Pricing Guide with Disclaimer */}
-      <PricingSection />
-
-      {/* 8. Warranty by Trade & Milestone Payment Terms (RSC: 0KB Client JS) */}
+      {/* 7. Warranty by Trade & Milestone Payment Terms (RSC: 0KB Client JS) */}
       <WarrantyPaymentSection />
 
       {/* 9. Specialized Toilet Renovation Deep-Dive (RSC: 0KB Client JS) */}

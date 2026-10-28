@@ -92,14 +92,14 @@ export const siteConfig: SiteConfig = {
   name: "Renovation Contractor SG",
   tagline: "Singapore Direct Renovation Contractor · Hacking to Handover",
   description:
-    "Licensed direct renovation contractor in Singapore. Transparent pricing and dedicated supervision for HDB flats, condominiums, landed homes, and commercial units.",
+    "Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD, UEN: 202402481G) — Licensed direct renovation contractor in Singapore. Transparent pricing, dedicated on-site supervision for HDB flats, condominiums, landed homes, and commercial units.",
   url: "https://renovationcontractorsg.org",
 
   // 🏛️ Official Business Registration & Credentials
-  legalName: "Renovation Contractor SG Pte. Ltd.",
+  legalName: "MACNEL CONSTRUCTION PTE LTD",
   
-  // TODO_REPLACE: Replace with your official 9 or 10-character ACRA UEN (e.g. 202312345A)
-  uen: "TODO_REPLACE: 202312345A",
+  // ACRA Official UEN
+  uen: "202402481G",
   
   // TODO_REPLACE: Replace with BCA Contractor Registry Number or leave empty string if not applicable
   bcaLicense: "TODO_REPLACE: BCA Registered Contractor (CR06 / General Builder)",
@@ -120,14 +120,13 @@ export const siteConfig: SiteConfig = {
 
   // 📞 Direct Contact & Physical Presence
   contact: {
-    phonePrimary: "+65 8936 1834",
-    phoneSecondary: "+65 9120 7650",
-    phoneTel: "+6589361834",
-    whatsapp: "6589361834",
+    phonePrimary: "+65 8653 1076",
+    phoneSecondary: "+65 8170 4063",
+    phoneTel: "+6586531076",
+    whatsapp: "6581704063",
     email: "info@renovationcontractorsg.org",
-    // TODO_REPLACE: Replace with your registered office / showroom address
-    address: "TODO_REPLACE: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511",
-    showroomNote: "TODO_REPLACE: Showroom visits and material consultations available by appointment",
+    address: "101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511",
+    showroomNote: "Showroom visits and material consultations available by appointment",
     googleMapsEmbedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7770851911466!2d103.85601267496585!3d1.3090280986785367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19c8d578ebcf%3A0xe54e5a953e6d194c!2sJalan%20Besar%20Plaza!5e0!3m2!1sen!2ssg!4v1700000000000!5m2!1sen!2ssg",
     operatingHours: "Mon – Sat: 9:00 AM – 6:00 PM (Closed Sundays & Public Holidays)",

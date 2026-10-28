@@ -27,6 +27,11 @@ const nextConfig: NextConfig = {
         destination: "/projects/:id",
         permanent: true,
       },
+      {
+        source: "/pricing",
+        destination: "/book",
+        permanent: false,
+      },
     ];
   },
   async headers() {

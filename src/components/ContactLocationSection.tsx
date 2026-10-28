@@ -80,7 +80,7 @@ export function ContactLocationSection() {
                         {contact.phonePrimary}
                       </a>
                       <span className="text-xs text-slate-500 block">
-                        Secondary: {contact.phoneSecondary}
+                        WhatsApp: +65 {contact.whatsapp.slice(2)}
                       </span>
                     </div>
                   </div>

@@ -192,7 +192,7 @@ export function AiChatWidget() {
       const data = await res.json();
       const replyText =
         data.reply ||
-        "Thank you for contacting Renovation Contractor SG! Please chat with us on WhatsApp at +65 8936 1834 for an instant quotation.";
+        `Thank you for contacting ${siteConfig.name}! Please chat with us on WhatsApp at +65 8170 4063 or call +65 8653 1076 for an instant quotation.`;
 
       const botReplyMsg: ChatMessage = {
         id: `bot-${Date.now()}`,
@@ -208,7 +208,7 @@ export function AiChatWidget() {
         id: `err-${Date.now()}`,
         role: "assistant",
         content:
-          "Thank you for reaching out! Our team is available right now on WhatsApp at +65 8936 1834. Feel free to message us directly for free site measurement & quote.",
+          "Thank you for reaching out! Our team is available right now on WhatsApp at +65 8170 4063 or call us at +65 8653 1076. Feel free to message us directly for free site measurement & quote.",
         time: formatCurrentTime(),
       };
       setMessages((prev) => [...prev, fallbackMsg]);

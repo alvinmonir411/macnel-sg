@@ -3,14 +3,17 @@ import { getSettings } from "@/lib/db";
 import { siteConfig } from "@/config/site";
 
 
-const DEFAULT_SYSTEM_PROMPT = `You are the official AI Assistant for Renovation Contractor SG (Website: https://renovationcontractorsg.org), a premier direct renovation contractor in Singapore.
+const DEFAULT_SYSTEM_PROMPT = `You are the official AI Assistant for Renovation Contractor SG (Legal Entity: MACNEL CONSTRUCTION PTE LTD, Website: https://renovationcontractorsg.org), a premier direct renovation contractor in Singapore.
 
 🏢 COMPANY CREDENTIALS & VALUES:
-- 100% In-House Master Tradesmen (Tilers, Carpenters, Electricians, Plasterers, Painters). No Interior Design (ID) middleman markup—clients save 20% to 35% on direct factory/wholesale rates.
+- Company Brand Name: Renovation Contractor SG
+- Company Legal Name: MACNEL CONSTRUCTION PTE LTD
+- ACRA UEN: 202402481G
+- 100% In-House Master Tradesmen (Tilers, Plumbers, Carpenters, Electricians, Plasterers, Painters). Zero Interior Design (ID) middleman markup—clients save 20% to 35% on direct builder rates.
 - Official Licenses: HDB Registered Renovation Directory & BCA Registered Contractor.
 - 12-Month Structural & Workmanship Warranty on all projects with rapid 24–48 hour on-site service support.
-- Office & Showroom: 280 Woodlands Industrial Park E5, #02-14 Harvest @ Woodlands, Singapore 757322.
-- Direct Contact / WhatsApp: +65 8936 1834 | Email: contact@renovationcontractorsg.org.
+- Office & Showroom: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511.
+- Direct Call Hotline: +65 8653 1076 | WhatsApp: +65 8170 4063 | Email: contact@renovationcontractorsg.org.
 - Turnaround: Free on-site inspection and itemized quote within 2 hours.
 
 
@@ -27,11 +30,11 @@ const DEFAULT_SYSTEM_PROMPT = `You are the official AI Assistant for Renovation 
 
 
 💬 COMMUNICATION GUIDELINES:
-- Greet clients warmly and professionally.
+- Greet clients warmly and professionally on behalf of Renovation Contractor SG.
 - Always respond in the EXACT language used by the user (English, বাংলা / Bengali, 中文 / Chinese, Melayu / Malay, हिन्दी / Hindi, اردو / Urdu, العربية / Arabic).
 - State prices transparently in Singapore Dollars (SGD) as estimated direct contractor ranges when asked.
 - Provide practical Singapore renovation advice (e.g. HDB permit requirements, 3-year waterproofing rule, BTO timeline).
-- Encourage the customer to book a free on-site consultation or WhatsApp our senior builder directly at +65 8936 1834.
+- Encourage the customer to book a free on-site consultation, WhatsApp our builder directly at +65 8170 4063, or call +65 8653 1076.
 - Keep responses concise, readable, and well-structured with bullet points where appropriate.`;
 
 
@@ -39,44 +42,44 @@ const FALLBACK_RESPONSES: Record<string, { welcome: string; services: string; pr
   bn: {
     welcome: "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
     services: "আমরা সিঙ্গাপুরে সরাসরি কন্ট্রাক্টর হিসেবে কাজ করি। কোনো মিডলম্যান বা আইডি চার্জ নেই। আমাদের প্রধান সেবাসমূহ: ১) টয়লেট রেনোভেশন ও ওয়াটারপ্রুফিং ২) সম্পূর্ণ বাড়ি/ফ্ল্যাট রেনোভেশন ৩) ফ্লোর ও ওয়াল টাইলিং ৪) ফলস সিলিং ও পার্টেশন ৫) নিপ্পন পেইন্ট দিয়ে রঙ ও প্লাস্টারিং ৬) দরজা ও জানালা পরিবর্তন ৭) এসপিসি ভিনাইল ফ্লোরিং ৮) অনুমোদিত ইলেকট্রিক্যাল কাজ। আপনি কোন কাজটি করাতে চাচ্ছেন?",
-    pricing: "সরাসরি কন্ট্রাক্টর হওয়ায় আমরা হোলসেল রেটে কাজ করি (আইডি ফার্মের চেয়ে ২০-৩৫% সাশ্রয়ী)। সাইট ভিজিট এবং কোটেশন সম্পূর্ণ ফ্রি। বিস্তারিত খরচের জন্য আমাদের সাথে হোয়াটসঅ্যাপে +65 8936 1834 নম্বরে যোগাযোগ করুন।",
-    contact: "আমাদের সিনিয়র প্রজেক্ট সুপারের সাথে সরাসরি কথা বলতে বা ফ্রি সাইট পরিদর্শনের তারিখ বুক করতে হোয়াটসঅ্যাপে মেসেজ দিন: +65 8936 1834 বা কল করুন। আমাদের অফিস: 280 Woodlands Industrial Park E5, Singapore."
+    pricing: "সরাসরি কন্ট্রাক্টর হওয়ায় আমরা হোলসেল রেটে কাজ করি (আইডি ফার্মের চেয়ে ২০-৩৫% সাশ্রয়ী)। সাইট ভিজিট এবং কোটেশন সম্পূর্ণ ফ্রি। বিস্তারিত খরচের জন্য আমাদের সাথে হোয়াটসঅ্যাপে +65 8170 4063 নম্বরে যোগাযোগ করুন।",
+    contact: "আমাদের সিনিয়র প্রজেক্ট সুপারের সাথে সরাসরি কথা বলতে বা ফ্রি সাইট পরিদর্শনের তারিখ বুক করতে হোয়াটসঅ্যাপে মেসেজ দিন: +65 8170 4063 বা কল করুন: +65 8653 1076। আমাদের অফিস: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511."
   },
   en: {
     welcome: "Welcome to Renovation Contractor SG! We are Singapore's direct renovation contractor. How can we assist with your home or commercial project today?",
     services: "We handle direct in-house renovations without middleman designer markups (saving you 20%-35%): 1) Toilet & Bathroom Renovation with 3-Layer Waterproofing 2) Whole House Turnkey Renovation (HDB / Condo / Landed) 3) Floor & Wall Homogeneous Tiling 4) False Ceiling & Cove Light Partitions 5) Nippon / Dulux House Painting 6) BCA-Approved Doors & Windows 7) Waterproof SPC Vinyl Flooring 8) Licensed EMA Electrical Rewiring. Which service do you need?",
-    pricing: "As direct builders, our prices are transparent and itemized per foot run with zero hidden markups. We offer free on-site inspections and 2-hour quote turnaround. WhatsApp +65 8936 1834 for an instant estimate.",
-    contact: "You can reach our senior project manager directly on WhatsApp at +65 8936 1834 or visit our showroom at 280 Woodlands Industrial Park E5, Singapore 757322. Would you like to schedule a free site measurement?"
+    pricing: "As direct builders, our prices are transparent and itemized per foot run with zero hidden markups. We offer free on-site inspections and 2-hour quote turnaround. WhatsApp +65 8170 4063 or call +65 8653 1076 for an instant estimate.",
+    contact: "You can reach our senior project manager directly on WhatsApp at +65 8170 4063, call us at +65 8653 1076, or visit our office at 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511. Would you like to schedule a free site measurement?"
   },
   zh: {
     welcome: "欢迎来到 Renovation Contractor SG！我们是新加坡直属装修总承包商。请问今天我们在哪些装修工程上可以为您提供帮助？",
     services: "我们拥有自有工匠团队，免除室内设计中介溢价，为您节省20%至35%费用：1) 卫生间翻新与三层防水 2) 全屋整装翻新（HDB组屋/公寓/有地住宅）3) 地砖与墙砖铺贴 4) 假天花板与隔墙 5) 品牌油漆与批灰粉刷 6) 门窗更换 7) SPC防水锁扣地板 8) 持证电工全屋布线。请问您需要了解哪项服务？",
-    pricing: "直接承包商价格透明，无任何隐藏收费。我们提供免费上门勘测测量与2小时出具详细报价单。欢迎通过 WhatsApp +65 8936 1834 咨询！",
-    contact: "欢迎通过 WhatsApp +65 8936 1834 联系我们的资深施工主管，或预约参观我们的材料展厅：280 Woodlands Industrial Park E5, Singapore。"
+    pricing: "直接承包商价格透明，无任何隐藏收费。我们提供免费上门勘测测量与2小时出具详细报价单。欢迎通过 WhatsApp +65 8170 4063 或致电 +65 8653 1076 咨询！",
+    contact: "欢迎通过 WhatsApp +65 8170 4063 联系我们的施工主管，致电 +65 8653 1076，或预约参观我们的展厅：101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511。"
   },
   ms: {
     welcome: "Selamat datang ke Renovation Contractor SG! Kami adalah kontraktor renovasi terus di Singapura. Bagaimana kami boleh membantu projek rumah atau pejabat anda hari ini?",
     services: "Kami menyediakan tukang mahir in-house tanpa komisen pereka tengah (jimat 20%-35%): 1) Renovasi Tandas & Kalis Air 2) Renovasi Keseluruhan Rumah 3) Pemasangan Jubin Lantai & Dinding 4) Siling Palsu & Dinding Pemisah 5) Mengecat Rumah Nippon/Dulux 6) Pintu & Tingkap Diluluskan BCA 7) Lantai Vinil SPC 8) Pendawaian Elektrik Berlesen EMA.",
-    pricing: "Harga kontraktor langsung sangat berpatutan dengan pecahan kos yang jelas tanpa caj tersembunyi. Pemeriksaan tapak dan sebut harga adalah percuma. Hubungi WhatsApp +65 8936 1834.",
-    contact: "Hubungi pengurus projek kami terus di WhatsApp +65 8936 1834 atau kunjungi bilik pameran kami di 280 Woodlands Industrial Park E5, Singapura."
+    pricing: "Harga kontraktor langsung sangat berpatutan dengan pecahan kos yang jelas tanpa caj tersembunyi. Pemeriksaan tapak dan sebut harga adalah percuma. Hubungi WhatsApp +65 8170 4063 atau hubungi +65 8653 1076.",
+    contact: "Hubungi pengurus projek kami terus di WhatsApp +65 8170 4063, telefon +65 8653 1076, atau kunjungi kami di 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapura 208511."
   },
   hi: {
     welcome: "Renovation Contractor SG में आपका स्वागत है! हम सिंगापुर के डायरेक्ट रिनोवेशन कॉन्ट्रैक्टर हैं। आज हम आपके नवीनीकरण कार्य में क्या सहायता कर सकते हैं?",
     services: "हमारी इन-हाउस कारीगरों की टीम बिना किसी बिचौलिए शुल्क के काम करती है (20%-35% की बचत): 1) टॉयलेट रिनोवेशन व वॉटरप्रूफिंग 2) संपूर्ण मकान रिनोवेशन (HDB/कंडो) 3) टाइलिंग कार्य 4) फॉल्स सीलिंग 5) हाउस पेंटिंग 6) दरवाजे व खिड़कियां 7) विनाइल फ्लोरिंग 8) इलेक्ट्रिकल वायरिंग।",
-    pricing: "डायरेक्ट कॉन्ट्रैक्टर रेट्स पूरी तरह पारदर्शी हैं। फ्री ऑन-साइट इंस्पेक्शन और कोटेशन के लिए WhatsApp +65 8936 1834 पर संपर्क करें।",
-    contact: "हमारे प्रोजेक्ट सुपरवाइजर से सीधे WhatsApp +65 8936 1834 पर संपर्क करें या वुडलैंड्स शोरूम में पधारें।"
+    pricing: "डायरेक्ट कॉन्ट्रैक्टर रेट्स पूरी तरह पारदर्शी हैं। फ्री ऑन-साइट इंस्पेक्शन और कोटेशन के लिए WhatsApp +65 8170 4063 पर संपर्क करें या कॉल करें +65 8653 1076।",
+    contact: "हमारे प्रोजेक्ट सुपरवाइजर से सीधे WhatsApp +65 8170 4063 पर संपर्क करें या 101 Kitchener Road, Jalan Besar Plaza, Singapore में पधारें।"
   },
   ur: {
     welcome: "Renovation Contractor SG میں خوش آمدید! ہم سنگاپور کے ڈائریکٹ رینوویشن کنٹریکٹر ہیں۔ آج ہم آپ کے گھر یا دفتر کی تزئین و آرائش میں کیا مدد کر سکتے ہیں؟",
     services: "ہم بغیر کسی مڈل مین چارجز کے براہ راست کام کرتے ہیں (20% تا 35% بچت): 1) ٹوائلٹ رینوویشن و واٹر پروفنگ 2) مکمل گھر کی تزئین و آرائش 3) ٹائلز کا کام 4) فالس سیلنگ 5) پینٹ و پلاسٹر 6) دروازے اور کھڑکیاں 7) ونائل فلورنگ 8) الیکٹریکل وائرنگ।",
-    pricing: "ہمارے ریٹس مارکیٹ سے مناسب اور شفاف ہیں۔ مفت سائٹ معائنے کے لیے واٹس ایپ +65 8936 1834 پر رابطہ کریں۔",
-    contact: "سائٹ وزٹ یا معلومات کے لیے واٹس ایپ +65 8936 1834 پر رابطہ فرمائیں۔"
+    pricing: "ہمارے ریٹس مارکیٹ سے مناسب اور شفاف ہیں۔ مفت سائٹ معائنے کے لیے واٹس ایپ +65 8170 4063 یا کال +65 8653 1076 پر رابطہ کریں۔",
+    contact: "سائٹ وزٹ یا معلومات کے لیے واٹس ایپ +65 8170 4063 پر رابطہ فرمائیں یا 101 Kitchener Road, Jalan Besar Plaza تشریف لائیں۔"
   },
   ar: {
     welcome: "مرحباً بكم في Renovation Contractor SG! مقاول التجديد المباشر في سنغافورة. كيف يمكننا مساعدتك في تجديد منزلك أو مكتبك اليوم؟",
     services: "نقدم خدمات التجديد المباشرة بدون وساطة وبتوفير 20%-35%: 1) تجديد الحمامات والعزل المائي 2) تجديد شامل للمنازل 3) تركيب البلاط 4) الأسقف المعلقة 5) دهانات نيبون وديلوكس 6) الأبواب والنوافذ المعتمدة 7) أرضيات الفينيل SPC 8) الأعمال الكهربائية المعتمدة.",
-    pricing: "أسعار مقاول مباشرة وشفافة مع فحص مجاني للموقع وعرض أسعار فوري خلال ساعتين. تواصل عبر واتساب +65 8936 1834.",
-    contact: "للتواصل المباشر مع مدير المشروع عبر واتساب: +65 8936 1834 أو تفضل بزيارة صالة العرض في وودلاندز، سنغافورة."
+    pricing: "أسعار مقاول مباشرة وشفافة مع فحص مجاني للموقع وعرض أسعار فوري خلال ساعتين. تواصل عبر واتساب +65 8170 4063 أو اتصل بنا على +65 8653 1076.",
+    contact: "للتواصل المباشر مع مدير المشروع عبر واتساب: +65 8170 4063 أو تفضل بزيارة مكتبنا في 101 Kitchener Road, Jalan Besar Plaza, سنغافورة."
   }
 };
 
@@ -207,7 +210,7 @@ export async function GET() {
       welcomeMessageBn:
         ai.welcomeMessageBn ||
         "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
-      model: ai.model || "gemini-2.5-flash",
+      model: ai.model || "gemini-2.0-flash",
       isAiConfigured: Boolean(configuredKey && configuredKey.trim().length > 5),
     });
   } catch (error: any) {
@@ -219,7 +222,7 @@ export async function GET() {
       welcomeMessageEn: "Hi! How can we help you today?",
       welcomeMessageBn:
         "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
-      model: "gemini-2.5-flash",
+      model: "gemini-2.0-flash",
       isAiConfigured: Boolean(process.env.GEMINI_API_KEY),
     });
   }
@@ -245,7 +248,7 @@ export async function POST(request: Request) {
     ).trim();
 
     const selectedModel = (
-      testModel || ai.model || "gemini-2.5-flash"
+      testModel || ai.model || "gemini-2.0-flash"
     ).trim();
 
     const systemPrompt = ai.systemPrompt || DEFAULT_SYSTEM_PROMPT;
@@ -279,17 +282,62 @@ export async function POST(request: Request) {
       });
     }
 
-    // Call Google Gemini REST API
-    const modelsToTry = [
-      selectedModel,
-      "gemini-2.5-flash",
+    // Build candidate models list.
+    // Try to dynamically discover supported models for this key from Google's v1beta endpoint
+    const modelsToTry: string[] = [];
+    if (selectedModel && selectedModel !== "gemini-2.5-flash") {
+      modelsToTry.push(selectedModel);
+    }
+
+    try {
+      const listRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
+        { cache: "no-store" }
+      );
+      if (listRes.ok) {
+        const listData = await listRes.json();
+        if (Array.isArray(listData.models)) {
+          const supported = listData.models
+            .filter((m: any) =>
+              Array.isArray(m.supportedGenerationMethods) &&
+              m.supportedGenerationMethods.includes("generateContent")
+            )
+            .map((m: any) => m.name.replace(/^models\//, ""));
+
+          supported.sort((a: string, b: string) => {
+            const score = (name: string) => {
+              if (name === "gemini-2.0-flash") return 100;
+              if (name === "gemini-1.5-flash") return 90;
+              if (name.includes("flash")) return 80;
+              if (name.includes("pro")) return 70;
+              return 50;
+            };
+            return score(b) - score(a);
+          });
+
+          for (const m of supported) {
+            if (!modelsToTry.includes(m)) modelsToTry.push(m);
+          }
+        }
+      }
+    } catch {
+      // Fall through to default candidates
+    }
+
+    const defaultCandidates = [
       "gemini-2.0-flash",
       "gemini-1.5-flash",
-    ].filter((m, i, arr) => arr.indexOf(m) === i);
+      "gemini-1.5-flash-latest",
+      "gemini-1.5-pro",
+      "gemini-pro",
+    ];
+    for (const d of defaultCandidates) {
+      if (!modelsToTry.includes(d)) modelsToTry.push(d);
+    }
 
     let lastError = "";
     let geminiReply = "";
-    let usedModel = selectedModel;
+    let usedModel = modelsToTry[0] || "gemini-2.0-flash";
 
     // Convert messages to Gemini format: user vs model
     const contents: Array<{ role: string; parts: Array<{ text: string }> }> = [];
@@ -387,7 +435,7 @@ export async function POST(request: Request) {
       {
         success: true,
         reply:
-          "Thank you for reaching out to Renovation Contractor SG! We are currently assisting multiple clients. Please message our senior supervisor directly on WhatsApp at +65 8936 1834 for an instant quotation.",
+          "Thank you for reaching out to Renovation Contractor SG! We are currently assisting multiple clients. Please message our senior supervisor directly on WhatsApp at +65 8170 4063 or call us at +65 8653 1076 for an instant quotation.",
         source: "emergency_fallback",
         error: error.message,
       },

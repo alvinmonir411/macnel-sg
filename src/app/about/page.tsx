@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "About Us & Licensed Builders Singapore | Renovation Contractor SG",
   description:
-    "Learn about Renovation Contractor SG, our direct in-house craftsmen, Singapore BCA & HDB compliance, insurance coverage, and transparent working process.",
+    "Learn about Renovation Contractor SG (UEN: 202402481G), our direct in-house craftsmen, Singapore BCA & HDB compliance, insurance coverage, and transparent working process.",
   openGraph: {
     title: "About Us | Renovation Contractor SG",
     description:
@@ -104,43 +104,55 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {members.map((m) => (
-              <div
-                key={m.id}
-                className="group rounded-3xl bg-white/5 border border-white/10 overflow-hidden flex flex-col justify-between shadow-xl hover:border-[#8CCB6B]/40 transition-all duration-300"
-              >
-                <div>
-                  <div className="relative aspect-[4/3] w-full bg-slate-900 overflow-hidden">
-                    <ProjectImage
-                      src={m.photo}
-                      alt={m.name.replace(/^TODO_REPLACE:\s*/i, "")}
-                      fallbackText="Add team photo"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
-                    <div className="absolute bottom-3 left-3 bg-[#0A1424]/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20 shadow-sm flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#8CCB6B]" />
-                      <span>{m.credentials.replace(/^TODO_REPLACE:\s*/i, "")}</span>
+            {members.map((m) => {
+              const isFounder = m.id === "member-1";
+              return (
+                <div
+                  key={m.id}
+                  className={`group rounded-3xl overflow-hidden flex flex-col justify-between shadow-xl transition-all duration-300 ${
+                    isFounder
+                      ? "bg-gradient-to-b from-[#14233c] to-[#0d1726] border-2 border-[#8CCB6B]/60 shadow-[0_0_30px_rgba(140,203,107,0.2)] hover:border-[#8CCB6B]"
+                      : "bg-white/5 border border-white/10 hover:border-[#8CCB6B]/40"
+                  }`}
+                >
+                  <div>
+                    <div className="relative aspect-[4/3] w-full bg-slate-900 overflow-hidden">
+                      <ProjectImage
+                        src={m.photo}
+                        alt={m.name.replace(/^TODO_REPLACE:\s*/i, "")}
+                        fallbackText="Add team photo"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+                      <div className="absolute bottom-3 left-3 bg-[#0A1424]/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20 shadow-sm flex items-center gap-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                        <span>{m.credentials.replace(/^TODO_REPLACE:\s*/i, "")}</span>
+                      </div>
+                      {isFounder && (
+                        <div className="absolute top-3 right-3 bg-gradient-to-r from-[#8CCB6B] to-[#A3E635] text-[#0A1424] text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-lg">
+                          Founder &amp; Owner
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <span className="text-xs font-bold text-[#8CCB6B] block mb-1">
+                        {m.role.replace(/^TODO_REPLACE:\s*/i, "")}
+                      </span>
+                      <h3 className="text-xl font-bold text-white mb-1">
+                        {m.name.replace(/^TODO_REPLACE:\s*/i, "")}
+                      </h3>
+                      <p className="text-xs text-amber-300 font-semibold mb-3 flex items-center gap-1.5">
+                        <Award className="w-3.5 h-3.5 text-amber-400" />
+                        <span>{m.experience.replace(/^TODO_REPLACE:\s*/i, "")}</span>
+                      </p>
+                      <p className="text-sm text-slate-300 leading-relaxed font-normal">
+                        {m.bio.replace(/^TODO_REPLACE:\s*/i, "")}
+                      </p>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <span className="text-xs font-bold text-[#8CCB6B] block mb-1">
-                      {m.role.replace(/^TODO_REPLACE:\s*/i, "")}
-                    </span>
-                    <h3 className="text-xl font-bold text-white mb-1">
-                      {m.name.replace(/^TODO_REPLACE:\s*/i, "")}
-                    </h3>
-                    <p className="text-xs text-amber-300 font-semibold mb-3 flex items-center gap-1.5">
-                      <Award className="w-3.5 h-3.5 text-amber-400" />
-                      <span>{m.experience.replace(/^TODO_REPLACE:\s*/i, "")}</span>
-                    </p>
-                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
-                      {m.bio.replace(/^TODO_REPLACE:\s*/i, "")}
-                    </p>
-                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

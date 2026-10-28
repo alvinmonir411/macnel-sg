@@ -24,8 +24,8 @@ export function CredentialsBar() {
   const clean = (val: string | undefined) =>
     val ? val.replace(/^TODO_REPLACE:\s*/i, "").trim() : "";
 
-  const cleanLegalName = clean(legalName) || "Registered Company Pte. Ltd.";
-  const cleanUen = clean(uen) || "202312345A";
+  const cleanLegalName = clean(legalName) || "MACNEL CONSTRUCTION PTE LTD";
+  const cleanUen = clean(uen) || "202402481G";
   const cleanHdb = clean(hdbLicense) || "HDB Registered Directory HB-00-0000X";
   const cleanBca = clean(bcaLicense) || "BCA Registered Contractor (CR06 / General Builder)";
   const cleanYears = clean(yearsInBusiness) || "12";

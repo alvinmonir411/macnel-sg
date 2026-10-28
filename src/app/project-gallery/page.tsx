@@ -96,12 +96,14 @@ export default function ProjectGalleryPage() {
               <span>Book Free Site Inspection</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link
-              href="/pricing"
+            <a
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20a%20free%20quotation.`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-sm sm:text-base transition-all shadow-sm"
             >
-              <span>View Indicative Pricing Guide</span>
-            </Link>
+              <span>Instant WhatsApp Quote</span>
+            </a>
           </div>
         </div>
       </div>

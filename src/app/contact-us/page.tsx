@@ -106,10 +106,10 @@ export default function ContactUsPage() {
                   </div>
                   <div>
                     <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
-                      Direct Phone
+                      Direct Hotline
                     </span>
                     <span className="text-base font-bold text-slate-900">
-                      {siteConfig.contact.phonePrimary} / {siteConfig.contact.phoneSecondary}
+                      {siteConfig.contact.phonePrimary}
                     </span>
                   </div>
                 </a>
