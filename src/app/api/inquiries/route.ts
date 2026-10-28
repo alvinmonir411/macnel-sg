@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { connection } from "next/server";
-import { saveInquiry, sql } from "@/lib/db";
+import { saveInquiry, deleteInquiry, sql } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
@@ -38,7 +38,7 @@ export async function GET() {
   await connection();
   try {
     const inquiries = await sql`
-      SELECT * FROM inquiries ORDER BY created_at DESC LIMIT 50;
+      SELECT * FROM inquiries ORDER BY created_at DESC LIMIT 100;
     `;
     return NextResponse.json({ inquiries });
   } catch (error) {
@@ -49,3 +49,27 @@ export async function GET() {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json(
+        { error: "Inquiry ID is required." },
+        { status: 400 }
+      );
+    }
+
+    await deleteInquiry(Number(id));
+    return NextResponse.json({ success: true, message: `Inquiry ${id} deleted.` });
+  } catch (error: any) {
+    console.error("Failed to delete inquiry:", error);
+    return NextResponse.json(
+      { error: "Failed to delete inquiry from database.", details: error.message },
+      { status: 500 }
+    );
+  }
+}
+

@@ -21,6 +21,18 @@ export interface CloudinaryMapping {
 
 const map = (cloudinaryData as unknown as CloudinaryMapping).urlMap || {};
 
+// Client-side and in-memory override registry
+let runtimeOverrides: Record<string, string> = {};
+
+export function setRuntimeImageOverride(path: string, url: string) {
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  runtimeOverrides[cleanPath] = url;
+}
+
+export function setBatchRuntimeOverrides(overrides: Record<string, string>) {
+  runtimeOverrides = { ...runtimeOverrides, ...overrides };
+}
+
 /**
  * Returns the Cloudinary CDN URL for a given local public image path.
  * If not found in the mapping, gracefully returns the original local path.
@@ -35,7 +47,20 @@ export function getCloudinaryUrl(localPath: string | null | undefined): string {
     return localPath;
   }
   const cleanPath = localPath.startsWith("/") ? localPath : `/${localPath}`;
+
+  // 1. Check runtime in-memory overrides (e.g. from DB / dashboard live updates)
+  if (runtimeOverrides[cleanPath]) {
+    return runtimeOverrides[cleanPath];
+  }
+
+  // 2. Check window.__IMAGE_OVERRIDES__ if set by layout/script
+  if (typeof window !== "undefined" && (window as any).__IMAGE_OVERRIDES__?.[cleanPath]) {
+    return (window as any).__IMAGE_OVERRIDES__[cleanPath];
+  }
+
+  // 3. Check persistent Cloudinary JSON mapping
   return map[cleanPath] || localPath;
 }
 
 export default cloudinaryData as unknown as CloudinaryMapping;
+

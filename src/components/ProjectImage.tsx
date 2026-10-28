@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Camera } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface ProjectImageProps {
   src?: string;
@@ -48,7 +49,7 @@ export function ProjectImage({
 
   return (
     <Image
-      src={src}
+      src={getCloudinaryUrl(src)}
       alt={alt}
       fill
       sizes={sizes}

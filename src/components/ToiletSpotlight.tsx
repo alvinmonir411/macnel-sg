@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { Check, MessageCircle, ShieldCheck, Droplets, Sparkles } from "lucide-react";
 
 export function ToiletSpotlight() {
@@ -76,11 +77,12 @@ export function ToiletSpotlight() {
           <div className="lg:sticky lg:top-28 rounded-2xl overflow-hidden border border-slate-200/80 bg-white shadow-xl">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
-                src="/images/tiling/11.jpeg"
+                src={getCloudinaryUrl("/images/tiling/11.jpeg")}
                 alt="Bathroom renovation in progress"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
+
               <div className="absolute top-4 left-4 bg-brand-dark/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
                 <Droplets className="w-3.5 h-3.5 text-brand-accent" />
                 <span>100% Leak-Proof Guarantee</span>

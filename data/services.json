@@ -1,0 +1,123 @@
+[
+  {
+    "id": "house-renovation",
+    "category": "renovation",
+    "title": "House Renovation",
+    "badge": "Direct Contractor",
+    "desc": "Complete turnkey home transformation for HDB flats, condominiums, and landed homes with dedicated supervision.",
+    "specs": [
+      "Single builder team with one accountable supervisor",
+      "Full HDB and BCA renovation permit submission",
+      "Guaranteed milestone schedule and defect checks"
+    ],
+    "image": "/images/house-reno/1.jpeg",
+    "href": "/house-renovation",
+    "iconName": "Home"
+  },
+  {
+    "id": "tiling-services",
+    "category": "surfaces",
+    "title": "Tiling Services",
+    "badge": "Precision Masonry",
+    "desc": "Laser-aligned floor and wall tiling for bathrooms, kitchens, and living rooms with anti-slip finishes.",
+    "specs": [
+      "Large format homogeneous, ceramic & porcelain slabs",
+      "3D laser leveling with zero tile lippage",
+      "Waterproof anti-mold cement and epoxy grouting"
+    ],
+    "image": "/images/doc-updates/image20.jpg",
+    "href": "/tiling-works",
+    "iconName": "Grid3X3"
+  },
+  {
+    "id": "door-window",
+    "category": "doors",
+    "title": "Door & Window Services",
+    "badge": "BCA Compliant",
+    "desc": "BCA-certified aluminium sliding windows, soundproof double glazing, and trackless bi-fold doors.",
+    "specs": [
+      "Grade SS304 stainless safety rivets and stays",
+      "Acoustic noise reduction glass configurations",
+      "Trackless Slide & Swing toilet bi-fold doors"
+    ],
+    "image": "/images/door-window/4.jpeg",
+    "href": "/door-window-services",
+    "iconName": "DoorOpen"
+  },
+  {
+    "id": "false-ceiling-partition",
+    "category": "walls-ceiling",
+    "title": "False Ceiling & Partition",
+    "badge": "Galvanized Steel",
+    "desc": "Architectural drop ceilings, cove lighting pelmets, curtain boxes, and acoustic drywall partitions.",
+    "specs": [
+      "Hot-dipped galvanized steel channel framing",
+      "Moisture-resistant plasterboard for wet areas",
+      "Acoustic rockwool sound insulation infills"
+    ],
+    "image": "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
+    "href": "/false-ceiling",
+    "iconName": "Lightbulb"
+  },
+  {
+    "id": "painting-services",
+    "category": "walls-ceiling",
+    "title": "Painting Services",
+    "badge": "Nippon Paint",
+    "desc": "Flawless wall and ceiling painting with genuine Nippon Odourless and Medifresh anti-bacterial paint.",
+    "specs": [
+      "Nippon 5101 Odour-Less wall sealer undercoat",
+      "2 finishing coats of genuine Nippon paint",
+      "Complete floor and furniture masking protection"
+    ],
+    "image": "/images/partition-ceiling/6.jpeg",
+    "href": "/house-painting-plastering",
+    "iconName": "Paintbrush"
+  },
+  {
+    "id": "plastering-services",
+    "category": "walls-ceiling",
+    "title": "Plastering Services",
+    "badge": "Skim Coating",
+    "desc": "Multi-layer skim coating, surface repair, and crack patching for perfectly flat, smooth surfaces.",
+    "specs": [
+      "Polymer-modified fine skim coat application",
+      "Fiberglass mesh reinforcement on crack joints",
+      "Laser-flat surface inspection prior to painting"
+    ],
+    "image": "/images/partition-ceiling/4.jpeg",
+    "href": "/house-painting-plastering",
+    "iconName": "Hammer"
+  },
+  {
+    "id": "flooring-carpet-services",
+    "category": "surfaces",
+    "title": "Flooring & Carpet Services",
+    "badge": "SPC & Parquet",
+    "desc": "100% waterproof SPC rigid vinyl flooring, dust-free parquet sanding, and commercial carpet tiles.",
+    "specs": [
+      "100% waterproof SPC rigid vinyl click overlay",
+      "Swedish Bona 99% dust-free parquet restoration",
+      "Heavy-traffic commercial modular carpet tiles"
+    ],
+    "image": "/images/tiling/11.jpeg",
+    "href": "/flooring-carpet-services",
+    "iconName": "Layers"
+  },
+  {
+    "id": "toilet-renovation",
+    "category": "renovation",
+    "title": "Toilet Renovation",
+    "badge": "Wet Trade Specialty",
+    "desc": "Turnkey bathroom overhauls: pneumatic hacking, dual-layer waterproofing, PUB piping, and tiling.",
+    "specs": [
+      "Hacking down to bare structural concrete",
+      "Dual-coat waterproof membrane & 48-hr ponding test",
+      "PUB-licensed plumbing and sanitary fixture setup"
+    ],
+    "image": "/images/tiling/12.jpeg",
+    "href": "/toilet-renovation-in-singapore",
+    "iconName": "Droplets"
+  }
+]
+

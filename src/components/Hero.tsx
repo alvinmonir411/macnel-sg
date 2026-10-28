@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import {
   MessageCircle,
   CalendarCheck,
@@ -49,23 +50,14 @@ export function Hero() {
     const activateVideo = () => setShouldMountVideo(true);
 
     if (document.readyState === "complete") {
-      if ("requestIdleCallback" in window) {
-        (window as any).requestIdleCallback(activateVideo, { timeout: 3000 });
-      } else {
-        setTimeout(activateVideo, 2000);
-      }
+      setTimeout(activateVideo, 200);
     } else {
-      const handleLoad = () => {
-        if ("requestIdleCallback" in window) {
-          (window as any).requestIdleCallback(activateVideo, { timeout: 3000 });
-        } else {
-          setTimeout(activateVideo, 2000);
-        }
-      };
+      const handleLoad = () => setTimeout(activateVideo, 200);
       window.addEventListener("load", handleLoad, { once: true });
       return () => window.removeEventListener("load", handleLoad);
     }
   }, []);
+
 
   return (
     <section className="relative overflow-hidden bg-[#0A1124] text-white min-h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-5rem)] flex flex-col justify-between">
@@ -73,25 +65,25 @@ export function Hero() {
       <picture className="absolute inset-0 w-full h-full pointer-events-none">
         <source
           media="(max-width: 768px)"
-          srcSet="/hero-modern-mobile.webp"
+          srcSet={getCloudinaryUrl("/hero-modern-mobile.webp")}
           type="image/webp"
         />
         <source
           media="(min-width: 769px)"
-          srcSet="/hero-modern-desktop.webp"
+          srcSet={getCloudinaryUrl("/hero-modern-desktop.webp")}
           type="image/webp"
         />
         <img
-          src="/hero-modern-desktop.webp"
+          src={getCloudinaryUrl("/hero-modern-desktop.webp")}
           alt="Direct Renovation Contractor Singapore"
           fetchPriority="high"
           loading="eager"
           decoding="sync"
-          className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${
-            videoLoaded ? "opacity-0" : "opacity-80 sm:opacity-90"
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${videoLoaded ? "opacity-0" : "opacity-80 sm:opacity-90"
+            }`}
         />
       </picture>
+
 
       {/* 🎬 Deferred Ambient Desktop Video */}
       {shouldMountVideo && (
@@ -102,16 +94,13 @@ export function Hero() {
           playsInline
           preload="auto"
           onPlaying={() => setVideoLoaded(true)}
-          className={`hidden lg:block absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-1000 ${
-            videoLoaded ? "opacity-80" : "opacity-0"
-          }`}
+          className={`hidden lg:block absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${videoLoaded ? "opacity-80" : "opacity-0"
+            }`}
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src={getCloudinaryUrl("/hero-video.mp4")} type="video/mp4" />
         </video>
-      )}
 
-      {/* 📐 Warm Luxury Architectural Vignette:
-          Lets the warm fluted wood, cove ceiling & modern living room shine through */}
+      )}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{

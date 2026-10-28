@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import {
   ShieldCheck,
   Users,
@@ -103,7 +104,7 @@ export default function AboutUsPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-md">
-              At Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD), we eliminate the bloated overhead of design sales agencies. We own our
+              At Renovation Contractor SG, we eliminate the bloated overhead of design sales agencies. We own our
               carpentry workshop, employ our own tilers and plumbers, and deliver turnkey renovations with uncompromising structural
               integrity.
             </p>
@@ -167,7 +168,7 @@ export default function AboutUsPage() {
               a 20% to 35% margin while diluting quality control.
             </p>
             <p className="text-base text-slate-600 leading-relaxed mb-6 font-normal">
-              Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD, UEN: 202402481G) was established to restore pure builder craftsmanship. When you work with us, you deal
+              Renovation Contractor SG was established to restore pure builder craftsmanship. When you work with us, you deal
               directly with our Founder, Managing Director, and master tradesmen responsible for your hacking, waterproofing, piping, tiling, electrical, and
               custom cabinetry.
             </p>
@@ -189,10 +190,11 @@ export default function AboutUsPage() {
 
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-[#8CCB6B]/40 group">
             <img
-              src="/images/team/owner.jpg"
+              src={getCloudinaryUrl("/images/team/owner.jpg")}
               alt="Renovation Contractor SG Founder & Managing Director on site"
               className="w-full h-[520px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
             />
+
             <div className="absolute inset-0 bg-gradient-to-t from-[#16263F]/95 via-[#16263F]/35 to-transparent flex flex-col justify-end p-8 text-white">
               <span className="text-xs uppercase font-bold text-[#A3E635] tracking-wider mb-1 flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#8CCB6B]" />

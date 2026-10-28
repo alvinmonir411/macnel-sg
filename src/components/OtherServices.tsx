@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { ProjectImage } from "@/components/ProjectImage";
+import servicesData from "../../data/services.json";
 import {
   Grid3X3,
   DoorOpen,
@@ -35,133 +36,26 @@ interface MainService {
   icon: typeof Grid3X3;
 }
 
-const mainServicesList: MainService[] = [
-  {
-    id: "house-renovation",
-    category: "renovation",
-    title: "House Renovation",
-    badge: "Direct Contractor",
-    desc: "Complete turnkey home transformation for HDB flats, condominiums, and landed homes with dedicated supervision.",
-    specs: [
-      "Single builder team with one accountable supervisor",
-      "Full HDB and BCA renovation permit submission",
-      "Guaranteed milestone schedule and defect checks",
-    ],
-    image: "/images/house-reno/1.jpeg",
-    href: "/house-renovation",
-    icon: Home,
-  },
-  {
-    id: "tiling-services",
-    category: "surfaces",
-    title: "Tiling Services",
-    badge: "Precision Masonry",
-    desc: "Laser-aligned floor and wall tiling for bathrooms, kitchens, and living rooms with anti-slip finishes.",
-    specs: [
-      "Large format homogeneous, ceramic & porcelain slabs",
-      "3D laser leveling with zero tile lippage",
-      "Waterproof anti-mold cement and epoxy grouting",
-    ],
-    image: "/images/doc-updates/image20.jpg",
-    href: "/tiling-works",
-    icon: Grid3X3,
-  },
-  {
-    id: "door-window",
-    category: "doors",
-    title: "Door & Window Services",
-    badge: "BCA Compliant",
-    desc: "BCA-certified aluminium sliding windows, soundproof double glazing, and trackless bi-fold doors.",
-    specs: [
-      "Grade SS304 stainless safety rivets and stays",
-      "Acoustic noise reduction glass configurations",
-      "Trackless Slide & Swing toilet bi-fold doors",
-    ],
-    image: "/images/door-window/4.jpeg",
-    href: "/door-window-services",
-    icon: DoorOpen,
-  },
-  {
-    id: "false-ceiling-partition",
-    category: "walls-ceiling",
-    title: "False Ceiling & Partition",
-    badge: "Galvanized Steel",
-    desc: "Architectural drop ceilings, cove lighting pelmets, curtain boxes, and acoustic drywall partitions.",
-    specs: [
-      "Hot-dipped galvanized steel channel framing",
-      "Moisture-resistant plasterboard for wet areas",
-      "Acoustic rockwool sound insulation infills",
-    ],
-    image: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
-    href: "/false-ceiling",
-    icon: Lightbulb,
-  },
-  {
-    id: "painting-services",
-    category: "walls-ceiling",
-    title: "Painting Services",
-    badge: "Nippon Paint",
-    desc: "Flawless wall and ceiling painting with genuine Nippon Odourless and Medifresh anti-bacterial paint.",
-    specs: [
-      "Nippon 5101 Odour-Less wall sealer undercoat",
-      "2 finishing coats of genuine Nippon paint",
-      "Complete floor and furniture masking protection",
-    ],
-    image: "/images/partition-ceiling/6.jpeg",
-    href: "/house-painting-plastering",
-    icon: Paintbrush,
-  },
-  {
-    id: "plastering-services",
-    category: "walls-ceiling",
-    title: "Plastering Services",
-    badge: "Skim Coating",
-    desc: "Multi-layer skim coating, surface repair, and crack patching for perfectly flat, smooth surfaces.",
-    specs: [
-      "Polymer-modified fine skim coat application",
-      "Fiberglass mesh reinforcement on crack joints",
-      "Laser-flat surface inspection prior to painting",
-    ],
-    image: "/images/partition-ceiling/4.jpeg",
-    href: "/house-painting-plastering",
-    icon: Hammer,
-  },
-  {
-    id: "flooring-carpet-services",
-    category: "surfaces",
-    title: "Flooring & Carpet Services",
-    badge: "SPC & Parquet",
-    desc: "100% waterproof SPC rigid vinyl flooring, dust-free parquet sanding, and commercial carpet tiles.",
-    specs: [
-      "100% waterproof SPC rigid vinyl click overlay",
-      "Swedish Bona 99% dust-free parquet restoration",
-      "Heavy-traffic commercial modular carpet tiles",
-    ],
-    image: "/images/tiling/11.jpeg",
-    href: "/flooring-carpet-services",
-    icon: Layers,
-  },
-  {
-    id: "toilet-renovation",
-    category: "renovation",
-    title: "Toilet Renovation",
-    badge: "Wet Trade Specialty",
-    desc: "Turnkey bathroom overhauls: pneumatic hacking, dual-layer waterproofing, PUB piping, and tiling.",
-    specs: [
-      "Hacking down to bare structural concrete",
-      "Dual-coat waterproof membrane & 48-hr ponding test",
-      "PUB-licensed plumbing and sanitary fixture setup",
-    ],
-    image: "/images/tiling/12.jpeg",
-    href: "/toilet-renovation-in-singapore",
-    icon: Droplets,
-  },
-];
+const iconMap: Record<string, any> = {
+  Home,
+  Grid3X3,
+  DoorOpen,
+  Lightbulb,
+  Paintbrush,
+  Hammer,
+  Layers,
+  Droplets,
+};
 
 export function OtherServices() {
   const [activeTab, setActiveTab] = useState<
     "all" | "renovation" | "surfaces" | "walls-ceiling" | "doors"
   >("all");
+
+  const mainServicesList: MainService[] = (servicesData as any[]).map((item) => ({
+    ...item,
+    icon: iconMap[item.iconName] || Home,
+  }));
 
   const filteredServices =
     activeTab === "all"
@@ -185,7 +79,7 @@ export function OtherServices() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-3xl">
             <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#2C6BA6] mb-3">
-              Direct In-House Core Trades
+              Our Services
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0F172A] leading-tight">
               Our Core Renovation Services
@@ -226,7 +120,7 @@ export function OtherServices() {
           ))}
         </div>
 
-        {/* Editorial Photo-Driven Cards Grid (Rule A.3 & A.5) */}
+        {/* Editorial Photo-Driven Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredServices.map((service) => {
             const Icon = service.icon;
@@ -235,7 +129,7 @@ export function OtherServices() {
                 key={service.id}
                 className="group relative rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-2xl hover:border-[#8CCB6B]/60 transition-all duration-300 flex flex-col justify-between"
               >
-                {/* Visual Image Header using <ProjectImage> (Rule A.5) */}
+                {/* Visual Image Header using <ProjectImage> */}
                 <div className="relative h-48 w-full overflow-hidden bg-slate-900">
                   <ProjectImage
                     src={service.image}
@@ -258,7 +152,7 @@ export function OtherServices() {
                   </div>
                 </div>
 
-                {/* Content Body: Min 14px text, Max 2 lines desc, Max 3 bullets (Rule A.3) */}
+                {/* Content Body */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
                     <h3 className="text-lg font-extrabold text-[#0F172A] mb-2 group-hover:text-[#2C6BA6] transition-colors">
@@ -268,7 +162,7 @@ export function OtherServices() {
                       {service.desc}
                     </p>
 
-                    {/* Specification Badges (Max 3, clean text) */}
+                    {/* Specification Badges */}
                     <div className="space-y-2 mb-6 pt-3 border-t border-slate-100">
                       {service.specs.slice(0, 3).map((spec, sIdx) => (
                         <div key={sIdx} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
@@ -279,7 +173,7 @@ export function OtherServices() {
                     </div>
                   </div>
 
-                  {/* Action Area: Consistent Primary CTA (Rule C.4) */}
+                  {/* Action Area */}
                   <div className="pt-4 border-t border-slate-100 space-y-2.5">
                     <Link
                       href={`/book?service=${encodeURIComponent(service.id)}`}

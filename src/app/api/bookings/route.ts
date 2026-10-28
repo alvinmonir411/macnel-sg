@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { connection } from "next/server";
-import { saveBooking, sql } from "@/lib/db";
+import { saveBooking, updateBookingStatus, deleteBooking, sql } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
@@ -107,3 +107,50 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export async function PATCH(request: Request) {
+  try {
+    const body = await request.json();
+    const { id, status } = body;
+
+    if (!id || !status) {
+      return NextResponse.json(
+        { error: "Booking ID and new status are required." },
+        { status: 400 }
+      );
+    }
+
+    const updated = await updateBookingStatus(id, status);
+    return NextResponse.json({ success: true, booking: updated });
+  } catch (error: any) {
+    console.error("Failed to update booking status:", error);
+    return NextResponse.json(
+      { error: "Failed to update booking in database.", details: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json(
+        { error: "Booking ID is required." },
+        { status: 400 }
+      );
+    }
+
+    await deleteBooking(id);
+    return NextResponse.json({ success: true, message: `Booking ${id} deleted.` });
+  } catch (error: any) {
+    console.error("Failed to delete booking:", error);
+    return NextResponse.json(
+      { error: "Failed to delete booking from database.", details: error.message },
+      { status: 500 }
+    );
+  }
+}
+

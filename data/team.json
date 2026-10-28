@@ -1,5 +1,5 @@
 {
-  "companyStory": "Founded by seasoned builders in Singapore, Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD) was established to bridge the gap between homeowners and on-site craftsmen. We eliminate confusing sales markups by having our certified project directors and master tradesmen communicate directly with clients from day one. With decades of collective on-site experience across HDB estates, condominiums, landed houses, and commercial premises, we hold ourselves accountable to high craftsmanship and on-time handovers.",
+  "companyStory": "Renovation Contractor SG was built on one principle: you deserve to deal directly with the people building your home. We are a 100% in-house Singapore renovation team — our master tilers, carpenters, electricians, plumbers, and painters are all on our payroll. No subcontracting. No interior design middlemen. No hidden markups. With deep roots across HDB estates, condominiums, landed houses, and commercial premises, we deliver transparent pricing, rigorous craftsmanship, and on-time project handovers — every single time.",
   "workingProcess": [
     {
       "step": "1",
@@ -42,26 +42,6 @@
       "credentials": "BCA Certified CoreTrade Specialist",
       "bio": "Founder & Director of Renovation Contractor SG. Direct on-site supervision, plumbing & sanitary installations, structural works, and quality control from hacking to final handover.",
       "photo": "/images/team/owner.jpg"
-    },
-    {
-      "id": "member-2",
-      "isPlaceholder": false,
-      "name": "Masonry & Tiling Lead",
-      "role": "Senior Master Tiler & Masonry Lead",
-      "experience": "16 Years Hands-On Experience",
-      "credentials": "BCA Registered Tiling Craftsman",
-      "bio": "Specializes in large-format slab installations, mitred joint edging, and zero-hollow buttering techniques.",
-      "photo": "/images/doc-updates/image79.jpg"
-    },
-    {
-      "id": "member-3",
-      "isPlaceholder": false,
-      "name": "Carpentry & Fit-Out Lead",
-      "role": "Factory Carpentry & Fit-Out Director",
-      "experience": "14 Years in Singapore",
-      "credentials": "Solid Plywood & Blum Specialist",
-      "bio": "Coordinates in-house workshop fabrication for custom kitchen cabinetry, wardrobes, and architectural ceiling details.",
-      "photo": "/images/doc-updates/image15.jpg"
     }
   ]
 }

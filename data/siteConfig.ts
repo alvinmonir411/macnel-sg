@@ -92,11 +92,11 @@ export const siteConfig: SiteConfig = {
   name: "Renovation Contractor SG",
   tagline: "Singapore Direct Renovation Contractor · Hacking to Handover",
   description:
-    "Renovation Contractor SG (operated by MACNEL CONSTRUCTION PTE LTD, UEN: 202402481G) — Licensed direct renovation contractor in Singapore. Transparent pricing, dedicated on-site supervision for HDB flats, condominiums, landed homes, and commercial units.",
+    "Renovation Contractor SG — Licensed direct renovation contractor in Singapore. Transparent pricing, dedicated on-site supervision for HDB flats, condominiums, landed homes, and commercial units.",
   url: "https://renovationcontractorsg.org",
 
   // 🏛️ Official Business Registration & Credentials
-  legalName: "MACNEL CONSTRUCTION PTE LTD",
+  legalName: "Renovation Contractor SG",
   
   // ACRA Official UEN
   uen: "202402481G",
