@@ -48,8 +48,21 @@
     "totalUploaded": 186
   },
   "site_images": {
-    "owner_photo": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793201127/renovation-contractor-sg/dashboard-uploads/sgnfnlcqlqgwgraromnp.jpg",
+    "hero_video": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289150/renovation-contractor-sg/dashboard-uploads/ko7l0ve0p3tpj95wlqmm.jpg",
+    "hero_mobile": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289282/renovation-contractor-sg/dashboard-uploads/eqsphtgrfkdsf0krw3pn.png",
+    "owner_photo": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289500/renovation-contractor-sg/dashboard-uploads/vwm23xshmaeys6mv5ums.jpg",
+    "hero_desktop": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289506/renovation-contractor-sg/dashboard-uploads/zslfdbgjsjdeg6f5qdu4.jpg",
+    "/hero-video.mp4": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289150/renovation-contractor-sg/dashboard-uploads/ko7l0ve0p3tpj95wlqmm.jpg",
+    "house_reno_hero": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289125/renovation-contractor-sg/dashboard-uploads/f0ozp82bcj8s6fex6c1b.jpg",
+    "/hero-poster.webp": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289506/renovation-contractor-sg/dashboard-uploads/zslfdbgjsjdeg6f5qdu4.jpg",
+    "/images/owner.jpg": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289500/renovation-contractor-sg/dashboard-uploads/vwm23xshmaeys6mv5ums.jpg",
+    "house_reno_phase_1": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289178/renovation-contractor-sg/dashboard-uploads/ejag7lpdfhranwdla9og.jpg",
+    "/images/team/owner.jpg": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289500/renovation-contractor-sg/dashboard-uploads/vwm23xshmaeys6mv5ums.jpg",
+    "/hero-modern-mobile.webp": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289282/renovation-contractor-sg/dashboard-uploads/eqsphtgrfkdsf0krw3pn.png",
+    "/hero-poster-mobile.webp": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289282/renovation-contractor-sg/dashboard-uploads/eqsphtgrfkdsf0krw3pn.png",
     "service_house_renovation": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793201245/renovation-contractor-sg/dashboard-uploads/bfibjtn4ptu4dzb9mvlg.png",
-    "hero_desktop": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793201295/renovation-contractor-sg/dashboard-uploads/qans7rrjodimwql7goqn.png"
+    "/hero-modern-desktop.webp": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289506/renovation-contractor-sg/dashboard-uploads/zslfdbgjsjdeg6f5qdu4.jpg",
+    "/images/house-reno/1.jpeg": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289178/renovation-contractor-sg/dashboard-uploads/ejag7lpdfhranwdla9og.jpg",
+    "/images/house-reno/hero.jpeg": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289125/renovation-contractor-sg/dashboard-uploads/f0ozp82bcj8s6fex6c1b.jpg"
   }
 }

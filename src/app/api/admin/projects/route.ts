@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
+import { saveSettings } from "@/lib/db";
 import fs from "fs/promises";
 import path from "path";
 
@@ -18,8 +19,7 @@ async function writeProjectsFile(data: any) {
     const filePath = path.join(process.cwd(), "data", "projects.json");
     await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
   } catch (err) {
-    console.error("Failed to write to data/projects.json:", err);
-    throw err;
+    console.warn("Local data/projects.json write skipped (read-only on Vercel):", err);
   }
 }
 
@@ -59,6 +59,7 @@ export async function POST(request: Request) {
       );
     }
 
+    await saveSettings("projects", projects);
     await writeProjectsFile(projects);
 
     return NextResponse.json({

@@ -636,8 +636,14 @@ async function getLocalCloudinaryData() {
 }
 
 async function saveLocalCloudinaryData(data: any) {
-  const filePath = path.join(process.cwd(), "data", "cloudinaryImages.json");
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+  try {
+    const filePath = path.join(process.cwd(), "data", "cloudinaryImages.json");
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
+  } catch (err) {
+    // Expected on Vercel/serverless environments where filesystem is read-only.
+    // Database overrides in Neon PostgreSQL guarantee live persistence.
+    console.warn("Local cloudinaryImages.json write skipped (read-only environment):", err);
+  }
 }
 
 export async function GET() {
