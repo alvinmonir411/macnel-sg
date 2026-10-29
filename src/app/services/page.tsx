@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
+import servicesData from "../../../data/services.json";
 import {
   MessageCircle,
   Phone,
@@ -27,99 +29,21 @@ export const metadata: Metadata = {
     "Direct renovation contractor services in Singapore: House Renovation, Tiling Services, Door & Window Replacement, False Ceiling & Partition, Painting, Plastering, Flooring & Carpets, and Toilet Renovation.",
 };
 
-interface ServiceItem {
-  id: string;
-  title: string;
-  image: string;
-  desc: string;
-  badge: string;
-  specs: string[];
-  href: string;
-  icon: typeof Home;
-}
+const iconMap: Record<string, any> = {
+  Home,
+  Grid3X3,
+  DoorOpen,
+  Lightbulb,
+  Paintbrush,
+  Hammer,
+  Layers,
+  Droplets,
+};
 
-const mainServices: ServiceItem[] = [
-  {
-    id: "house-renovation",
-    title: "House Renovation",
-    image: "/images/house-reno/1.jpeg",
-    desc: "Turnkey home transformations for HDB BTO, mature resale apartments, condominiums, and landed houses with direct contractor pricing and zero interior designer middleman commissions.",
-    badge: "Direct Contractor",
-    specs: ["Save 20% to 30% without ID markups", "Full HDB and BCA permit handling", "Guaranteed handover schedule & Gantt timeline"],
-    href: "/house-renovation",
-    icon: Home,
-  },
-  {
-    id: "tiling-works",
-    title: "Tiling Services",
-    image: "/images/tiling/2.jpeg",
-    desc: "Master tile installation with zero-hollow polymer buttering. Large-format 600x1200 homogeneous slabs, anti-slip bathroom flooring, and razor-sharp 45° mitred external edge joints.",
-    badge: "BCA Certified Tilers",
-    specs: ["C2TE heavy-duty polymer adhesive", "Mapei Ultracolor anti-mold waterproof grout", "Laser 3D horizontal leveling system"],
-    href: "/tiling-works",
-    icon: Grid3X3,
-  },
-  {
-    id: "door-window-services",
-    title: "Door & Window Services",
-    image: "/images/door-window/4.jpeg",
-    desc: "BCA-certified aluminium casement & sliding windows, soundproof acoustic double glazing, fire-rated timber entrance doors, and trackless toilet bi-fold doors.",
-    badge: "BCA Approved Installers",
-    specs: ["Grade SS304 stainless safety rivets & stays", "-42 dB acoustic noise reduction double glazing", "CoC certified fire-rated timber doors"],
-    href: "/door-window-services",
-    icon: DoorOpen,
-  },
-  {
-    id: "false-ceiling",
-    title: "False Ceiling & Partition",
-    image: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
-    desc: "Architectural drop ceilings, cove lighting pelmets, curtain boxes, and acoustic drywall partitions built with heavy-duty galvanized steel framing and Saint-Gobain plasterboards.",
-    badge: "Saint-Gobain Gyproc",
-    specs: ["Hot-dipped zinc galvanised steel channel grids", "Acoustic rockwool sound insulation infill", "3-coat fiber-reinforced anti-crack joint taping"],
-    href: "/false-ceiling",
-    icon: Lightbulb,
-  },
-  {
-    id: "house-painting",
-    title: "Painting Services",
-    image: "/images/partition-ceiling/6.jpeg",
-    desc: "Flawless wall and ceiling painting using genuine Nippon Odourless and Medifresh anti-bacterial paint. Full floor masking, furniture wrapping, and clean handover.",
-    badge: "Nippon Paint Specialist",
-    specs: ["Nippon 5101 Odour-Less wall sealer coat", "2 coats Nippon Medifresh anti-bacterial paint", "Comprehensive furniture and floor drop-sheet wrapping"],
-    href: "/house-painting-plastering",
-    icon: Paintbrush,
-  },
-  {
-    id: "plastering-services",
-    title: "Plastering Services",
-    image: "/images/partition-ceiling/4.jpeg",
-    desc: "Expert wall smoothing, multi-layer skim coating, plaster patching, and joint repair. Eliminates wall undulations, hairline cracks, and surface blemishes.",
-    badge: "Ultra-Smooth Skim Coat",
-    specs: ["Pre-mixed polymer-modified fine skim coating", "Fiberglass mesh reinforcement for crack bridging", "Laser-flat surface inspection prior to painting"],
-    href: "/house-painting-plastering",
-    icon: Hammer,
-  },
-  {
-    id: "flooring-carpet-services",
-    title: "Flooring & Carpet Services",
-    image: "/images/tiling/11.jpeg",
-    desc: "Swedish Bona 99% dust-free parquet sanding & varnishing, 100% waterproof SPC rigid vinyl click-lock flooring, and heavy-duty commercial acoustic carpet tiles.",
-    badge: "Bona Dust-Free System",
-    specs: ["Non-toxic Swedish Bona Traffic HD polyurethane", "100% waterproof SPC direct tile overlay", "High-density nylon commercial acoustic carpet tiles"],
-    href: "/flooring-carpet-services",
-    icon: Layers,
-  },
-  {
-    id: "toilet-renovation",
-    title: "Toilet & Bathroom Renovation",
-    image: "/images/tiling/12.jpeg",
-    desc: "Turnkey bathroom overhauls: regulated pneumatic hacking, dual-layer SikaTop waterproofing, concealed PUB piping, tiling, and sanitary ware fit-out.",
-    badge: "Signature Wet Trade",
-    specs: ["Mandatory 48-hour water ponding leak test", "PUB certified SS304 stainless steel piping", "R10 anti-slip floor tiles with clean fall to drain"],
-    href: "/toilet-renovation-in-singapore",
-    icon: Droplets,
-  },
-];
+const mainServices = (servicesData as any[]).map((item) => ({
+  ...item,
+  icon: iconMap[item.iconName] || Home,
+}));
 
 export default function ServicesPage() {
   return (
@@ -127,7 +51,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-screen flex items-center py-20 lg:py-28">
         <img
-          src="/images/tiling/44.jpeg"
+          src={getCloudinaryUrl("/images/tiling/44.jpeg")}
           alt="Renovation Services in Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-transform duration-1000"
           style={{ opacity: 0.85 }}
@@ -249,7 +173,7 @@ export default function ServicesPage() {
                 {/* Visual Image Header */}
                 <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                   <img
-                    src={service.image}
+                    src={getCloudinaryUrl(service.image)}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
@@ -276,7 +200,7 @@ export default function ServicesPage() {
                     </p>
 
                     <div className="space-y-2 mb-6 pt-3 border-t border-slate-100">
-                      {service.specs.map((spec, sIdx) => (
+                      {(service.specs || []).map((spec: string, sIdx: number) => (
                         <div key={sIdx} className="flex items-start gap-2 text-[11px] text-slate-700 font-medium">
                           <Check className="w-3.5 h-3.5 text-[#4E9A3C] shrink-0 mt-0.5" />
                           <span className="leading-tight">{spec}</span>
