@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import siteSettings from "../../data/siteSettings.json";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
@@ -198,6 +199,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          id="image-overrides-data"
+          dangerouslySetInnerHTML={{
+            __html: `window.__IMAGE_OVERRIDES__ = ${JSON.stringify(
+              (siteSettings as any)?.site_images || {}
+            )};`,
+          }}
         />
         {/* Dynamic Marketing & Tracking Scripts (GA4, GTM, Meta Pixel, Custom Head) */}
         <MarketingHeadScripts />

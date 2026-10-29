@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import {
   Sparkles,
   MessageCircle,
@@ -87,7 +88,7 @@ export default function CarpentryPage() {
       {/* 1. HERO BANNER */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[85vh] lg:min-h-screen flex items-center py-20 lg:py-28">
         <img
-          src="/images/carpentry/5.jpeg"
+          src={getCloudinaryUrl("/images/carpentry/5.jpeg")}
           alt="Custom Carpentry Services Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-1000 scale-105"
           style={{ opacity: 0.85 }}
@@ -233,7 +234,7 @@ export default function CarpentryPage() {
                 >
                   <div className={`relative rounded-2xl overflow-hidden shadow-lg aspect-[16/11] ${isEven ? "lg:col-start-2" : ""}`}>
                     <img
-                      src={std.image}
+                      src={getCloudinaryUrl(std.image)}
                       alt={std.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       loading="lazy"

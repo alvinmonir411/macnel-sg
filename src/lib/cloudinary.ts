@@ -1,4 +1,5 @@
 import cloudinaryData from "../../data/cloudinaryImages.json";
+import siteSettings from "../../data/siteSettings.json";
 
 export interface CloudinaryMapping {
   uploadedAt: string;
@@ -20,6 +21,7 @@ export interface CloudinaryMapping {
 }
 
 const map = (cloudinaryData as unknown as CloudinaryMapping).urlMap || {};
+const siteSettingsOverrides = (siteSettings as any)?.site_images || {};
 
 // Client-side and in-memory override registry
 let runtimeOverrides: Record<string, string> = {};
@@ -58,7 +60,12 @@ export function getCloudinaryUrl(localPath: string | null | undefined): string {
     return (window as any).__IMAGE_OVERRIDES__[cleanPath];
   }
 
-  // 3. Check persistent Cloudinary JSON mapping
+  // 3. Check persistent siteSettings JSON
+  if (siteSettingsOverrides[cleanPath]) {
+    return siteSettingsOverrides[cleanPath];
+  }
+
+  // 4. Check persistent Cloudinary JSON mapping
   return map[cleanPath] || localPath;
 }
 

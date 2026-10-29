@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import {
   Droplets,
   MessageCircle,
@@ -332,7 +333,7 @@ export default function ToiletRenovationPage() {
                   {/* Photo Showcase */}
                   <div className={`relative rounded-2xl overflow-hidden shadow-lg aspect-[16/11] ${isEven ? "lg:col-start-2" : ""}`}>
                     <img
-                      src={stage.image}
+                      src={getCloudinaryUrl(stage.image)}
                       alt={stage.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       loading="lazy"

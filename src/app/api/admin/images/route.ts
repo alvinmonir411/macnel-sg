@@ -15,10 +15,16 @@ cloudinary.config({
 
 // Defined image slots across website
 export const DEFAULT_IMAGE_SLOTS = [
+  // ==========================================
+  // 1. HOMEPAGE & BRAND ASSETS
+  // ==========================================
   {
     id: "hero_desktop",
     category: "hero",
-    label: "Hero Desktop Banner",
+    pagePath: "/",
+    pageTitle: "Homepage",
+    sectionName: "Hero Banner (Desktop)",
+    label: "Homepage Desktop Hero Banner",
     description: "Main full-width desktop background banner on homepage",
     paths: ["/hero-modern-desktop.webp", "/hero-poster.webp"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/root/roepaxqzy8zxviqaydjp.webp",
@@ -26,131 +32,594 @@ export const DEFAULT_IMAGE_SLOTS = [
   {
     id: "hero_mobile",
     category: "hero",
-    label: "Hero Mobile Banner",
-    description: "Mobile-optimized header visual for mobile screens",
+    pagePath: "/",
+    pageTitle: "Homepage",
+    sectionName: "Hero Banner (Mobile)",
+    label: "Homepage Mobile Hero Banner",
+    description: "Mobile-optimized header visual for smartphone screens",
     paths: ["/hero-modern-mobile.webp", "/hero-poster-mobile.webp"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/root/bzajapadazjq33qpohdw.webp",
   },
   {
     id: "hero_video",
     category: "hero",
-    label: "Hero Desktop Background Video",
+    pagePath: "/",
+    pageTitle: "Homepage",
+    sectionName: "Hero Background Video",
+    label: "Homepage Background Video (.mp4)",
     description: "Ambient background video loop on desktop (MP4 format)",
     paths: ["/hero-video.mp4"],
     defaultUrl: "/hero-video.mp4",
   },
-
-  {
-    id: "owner_photo",
-    category: "team",
-    label: "Founder & MD On-Site Photo",
-    description: "Shown on About Us & Credentials sections as the lead supervisor",
-    paths: ["/images/team/owner.jpg", "/images/owner.jpg"],
-    defaultUrl: "/images/owner.jpg",
-  },
   {
     id: "brand_logo",
-    category: "brand",
+    category: "hero",
+    pagePath: "/",
+    pageTitle: "Global Navbar & Footer",
+    sectionName: "Brand Logo",
     label: "Site Brand Logo / Icon",
-    description: "Shown in Navbar header and Footer",
+    description: "Shown in Navbar header and Footer across all pages",
     paths: ["/macnel-icon.svg"],
     defaultUrl: "/macnel-icon.svg",
   },
-  // 8 Core Trade Services
+
+  // ==========================================
+  // 2. ABOUT US & TEAM
+  // ==========================================
   {
-    id: "service_house_renovation",
-    category: "services",
-    label: "House Renovation Featured",
-    description: "Turnkey HDB & Condo whole-home makeover visual",
-    paths: ["/images/house-reno/1.jpeg", "/House reno/1.jpeg"],
+    id: "owner_photo",
+    category: "team",
+    pagePath: "/about-us",
+    pageTitle: "About Us & Team",
+    sectionName: "Founder & Managing Director",
+    label: "Founder & MD On-Site Photo",
+    description: "Shown on About Us & Credentials sections as the lead site supervisor",
+    paths: ["/images/team/owner.jpg", "/images/owner.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793201127/renovation-contractor-sg/dashboard-uploads/sgnfnlcqlqgwgraromnp.jpg",
+  },
+
+  // ==========================================
+  // 3. 🏠 HOUSE RENOVATION (/house-renovation)
+  // ==========================================
+  {
+    id: "house_reno_hero",
+    category: "house-renovation",
+    pagePath: "/house-renovation",
+    pageTitle: "House Renovation",
+    sectionName: "Hero Header Banner",
+    label: "House Renovation - Hero Banner Background",
+    description: "Full-width background image in the hero banner of the House Renovation page",
+    paths: ["/images/house-reno/hero.jpeg", "/images/house-reno/1.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092307/renovation-contractor-sg/House_reno/kp1ixhf6xovgkbyehhwn.jpg",
   },
   {
-    id: "service_toilet_renovation",
-    category: "services",
-    label: "Toilet & Bathroom Renovation",
-    description: "Luxury master bathroom & waterproofing spotlight",
+    id: "house_reno_phase_1",
+    category: "house-renovation",
+    pagePath: "/house-renovation",
+    pageTitle: "House Renovation",
+    sectionName: "Phase 01 · Site Prep & Demolition",
+    label: "Phase 01: HDB/BCA Permits & Structural Hacking",
+    description: "Lift padding corridor protection, load-bearing verification, and pneumatic hacking",
+    paths: ["/images/house-reno/1.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092307/renovation-contractor-sg/House_reno/kp1ixhf6xovgkbyehhwn.jpg",
+  },
+  {
+    id: "house_reno_phase_2",
+    category: "house-renovation",
+    pagePath: "/house-renovation",
+    pageTitle: "House Renovation",
+    sectionName: "Phase 02 · Wet Trade & Masonry",
+    label: "Phase 02: Wet Trade Masonry, Screeding & Tiling",
+    description: "Reinforced kerbs, pre-packed screed beds, laser 3D leveling, and waterproof tile bonding",
+    paths: ["/images/doc-updates/image75.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092309/renovation-contractor-sg/images/doc-updates/d30kkw2q72m8y7vj5r3z.jpg",
+  },
+  {
+    id: "house_reno_phase_3",
+    category: "house-renovation",
+    pagePath: "/house-renovation",
+    pageTitle: "House Renovation",
+    sectionName: "Phase 03 · False Ceilings",
+    label: "Phase 03: Architectural False Ceilings & Partitions",
+    description: "Seamless drop ceilings, cove lighting pelmets, and acoustic drywall acoustic dividers",
+    paths: ["/images/doc-updates/image29.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
+  },
+  {
+    id: "house_reno_phase_4",
+    category: "house-renovation",
+    pagePath: "/house-renovation",
+    pageTitle: "House Renovation",
+    sectionName: "Phase 04 · Painting & Handover",
+    label: "Phase 04: Surface Painting, Chemical Wash & Handover",
+    description: "Skim coating, Nippon Odourless painting, deep chemical acid wash, and handover",
+    paths: ["/images/doc-updates/image25.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+
+  // ==========================================
+  // 4. 🚿 TOILET RENOVATION (/toilet-renovation-in-singapore)
+  // ==========================================
+  {
+    id: "toilet_reno_hero",
+    category: "toilet-renovation",
+    pagePath: "/toilet-renovation-in-singapore",
+    pageTitle: "Toilet Renovation",
+    sectionName: "Hero Header",
+    label: "Toilet Renovation - Hero Spotlight",
+    description: "Header visual on the Toilet & Bathroom Renovation page",
     paths: ["/images/tiling/7.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/pgg34u2g076q3f4zhyjh.jpg",
   },
   {
-    id: "service_tiling_works",
-    category: "services",
-    label: "Floor & Wall Tiling",
-    description: "Laser level homogeneous & porcelain tiling",
-    paths: ["/images/tiling/13.jpeg"],
+    id: "toilet_stage_1",
+    category: "toilet-renovation",
+    pagePath: "/toilet-renovation-in-singapore",
+    pageTitle: "Toilet Renovation",
+    sectionName: "Stage 01 · Controlled Hacking",
+    label: "Stage 01: Controlled Hacking & Site Demolition",
+    description: "Safe removal of old wall & floor tiles, mortar screed, and old sanitary fixtures",
+    paths: ["/images/doc-updates/image62.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092309/renovation-contractor-sg/images/doc-updates/d30kkw2q72m8y7vj5r3z.jpg",
+  },
+  {
+    id: "toilet_stage_2",
+    category: "toilet-renovation",
+    pagePath: "/toilet-renovation-in-singapore",
+    pageTitle: "Toilet Renovation",
+    sectionName: "Stage 02 · 3-Coat Waterproofing",
+    label: "Stage 02: 3-Coat Waterproofing & 24-Hr Ponding Test",
+    description: "Elastomeric polymer membrane, corner mesh reinforcement & 24-hour water ponding test",
+    paths: ["/images/doc-updates/image79.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092309/renovation-contractor-sg/images/doc-updates/d30kkw2q72m8y7vj5r3z.jpg",
+  },
+  {
+    id: "toilet_stage_3",
+    category: "toilet-renovation",
+    pagePath: "/toilet-renovation-in-singapore",
+    pageTitle: "Toilet Renovation",
+    sectionName: "Stage 03 · Laser Tiling",
+    label: "Stage 03: Laser-Aligned Floor & Wall Tiling",
+    description: "1:80 fall gradient towards floor traps for instant drainage and anti-slip tiles",
+    paths: ["/images/doc-updates/image47.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092309/renovation-contractor-sg/images/doc-updates/d30kkw2q72m8y7vj5r3z.jpg",
+  },
+  {
+    id: "toilet_stage_4",
+    category: "toilet-renovation",
+    pagePath: "/toilet-renovation-in-singapore",
+    pageTitle: "Toilet Renovation",
+    sectionName: "Stage 04 · Concealed Plumbing",
+    label: "Stage 04: Concealed Stainless / PPR Plumbing",
+    description: "PUB licensed water service plumbing with concealed Grade 304 pressure-tested lines",
+    paths: ["/images/doc-updates/image90.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092309/renovation-contractor-sg/images/doc-updates/d30kkw2q72m8y7vj5r3z.jpg",
+  },
+  {
+    id: "toilet_stage_5",
+    category: "toilet-renovation",
+    pagePath: "/toilet-renovation-in-singapore",
+    pageTitle: "Toilet Renovation",
+    sectionName: "Stage 05 · Fixtures & Glass Screen",
+    label: "Stage 05: Sanitary Fixture & Glass Screen Installation",
+    description: "Toilet bowl, vanity, mixer taps and 10mm tempered shower screen installation",
+    paths: ["/images/tiling/12.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/pgg34u2g076q3f4zhyjh.jpg",
+  },
+
+  // ==========================================
+  // 5. 🧱 TILING WORKS (/tiling-works)
+  // ==========================================
+  {
+    id: "tiling_hero",
+    category: "tiling",
+    pagePath: "/tiling-works",
+    pageTitle: "Tiling Works",
+    sectionName: "Hero Header",
+    label: "Tiling Works - Hero Banner Visual",
+    description: "Header visual on the Floor & Wall Tiling services page",
+    paths: ["/images/tiling/44.jpeg", "/images/tiling/27.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/s29ff99hvhg4hft2d9v5.jpg",
   },
   {
-    id: "service_carpentry",
-    category: "services",
-    label: "Custom In-House Carpentry",
-    description: "Full-height wardrobes & kitchen cabinet visual",
-    paths: ["/images/carpentry/2.jpeg"],
+    id: "tiling_step_1",
+    category: "tiling",
+    pagePath: "/tiling-works",
+    pageTitle: "Tiling Works",
+    sectionName: "Workmanship 01 · Solid Buttering",
+    label: "Step 01: 100% Solid Buttering (Zero Hollow Tiles)",
+    description: "Full-coverage combed polymer mortar eliminating hollow pockets and popped tiles",
+    paths: ["/images/tiling/38.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/s29ff99hvhg4hft2d9v5.jpg",
+  },
+  {
+    id: "tiling_step_2",
+    category: "tiling",
+    pagePath: "/tiling-works",
+    pageTitle: "Tiling Works",
+    sectionName: "Workmanship 02 · Laser Alignment",
+    label: "Step 02: Laser Cross-Line Optical Alignment",
+    description: "3D multi-line laser leveling instruments and reusable leveling clips for zero lippage",
+    paths: ["/images/tiling/44.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/s29ff99hvhg4hft2d9v5.jpg",
+  },
+  {
+    id: "tiling_step_3",
+    category: "tiling",
+    pagePath: "/tiling-works",
+    pageTitle: "Tiling Works",
+    sectionName: "Workmanship 03 · Mitred Edges",
+    label: "Step 03: 45-Degree Mitred Edge Finishing",
+    description: "Wet-cut tile edges to exact 45° angles for seamless architectural stone junctions",
+    paths: ["/images/tiling/11.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
+  },
+  {
+    id: "tiling_step_4",
+    category: "tiling",
+    pagePath: "/tiling-works",
+    pageTitle: "Tiling Works",
+    sectionName: "Workmanship 04 · Epoxy Grouting",
+    label: "Step 04: Anti-Mold Epoxy Grouting (Mapei)",
+    description: "Two-part 100% waterproof, stain-proof epoxy grout that never turns black",
+    paths: ["/images/tiling/13.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/s29ff99hvhg4hft2d9v5.jpg",
+  },
+
+  // ==========================================
+  // 6. 🪚 CARPENTRY SERVICES (/carpentry-services)
+  // ==========================================
+  {
+    id: "carpentry_hero",
+    category: "carpentry",
+    pagePath: "/carpentry-services",
+    pageTitle: "Carpentry Services",
+    sectionName: "Hero Header",
+    label: "Carpentry - Hero Showcase",
+    description: "Main header visual on Custom In-House Carpentry page",
+    paths: ["/images/carpentry/5.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/images/carpentry/vmqoqcizb3esgu9rrign.jpg",
   },
   {
-    id: "service_false_ceiling",
-    category: "services",
-    label: "False Ceiling & Partition",
-    description: "Cove lighting pelmet & acoustic drywall visual",
-    paths: ["/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg"],
+    id: "carpentry_std_1",
+    category: "carpentry",
+    pagePath: "/carpentry-services",
+    pageTitle: "Carpentry Services",
+    sectionName: "Feature 01 · Kitchen Cabinets",
+    label: "Feature 01: Kitchen Full Cabinets & Quartz Tops",
+    description: "Heavy-duty kitchen carpentry with Blum soft-close hinges & quartz counters",
+    paths: ["/images/carpentry/4.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/images/carpentry/vmqoqcizb3esgu9rrign.jpg",
+  },
+  {
+    id: "carpentry_std_2",
+    category: "carpentry",
+    pagePath: "/carpentry-services",
+    pageTitle: "Carpentry Services",
+    sectionName: "Feature 02 · Wardrobes",
+    label: "Feature 02: Full-Height Custom Wardrobes",
+    description: "Floor-to-ceiling master bedroom wardrobes with internal lighting & drawers",
+    paths: ["/images/carpentry/7.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/images/carpentry/vmqoqcizb3esgu9rrign.jpg",
+  },
+  {
+    id: "carpentry_std_3",
+    category: "carpentry",
+    pagePath: "/carpentry-services",
+    pageTitle: "Carpentry Services",
+    sectionName: "Feature 03 · Bathroom Vanities",
+    label: "Feature 03: Bathroom Vanities & Storage",
+    description: "Moisture-resistant plywood vanity cabinets and mirror medicine units",
+    paths: ["/images/carpentry/2.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/images/carpentry/vmqoqcizb3esgu9rrign.jpg",
+  },
+
+  // ==========================================
+  // 7. 🪜 FALSE CEILING & PARTITION (/false-ceiling)
+  // ==========================================
+  {
+    id: "false_ceiling_hero",
+    category: "false-ceiling",
+    pagePath: "/false-ceiling",
+    pageTitle: "False Ceiling",
+    sectionName: "Hero Header",
+    label: "False Ceiling - Hero Showcase",
+    description: "Header visual on the False Ceiling & Partition page",
+    paths: ["/images/partition-ceiling/12.jpeg", "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
   },
   {
-    id: "service_painting",
-    category: "services",
-    label: "Painting & Plastering",
-    description: "Nippon Paint & wall skimming showcase",
+    id: "false_ceiling_std_1",
+    category: "false-ceiling",
+    pagePath: "/false-ceiling",
+    pageTitle: "False Ceiling",
+    sectionName: "Feature 01 · Drop & Floating Ceilings",
+    label: "Feature 01: Architectural Drop Ceilings",
+    description: "Galvanized steel channel grids and seamless gypsum boards",
+    paths: ["/images/doc-updates/image31.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
+  },
+  {
+    id: "false_ceiling_std_2",
+    category: "false-ceiling",
+    pagePath: "/false-ceiling",
+    pageTitle: "False Ceiling",
+    sectionName: "Feature 02 · Cove Light Pelmets",
+    label: "Feature 02: Cove Lighting Pelmets & Curtain Boxes",
+    description: "Concealed ambient LED lighting troughs and recessed curtain tracks",
+    paths: ["/images/doc-updates/image60.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
+  },
+  {
+    id: "false_ceiling_std_3",
+    category: "false-ceiling",
+    pagePath: "/false-ceiling",
+    pageTitle: "False Ceiling",
+    sectionName: "Feature 03 · Acoustic Drywalls",
+    label: "Feature 03: Acoustic Drywall Partitions",
+    description: "Rockwool acoustic sound insulation boards for rooms and home offices",
+    paths: ["/images/doc-updates/image66.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
+  },
+
+  // ==========================================
+  // 8. 💡 ELECTRICAL WORKS (/electrical-works-rewiring)
+  // ==========================================
+  {
+    id: "electrical_hero",
+    category: "electrical",
+    pagePath: "/electrical-works-rewiring",
+    pageTitle: "Electrical Works",
+    sectionName: "Hero Header",
+    label: "Electrical Works - Hero Showcase",
+    description: "Header visual on Electrical Works & Rewiring page",
     paths: ["/images/partition-ceiling/12.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
   },
   {
-    id: "service_door_window",
-    category: "services",
-    label: "Doors & Windows",
-    description: "Fire-rated main doors & soundproof sliding windows",
-    paths: ["/images/door-window/1.jpeg", "/Door&window/1.jpeg"],
+    id: "electrical_feat_1",
+    category: "electrical",
+    pagePath: "/electrical-works-rewiring",
+    pageTitle: "Electrical Works",
+    sectionName: "Feature 01 · House Rewiring",
+    label: "Feature 01: Complete Whole-House Rewiring",
+    description: "Concealed PVC/GI conduit chasing, high-grade copper cables & testing",
+    paths: ["/images/partition-ceiling/2.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+  {
+    id: "electrical_feat_2",
+    category: "electrical",
+    pagePath: "/electrical-works-rewiring",
+    pageTitle: "Electrical Works",
+    sectionName: "Feature 02 · DB Box Upgrades",
+    label: "Feature 02: Distribution Board (DB) Box Upgrades",
+    description: "RCCB, MCB surge protection breakers & certified EMA/LEW testing",
+    paths: ["/images/partition-ceiling/10.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+  {
+    id: "electrical_feat_3",
+    category: "electrical",
+    pagePath: "/electrical-works-rewiring",
+    pageTitle: "Electrical Works",
+    sectionName: "Feature 03 · LED Lighting",
+    label: "Feature 03: Architectural LED Cove & Spotlights",
+    description: "Energy-efficient recessed downlights, track lights & strip LEDs",
+    paths: ["/images/partition-ceiling/1.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+  {
+    id: "electrical_feat_4",
+    category: "electrical",
+    pagePath: "/electrical-works-rewiring",
+    pageTitle: "Electrical Works",
+    sectionName: "Feature 04 · Sockets & Switches",
+    label: "Feature 04: Designer Sockets & Smart Switches",
+    description: "Legrand / Schneider switches, 13A double sockets & USB charging points",
+    paths: ["/images/carpentry/6.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/images/carpentry/vmqoqcizb3esgu9rrign.jpg",
+  },
+
+  // ==========================================
+  // 9. 🎨 PAINTING & PLASTERING (/house-painting-plastering)
+  // ==========================================
+  {
+    id: "painting_hero",
+    category: "painting",
+    pagePath: "/house-painting-plastering",
+    pageTitle: "Painting & Plastering",
+    sectionName: "Hero Header",
+    label: "Painting - Hero Showcase",
+    description: "Header visual on House Painting & Plastering page",
+    paths: ["/images/partition-ceiling/10.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+  {
+    id: "painting_std_1",
+    category: "painting",
+    pagePath: "/house-painting-plastering",
+    pageTitle: "Painting & Plastering",
+    sectionName: "Standard 01 · Skim Coating",
+    label: "Standard 01: 3-Coat Skim Coating & Wall Levelling",
+    description: "Full wall skimming to eliminate undulations, hair cracks & rough patches",
+    paths: ["/images/doc-updates/image41.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+  {
+    id: "painting_std_2",
+    category: "painting",
+    pagePath: "/house-painting-plastering",
+    pageTitle: "Painting & Plastering",
+    sectionName: "Standard 02 · Nippon Anti-Mould Paint",
+    label: "Standard 02: Premium Nippon Anti-Mould Paints",
+    description: "Nippon Odourless All-1 / Medifresh washable anti-bacterial paint coats",
+    paths: ["/images/doc-updates/image68.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+  {
+    id: "painting_std_3",
+    category: "painting",
+    pagePath: "/house-painting-plastering",
+    pageTitle: "Painting & Plastering",
+    sectionName: "Standard 03 · External Painting",
+    label: "Standard 03: External & Weather-Proof Facade Painting",
+    description: "Heavy-duty UV resistant exterior paint for landed properties and terraces",
+    paths: ["/images/doc-updates/image5.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+
+  // ==========================================
+  // 10. 🚪 DOORS & WINDOWS (/door-window-services)
+  // ==========================================
+  {
+    id: "doors_windows_hero",
+    category: "doors-windows",
+    pagePath: "/door-window-services",
+    pageTitle: "Doors & Windows",
+    sectionName: "Hero Header",
+    label: "Doors & Windows - Hero Showcase",
+    description: "Header visual on Door & Window Services page",
+    paths: ["/images/door-window/4.jpeg", "/images/door-window/1.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092302/renovation-contractor-sg/Door_window/nch930yir3js4pchyjoa.jpg",
   },
   {
-    id: "service_flooring_carpet",
-    category: "services",
-    label: "Flooring & SPC Vinyl / Carpet",
-    description: "Heavy-duty waterproof click vinyl & flooring",
+    id: "door_cat_1",
+    category: "doors-windows",
+    pagePath: "/door-window-services",
+    pageTitle: "Doors & Windows",
+    sectionName: "Category 01 · Toilet Bi-Fold Doors",
+    label: "Category 01: Trackless Slide & Swing Bi-Fold Doors",
+    description: "Bottom trackless aluminium toilet doors with heavy-duty rollers",
+    paths: ["/images/doc-updates/image3.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092302/renovation-contractor-sg/Door_window/nch930yir3js4pchyjoa.jpg",
+  },
+  {
+    id: "door_cat_2",
+    category: "doors-windows",
+    pagePath: "/door-window-services",
+    pageTitle: "Doors & Windows",
+    sectionName: "Category 02 · Aluminium Windows",
+    label: "Category 02: BCA-Approved Aluminium Windows",
+    description: "Grade SS304 stainless rivets, soundproof acoustic glass & grilles",
+    paths: ["/images/doc-updates/image67.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092302/renovation-contractor-sg/Door_window/nch930yir3js4pchyjoa.jpg",
+  },
+  {
+    id: "door_cat_3",
+    category: "doors-windows",
+    pagePath: "/door-window-services",
+    pageTitle: "Doors & Windows",
+    sectionName: "Category 03 · Main Doors & Digital Locks",
+    label: "Category 03: Fire-Rated Main Doors & Digital Locks",
+    description: "Half-hour / 1-hour BCA fire-rated laminate main doors & smart locksets",
+    paths: ["/images/doc-updates/image37.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092302/renovation-contractor-sg/Door_window/nch930yir3js4pchyjoa.jpg",
+  },
+
+  // ==========================================
+  // 11. 🪵 FLOORING & CARPET (/flooring-carpet-services)
+  // ==========================================
+  {
+    id: "flooring_hero",
+    category: "flooring",
+    pagePath: "/flooring-carpet-services",
+    pageTitle: "Flooring & Carpet",
+    sectionName: "Hero Header",
+    label: "Flooring - Hero Showcase",
+    description: "Header visual on Flooring & Carpet Services page",
     paths: ["/images/tiling/11.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
   },
-  // Projects
+  {
+    id: "floor_cat_1",
+    category: "flooring",
+    pagePath: "/flooring-carpet-services",
+    pageTitle: "Flooring & Carpet",
+    sectionName: "Category 01 · SPC Vinyl Flooring",
+    label: "Category 01: Heavy-Duty 5mm SPC Click Vinyl",
+    description: "100% waterproof stone plastic composite flooring with acoustic IXPE underlay",
+    paths: ["/images/doc-updates/image69.png"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
+  },
+  {
+    id: "floor_cat_2",
+    category: "flooring",
+    pagePath: "/flooring-carpet-services",
+    pageTitle: "Flooring & Carpet",
+    sectionName: "Category 02 · Timber Parquet",
+    label: "Category 02: Natural Timber Parquet Restoration",
+    description: "Teak / Burmese wood sanding, repair, gap-filling and polyurethane varnish",
+    paths: ["/images/doc-updates/image40.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
+  },
+  {
+    id: "floor_cat_3",
+    category: "flooring",
+    pagePath: "/flooring-carpet-services",
+    pageTitle: "Flooring & Carpet",
+    sectionName: "Category 03 · Commercial Carpet Tiles",
+    label: "Category 03: Commercial Carpet Tiles & Acoustic Flooring",
+    description: "Heavy commercial traffic rated nylon carpet tiles for offices and commercial spaces",
+    paths: ["/images/doc-updates/image85.png"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
+  },
+  {
+    id: "floor_cat_4",
+    category: "flooring",
+    pagePath: "/flooring-carpet-services",
+    pageTitle: "Flooring & Carpet",
+    sectionName: "Category 04 · Cement Screed",
+    label: "Category 04: Cement Screed & Industrial Floors",
+    description: "Self-levelling cement screed, epoxy flooring & industrial loft aesthetics",
+    paths: ["/images/doc-updates/image76.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
+  },
+
+  // ==========================================
+  // 12. 📸 PORTFOLIO PROJECTS (Before / After)
+  // ==========================================
   {
     id: "project_1_before",
     category: "projects",
-    label: "Project 1 (4-Room BTO) - Before",
-    description: "Bare screed condition before renovation",
+    pagePath: "/projects",
+    pageTitle: "Projects & Portfolio",
+    sectionName: "4-Room BTO Project · Before",
+    label: "Project 1 (4-Room BTO) - Bare Screed Condition",
+    description: "Bare screed condition before full turnkey renovation",
     paths: ["/images/projects/proj-1-before.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/root/aqhvpkoy2mrbwng2bbrk.jpg",
   },
   {
     id: "project_1_after",
     category: "projects",
-    label: "Project 1 (4-Room BTO) - After",
-    description: "Completed modern luxury makeover",
+    pagePath: "/projects",
+    pageTitle: "Projects & Portfolio",
+    sectionName: "4-Room BTO Project · After",
+    label: "Project 1 (4-Room BTO) - Completed Makeover",
+    description: "Completed modern luxury makeover with cove lighting and full carpentry",
     paths: ["/images/projects/proj-1-after.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092305/renovation-contractor-sg/root/roepaxqzy8zxviqaydjp.webp",
   },
   {
     id: "project_2_before",
     category: "projects",
-    label: "Project 2 (Bathroom) - Before",
-    description: "Existing worn bathroom tiles before hacking",
+    pagePath: "/projects",
+    pageTitle: "Projects & Portfolio",
+    sectionName: "Master Toilet · Before",
+    label: "Project 2 (Master Toilet) - Before Hacking",
+    description: "Existing worn bathroom tiles before pneumatic hacking and re-screeding",
     paths: ["/images/doc-updates/image24.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092309/renovation-contractor-sg/images/doc-updates/d30kkw2q72m8y7vj5r3z.jpg",
   },
   {
     id: "project_2_after",
     category: "projects",
-    label: "Project 2 (Bathroom) - After",
-    description: "Luxury hotel-grade master toilet finish",
+    pagePath: "/projects",
+    pageTitle: "Projects & Portfolio",
+    sectionName: "Master Toilet · After",
+    label: "Project 2 (Master Toilet) - Hotel-Grade Finish",
+    description: "Hotel-grade master toilet with concealed plumbing and frameless glass",
     paths: ["/images/projects/proj-2-after.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/pgg34u2g076q3f4zhyjh.jpg",
   },
@@ -315,6 +784,11 @@ export async function POST(request: Request) {
         const existingOverrides = settings?.site_images || {};
 
         existingOverrides[slotId] = uploadedUrl;
+        if (slot) {
+          for (const p of slot.paths) {
+            existingOverrides[p] = uploadedUrl;
+          }
+        }
         await saveSettings("site_images", existingOverrides);
 
         // Also update local cloudinary mapping for all matching paths
@@ -360,8 +834,13 @@ export async function POST(request: Request) {
 
       const slot = DEFAULT_IMAGE_SLOTS.find((s) => s.id === slotId);
 
-      // Save in Neon DB
+      // Save in Neon DB & siteSettings
       existingOverrides[slotId] = newUrl;
+      if (slot) {
+        for (const p of slot.paths) {
+          existingOverrides[p] = newUrl;
+        }
+      }
       await saveSettings("site_images", existingOverrides);
 
       // Save in urlMap for all paths associated with this slot
@@ -387,14 +866,14 @@ export async function POST(request: Request) {
       const slot = DEFAULT_IMAGE_SLOTS.find((s) => s.id === slotId);
 
       delete existingOverrides[slotId];
-      await saveSettings("site_images", existingOverrides);
-
       if (slot) {
         for (const p of slot.paths) {
+          delete existingOverrides[p];
           localData.urlMap[p] = slot.defaultUrl;
         }
-        await saveLocalCloudinaryData(localData);
       }
+      await saveSettings("site_images", existingOverrides);
+      await saveLocalCloudinaryData(localData);
 
       return NextResponse.json({
         success: true,

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import {
   Check,
   MessageCircle,
@@ -144,7 +145,7 @@ export default function ElectricalPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-screen flex items-center py-20 lg:py-28">
         <img
-          src="/images/partition-ceiling/12.jpeg"
+          src={getCloudinaryUrl("/images/partition-ceiling/12.jpeg")}
           alt="Electrical Works & Rewiring Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-transform duration-1000"
           style={{ opacity: 0.85 }}
@@ -277,7 +278,7 @@ export default function ElectricalPage() {
                 <div className="w-full lg:w-1/2">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
                     <img
-                      src={item.image}
+                      src={getCloudinaryUrl(item.image)}
                       alt={item.title}
                       className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
                     />

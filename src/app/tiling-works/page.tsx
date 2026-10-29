@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 import {
   Grid3X3,
   MessageCircle,
@@ -98,7 +99,7 @@ export default function TilingWorksPage() {
       {/* 1. HERO BANNER */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[85vh] lg:min-h-screen flex items-center py-20 lg:py-28">
         <img
-          src="/images/tiling/44.jpeg"
+          src={getCloudinaryUrl("/images/tiling/44.jpeg")}
           alt="Master Tile Flooring Installation Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-1000 scale-105"
           style={{ opacity: 0.85 }}
@@ -244,7 +245,7 @@ export default function TilingWorksPage() {
                 >
                   <div className={`relative rounded-2xl overflow-hidden shadow-lg aspect-[16/11] ${isEven ? "lg:col-start-2" : ""}`}>
                     <img
-                      src={std.image}
+                      src={getCloudinaryUrl(std.image)}
                       alt={std.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       loading="lazy"

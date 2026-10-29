@@ -36,7 +36,51 @@ export interface InquiryRecord {
   source?: string;
 }
 
+export async function ensureCoreTables() {
+  try {
+    await sql`
+      CREATE TABLE IF NOT EXISTS bookings (
+        id VARCHAR(50) PRIMARY KEY,
+        client_name VARCHAR(255) NOT NULL,
+        client_phone VARCHAR(50) NOT NULL,
+        client_email VARCHAR(255),
+        service_id VARCHAR(100) NOT NULL,
+        service_name VARCHAR(255) NOT NULL,
+        service_detail TEXT,
+        property_type VARCHAR(100),
+        property_size VARCHAR(100),
+        timeline VARCHAR(100),
+        inspection_date VARCHAR(50),
+        time_slot VARCHAR(50),
+        postal_code VARCHAR(50),
+        unit_number VARCHAR(50),
+        notes TEXT,
+        status VARCHAR(50) DEFAULT 'confirmed',
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS inquiries (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        phone VARCHAR(50) NOT NULL,
+        email VARCHAR(255),
+        service VARCHAR(255),
+        property_type VARCHAR(100),
+        estimated_budget VARCHAR(100),
+        message TEXT,
+        source VARCHAR(100) DEFAULT 'website',
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `;
+  } catch (err) {
+    console.warn("Neon DB table check notice:", err);
+  }
+}
+
 export async function saveBooking(booking: BookingRecord) {
+  await ensureCoreTables();
   const result = await sql`
     INSERT INTO bookings (
       id,
@@ -79,6 +123,7 @@ export async function saveBooking(booking: BookingRecord) {
 }
 
 export async function saveInquiry(inquiry: InquiryRecord) {
+  await ensureCoreTables();
   const result = await sql`
     INSERT INTO inquiries (
       name,

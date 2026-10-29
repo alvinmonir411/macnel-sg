@@ -90,7 +90,10 @@ interface Inquiry {
 
 interface ImageSlot {
   id: string;
-  category: "hero" | "brand" | "team" | "services" | "projects";
+  category: string;
+  pagePath?: string;
+  pageTitle?: string;
+  sectionName?: string;
   label: string;
   description: string;
   paths: string[];
@@ -694,12 +697,15 @@ export default function AdminDashboardPage() {
     if (imageCategory !== "all") {
       list = list.filter((s) => s.category === imageCategory);
     }
-    const q = globalSearch.toLowerCase();
+    const q = globalSearch.toLowerCase().trim();
     if (q) {
       list = list.filter(
         (s) =>
           s.label.toLowerCase().includes(q) ||
           s.description.toLowerCase().includes(q) ||
+          (s.pageTitle && s.pageTitle.toLowerCase().includes(q)) ||
+          (s.sectionName && s.sectionName.toLowerCase().includes(q)) ||
+          (s.pagePath && s.pagePath.toLowerCase().includes(q)) ||
           s.paths.some((p) => p.toLowerCase().includes(q))
       );
     }
@@ -844,7 +850,7 @@ export default function AdminDashboardPage() {
               { id: "services", label: "Services (Edit Images & Text)", icon: Layers, href: "/admin/services", badge: "8" },
               { id: "bookings", label: "Bookings", badge: bookings.length, icon: Calendar },
               { id: "inquiries", label: "Leads & Inquiries", badge: inquiries.length, icon: Inbox },
-              { id: "images", label: "Media & Cloudinary", badge: `${imageSlots.length}`, icon: ImageIcon },
+              { id: "images", label: "Visual Image Manager (All Pages)", badge: `${imageSlots.length}`, icon: ImageIcon },
               { id: "projects", label: "Portfolio Projects", badge: projects.length, icon: Briefcase, href: "/admin/projects" },
               { id: "pricing", label: "Pricing & Trade Rates", icon: DollarSign },
               { id: "reviews", label: "Customer Reviews", icon: Star },
@@ -1530,174 +1536,301 @@ export default function AdminDashboardPage() {
           )}
 
           {/* ========================================================= */}
-          {/* TAB 4: MEDIA & CLOUDINARY ASSETS */}
+          {/* TAB 4: VISUAL IMAGE MANAGER ACROSS ALL PAGES */}
           {/* ========================================================= */}
           {activeTab === "images" && (
             <div className="space-y-6">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                  <h2 className="text-xl font-black text-white flex items-center gap-2">
-                    <ImageIcon className="w-6 h-6 text-[#8CCB6B]" />
-                    <span>Media & Cloudinary Asset Center</span>
-                  </h2>
-                  <p className="text-xs text-slate-400">
-                    Replace any hero photo, video, trade service, or project visual. Synced instantly to Cloudinary CDN.
-                  </p>
+              {/* Top Banner & Stats */}
+              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                  <div>
+                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-300 mb-2">
+                      <Sparkles className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                      <span>Instant 1-Click Photo Swapper</span>
+                    </div>
+                    <h2 className="text-2xl font-black text-white flex items-center gap-3">
+                      <ImageIcon className="w-7 h-7 text-[#8CCB6B]" />
+                      <span>Website Photo &amp; Media Manager</span>
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+                      Change ANY image across House Renovation, Toilet Renovation, Tiling, Carpentry, Ceilings, Electrical, Painting, Doors, Flooring, and Homepage. Select a page or search by name to find and upload immediately.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-[#060C16] border border-slate-800 px-4 py-3 rounded-2xl shrink-0">
+                    <div>
+                      <p className="text-[10px] uppercase font-bold text-slate-400">Total Indexed Photos</p>
+                      <p className="text-xl font-black text-[#8CCB6B]">{imageSlots.length} Visuals</p>
+                    </div>
+                    <div className="w-px h-8 bg-slate-800" />
+                    <div>
+                      <p className="text-[10px] uppercase font-bold text-slate-400">Live Custom Uploads</p>
+                      <p className="text-xl font-black text-emerald-400">
+                        {imageSlots.filter((s) => s.isCustomized).length}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2">
-                  {[
-                    { id: "all", label: "All Media" },
-                    { id: "hero", label: "Hero & Banner" },
-                    { id: "team", label: "Founder / Team" },
-                    { id: "services", label: "8 Core Trades" },
-                    { id: "projects", label: "Portfolio Before/After" },
-                  ].map((c) => (
+                {/* Instant In-Tab Search Bar */}
+                <div className="relative">
+                  <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    value={globalSearch}
+                    onChange={(e) => setGlobalSearch(e.target.value)}
+                    placeholder="Search any photo, phase, section, or page (e.g. 'phase 1', 'toilet', 'demolition', 'waterproof', 'kitchen', 'hero')..."
+                    className="w-full pl-11 pr-24 py-3 rounded-2xl bg-[#060C16] border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#8CCB6B] shadow-inner"
+                  />
+                  {globalSearch && (
                     <button
-                      key={c.id}
-                      onClick={() => setImageCategory(c.id)}
-                      className={`px-3 py-2 rounded-xl text-xs font-bold transition-colors ${
-                        imageCategory === c.id
-                          ? "bg-[#8CCB6B] text-[#071306]"
-                          : "bg-[#091222] border border-slate-800 text-slate-400 hover:text-white"
-                      }`}
+                      type="button"
+                      onClick={() => setGlobalSearch("")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 px-2.5 py-1 text-xs font-bold text-slate-400 hover:text-white bg-slate-800 rounded-lg"
                     >
-                      {c.label}
+                      Clear
                     </button>
-                  ))}
+                  )}
+                </div>
+
+                {/* Interactive Page Selector Filter Bar */}
+                <div className="space-y-2 pt-2 border-t border-slate-800/80">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                      <Filter className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                      <span>Filter by Specific Page:</span>
+                    </span>
+                    <span className="text-xs text-slate-400">
+                      Showing <strong className="text-white">{filteredImageSlots.length}</strong> of {imageSlots.length} photos
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2">
+                    {[
+                      { id: "all", label: "🌟 All Website Photos", count: imageSlots.length },
+                      { id: "house-renovation", label: "🏠 House Renovation (/house-renovation)", count: imageSlots.filter((s) => s.category === "house-renovation").length },
+                      { id: "toilet-renovation", label: "🚿 Toilet Renovation (/toilet-renovation-in-singapore)", count: imageSlots.filter((s) => s.category === "toilet-renovation").length },
+                      { id: "tiling", label: "🧱 Tiling Works (/tiling-works)", count: imageSlots.filter((s) => s.category === "tiling").length },
+                      { id: "carpentry", label: "🪚 Carpentry Services (/carpentry-services)", count: imageSlots.filter((s) => s.category === "carpentry").length },
+                      { id: "false-ceiling", label: "🪜 False Ceiling (/false-ceiling)", count: imageSlots.filter((s) => s.category === "false-ceiling").length },
+                      { id: "electrical", label: "💡 Electrical Rewiring (/electrical-works-rewiring)", count: imageSlots.filter((s) => s.category === "electrical").length },
+                      { id: "painting", label: "🎨 Painting & Plastering (/house-painting-plastering)", count: imageSlots.filter((s) => s.category === "painting").length },
+                      { id: "doors-windows", label: "🚪 Doors & Windows (/door-window-services)", count: imageSlots.filter((s) => s.category === "doors-windows").length },
+                      { id: "flooring", label: "🪵 Flooring & Carpet (/flooring-carpet-services)", count: imageSlots.filter((s) => s.category === "flooring").length },
+                      { id: "hero", label: "🚀 Homepage & Hero Banners", count: imageSlots.filter((s) => s.category === "hero").length },
+                      { id: "team", label: "👥 About Us & Team", count: imageSlots.filter((s) => s.category === "team").length },
+                      { id: "projects", label: "📸 Projects (Before / After)", count: imageSlots.filter((s) => s.category === "projects").length },
+                    ].map((c) => (
+                      <button
+                        key={c.id}
+                        type="button"
+                        onClick={() => setImageCategory(c.id)}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                          imageCategory === c.id
+                            ? "bg-[#8CCB6B] text-[#071306] shadow-md shadow-[#8CCB6B]/20 scale-[1.02]"
+                            : "bg-[#060C16] border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700"
+                        }`}
+                      >
+                        <span>{c.label}</span>
+                        {c.count > 0 && (
+                          <span
+                            className={`text-[10px] px-1.5 py-0.2 rounded-full font-black ${
+                              imageCategory === c.id
+                                ? "bg-black/20 text-[#071306]"
+                                : "bg-slate-800 text-slate-400"
+                            }`}
+                          >
+                            {c.count}
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Asset Cards Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredImageSlots.map((slot) => {
-                  const isUploading = uploadingSlotId === slot.id;
-                  const urlInput = urlInputMap[slot.id] || "";
-                  const isVideo = slot.id === "hero_video" || slot.currentUrl.includes(".mp4");
+              {filteredImageSlots.length === 0 ? (
+                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-12 text-center space-y-3">
+                  <AlertCircle className="w-10 h-10 text-amber-400 mx-auto" />
+                  <p className="text-base font-bold text-white">No photos found matching &ldquo;{globalSearch}&rdquo;</p>
+                  <p className="text-xs text-slate-400 max-w-md mx-auto">
+                    Try searching for terms like &ldquo;phase&rdquo;, &ldquo;demolition&rdquo;, &ldquo;tiling&rdquo;, &ldquo;toilet&rdquo;, &ldquo;carpentry&rdquo;, or reset the page category filter.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setGlobalSearch("");
+                      setImageCategory("all");
+                    }}
+                    className="px-4 py-2 rounded-xl bg-[#8CCB6B] text-black text-xs font-bold hover:brightness-110"
+                  >
+                    Reset All Filters
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredImageSlots.map((slot) => {
+                    const isUploading = uploadingSlotId === slot.id;
+                    const urlInput = urlInputMap[slot.id] || "";
+                    const isVideo = slot.id === "hero_video" || slot.currentUrl.includes(".mp4");
 
-                  return (
-                    <div
-                      key={slot.id}
-                      className="bg-[#091222] border border-slate-800 rounded-3xl overflow-hidden shadow-md hover:border-slate-700 transition-all flex flex-col"
-                    >
-                      {/* Media Preview Box */}
-                      <div className="relative aspect-[16/10] bg-[#060C16] overflow-hidden group">
-                        {isVideo ? (
-                          <video
-                            src={slot.currentUrl}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <img
-                            src={slot.currentUrl}
-                            alt={slot.label}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            onError={(e) => {
-                              (e.target as any).src = slot.defaultUrl;
-                            }}
-                          />
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-
-                        {/* Category & Status Badges */}
-                        <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                          <span className="text-[10px] font-black uppercase tracking-wider bg-black/70 backdrop-blur-md text-[#8CCB6B] px-2.5 py-1 rounded-full border border-white/10">
-                            {slot.category}
-                          </span>
-                          {slot.isCustomized ? (
-                            <span className="text-[10px] font-black bg-emerald-500 text-black px-2.5 py-0.5 rounded-full shadow">
-                              Custom Live
+                    return (
+                      <div
+                        key={slot.id}
+                        className="bg-[#091222] border border-slate-800 rounded-3xl overflow-hidden shadow-md hover:border-slate-700 transition-all flex flex-col group"
+                      >
+                        {/* Page & Section Breadcrumb Header */}
+                        <div className="px-5 py-3.5 bg-[#060C16] border-b border-slate-800/80 flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <MapPin className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
+                            <span className="text-xs font-black text-white truncate">
+                              {slot.pageTitle || "Page"}
                             </span>
-                          ) : (
-                            <span className="text-[10px] font-medium bg-slate-900/80 text-slate-300 px-2.5 py-0.5 rounded-full border border-white/10">
-                              Default Asset
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Zoom / Full Preview Link */}
-                        <a
-                          href={slot.currentUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="absolute bottom-3 right-3 p-1.5 rounded-lg bg-black/60 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity"
-                          title="Open Full Size"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-
-                      {/* Controls Box */}
-                      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                        <div>
-                          <h3 className="font-extrabold text-sm text-white">{slot.label}</h3>
-                          <p className="text-xs text-slate-400 mt-1">{slot.description}</p>
-                          <p className="text-[10px] font-mono text-slate-500 mt-1 truncate">
-                            Key: {slot.paths[0]}
-                          </p>
-                        </div>
-
-                        {/* Upload & URL Buttons */}
-                        <div className="space-y-2 pt-2 border-t border-slate-800">
-                          <button
-                            type="button"
-                            onClick={() => triggerFileUpload(slot.id)}
-                            disabled={isUploading}
-                            className="w-full py-2.5 px-4 rounded-xl bg-[#14263E] hover:bg-[#1A3150] text-[#8CCB6B] border border-[#8CCB6B]/30 hover:border-[#8CCB6B] text-xs font-bold transition-all flex items-center justify-center gap-2"
-                          >
-                            {isUploading ? (
+                            {slot.sectionName && (
                               <>
-                                <RefreshCw className="w-4 h-4 animate-spin" />
-                                <span>Uploading Asset...</span>
-                              </>
-                            ) : (
-                              <>
-                                <Upload className="w-4 h-4" />
-                                <span>{isVideo ? "Upload New Video (.mp4)" : "Upload New Image from PC"}</span>
+                                <span className="text-slate-600 text-xs">·</span>
+                                <span className="text-[11px] font-bold text-[#8CCB6B] truncate">
+                                  {slot.sectionName}
+                                </span>
                               </>
                             )}
-                          </button>
-
-                          {/* URL Paste Input */}
-                          <div className="flex gap-1.5">
-                            <input
-                              type="text"
-                              value={urlInput}
-                              onChange={(e) =>
-                                setUrlInputMap((prev) => ({ ...prev, [slot.id]: e.target.value }))
-                              }
-                              placeholder={isVideo ? "Paste MP4 or Cloudinary URL..." : "Paste Cloudinary or Image URL..."}
-                              className="flex-1 px-3 py-1.5 rounded-lg bg-[#060C16] border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B]"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => handleUpdateImageViaUrl(slot.id)}
-                              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white transition-colors"
-                            >
-                              Save
-                            </button>
                           </div>
 
-                          {slot.isCustomized && (
-                            <button
-                              type="button"
-                              onClick={() => handleResetImage(slot.id)}
-                              className="w-full text-center text-[11px] text-slate-400 hover:text-rose-300 transition-colors flex items-center justify-center gap-1 pt-1"
+                          {slot.pagePath && (
+                            <a
+                              href={slot.pagePath}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[11px] font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1 shrink-0 bg-sky-950/40 hover:bg-sky-900/40 px-2 py-0.5 rounded-lg border border-sky-800/40 transition-colors"
+                              title={`Open live page: ${slot.pagePath}`}
                             >
-                              <RotateCcw className="w-3 h-3" />
-                              <span>Reset to Default Asset</span>
-                            </button>
+                              <span>View Page</span>
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
                           )}
                         </div>
+
+                        {/* Media Preview Box */}
+                        <div className="relative aspect-[16/10] bg-[#03070E] overflow-hidden group">
+                          {isVideo ? (
+                            <video
+                              src={slot.currentUrl}
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <img
+                              src={slot.currentUrl}
+                              alt={slot.label}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              onError={(e) => {
+                                (e.target as any).src = slot.defaultUrl;
+                              }}
+                            />
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+
+                          {/* Category & Status Badges */}
+                          <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                            <span className="text-[10px] font-black uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#8CCB6B] px-2.5 py-1 rounded-full border border-white/10">
+                              {slot.category}
+                            </span>
+                            {slot.isCustomized ? (
+                              <span className="text-[10px] font-black bg-emerald-500 text-black px-2.5 py-0.5 rounded-full shadow flex items-center gap-1">
+                                <Check className="w-3 h-3 stroke-[3]" />
+                                <span>Live Custom</span>
+                              </span>
+                            ) : (
+                              <span className="text-[10px] font-medium bg-slate-900/80 text-slate-300 px-2.5 py-0.5 rounded-full border border-white/10">
+                                Default Image
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Zoom / Full Preview Link */}
+                          <a
+                            href={slot.currentUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="absolute bottom-3 right-3 p-1.5 rounded-lg bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                            title="Open Full Image"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+
+                        {/* Controls Box */}
+                        <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                          <div>
+                            <h3 className="font-extrabold text-sm text-white leading-snug">{slot.label}</h3>
+                            <p className="text-xs text-slate-400 mt-1 line-clamp-2">{slot.description}</p>
+                            <p className="text-[10px] font-mono text-slate-500 mt-1.5 truncate">
+                              Path: {slot.paths[0]}
+                            </p>
+                          </div>
+
+                          {/* Upload & URL Buttons */}
+                          <div className="space-y-2 pt-2 border-t border-slate-800">
+                            <button
+                              type="button"
+                              onClick={() => triggerFileUpload(slot.id)}
+                              disabled={isUploading}
+                              className="w-full py-2.5 px-4 rounded-xl bg-[#14263E] hover:bg-[#1A3150] text-[#8CCB6B] border border-[#8CCB6B]/30 hover:border-[#8CCB6B] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                            >
+                              {isUploading ? (
+                                <>
+                                  <RefreshCw className="w-4 h-4 animate-spin" />
+                                  <span>Uploading Asset...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Upload className="w-4 h-4" />
+                                  <span>{isVideo ? "Upload New Video (.mp4)" : "📁 Upload New Photo from PC"}</span>
+                                </>
+                              )}
+                            </button>
+
+                            {/* URL Paste Input */}
+                            <div className="flex gap-1.5">
+                              <input
+                                type="text"
+                                value={urlInput}
+                                onChange={(e) =>
+                                  setUrlInputMap((prev) => ({ ...prev, [slot.id]: e.target.value }))
+                                }
+                                placeholder={isVideo ? "Paste MP4 URL..." : "Paste Cloudinary or Image URL..."}
+                                className="flex-1 px-3 py-1.5 rounded-lg bg-[#060C16] border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B]"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => handleUpdateImageViaUrl(slot.id)}
+                                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white transition-colors"
+                              >
+                                Save
+                              </button>
+                            </div>
+
+                            {slot.isCustomized && (
+                              <button
+                                type="button"
+                                onClick={() => handleResetImage(slot.id)}
+                                className="w-full text-center text-[11px] text-slate-400 hover:text-rose-300 transition-colors flex items-center justify-center gap-1 pt-1"
+                              >
+                                <RotateCcw className="w-3 h-3" />
+                                <span>Reset to Original Default Photo</span>
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Advanced Custom Path Mapper */}
               <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4 mt-8">
