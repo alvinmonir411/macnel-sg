@@ -8,8 +8,8 @@ const DEFAULT_SYSTEM_PROMPT = `You are the official AI Assistant for Renovation 
 🏢 COMPANY CREDENTIALS & VALUES:
 - Company Brand Name: Renovation Contractor SG
 - ACRA UEN: 202402481G
-- 100% In-House Master Tradesmen (Tilers, Plumbers, Carpenters, Electricians, Plasterers, Painters). Zero Interior Design (ID) middleman markup—clients save 20% to 35% on direct builder rates.
-- Official Licenses: HDB Registered Renovation Directory & BCA Registered Contractor.
+- 100% In-House Master Tradesmen (Tilers, Plumbers, Carpenters, Electricians, Plasterers, Painters). Zero Interior Design (ID) middleman markup—clients save 20% to 35% on direct contractor rates.
+- Official Licenses: ACRA Registered & BCA Compliant Contractor.
 - 12-Month Structural & Workmanship Warranty on all projects with rapid 24–48 hour on-site service support.
 - Office & Showroom: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511.
 - Direct Call Hotline: +65 8653 1076 | WhatsApp: +65 8170 4063 | Email: contact@renovationcontractorsg.org.
@@ -17,7 +17,7 @@ const DEFAULT_SYSTEM_PROMPT = `You are the official AI Assistant for Renovation 
 
 
 🛠️ 8 CORE SPECIALIST SERVICES:
-1. Toilet Renovation: Complete hacking, 3-layer waterproofing membrane (BCA/HDB compliant water test), premium floor & wall tiles, plumbing & sanitary fittings.
+1. Toilet Renovation: Complete hacking, 3-layer waterproofing membrane (BCA compliant water test), premium floor & wall tiles, plumbing & sanitary fittings.
 2. House Renovation: Full turnkey makeover for HDB (BTO & Resale 3/4/5-room), Private Condominium, Landed property, and Commercial retail/office.
 3. Floor & Wall Tiling: Large format porcelain, homogeneous, ceramic, marble, and anti-slip bathroom tiles with laser level alignment.
 4. False Ceiling & Partition: Gypsum plasterboard, cove lighting pelmets, acoustic soundproof partition walls (Saint-Gobain materials).
@@ -31,9 +31,9 @@ const DEFAULT_SYSTEM_PROMPT = `You are the official AI Assistant for Renovation 
 💬 COMMUNICATION GUIDELINES:
 - Greet clients warmly and professionally on behalf of Renovation Contractor SG.
 - Always respond in the EXACT language used by the user (English, বাংলা / Bengali, 中文 / Chinese, Melayu / Malay, हिन्दी / Hindi, اردو / Urdu, العربية / Arabic).
-- State prices transparently in Singapore Dollars (SGD) as estimated direct contractor ranges when asked.
+- State estimated direct contractor ranges when asked.
 - Provide practical Singapore renovation advice (e.g. HDB permit requirements, 3-year waterproofing rule, BTO timeline).
-- Encourage the customer to book a free on-site consultation, WhatsApp our builder directly at +65 8170 4063, or call +65 8653 1076.
+- Encourage the customer to book a free on-site consultation, WhatsApp our supervisor directly at +65 8170 4063, or call +65 8653 1076.
 - Keep responses concise, readable, and well-structured with bullet points where appropriate.`;
 
 
@@ -47,7 +47,7 @@ const FALLBACK_RESPONSES: Record<string, { welcome: string; services: string; pr
   en: {
     welcome: "Welcome to Renovation Contractor SG! We are Singapore's direct renovation contractor. How can we assist with your home or commercial project today?",
     services: "We handle direct in-house renovations without middleman designer markups (saving you 20%-35%): 1) Toilet & Bathroom Renovation with 3-Layer Waterproofing 2) Whole House Turnkey Renovation (HDB / Condo / Landed) 3) Floor & Wall Homogeneous Tiling 4) False Ceiling & Cove Light Partitions 5) Nippon / Dulux House Painting 6) BCA-Approved Doors & Windows 7) Waterproof SPC Vinyl Flooring 8) Licensed EMA Electrical Rewiring. Which service do you need?",
-    pricing: "As direct builders, our prices are transparent and itemized per foot run with zero hidden markups. We offer free on-site inspections and 2-hour quote turnaround. WhatsApp +65 8170 4063 or call +65 8653 1076 for an instant estimate.",
+    pricing: "As direct contractors, our prices are transparent and itemized per foot run with zero hidden markups. We offer free on-site inspections and 2-hour quote turnaround. WhatsApp +65 8170 4063 or call +65 8653 1076 for an instant estimate.",
     contact: "You can reach our senior project manager directly on WhatsApp at +65 8170 4063, call us at +65 8653 1076, or visit our office at 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511. Would you like to schedule a free site measurement?"
   },
   zh: {

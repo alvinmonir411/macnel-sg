@@ -121,14 +121,14 @@ export function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8CCB6B] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8CCB6B]" />
             </span>
-            <span className="font-bold text-white">Direct Builder</span>
+            <span className="font-bold text-white">Direct Contractor</span>
             <span className="text-white/30">|</span>
             <span className="text-slate-200 font-medium">HDB &amp; BCA Compliant</span>
           </div>
 
           {/* Editorial Headline: Crisp, Confident, Balanced */}
           <h1 className="font-extrabold tracking-tight text-white text-3xl sm:text-4xl lg:text-5xl xl:text-[3.8rem] leading-[1.12]">
-            Direct to builder <br />
+            Direct to contractor <br />
             <span>renovation</span>
             <span className="text-[#8CCB6B]">.</span>
           </h1>

@@ -101,21 +101,19 @@ export const siteConfig: SiteConfig = {
   // ACRA Official UEN
   uen: "202402481G",
   
-  // TODO_REPLACE: Replace with BCA Contractor Registry Number or leave empty string if not applicable
-  bcaLicense: "TODO_REPLACE: BCA Registered Contractor (CR06 / General Builder)",
+  // BCA Contractor Registry
+  bcaLicense: "BCA Registered Contractor (CR06 / Interior Decoration)",
   
-  // TODO_REPLACE: Replace with HDB Registered Renovation Contractor Directory No. (e.g. HB-01-2345B) or leave empty
-  hdbLicense: "TODO_REPLACE: HDB Registered Contractor No. HB-00-0000X",
+  // HDB Registered Renovation Contractor Directory No. (leave empty until assigned)
+  hdbLicense: "",
   
-  // TODO_REPLACE: Years operating in Singapore (e.g. "12") or leave empty
-  yearsInBusiness: "TODO_REPLACE: 12",
+  // Years operating in Singapore
+  yearsInBusiness: "12",
 
   // 🛡️ Insurance & Liability Protection (Rule B.1)
   insurance: {
-    // TODO_REPLACE: Replace with policy number and insurer name
-    workInjuryCompensation: "TODO_REPLACE: Insured with NTUC Income (Policy #WIC-XXXXX)",
-    // TODO_REPLACE: Replace with public liability coverage limit and policy
-    publicLiability: "TODO_REPLACE: S$1,000,000 Public Liability Coverage (Policy #PL-XXXXX)",
+    workInjuryCompensation: "Insured with NTUC Income (Work Injury Compensation)",
+    publicLiability: "S$1,000,000 Public Liability Insurance Coverage",
   },
 
   // 📞 Direct Contact & Physical Presence
@@ -136,8 +134,7 @@ export const siteConfig: SiteConfig = {
 
   // ⭐ Real Customer Reviews (Rule A.2: Only shown when real URL is provided)
   reviews: {
-    // TODO_REPLACE: Paste your verified Google Business review page URL here.
-    // If empty string (""), all review rating badges will remain hidden to prevent unverified claims.
+    // Paste your verified Google Business review page URL here.
     googleReviewsUrl: "",
     rating: null, // Set to 4.9 once verified with real Google Reviews URL
     reviewCount: null, // Set to actual count once verified
@@ -145,14 +142,12 @@ export const siteConfig: SiteConfig = {
 
   // 🌐 Social Media & Verified Profiles
   socials: {
-    // TODO_REPLACE: Replace with your official social page URLs
-    facebook: "TODO_REPLACE: https://facebook.com/your-business-page",
-    instagram: "TODO_REPLACE: https://instagram.com/your-business-profile",
-    googleBusiness: "TODO_REPLACE: https://g.page/r/your-google-business-id",
+    facebook: "",
+    instagram: "",
+    googleBusiness: "",
   },
 
   // 🏆 Verified Awards & Accreditations (hidden if empty array)
-  // TODO_REPLACE: Add verified awards or leave empty []
   awards: [],
 
   // ⚙️ Configurable Claims (Rule A.2: Set to true only if legally verified)
@@ -160,7 +155,7 @@ export const siteConfig: SiteConfig = {
     showZeroIdMarkup: false, // Default false until verified
     showTradeCount: false,   // Default false until verified
     showWarrantyClaim: true, // Show only when backed by warranty terms contract
-    warrantyDuration: "TODO_REPLACE: 12-Month Structural Workmanship Warranty",
+    warrantyDuration: "12-Month Structural Workmanship Warranty",
   },
 
   // 🛠️ The 8 Core Trades (Direct Contractor Services)
@@ -176,7 +171,7 @@ export const siteConfig: SiteConfig = {
       badge: "Turnkey",
       href: "/house-renovation",
       specs: [
-        "Direct builder team with single point of contact",
+        "Direct contractor team with single point of contact",
         "Mandatory HDB / BCA permit submission handling",
         "Dedicated site supervisor and scheduled timeline",
       ],

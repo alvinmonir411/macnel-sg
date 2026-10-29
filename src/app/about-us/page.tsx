@@ -57,7 +57,7 @@ export default function AboutUsPage() {
   const standards = [
     {
       title: "100% Direct In-House Craftsmen",
-      desc: "We do not pass your project to third-party sub-contractors. Our own foremen and master builders manage your site daily.",
+      desc: "We do not pass your project to third-party sub-contractors. Our own foremen and master craftsmen manage your site daily.",
     },
     {
       title: "HDB & BCA Regulatory Compliance",
@@ -168,7 +168,7 @@ export default function AboutUsPage() {
               a 20% to 35% margin while diluting quality control.
             </p>
             <p className="text-base text-slate-600 leading-relaxed mb-6 font-normal">
-              Renovation Contractor SG was established to restore pure builder craftsmanship. When you work with us, you deal
+              Renovation Contractor SG was established to restore pure direct contractor craftsmanship. When you work with us, you deal
               directly with our Founder, Managing Director, and master tradesmen responsible for your hacking, waterproofing, piping, tiling, electrical, and
               custom cabinetry.
             </p>

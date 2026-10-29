@@ -164,8 +164,8 @@ const DEFAULT_SETTINGS: SiteSettings = {
   },
   credentials: {
     uen: "202402481G",
-    hdbLicense: "HDB Registered Directory HB-00-0000X",
-    bcaLicense: "BCA Registered Contractor (CR06 / General Builder)",
+    hdbLicense: "",
+    bcaLicense: "BCA Registered Contractor (CR06 / Interior)",
     bizSafe: "bizSAFE Level 3 Certified",
     yearsInBusiness: "12",
   },
@@ -717,24 +717,24 @@ export default function AdminDashboardPage() {
   // -------------------------------------------------------------
   if (!isAuthenticated && !loading) {
     return (
-      <div className="min-h-screen bg-[#070D18] flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-[#0D1829] border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-44 h-44 bg-[#8CCB6B]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="min-h-screen bg-[#000000] flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-[#0A0A0A] border border-zinc-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-44 h-44 bg-white/5 rounded-full blur-3xl pointer-events-none" />
 
           {/* Logo & Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-[#162740] border border-[#8CCB6B]/40 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#8CCB6B]/10">
-              <Building2 className="w-8 h-8 text-[#8CCB6B]" />
+            <div className="w-16 h-16 rounded-2xl bg-[#141414] border border-zinc-700 flex items-center justify-center mx-auto mb-4 text-white shadow-lg">
+              <Building2 className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-black text-white tracking-tight">Enterprise Suite</h1>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-zinc-400 mt-1">
               Renovation Contractor SG · Executive CMS
             </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
                 Enter Master Security PIN
               </label>
               <div className="relative">
@@ -744,19 +744,19 @@ export default function AdminDashboardPage() {
                   onChange={(e) => setPinInput(e.target.value)}
                   placeholder="Enter 5-digit PIN..."
                   autoFocus
-                  className="w-full px-4 py-3.5 rounded-xl bg-[#08101E] border border-slate-700 text-white placeholder-slate-500 font-mono text-center tracking-widest text-lg focus:outline-none focus:border-[#8CCB6B] transition-colors"
+                  className="w-full px-4 py-3.5 rounded-xl bg-[#141414] border border-zinc-700 text-white placeholder-zinc-500 font-mono text-center tracking-widest text-lg focus:outline-none focus:border-white transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPin(!showPin)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white"
                 >
                   {showPin ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
               {pinError && (
-                <p className="text-xs text-rose-400 mt-2 flex items-center gap-1.5 font-medium">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
+                <p className="text-xs text-zinc-300 mt-2 flex items-center gap-1.5 font-medium">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-white" />
                   <span>{pinError}</span>
                 </p>
               )}
@@ -764,18 +764,18 @@ export default function AdminDashboardPage() {
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#8CCB6B] to-[#5ea13d] hover:brightness-110 text-[#071306] font-extrabold text-sm shadow-lg shadow-[#8CCB6B]/20 transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-black text-sm shadow-lg transition-all flex items-center justify-center gap-2"
             >
-              <ShieldCheck className="w-4 h-4" />
+              <ShieldCheck className="w-4 h-4 stroke-[2.5]" />
               <span>Unlock Admin Dashboard</span>
             </button>
 
-            <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+            <div className="pt-4 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400">
               <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 <span>Neon PostgreSQL Active</span>
               </span>
-              <span className="text-slate-500 font-mono">PIN: 13663</span>
+              <span className="text-zinc-500 font-mono">PIN: 13663</span>
             </div>
           </form>
         </div>
@@ -787,7 +787,7 @@ export default function AdminDashboardPage() {
   // ENTERPRISE SUITE LAYOUT
   // -------------------------------------------------------------
   return (
-    <div className="min-h-screen bg-[#060C16] text-slate-100 flex flex-col lg:flex-row antialiased">
+    <div className="min-h-screen bg-[#000000] text-zinc-100 flex flex-col lg:flex-row antialiased font-sans selection:bg-white selection:text-black">
       {/* Hidden File Input */}
       <input
         ref={fileInputRef}
@@ -799,8 +799,8 @@ export default function AdminDashboardPage() {
 
       {/* Floating Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#0F1E33] border border-[#8CCB6B] text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-3 duration-300">
-          <CheckCircle2 className="w-5 h-5 text-[#8CCB6B] shrink-0" />
+        <div className="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-700 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-3 duration-300">
+          <CheckCircle2 className="w-5 h-5 text-white shrink-0" />
           <span className="text-xs sm:text-sm font-semibold">{toastMessage}</span>
         </div>
       )}
@@ -811,24 +811,24 @@ export default function AdminDashboardPage() {
       <aside
         className={`${
           sidebarOpen ? "w-72" : "w-20"
-        } shrink-0 bg-[#091222] border-r border-slate-800/80 flex flex-col justify-between transition-all duration-300 z-30 sticky top-0 h-screen`}
+        } shrink-0 bg-[#0A0A0A] border-r border-zinc-800 flex flex-col justify-between transition-all duration-300 z-30 sticky top-0 h-screen`}
       >
         <div className="flex flex-col h-full overflow-hidden">
           {/* Brand Header */}
-          <div className="p-5 border-b border-slate-800/80 flex items-center justify-between gap-3">
+          <div className="p-5 border-b border-zinc-800 flex items-center justify-between gap-3">
             <Link href="/admin" className="flex items-center gap-3 overflow-hidden">
-              <div className="w-10 h-10 rounded-xl bg-[#14263E] border border-[#8CCB6B]/40 flex items-center justify-center text-[#8CCB6B] shrink-0 shadow-md shadow-[#8CCB6B]/15">
+              <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center text-white shrink-0 shadow-md">
                 <Building2 className="w-5 h-5" />
               </div>
               {sidebarOpen && (
                 <div className="overflow-hidden">
                   <h1 className="font-black text-sm tracking-tight text-white whitespace-nowrap">
-                    Macnel Builder
+                    Renovation Contractor SG
                   </h1>
-                  <p className="text-[10px] text-[#8CCB6B] font-bold uppercase tracking-wider whitespace-nowrap flex items-center gap-1">
-                    <span>Direct Contractor</span>
-                    <span className="w-1 h-1 rounded-full bg-[#8CCB6B]" />
-                    <span>SG</span>
+                  <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider whitespace-nowrap flex items-center gap-1.5">
+                    <span>Admin Suite</span>
+                    <span className="w-1 h-1 rounded-full bg-white" />
+                    <span>Monochrome</span>
                   </p>
                 </div>
               )}
@@ -836,7 +836,7 @@ export default function AdminDashboardPage() {
 
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+              className="p-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors border border-zinc-800"
               title="Toggle Sidebar"
             >
               <Menu className="w-4 h-4" />
@@ -844,15 +844,13 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+          <div className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5">
             {[
               { id: "overview", label: "Executive Overview", icon: LayoutDashboard },
-              { id: "services", label: "Services (Edit Images & Text)", icon: Layers, href: "/admin/services", badge: "8" },
               { id: "bookings", label: "Bookings", badge: bookings.length, icon: Calendar },
               { id: "inquiries", label: "Leads & Inquiries", badge: inquiries.length, icon: Inbox },
               { id: "images", label: "Visual Image Manager (All Pages)", badge: `${imageSlots.length}`, icon: ImageIcon },
               { id: "projects", label: "Portfolio Projects", badge: projects.length, icon: Briefcase, href: "/admin/projects" },
-              { id: "pricing", label: "Pricing & Trade Rates", icon: DollarSign },
               { id: "reviews", label: "Customer Reviews", icon: Star },
               { id: "settings", label: "Master Settings & SEO", icon: Settings },
             ].map((tab: any) => {
@@ -863,16 +861,16 @@ export default function AdminDashboardPage() {
                   <Link
                     key={tab.id}
                     href={tab.href}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800/50 border border-emerald-500/20 bg-emerald-950/20 group"
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-zinc-300 hover:text-white hover:bg-zinc-900 border border-zinc-800 bg-zinc-950/60 group"
                     title={tab.label}
                   >
-                    <Icon className="w-4 h-4 shrink-0 text-[#8CCB6B] group-hover:scale-110 transition-transform" />
+                    <Icon className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-white group-hover:scale-105 transition-all" />
                     {sidebarOpen && (
-                      <span className="flex-1 text-left truncate text-emerald-300 font-extrabold">{tab.label}</span>
+                      <span className="flex-1 text-left truncate text-zinc-200 font-bold">{tab.label}</span>
                     )}
                     {sidebarOpen && (
-                      <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-[#8CCB6B] border border-emerald-500/30">
-                        {tab.badge || "Edit"}
+                      <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-300 border border-zinc-700">
+                        {tab.badge || "Manage"}
                       </span>
                     )}
                   </Link>
@@ -884,21 +882,21 @@ export default function AdminDashboardPage() {
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                     active
-                      ? "bg-gradient-to-r from-[#14263E] to-[#0E1D33] text-white border border-[#8CCB6B]/40 shadow-sm"
-                      : "text-slate-400 hover:text-white hover:bg-slate-800/40"
+                      ? "bg-white text-black shadow-lg font-black"
+                      : "text-zinc-400 hover:text-white hover:bg-zinc-900/70"
                   }`}
                   title={tab.label}
                 >
-                  <Icon className={`w-4 h-4 shrink-0 ${active ? "text-[#8CCB6B]" : "text-slate-400"}`} />
+                  <Icon className={`w-4 h-4 shrink-0 ${active ? "text-black" : "text-zinc-400"}`} />
                   {sidebarOpen && (
                     <span className="flex-1 text-left truncate">{tab.label}</span>
                   )}
                   {sidebarOpen && tab.badge !== undefined && (
                     <span
-                      className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+                      className={`text-[10px] font-black px-2 py-0.5 rounded-full font-mono ${
                         active
-                          ? "bg-[#8CCB6B] text-[#071306]"
-                          : "bg-slate-800 text-slate-300 border border-slate-700"
+                          ? "bg-black text-white"
+                          : "bg-zinc-900 text-zinc-300 border border-zinc-800"
                       }`}
                     >
                       {tab.badge}
@@ -911,44 +909,44 @@ export default function AdminDashboardPage() {
 
           {/* System Health Indicators */}
           {sidebarOpen && (
-            <div className="p-4 mx-3 mb-3 bg-[#08111E] border border-slate-800/80 rounded-2xl space-y-2">
+            <div className="p-4 mx-3 mb-3 bg-[#141414] border border-zinc-800 rounded-2xl space-y-2">
               <div className="flex items-center justify-between text-[11px]">
-                <span className="text-slate-400 flex items-center gap-1.5 font-medium">
-                  <Database className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-zinc-400 flex items-center gap-1.5 font-medium">
+                  <Database className="w-3.5 h-3.5 text-white" />
                   <span>Neon Database</span>
                 </span>
-                <span className="text-emerald-400 font-bold flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-white font-bold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                   <span>Online</span>
                 </span>
               </div>
               <div className="flex items-center justify-between text-[11px]">
-                <span className="text-slate-400 flex items-center gap-1.5 font-medium">
-                  <Cloud className="w-3.5 h-3.5 text-sky-400" />
+                <span className="text-zinc-400 flex items-center gap-1.5 font-medium">
+                  <Cloud className="w-3.5 h-3.5 text-zinc-300" />
                   <span>Cloudinary CDN</span>
                 </span>
-                <span className="text-sky-400 font-bold">Active</span>
+                <span className="text-zinc-300 font-bold">Active</span>
               </div>
             </div>
           )}
 
           {/* User Profile Footer */}
-          <div className="p-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+          <div className="p-3 border-t border-zinc-800 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 font-bold text-xs shrink-0">
+              <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 font-bold text-xs shrink-0">
                 AD
               </div>
               {sidebarOpen && (
                 <div className="overflow-hidden">
                   <p className="text-xs font-bold text-white truncate">Administrator</p>
-                  <p className="text-[10px] text-slate-400 font-mono">PIN: 13663</p>
+                  <p className="text-[10px] text-zinc-400 font-mono">PIN: 13663</p>
                 </div>
               )}
             </div>
 
             <button
               onClick={handleLogout}
-              className="p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors shrink-0"
+              className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors shrink-0"
               title="Logout"
             >
               <LogOut className="w-4 h-4" />
@@ -960,24 +958,24 @@ export default function AdminDashboardPage() {
       {/* ========================================================= */}
       {/* 2. TOPBAR & MAIN CONTENT AREA */}
       {/* ========================================================= */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto bg-[#000000]">
         {/* Top Header */}
-        <header className="border-b border-slate-800/80 bg-[#091222]/80 backdrop-blur-md sticky top-0 z-20 px-4 sm:px-8 py-3.5">
+        <header className="border-b border-zinc-800 bg-[#0A0A0A]/95 backdrop-blur-md sticky top-0 z-20 px-4 sm:px-8 py-3.5">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             {/* Global Search Bar */}
             <div className="relative flex-1 max-w-md">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={globalSearch}
                 onChange={(e) => setGlobalSearch(e.target.value)}
-                placeholder="Global search bookings, leads, projects, images..."
-                className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#060C16] border border-slate-700/80 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B] transition-colors"
+                placeholder="Search bookings, leads, projects, images..."
+                className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#141414] border border-zinc-800 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors"
               />
               {globalSearch && (
                 <button
                   onClick={() => setGlobalSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -988,28 +986,28 @@ export default function AdminDashboardPage() {
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setShowNewBookingModal(true)}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#8CCB6B] to-[#5ea13d] hover:brightness-110 text-[#071306] text-xs font-black shadow-md shadow-[#8CCB6B]/20 transition-all"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs font-black shadow-sm transition-all"
               >
-                <Plus className="w-4 h-4" />
+                <Plus className="w-4 h-4 stroke-[2.5]" />
                 <span>New Booking</span>
               </button>
 
               <button
                 onClick={fetchAllData}
                 disabled={refreshing}
-                className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors border border-zinc-800"
                 title="Sync from Database"
               >
-                <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin text-[#8CCB6B]" : ""}`} />
+                <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin text-white" : ""}`} />
               </button>
 
               <Link
                 href="/"
                 target="_blank"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-xs font-bold text-zinc-300 hover:text-white border border-zinc-800 transition-colors"
               >
                 <span>Live Site</span>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                <ExternalLink className="w-3.5 h-3.5 text-zinc-500" />
               </Link>
             </div>
           </div>
@@ -1034,81 +1032,85 @@ export default function AdminDashboardPage() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={exportBookingsToCSV}
-                    className="px-3.5 py-2 rounded-xl bg-[#091222] border border-slate-700 hover:border-slate-600 text-xs font-bold text-slate-300 flex items-center gap-1.5"
+                    className="px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs font-bold text-zinc-300 hover:text-white flex items-center gap-1.5 transition-colors"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                    <Download className="w-3.5 h-3.5 text-zinc-400" />
                     <span>Export Bookings</span>
                   </button>
                   <button
                     onClick={() => setActiveTab("images")}
-                    className="px-3.5 py-2 rounded-xl bg-[#14263E] border border-[#8CCB6B]/40 hover:border-[#8CCB6B] text-xs font-bold text-[#8CCB6B] flex items-center gap-1.5"
+                    className="px-3.5 py-2 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs font-black flex items-center gap-1.5 shadow-sm transition-all"
                   >
                     <Upload className="w-3.5 h-3.5" />
-                    <span>Upload Media</span>
+                    <span>Manage Photos</span>
                   </button>
                 </div>
               </div>
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 relative overflow-hidden">
-                  <div className="flex items-center justify-between text-slate-400 mb-2">
+                <div className="bg-[#0E0E0E] border border-zinc-800/90 rounded-3xl p-6 relative overflow-hidden">
+                  <div className="flex items-center justify-between text-zinc-400 mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider">Total Bookings</span>
-                    <Calendar className="w-4 h-4 text-[#8CCB6B]" />
+                    <Calendar className="w-4 h-4 text-zinc-300" />
                   </div>
                   <p className="text-3xl font-black text-white">{bookings.length}</p>
-                  <p className="text-[11px] text-emerald-400 mt-1 font-medium">Synced with Neon DB</p>
+                  <p className="text-[11px] text-zinc-400 mt-1 font-medium flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                    <span>Synced with Neon DB</span>
+                  </p>
                 </div>
 
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 relative overflow-hidden">
-                  <div className="flex items-center justify-between text-slate-400 mb-2">
+                <div className="bg-[#0E0E0E] border border-zinc-800/90 rounded-3xl p-6 relative overflow-hidden">
+                  <div className="flex items-center justify-between text-zinc-400 mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider">Active Pipeline</span>
-                    <Clock className="w-4 h-4 text-amber-400" />
+                    <Clock className="w-4 h-4 text-zinc-300" />
                   </div>
-                  <p className="text-3xl font-black text-amber-400">
+                  <p className="text-3xl font-black text-white">
                     {bookings.filter((b) => b.status === "confirmed" || b.status === "in-progress").length}
                   </p>
-                  <p className="text-[11px] text-slate-400 mt-1">Pending inspection / in-progress</p>
+                  <p className="text-[11px] text-zinc-400 mt-1">Pending inspection / in-progress</p>
                 </div>
 
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 relative overflow-hidden">
-                  <div className="flex items-center justify-between text-slate-400 mb-2">
+                <div className="bg-[#0E0E0E] border border-zinc-800/90 rounded-3xl p-6 relative overflow-hidden">
+                  <div className="flex items-center justify-between text-zinc-400 mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider">Website Inquiries</span>
-                    <Inbox className="w-4 h-4 text-sky-400" />
+                    <Inbox className="w-4 h-4 text-zinc-300" />
                   </div>
                   <p className="text-3xl font-black text-white">{inquiries.length}</p>
-                  <p className="text-[11px] text-slate-400 mt-1">Quote request submissions</p>
+                  <p className="text-[11px] text-zinc-400 mt-1">Quote request submissions</p>
                 </div>
 
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 relative overflow-hidden">
-                  <div className="flex items-center justify-between text-slate-400 mb-2">
-                    <span className="text-xs font-bold uppercase tracking-wider">Managed Media</span>
-                    <ImageIcon className="w-4 h-4 text-purple-400" />
+                <div className="bg-[#0E0E0E] border border-zinc-800/90 rounded-3xl p-6 relative overflow-hidden">
+                  <div className="flex items-center justify-between text-zinc-400 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider">Indexed Photos</span>
+                    <ImageIcon className="w-4 h-4 text-zinc-300" />
                   </div>
-                  <p className="text-3xl font-black text-purple-300">{imageSlots.length} Slots</p>
-                  <p className="text-[11px] text-slate-400 mt-1">Cloudinary CDN active</p>
+                  <p className="text-3xl font-black text-white">{imageSlots.length} Visuals</p>
+                  <p className="text-[11px] text-zinc-400 mt-1">Cloudinary CDN active</p>
                 </div>
               </div>
 
               {/* Recent Bookings & Quick Actions Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Recent Bookings (2 Cols) */}
-                <div className="lg:col-span-2 bg-[#091222] border border-slate-800 rounded-3xl p-6 space-y-4">
+                <div className="lg:col-span-2 bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-base font-bold text-white">Recent Customer Consultations</h3>
-                      <p className="text-xs text-slate-400">Direct bookings from Singapore homeowners</p>
+                      <p className="text-xs text-zinc-400">Direct bookings from Singapore homeowners</p>
                     </div>
                     <button
                       onClick={() => setActiveTab("bookings")}
-                      className="text-xs font-bold text-[#8CCB6B] hover:underline"
+                      className="text-xs font-bold text-white hover:underline flex items-center gap-1"
                     >
-                      View All →
+                      <span>View All</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
                   {bookings.length === 0 ? (
-                    <div className="text-center py-10 text-slate-500 text-sm">
+                    <div className="text-center py-10 text-zinc-500 text-sm">
                       No customer bookings yet.
                     </div>
                   ) : (
@@ -1116,22 +1118,22 @@ export default function AdminDashboardPage() {
                       {bookings.slice(0, 4).map((b) => (
                         <div
                           key={b.id}
-                          className="bg-[#060C16] border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                          className="bg-[#141414] border border-zinc-800 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                         >
                           <div className="space-y-1">
                             <div className="flex items-center gap-2">
-                              <span className="font-mono text-xs font-bold text-[#8CCB6B] bg-[#8CCB6B]/10 px-2 py-0.5 rounded-md border border-[#8CCB6B]/20">
+                              <span className="font-mono text-xs font-bold text-white bg-zinc-800 px-2 py-0.5 rounded-md border border-zinc-700">
                                 {b.id}
                               </span>
                               <span className="font-bold text-sm text-white">{b.client_name}</span>
-                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full capitalize bg-slate-800 text-slate-300">
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full capitalize bg-zinc-900 text-zinc-300 border border-zinc-800">
                                 {b.status}
                               </span>
                             </div>
-                            <p className="text-xs text-slate-300">
+                            <p className="text-xs text-zinc-300">
                               {b.service_name} {b.property_type && `· ${b.property_type}`}
                             </p>
-                            <p className="text-[11px] text-slate-500">
+                            <p className="text-[11px] text-zinc-500">
                               Date: {b.inspection_date || "TBD"} · {b.time_slot || "Anytime"}
                             </p>
                           </div>
@@ -1141,14 +1143,14 @@ export default function AdminDashboardPage() {
                               href={`https://wa.me/${b.client_phone.replace(/[^0-9]/g, "")}`}
                               target="_blank"
                               rel="noreferrer"
-                              className="px-3 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5 transition-colors"
+                              className="px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-700 text-xs font-bold flex items-center gap-1.5 transition-colors"
                             >
                               <MessageCircle className="w-3.5 h-3.5" />
                               <span>WhatsApp</span>
                             </a>
                             <a
                               href={`tel:${b.client_phone}`}
-                              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5"
+                              className="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 text-xs font-bold flex items-center gap-1.5 transition-colors"
                             >
                               <Phone className="w-3.5 h-3.5" />
                               <span>Call</span>
@@ -1161,48 +1163,34 @@ export default function AdminDashboardPage() {
                 </div>
 
                 {/* Quick CMS Hub (1 Col) */}
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 space-y-4">
+                <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 space-y-4">
                   <h3 className="text-base font-bold text-white">Direct Management Hub</h3>
-                  <p className="text-xs text-slate-400">
-                    Jump to any section to edit content, media, or pricing:
+                  <p className="text-xs text-zinc-400">
+                    Jump to any section to edit content, media, or settings:
                   </p>
 
                   <div className="space-y-2 pt-2">
                     {[
                       {
-                        label: "Manage Services (Photos & Text)",
-                        desc: "Edit titles, images, descriptions & specs",
-                        href: "/admin/services",
-                        icon: Layers,
-                        color: "text-emerald-400",
-                      },
-                      {
-                        label: "Change Hero Photos & Video",
-                        desc: "Banner background & video loop",
+                        label: "Website Visual Image Manager",
+                        desc: "Swap hero, trade services, and gallery photos",
                         tab: "images",
                         icon: ImageIcon,
-                        color: "text-emerald-400",
+                        color: "text-white",
                       },
                       {
-                        label: "Edit Portfolio Projects & Featured",
-                        desc: "Before/After photos & homepage slider",
+                        label: "Portfolio Projects & Case Studies",
+                        desc: "Before/After photos & slider",
                         href: "/admin/projects",
                         icon: Briefcase,
-                        color: "text-sky-400",
+                        color: "text-zinc-300",
                       },
                       {
-                        label: "Update Trade Pricing",
-                        desc: "Indicative packages & scope",
-                        tab: "pricing",
-                        icon: DollarSign,
-                        color: "text-amber-400",
-                      },
-                      {
-                        label: "Company Contact & Licenses",
-                        desc: "UEN, WhatsApp, office showroom",
+                        label: "Company Contact & Credentials",
+                        desc: "UEN, WhatsApp, office showroom address",
                         tab: "settings",
                         icon: Settings,
-                        color: "text-purple-400",
+                        color: "text-zinc-300",
                       },
                     ].map((item: any, idx) => {
                       const Icon = item.icon;
@@ -1211,20 +1199,20 @@ export default function AdminDashboardPage() {
                           <Link
                             key={idx}
                             href={item.href}
-                            className="w-full p-3 rounded-2xl bg-[#060C16] border border-emerald-500/30 hover:border-emerald-500/70 text-left flex items-center justify-between gap-3 group transition-all"
+                            className="w-full p-3 rounded-2xl bg-zinc-950 border border-zinc-800 hover:border-zinc-700 text-left flex items-center justify-between gap-3 group transition-all"
                           >
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
-                                <Icon className={`w-4 h-4 ${item.color}`} />
+                              <div className="w-8 h-8 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+                                <Icon className="w-4 h-4 text-white" />
                               </div>
                               <div>
-                                <p className="font-bold text-xs text-white group-hover:text-[#8CCB6B] transition-colors">
+                                <p className="font-bold text-xs text-white group-hover:text-zinc-300 transition-colors">
                                   {item.label}
                                 </p>
-                                <p className="text-[11px] text-slate-400">{item.desc}</p>
+                                <p className="text-[11px] text-zinc-400">{item.desc}</p>
                               </div>
                             </div>
-                            <ChevronRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
+                            <ChevronRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-1 transition-transform" />
                           </Link>
                         );
                       }
@@ -1232,20 +1220,20 @@ export default function AdminDashboardPage() {
                         <button
                           key={idx}
                           onClick={() => setActiveTab(item.tab as any)}
-                          className="w-full p-3 rounded-2xl bg-[#060C16] border border-slate-800/80 hover:border-slate-700 text-left flex items-center justify-between gap-3 group transition-all"
+                          className="w-full p-3 rounded-2xl bg-zinc-950 border border-zinc-800 hover:border-zinc-700 text-left flex items-center justify-between gap-3 group transition-all"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-xl bg-slate-800/80 flex items-center justify-center shrink-0">
+                            <div className="w-8 h-8 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
                               <Icon className={`w-4 h-4 ${item.color}`} />
                             </div>
                             <div>
-                              <p className="font-bold text-xs text-white group-hover:text-[#8CCB6B] transition-colors">
+                              <p className="font-bold text-xs text-white group-hover:text-zinc-300 transition-colors">
                                 {item.label}
                               </p>
-                              <p className="text-[11px] text-slate-400">{item.desc}</p>
+                              <p className="text-[11px] text-zinc-400">{item.desc}</p>
                             </div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
+                          <ChevronRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
                         </button>
                       );
                     })}
@@ -1264,7 +1252,7 @@ export default function AdminDashboardPage() {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-xl font-black text-white">Client Consultation Bookings</h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-zinc-400">
                     Live client reservations recorded in Neon PostgreSQL
                   </p>
                 </div>
@@ -1272,24 +1260,24 @@ export default function AdminDashboardPage() {
                 <div className="flex flex-wrap items-center gap-2">
                   <button
                     onClick={() => setShowNewBookingModal(true)}
-                    className="px-3.5 py-2 rounded-xl bg-[#8CCB6B] hover:brightness-110 text-[#071306] text-xs font-black flex items-center gap-1.5 transition-all"
+                    className="px-3.5 py-2 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs font-black flex items-center gap-1.5 transition-all shadow-sm"
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-4 h-4 stroke-[2.5]" />
                     <span>Add Booking</span>
                   </button>
 
                   <button
                     onClick={exportBookingsToCSV}
-                    className="px-3.5 py-2 rounded-xl bg-[#091222] border border-slate-700 hover:border-slate-600 text-xs font-bold text-slate-300 flex items-center gap-1.5"
+                    className="px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs font-bold text-zinc-300 hover:text-white flex items-center gap-1.5 transition-colors"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                    <Download className="w-3.5 h-3.5 text-zinc-400" />
                     <span>Export CSV</span>
                   </button>
                 </div>
               </div>
 
               {/* Filter Strip */}
-              <div className="flex flex-wrap items-center justify-between gap-3 bg-[#091222] border border-slate-800 rounded-2xl p-3">
+              <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0E0E0E] border border-zinc-800 rounded-2xl p-3">
                 <div className="flex items-center gap-1.5 overflow-x-auto">
                   {["all", "confirmed", "in-progress", "completed", "cancelled"].map((st) => (
                     <button
@@ -1297,8 +1285,8 @@ export default function AdminDashboardPage() {
                       onClick={() => setBookingFilter(st)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-bold capitalize transition-colors ${
                         bookingFilter === st
-                          ? "bg-[#8CCB6B] text-[#071306]"
-                          : "text-slate-400 hover:text-white"
+                          ? "bg-white text-black font-black"
+                          : "text-zinc-400 hover:text-white"
                       }`}
                     >
                       {st} ({st === "all" ? bookings.length : bookings.filter((b) => b.status === st).length})
@@ -1307,20 +1295,20 @@ export default function AdminDashboardPage() {
                 </div>
 
                 <div className="relative w-full sm:w-64">
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Search className="w-3.5 h-3.5 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={bookingSearch}
                     onChange={(e) => setBookingSearch(e.target.value)}
                     placeholder="Search by client name, phone..."
-                    className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-[#060C16] border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white transition-colors"
                   />
                 </div>
               </div>
 
               {/* Bookings List */}
               {filteredBookings.length === 0 ? (
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-12 text-center text-slate-500 text-sm">
+                <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-12 text-center text-zinc-500 text-sm">
                   No bookings found matching current filters.
                 </div>
               ) : (
@@ -1328,26 +1316,26 @@ export default function AdminDashboardPage() {
                   {filteredBookings.map((b) => (
                     <div
                       key={b.id}
-                      className="bg-[#091222] border border-slate-800 rounded-3xl p-6 shadow-sm hover:border-slate-700 transition-all space-y-4"
+                      className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 shadow-sm hover:border-zinc-700 transition-all space-y-4"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-4">
                         <div className="flex items-center gap-3">
-                          <span className="font-mono text-sm font-black text-[#8CCB6B] bg-[#8CCB6B]/10 px-2.5 py-1 rounded-lg border border-[#8CCB6B]/20">
+                          <span className="font-mono text-xs font-bold text-white bg-zinc-800 px-2.5 py-1 rounded-lg border border-zinc-700">
                             {b.id}
                           </span>
                           <div>
                             <h3 className="font-bold text-base text-white">{b.client_name}</h3>
-                            <p className="text-xs text-slate-400">{b.client_phone} · {b.client_email || "No email"}</p>
+                            <p className="text-xs text-zinc-400">{b.client_phone} · {b.client_email || "No email"}</p>
                           </div>
                         </div>
 
                         {/* Status Dropdown */}
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-slate-400">Status:</span>
+                          <span className="text-xs text-zinc-400">Status:</span>
                           <select
                             value={b.status}
                             onChange={(e) => handleUpdateBookingStatus(b.id, e.target.value)}
-                            className="bg-[#060C16] border border-slate-700 text-xs font-bold text-white rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#8CCB6B]"
+                            className="bg-[#141414] border border-zinc-700 text-xs font-bold text-white rounded-xl px-3 py-1.5 focus:outline-none focus:border-white transition-colors"
                           >
                             <option value="confirmed">Confirmed</option>
                             <option value="in-progress">In-Progress</option>
@@ -1360,42 +1348,42 @@ export default function AdminDashboardPage() {
                       {/* Details Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
                         <div>
-                          <span className="text-slate-500 block">Service</span>
-                          <span className="font-bold text-slate-200">{b.service_name}</span>
-                          {b.service_detail && <span className="text-slate-400 block text-[11px]">{b.service_detail}</span>}
+                          <span className="text-zinc-500 block">Service</span>
+                          <span className="font-bold text-zinc-200">{b.service_name}</span>
+                          {b.service_detail && <span className="text-zinc-400 block text-[11px]">{b.service_detail}</span>}
                         </div>
 
                         <div>
-                          <span className="text-slate-500 block">Property Type</span>
-                          <span className="font-bold text-slate-200">{b.property_type || "N/A"}</span>
-                          {b.property_size && <span className="text-slate-400 block text-[11px]">{b.property_size}</span>}
+                          <span className="text-zinc-500 block">Property Type</span>
+                          <span className="font-bold text-zinc-200">{b.property_type || "N/A"}</span>
+                          {b.property_size && <span className="text-zinc-400 block text-[11px]">{b.property_size}</span>}
                         </div>
 
                         <div>
-                          <span className="text-slate-500 block">Site Inspection</span>
-                          <span className="font-bold text-emerald-400">{b.inspection_date || "To Be Scheduled"}</span>
-                          <span className="text-slate-400 block text-[11px]">{b.time_slot || "Anytime"}</span>
+                          <span className="text-zinc-500 block">Site Inspection</span>
+                          <span className="font-bold text-white">{b.inspection_date || "To Be Scheduled"}</span>
+                          <span className="text-zinc-400 block text-[11px]">{b.time_slot || "Anytime"}</span>
                         </div>
 
                         <div>
-                          <span className="text-slate-500 block">Postal & Unit</span>
-                          <span className="font-bold text-slate-200">
+                          <span className="text-zinc-500 block">Postal & Unit</span>
+                          <span className="font-bold text-zinc-200">
                             {b.postal_code ? `SG ${b.postal_code}` : "Not given"}
                           </span>
-                          {b.unit_number && <span className="text-slate-400 block text-[11px]">#{b.unit_number}</span>}
+                          {b.unit_number && <span className="text-zinc-400 block text-[11px]">#{b.unit_number}</span>}
                         </div>
                       </div>
 
                       {b.notes && (
-                        <div className="bg-[#060C16] rounded-xl p-3 text-xs text-slate-300 border border-slate-800">
-                          <span className="font-bold text-slate-400">Homeowner Note: </span>
+                        <div className="bg-[#141414] rounded-xl p-3 text-xs text-zinc-300 border border-zinc-800">
+                          <span className="font-bold text-zinc-400">Homeowner Note: </span>
                           {b.notes}
                         </div>
                       )}
 
                       {/* Action Bar */}
                       <div className="flex items-center justify-between pt-2">
-                        <span className="text-[11px] text-slate-500">
+                        <span className="text-[11px] text-zinc-500">
                           Booked: {new Date(b.created_at).toLocaleString()}
                         </span>
 
@@ -1406,21 +1394,21 @@ export default function AdminDashboardPage() {
                             )}`}
                             target="_blank"
                             rel="noreferrer"
-                            className="px-3 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5 transition-colors"
+                            className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 text-xs font-bold flex items-center gap-1.5 transition-colors"
                           >
                             <MessageCircle className="w-3.5 h-3.5" />
                             <span>WhatsApp Client</span>
                           </a>
                           <a
                             href={`tel:${b.client_phone}`}
-                            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5"
+                            className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 text-xs font-bold flex items-center gap-1.5 transition-colors"
                           >
                             <Phone className="w-3.5 h-3.5" />
                             <span>Call</span>
                           </a>
                           <button
                             onClick={() => handleDeleteBooking(b.id)}
-                            className="p-1.5 rounded-xl text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                            className="p-1.5 rounded-xl text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors"
                             title="Delete Booking"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -1442,22 +1430,22 @@ export default function AdminDashboardPage() {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-xl font-black text-white">Direct Quote Inquiries</h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-zinc-400">
                     Lead submissions from the website contact and calculator forms
                   </p>
                 </div>
 
                 <button
                   onClick={exportInquiriesToCSV}
-                  className="px-3.5 py-2 rounded-xl bg-[#091222] border border-slate-700 hover:border-slate-600 text-xs font-bold text-slate-300 flex items-center gap-1.5 self-start md:self-auto"
+                  className="px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs font-bold text-zinc-300 hover:text-white flex items-center gap-1.5 self-start md:self-auto transition-colors"
                 >
-                  <Download className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                  <Download className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Export Inquiries CSV</span>
                 </button>
               </div>
 
               {filteredInquiries.length === 0 ? (
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-12 text-center text-slate-500 text-sm">
+                <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-12 text-center text-zinc-500 text-sm">
                   No inquiries found.
                 </div>
               ) : (
@@ -1465,12 +1453,12 @@ export default function AdminDashboardPage() {
                   {filteredInquiries.map((inq) => (
                     <div
                       key={inq.id}
-                      className="bg-[#091222] border border-slate-800 rounded-3xl p-6 space-y-4"
+                      className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 space-y-4"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800 pb-3">
                         <div>
                           <h3 className="font-bold text-base text-white">{inq.name}</h3>
-                          <p className="text-xs text-slate-400">
+                          <p className="text-xs text-zinc-400">
                             {inq.phone} {inq.email && `· ${inq.email}`}
                           </p>
                         </div>
@@ -1482,21 +1470,21 @@ export default function AdminDashboardPage() {
                             )}`}
                             target="_blank"
                             rel="noreferrer"
-                            className="px-3 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5"
+                            className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 text-xs font-bold flex items-center gap-1.5 transition-colors"
                           >
                             <MessageCircle className="w-3.5 h-3.5" />
                             <span>WhatsApp</span>
                           </a>
                           <a
                             href={`tel:${inq.phone}`}
-                            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5"
+                            className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 text-xs font-bold flex items-center gap-1.5 transition-colors"
                           >
                             <Phone className="w-3.5 h-3.5" />
                             <span>Call</span>
                           </a>
                           <button
                             onClick={() => handleDeleteInquiry(inq.id)}
-                            className="p-1.5 rounded-xl text-slate-500 hover:text-rose-400 hover:bg-rose-500/10"
+                            className="p-1.5 rounded-xl text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -1505,27 +1493,27 @@ export default function AdminDashboardPage() {
 
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs">
                         <div>
-                          <span className="text-slate-500 block">Service</span>
-                          <span className="font-bold text-slate-200">{inq.service || "General Turnkey"}</span>
+                          <span className="text-zinc-500 block">Service</span>
+                          <span className="font-bold text-zinc-200">{inq.service || "General Turnkey"}</span>
                         </div>
                         <div>
-                          <span className="text-slate-500 block">Property Type</span>
-                          <span className="font-bold text-slate-200">{inq.property_type || "N/A"}</span>
+                          <span className="text-zinc-500 block">Property Type</span>
+                          <span className="font-bold text-zinc-200">{inq.property_type || "N/A"}</span>
                         </div>
                         <div>
-                          <span className="text-slate-500 block">Estimated Budget</span>
-                          <span className="font-bold text-[#8CCB6B]">{inq.estimated_budget || "Not specified"}</span>
+                          <span className="text-zinc-500 block">Estimated Budget</span>
+                          <span className="font-bold text-white">{inq.estimated_budget || "Not specified"}</span>
                         </div>
                       </div>
 
                       {inq.message && (
-                        <div className="bg-[#060C16] rounded-xl p-3 text-xs text-slate-300 border border-slate-800">
-                          <span className="font-bold text-slate-400">Message: </span>
+                        <div className="bg-[#141414] rounded-xl p-3 text-xs text-zinc-300 border border-zinc-800">
+                          <span className="font-bold text-zinc-400">Message: </span>
                           {inq.message}
                         </div>
                       )}
 
-                      <div className="text-[11px] text-slate-500">
+                      <div className="text-[11px] text-zinc-500">
                         Received: {new Date(inq.created_at).toLocaleString()}
                       </div>
                     </div>
@@ -1541,31 +1529,31 @@ export default function AdminDashboardPage() {
           {activeTab === "images" && (
             <div className="space-y-6">
               {/* Top Banner & Stats */}
-              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5">
+              <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-5">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                   <div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-300 mb-2">
-                      <Sparkles className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                    <div className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-xs font-bold text-white mb-2">
+                      <Sparkles className="w-3.5 h-3.5 text-white" />
                       <span>Instant 1-Click Photo Swapper</span>
                     </div>
                     <h2 className="text-2xl font-black text-white flex items-center gap-3">
-                      <ImageIcon className="w-7 h-7 text-[#8CCB6B]" />
+                      <ImageIcon className="w-7 h-7 text-white" />
                       <span>Website Photo &amp; Media Manager</span>
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+                    <p className="text-xs sm:text-sm text-zinc-300 mt-1 max-w-2xl">
                       Change ANY image across House Renovation, Toilet Renovation, Tiling, Carpentry, Ceilings, Electrical, Painting, Doors, Flooring, and Homepage. Select a page or search by name to find and upload immediately.
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-3 bg-[#060C16] border border-slate-800 px-4 py-3 rounded-2xl shrink-0">
+                  <div className="flex items-center gap-3 bg-[#141414] border border-zinc-800 px-4 py-3 rounded-2xl shrink-0">
                     <div>
-                      <p className="text-[10px] uppercase font-bold text-slate-400">Total Indexed Photos</p>
-                      <p className="text-xl font-black text-[#8CCB6B]">{imageSlots.length} Visuals</p>
+                      <p className="text-[10px] uppercase font-bold text-zinc-400">Total Indexed Photos</p>
+                      <p className="text-xl font-black text-white">{imageSlots.length} Visuals</p>
                     </div>
-                    <div className="w-px h-8 bg-slate-800" />
+                    <div className="w-px h-8 bg-zinc-800" />
                     <div>
-                      <p className="text-[10px] uppercase font-bold text-slate-400">Live Custom Uploads</p>
-                      <p className="text-xl font-black text-emerald-400">
+                      <p className="text-[10px] uppercase font-bold text-zinc-400">Live Custom Uploads</p>
+                      <p className="text-xl font-black text-zinc-200">
                         {imageSlots.filter((s) => s.isCustomized).length}
                       </p>
                     </div>
@@ -1574,19 +1562,19 @@ export default function AdminDashboardPage() {
 
                 {/* Instant In-Tab Search Bar */}
                 <div className="relative">
-                  <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <Search className="w-4 h-4 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={globalSearch}
                     onChange={(e) => setGlobalSearch(e.target.value)}
                     placeholder="Search any photo, phase, section, or page (e.g. 'phase 1', 'toilet', 'demolition', 'waterproof', 'kitchen', 'hero')..."
-                    className="w-full pl-11 pr-24 py-3 rounded-2xl bg-[#060C16] border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#8CCB6B] shadow-inner"
+                    className="w-full pl-11 pr-24 py-3 rounded-2xl bg-[#141414] border border-zinc-700 text-sm text-white placeholder-zinc-400 focus:outline-none focus:border-white shadow-inner"
                   />
                   {globalSearch && (
                     <button
                       type="button"
                       onClick={() => setGlobalSearch("")}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 px-2.5 py-1 text-xs font-bold text-slate-400 hover:text-white bg-slate-800 rounded-lg"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 px-2.5 py-1 text-xs font-bold text-zinc-300 hover:text-white bg-zinc-800 rounded-lg"
                     >
                       Clear
                     </button>
@@ -1594,13 +1582,13 @@ export default function AdminDashboardPage() {
                 </div>
 
                 {/* Interactive Page Selector Filter Bar */}
-                <div className="space-y-2 pt-2 border-t border-slate-800/80">
+                <div className="space-y-2 pt-2 border-t border-zinc-800">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                      <Filter className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                    <span className="text-xs font-black uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
+                      <Filter className="w-3.5 h-3.5 text-white" />
                       <span>Filter by Specific Page:</span>
                     </span>
-                    <span className="text-xs text-slate-400">
+                    <span className="text-xs text-zinc-400">
                       Showing <strong className="text-white">{filteredImageSlots.length}</strong> of {imageSlots.length} photos
                     </span>
                   </div>
@@ -1627,8 +1615,8 @@ export default function AdminDashboardPage() {
                         onClick={() => setImageCategory(c.id)}
                         className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
                           imageCategory === c.id
-                            ? "bg-[#8CCB6B] text-[#071306] shadow-md shadow-[#8CCB6B]/20 scale-[1.02]"
-                            : "bg-[#060C16] border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700"
+                            ? "bg-white text-black font-black scale-[1.02] shadow-sm"
+                            : "bg-[#141414] border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700"
                         }`}
                       >
                         <span>{c.label}</span>
@@ -1636,8 +1624,8 @@ export default function AdminDashboardPage() {
                           <span
                             className={`text-[10px] px-1.5 py-0.2 rounded-full font-black ${
                               imageCategory === c.id
-                                ? "bg-black/20 text-[#071306]"
-                                : "bg-slate-800 text-slate-400"
+                                ? "bg-black text-white"
+                                : "bg-zinc-800 text-zinc-400"
                             }`}
                           >
                             {c.count}
@@ -1651,10 +1639,10 @@ export default function AdminDashboardPage() {
 
               {/* Asset Cards Grid */}
               {filteredImageSlots.length === 0 ? (
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-12 text-center space-y-3">
-                  <AlertCircle className="w-10 h-10 text-amber-400 mx-auto" />
+                <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-12 text-center space-y-3">
+                  <AlertCircle className="w-10 h-10 text-zinc-400 mx-auto" />
                   <p className="text-base font-bold text-white">No photos found matching &ldquo;{globalSearch}&rdquo;</p>
-                  <p className="text-xs text-slate-400 max-w-md mx-auto">
+                  <p className="text-xs text-zinc-400 max-w-md mx-auto">
                     Try searching for terms like &ldquo;phase&rdquo;, &ldquo;demolition&rdquo;, &ldquo;tiling&rdquo;, &ldquo;toilet&rdquo;, &ldquo;carpentry&rdquo;, or reset the page category filter.
                   </p>
                   <button
@@ -1663,7 +1651,7 @@ export default function AdminDashboardPage() {
                       setGlobalSearch("");
                       setImageCategory("all");
                     }}
-                    className="px-4 py-2 rounded-xl bg-[#8CCB6B] text-black text-xs font-bold hover:brightness-110"
+                    className="px-4 py-2 rounded-xl bg-white text-black text-xs font-black hover:bg-zinc-200"
                   >
                     Reset All Filters
                   </button>
@@ -1678,19 +1666,19 @@ export default function AdminDashboardPage() {
                     return (
                       <div
                         key={slot.id}
-                        className="bg-[#091222] border border-slate-800 rounded-3xl overflow-hidden shadow-md hover:border-slate-700 transition-all flex flex-col group"
+                        className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl overflow-hidden shadow-md hover:border-zinc-700 transition-all flex flex-col group"
                       >
                         {/* Page & Section Breadcrumb Header */}
-                        <div className="px-5 py-3.5 bg-[#060C16] border-b border-slate-800/80 flex items-center justify-between gap-2">
+                        <div className="px-5 py-3.5 bg-[#141414] border-b border-zinc-800 flex items-center justify-between gap-2">
                           <div className="flex items-center gap-1.5 min-w-0">
-                            <MapPin className="w-3.5 h-3.5 text-[#8CCB6B] shrink-0" />
+                            <MapPin className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                             <span className="text-xs font-black text-white truncate">
                               {slot.pageTitle || "Page"}
                             </span>
                             {slot.sectionName && (
                               <>
-                                <span className="text-slate-600 text-xs">·</span>
-                                <span className="text-[11px] font-bold text-[#8CCB6B] truncate">
+                                <span className="text-zinc-600 text-xs">·</span>
+                                <span className="text-[11px] font-bold text-zinc-300 truncate">
                                   {slot.sectionName}
                                 </span>
                               </>
@@ -1702,17 +1690,17 @@ export default function AdminDashboardPage() {
                               href={slot.pagePath}
                               target="_blank"
                               rel="noreferrer"
-                              className="text-[11px] font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1 shrink-0 bg-sky-950/40 hover:bg-sky-900/40 px-2 py-0.5 rounded-lg border border-sky-800/40 transition-colors"
+                              className="text-[11px] font-bold text-zinc-300 hover:text-white flex items-center gap-1 shrink-0 bg-zinc-900 hover:bg-zinc-800 px-2.5 py-1 rounded-lg border border-zinc-700 transition-colors"
                               title={`Open live page: ${slot.pagePath}`}
                             >
                               <span>View Page</span>
-                              <ExternalLink className="w-3 h-3" />
+                              <ExternalLink className="w-3 h-3 text-zinc-400" />
                             </a>
                           )}
                         </div>
 
                         {/* Media Preview Box */}
-                        <div className="relative aspect-[16/10] bg-[#03070E] overflow-hidden group">
+                        <div className="relative aspect-[16/10] bg-black overflow-hidden group">
                           {isVideo ? (
                             <video
                               src={slot.currentUrl}
@@ -1736,16 +1724,16 @@ export default function AdminDashboardPage() {
 
                           {/* Category & Status Badges */}
                           <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                            <span className="text-[10px] font-black uppercase tracking-wider bg-black/80 backdrop-blur-md text-[#8CCB6B] px-2.5 py-1 rounded-full border border-white/10">
+                            <span className="text-[10px] font-black uppercase tracking-wider bg-black/90 backdrop-blur-md text-white px-2.5 py-1 rounded-full border border-zinc-700">
                               {slot.category}
                             </span>
                             {slot.isCustomized ? (
-                              <span className="text-[10px] font-black bg-emerald-500 text-black px-2.5 py-0.5 rounded-full shadow flex items-center gap-1">
+                              <span className="text-[10px] font-black bg-white text-black px-2.5 py-0.5 rounded-full shadow flex items-center gap-1">
                                 <Check className="w-3 h-3 stroke-[3]" />
                                 <span>Live Custom</span>
                               </span>
                             ) : (
-                              <span className="text-[10px] font-medium bg-slate-900/80 text-slate-300 px-2.5 py-0.5 rounded-full border border-white/10">
+                              <span className="text-[10px] font-medium bg-zinc-900 text-zinc-400 px-2.5 py-0.5 rounded-full border border-zinc-800">
                                 Default Image
                               </span>
                             )}
@@ -1756,7 +1744,7 @@ export default function AdminDashboardPage() {
                             href={slot.currentUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="absolute bottom-3 right-3 p-1.5 rounded-lg bg-black/70 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute bottom-3 right-3 p-1.5 rounded-lg bg-black/80 hover:bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity border border-zinc-700"
                             title="Open Full Image"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
@@ -1767,28 +1755,28 @@ export default function AdminDashboardPage() {
                         <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                           <div>
                             <h3 className="font-extrabold text-sm text-white leading-snug">{slot.label}</h3>
-                            <p className="text-xs text-slate-400 mt-1 line-clamp-2">{slot.description}</p>
-                            <p className="text-[10px] font-mono text-slate-500 mt-1.5 truncate">
+                            <p className="text-xs text-zinc-400 mt-1 line-clamp-2">{slot.description}</p>
+                            <p className="text-[10px] font-mono text-zinc-500 mt-1.5 truncate">
                               Path: {slot.paths[0]}
                             </p>
                           </div>
 
                           {/* Upload & URL Buttons */}
-                          <div className="space-y-2 pt-2 border-t border-slate-800">
+                          <div className="space-y-2 pt-2 border-t border-zinc-800">
                             <button
                               type="button"
                               onClick={() => triggerFileUpload(slot.id)}
                               disabled={isUploading}
-                              className="w-full py-2.5 px-4 rounded-xl bg-[#14263E] hover:bg-[#1A3150] text-[#8CCB6B] border border-[#8CCB6B]/30 hover:border-[#8CCB6B] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                              className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs font-black transition-all flex items-center justify-center gap-2 shadow-sm"
                             >
                               {isUploading ? (
                                 <>
-                                  <RefreshCw className="w-4 h-4 animate-spin" />
+                                  <RefreshCw className="w-4 h-4 animate-spin text-black" />
                                   <span>Uploading Asset...</span>
                                 </>
                               ) : (
                                 <>
-                                  <Upload className="w-4 h-4" />
+                                  <Upload className="w-4 h-4 stroke-[2.5]" />
                                   <span>{isVideo ? "Upload New Video (.mp4)" : "📁 Upload New Photo from PC"}</span>
                                 </>
                               )}
@@ -1803,12 +1791,12 @@ export default function AdminDashboardPage() {
                                   setUrlInputMap((prev) => ({ ...prev, [slot.id]: e.target.value }))
                                 }
                                 placeholder={isVideo ? "Paste MP4 URL..." : "Paste Cloudinary or Image URL..."}
-                                className="flex-1 px-3 py-1.5 rounded-lg bg-[#060C16] border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B]"
+                                className="flex-1 px-3 py-1.5 rounded-lg bg-[#141414] border border-zinc-700 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white transition-colors"
                               />
                               <button
                                 type="button"
                                 onClick={() => handleUpdateImageViaUrl(slot.id)}
-                                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white transition-colors"
+                                className="px-3.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-xs font-bold text-white transition-colors"
                               >
                                 Save
                               </button>
@@ -1818,7 +1806,7 @@ export default function AdminDashboardPage() {
                               <button
                                 type="button"
                                 onClick={() => handleResetImage(slot.id)}
-                                className="w-full text-center text-[11px] text-slate-400 hover:text-rose-300 transition-colors flex items-center justify-center gap-1 pt-1"
+                                className="w-full text-center text-[11px] text-zinc-400 hover:text-white transition-colors flex items-center justify-center gap-1 pt-1"
                               >
                                 <RotateCcw className="w-3 h-3" />
                                 <span>Reset to Original Default Photo</span>
@@ -1833,15 +1821,15 @@ export default function AdminDashboardPage() {
               )}
 
               {/* Advanced Custom Path Mapper */}
-              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4 mt-8">
+              <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-4 mt-8">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-700 text-white flex items-center justify-center">
                     <LinkIcon className="w-4 h-4" />
                   </div>
                   <div>
                     <h3 className="font-bold text-base text-white">Advanced Path Mapping</h3>
-                    <p className="text-xs text-slate-400">
-                      Override any image on the site by path (e.g. <code className="text-[#8CCB6B]">/images/carpentry/2.jpeg</code>) to a new Cloudinary asset.
+                    <p className="text-xs text-zinc-400">
+                      Override any image on the site by path (e.g. <code className="text-white font-mono">/images/carpentry/2.jpeg</code>) to a new Cloudinary asset.
                     </p>
                   </div>
                 </div>
@@ -1880,20 +1868,20 @@ export default function AdminDashboardPage() {
                     value={customPath}
                     onChange={(e) => setCustomPath(e.target.value)}
                     placeholder="Local Path (e.g. /images/tiling/13.jpeg)"
-                    className="sm:col-span-5 px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B]"
+                    className="sm:col-span-5 px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white"
                   />
                   <input
                     type="text"
                     value={customUrl}
                     onChange={(e) => setCustomUrl(e.target.value)}
                     placeholder="New Cloudinary URL (https://res.cloudinary.com/...)"
-                    className="sm:col-span-5 px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B]"
+                    className="sm:col-span-5 px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white"
                   />
                   <button
                     type="submit"
-                    className="sm:col-span-2 py-2.5 px-4 rounded-xl bg-[#8CCB6B] hover:brightness-110 text-[#071306] font-extrabold text-xs transition-all flex items-center justify-center gap-1.5"
+                    className="sm:col-span-2 py-2.5 px-4 rounded-xl bg-white hover:bg-zinc-200 text-black font-black text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm"
                   >
-                    <Save className="w-4 h-4" />
+                    <Save className="w-4 h-4 stroke-[2.5]" />
                     <span>Apply Override</span>
                   </button>
                 </form>
@@ -1909,14 +1897,14 @@ export default function AdminDashboardPage() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-xl font-black text-white">Portfolio Projects CMS</h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-zinc-400">
                     Edit project case studies, before/after images, locations, and indicative budgets.
                   </p>
                 </div>
               </div>
 
               {projects.length === 0 ? (
-                <div className="bg-[#091222] border border-slate-800 rounded-3xl p-12 text-center text-slate-500 text-sm">
+                <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-12 text-center text-zinc-500 text-sm">
                   Loading projects from database...
                 </div>
               ) : (
@@ -1924,14 +1912,14 @@ export default function AdminDashboardPage() {
                   {projects.map((proj) => (
                     <div
                       key={proj.id}
-                      className="bg-[#091222] border border-slate-800 rounded-3xl overflow-hidden p-6 space-y-4 hover:border-slate-700 transition-all flex flex-col justify-between"
+                      className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl overflow-hidden p-6 space-y-4 hover:border-zinc-700 transition-all flex flex-col justify-between"
                     >
                       <div className="space-y-3">
                         {/* Before / After Preview Strip */}
                         <div className="grid grid-cols-2 gap-3">
                           <div className="space-y-1">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase">Before</span>
-                            <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-black border border-slate-800">
+                            <span className="text-[10px] font-bold text-zinc-400 uppercase">Before</span>
+                            <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-black border border-zinc-800">
                               <img
                                 src={proj.beforeImage}
                                 alt="Before"
@@ -1940,8 +1928,8 @@ export default function AdminDashboardPage() {
                             </div>
                           </div>
                           <div className="space-y-1">
-                            <span className="text-[10px] font-bold text-[#8CCB6B] uppercase">After</span>
-                            <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-black border border-slate-800">
+                            <span className="text-[10px] font-bold text-white uppercase">After</span>
+                            <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-black border border-zinc-800">
                               <img
                                 src={proj.afterImage}
                                 alt="After"
@@ -1952,33 +1940,33 @@ export default function AdminDashboardPage() {
                         </div>
 
                         <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#8CCB6B] bg-[#8CCB6B]/10 px-2 py-0.5 rounded">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-white bg-zinc-800 px-2 py-0.5 rounded border border-zinc-700">
                             {proj.category}
                           </span>
                           <h3 className="font-extrabold text-base text-white mt-1.5">{proj.title}</h3>
-                          <p className="text-xs text-slate-400 mt-1 line-clamp-2">{proj.description}</p>
+                          <p className="text-xs text-zinc-400 mt-1 line-clamp-2">{proj.description}</p>
                         </div>
 
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-2 border-t border-slate-800 text-xs">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-2 border-t border-zinc-800 text-xs">
                           <div>
-                            <span className="text-slate-500 block text-[10px]">Location</span>
-                            <span className="font-bold text-slate-200">{proj.location}</span>
+                            <span className="text-zinc-500 block text-[10px]">Location</span>
+                            <span className="font-bold text-zinc-200">{proj.location}</span>
                           </div>
                           <div>
-                            <span className="text-slate-500 block text-[10px]">Cost</span>
-                            <span className="font-bold text-[#8CCB6B]">{proj.costRange}</span>
+                            <span className="text-zinc-500 block text-[10px]">Cost</span>
+                            <span className="font-bold text-white">{proj.costRange}</span>
                           </div>
                           <div>
-                            <span className="text-slate-500 block text-[10px]">Duration</span>
-                            <span className="font-bold text-slate-200">{proj.durationDays}</span>
+                            <span className="text-zinc-500 block text-[10px]">Duration</span>
+                            <span className="font-bold text-zinc-200">{proj.durationDays}</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-slate-800 flex items-center justify-end">
+                      <div className="pt-3 border-t border-zinc-800 flex items-center justify-end">
                         <button
                           onClick={() => setEditingProject(proj)}
-                          className="px-4 py-2 rounded-xl bg-[#14263E] hover:bg-[#1A3150] text-[#8CCB6B] border border-[#8CCB6B]/30 text-xs font-bold transition-all flex items-center gap-1.5"
+                          className="px-4 py-2 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs font-bold transition-all flex items-center gap-1.5"
                         >
                           <Sliders className="w-3.5 h-3.5" />
                           <span>Edit Project Details</span>
@@ -1992,113 +1980,6 @@ export default function AdminDashboardPage() {
           )}
 
           {/* ========================================================= */}
-          {/* TAB 6: PRICING GUIDE */}
-          {/* ========================================================= */}
-          {activeTab === "pricing" && (
-            <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h2 className="text-xl font-black text-white">Indicative Renovation Pricing</h2>
-                  <p className="text-xs text-slate-400">
-                    Edit rates displayed on the website cost guides.
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => handleSaveSettings("pricing", pricingData)}
-                  className="px-6 py-2.5 rounded-xl bg-[#8CCB6B] hover:brightness-110 text-[#071306] font-extrabold text-xs shadow-lg shadow-[#8CCB6B]/20 transition-all flex items-center gap-2"
-                >
-                  <Save className="w-4 h-4" />
-                  <span>Save Pricing to DB</span>
-                </button>
-              </div>
-
-              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
-                <div>
-                  <label className="text-slate-300 font-bold text-xs block mb-1.5">
-                    Global Pricing Disclaimer Note
-                  </label>
-                  <input
-                    type="text"
-                    value={pricingData.disclaimer || ""}
-                    onChange={(e) => setPricingData({ ...pricingData, disclaimer: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-xs text-white focus:outline-none focus:border-[#8CCB6B]"
-                  />
-                </div>
-
-                {Array.isArray(pricingData.categories) &&
-                  pricingData.categories.map((cat: any, catIdx: number) => (
-                    <div key={catIdx} className="bg-[#060C16] border border-slate-800 rounded-2xl p-5 space-y-4">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
-                        <input
-                          type="text"
-                          value={cat.categoryName}
-                          onChange={(e) => {
-                            const newCats = [...pricingData.categories];
-                            newCats[catIdx].categoryName = e.target.value;
-                            setPricingData({ ...pricingData, categories: newCats });
-                          }}
-                          className="font-bold text-base bg-transparent text-white focus:outline-none border-b border-transparent focus:border-[#8CCB6B]"
-                        />
-                        <span className="text-xs text-slate-400 font-mono">Category #{catIdx + 1}</span>
-                      </div>
-
-                      <div className="space-y-3">
-                        {Array.isArray(cat.items) &&
-                          cat.items.map((item: any, itemIdx: number) => (
-                            <div
-                              key={itemIdx}
-                              className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 bg-[#091222] rounded-xl border border-slate-800/80 text-xs"
-                            >
-                              <div>
-                                <label className="text-[10px] text-slate-500 uppercase font-bold block">Scope</label>
-                                <input
-                                  type="text"
-                                  value={item.scope}
-                                  onChange={(e) => {
-                                    const newCats = [...pricingData.categories];
-                                    newCats[catIdx].items[itemIdx].scope = e.target.value;
-                                    setPricingData({ ...pricingData, categories: newCats });
-                                  }}
-                                  className="w-full bg-transparent font-medium text-white focus:outline-none"
-                                />
-                              </div>
-                              <div>
-                                <label className="text-[10px] text-slate-500 uppercase font-bold block">Typical Cost</label>
-                                <input
-                                  type="text"
-                                  value={item.typicalRange}
-                                  onChange={(e) => {
-                                    const newCats = [...pricingData.categories];
-                                    newCats[catIdx].items[itemIdx].typicalRange = e.target.value;
-                                    setPricingData({ ...pricingData, categories: newCats });
-                                  }}
-                                  className="w-full bg-transparent font-bold text-[#8CCB6B] focus:outline-none"
-                                />
-                              </div>
-                              <div>
-                                <label className="text-[10px] text-slate-500 uppercase font-bold block">Timeline</label>
-                                <input
-                                  type="text"
-                                  value={item.timeline}
-                                  onChange={(e) => {
-                                    const newCats = [...pricingData.categories];
-                                    newCats[catIdx].items[itemIdx].timeline = e.target.value;
-                                    setPricingData({ ...pricingData, categories: newCats });
-                                  }}
-                                  className="w-full bg-transparent text-slate-300 focus:outline-none"
-                                />
-                              </div>
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          )}
-
-          {/* ========================================================= */}
           {/* TAB 7: CUSTOMER REVIEWS */}
           {/* ========================================================= */}
           {activeTab === "reviews" && (
@@ -2106,14 +1987,14 @@ export default function AdminDashboardPage() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-xl font-black text-white">Client Reviews & Testimonials</h2>
-                  <p className="text-xs text-slate-400">Manage verified homeowner reviews displayed on the site.</p>
+                  <p className="text-xs text-zinc-400">Manage verified homeowner reviews displayed on the site.</p>
                 </div>
 
                 <button
                   onClick={() => handleSaveSettings("reviews", reviewsData)}
-                  className="px-6 py-2.5 rounded-xl bg-[#8CCB6B] hover:brightness-110 text-[#071306] font-extrabold text-xs shadow-lg shadow-[#8CCB6B]/20 transition-all flex items-center gap-2"
+                  className="px-6 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-black text-xs shadow-md transition-all flex items-center gap-2"
                 >
-                  <Save className="w-4 h-4" />
+                  <Save className="w-4 h-4 stroke-[2.5]" />
                   <span>Save Reviews to DB</span>
                 </button>
               </div>
@@ -2121,7 +2002,7 @@ export default function AdminDashboardPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {Array.isArray(reviewsData.reviews) &&
                   reviewsData.reviews.map((rev: any, idx: number) => (
-                    <div key={idx} className="bg-[#091222] border border-slate-800 rounded-3xl p-6 space-y-3">
+                    <div key={idx} className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 space-y-3">
                       <div className="flex items-center justify-between">
                         <input
                           type="text"
@@ -2131,9 +2012,9 @@ export default function AdminDashboardPage() {
                             newRevs[idx].customerName = e.target.value;
                             setReviewsData({ ...reviewsData, reviews: newRevs });
                           }}
-                          className="font-bold text-sm bg-transparent text-white border-b border-transparent focus:border-[#8CCB6B] focus:outline-none"
+                          className="font-bold text-sm bg-transparent text-white border-b border-transparent focus:border-white focus:outline-none"
                         />
-                        <div className="flex items-center gap-1 text-amber-400">
+                        <div className="flex items-center gap-1 text-zinc-200">
                           {[...Array(5)].map((_, starIdx) => (
                             <Star key={starIdx} className="w-3.5 h-3.5 fill-current" />
                           ))}
@@ -2149,7 +2030,7 @@ export default function AdminDashboardPage() {
                           setReviewsData({ ...reviewsData, reviews: newRevs });
                         }}
                         placeholder="Property location (e.g. 4-Room BTO, Tampines)"
-                        className="text-xs text-slate-400 w-full bg-transparent border-b border-transparent focus:border-slate-700 focus:outline-none"
+                        className="text-xs text-zinc-400 w-full bg-transparent border-b border-transparent focus:border-zinc-700 focus:outline-none"
                       />
 
                       <textarea
@@ -2160,7 +2041,7 @@ export default function AdminDashboardPage() {
                           setReviewsData({ ...reviewsData, reviews: newRevs });
                         }}
                         rows={3}
-                        className="w-full p-3 rounded-xl bg-[#060C16] border border-slate-700 text-xs text-slate-200 focus:outline-none focus:border-[#8CCB6B]"
+                        className="w-full p-3 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-zinc-200 focus:outline-none focus:border-white"
                       />
                     </div>
                   ))}
@@ -2176,7 +2057,7 @@ export default function AdminDashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-xl font-black text-white">Master Website & Company Settings</h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-zinc-400">
                     Legal credentials, contact numbers, tracking codes, and AI bot settings.
                   </p>
                 </div>
@@ -2189,23 +2070,23 @@ export default function AdminDashboardPage() {
                     handleSaveSettings("ai", settings.ai);
                     handleSaveSettings("security", settings.security);
                   }}
-                  className="px-6 py-3 rounded-xl bg-[#8CCB6B] hover:brightness-110 text-[#071306] font-extrabold text-xs shadow-lg shadow-[#8CCB6B]/20 transition-all flex items-center gap-2"
+                  className="px-6 py-3 rounded-xl bg-white hover:bg-zinc-200 text-black font-black text-xs shadow-md transition-all flex items-center gap-2"
                 >
-                  <Save className="w-4 h-4" />
+                  <Save className="w-4 h-4 stroke-[2.5]" />
                   <span>Save All Settings</span>
                 </button>
               </div>
 
               {/* 1. Contact Info */}
-              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+              <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-4">
                 <h3 className="font-bold text-base text-white flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#8CCB6B]" />
+                  <Phone className="w-4 h-4 text-zinc-300" />
                   <span>Company Contact & Showroom</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">WhatsApp Direct (e.g. 6581704063)</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">WhatsApp Direct (e.g. 6581704063)</label>
                     <input
                       type="text"
                       value={settings.contact.whatsapp}
@@ -2215,12 +2096,12 @@ export default function AdminDashboardPage() {
                           contact: { ...settings.contact, whatsapp: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Email Address</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Email Address</label>
                     <input
                       type="email"
                       value={settings.contact.email}
@@ -2230,12 +2111,12 @@ export default function AdminDashboardPage() {
                           contact: { ...settings.contact, email: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Primary Call Line</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Primary Call Line</label>
                     <input
                       type="text"
                       value={settings.contact.phonePrimary}
@@ -2245,12 +2126,12 @@ export default function AdminDashboardPage() {
                           contact: { ...settings.contact, phonePrimary: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Secondary Line</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Secondary Line</label>
                     <input
                       type="text"
                       value={settings.contact.phoneSecondary}
@@ -2260,12 +2141,12 @@ export default function AdminDashboardPage() {
                           contact: { ...settings.contact, phoneSecondary: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="text-slate-400 block mb-1.5 font-bold">Showroom & Office Address</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Showroom & Office Address</label>
                     <input
                       type="text"
                       value={settings.contact.address}
@@ -2275,22 +2156,22 @@ export default function AdminDashboardPage() {
                           contact: { ...settings.contact, address: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
                 </div>
               </div>
 
               {/* 2. Legal Credentials */}
-              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+              <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-4">
                 <h3 className="font-bold text-base text-white flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-sky-400" />
+                  <ShieldCheck className="w-4 h-4 text-zinc-300" />
                   <span>Legal Licenses & Accreditation</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">ACRA UEN Number</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">ACRA UEN Number</label>
                     <input
                       type="text"
                       value={settings.credentials.uen}
@@ -2300,12 +2181,12 @@ export default function AdminDashboardPage() {
                           credentials: { ...settings.credentials, uen: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">HDB Directory Registration</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">HDB Directory Registration</label>
                     <input
                       type="text"
                       value={settings.credentials.hdbLicense}
@@ -2315,12 +2196,12 @@ export default function AdminDashboardPage() {
                           credentials: { ...settings.credentials, hdbLicense: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">BCA Contractor License</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">BCA Contractor License</label>
                     <input
                       type="text"
                       value={settings.credentials.bcaLicense}
@@ -2330,12 +2211,12 @@ export default function AdminDashboardPage() {
                           credentials: { ...settings.credentials, bcaLicense: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">bizSAFE Certification</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">bizSAFE Certification</label>
                     <input
                       type="text"
                       value={settings.credentials.bizSafe}
@@ -2345,22 +2226,22 @@ export default function AdminDashboardPage() {
                           credentials: { ...settings.credentials, bizSafe: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
                 </div>
               </div>
 
               {/* 3. Marketing & Tracking Pixels */}
-              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+              <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-4">
                 <h3 className="font-bold text-base text-white flex items-center gap-2">
-                  <Code2 className="w-4 h-4 text-emerald-400" />
+                  <Code2 className="w-4 h-4 text-zinc-300" />
                   <span>Marketing, GA4 & Pixel Tracking</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Google Tag Manager (GTM ID)</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Google Tag Manager (GTM ID)</label>
                     <input
                       type="text"
                       value={settings.marketing.gtmId}
@@ -2371,12 +2252,12 @@ export default function AdminDashboardPage() {
                           marketing: { ...settings.marketing, gtmId: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Google Analytics (GA4 Measurement ID)</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Google Analytics (GA4 Measurement ID)</label>
                     <input
                       type="text"
                       value={settings.marketing.ga4Id}
@@ -2387,12 +2268,12 @@ export default function AdminDashboardPage() {
                           marketing: { ...settings.marketing, ga4Id: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Meta (Facebook) Pixel ID</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Meta (Facebook) Pixel ID</label>
                     <input
                       type="text"
                       value={settings.marketing.metaPixelId}
@@ -2403,12 +2284,12 @@ export default function AdminDashboardPage() {
                           marketing: { ...settings.marketing, metaPixelId: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Admin Master PIN</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Admin Master PIN</label>
                     <input
                       type="text"
                       value={settings.security.adminPin}
@@ -2418,22 +2299,22 @@ export default function AdminDashboardPage() {
                           security: { ...settings.security, adminPin: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white font-mono focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white font-mono focus:outline-none focus:border-white"
                     />
                   </div>
                 </div>
               </div>
 
               {/* 4. AI Assistant */}
-              <div className="bg-[#091222] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+              <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-4">
                 <h3 className="font-bold text-base text-white flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-purple-400" />
+                  <Sparkles className="w-4 h-4 text-zinc-300" />
                   <span>Google Gemini AI Assistant</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Assistant Display Name</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Assistant Display Name</label>
                     <input
                       type="text"
                       value={settings.ai.botName}
@@ -2443,12 +2324,12 @@ export default function AdminDashboardPage() {
                           ai: { ...settings.ai, botName: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div>
-                    <label className="text-slate-400 block mb-1.5 font-bold">Google Gemini API Key</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Google Gemini API Key</label>
                     <input
                       type="password"
                       value={settings.ai.geminiApiKey}
@@ -2459,12 +2340,12 @@ export default function AdminDashboardPage() {
                           ai: { ...settings.ai, geminiApiKey: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
 
                   <div className="sm:col-span-2">
-                    <label className="text-slate-400 block mb-1.5 font-bold">Welcome Message (English)</label>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Welcome Message (English)</label>
                     <input
                       type="text"
                       value={settings.ai.welcomeMessageEn}
@@ -2474,7 +2355,7 @@ export default function AdminDashboardPage() {
                           ai: { ...settings.ai, welcomeMessageEn: e.target.value },
                         })
                       }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                     />
                   </div>
                 </div>
@@ -2490,9 +2371,9 @@ export default function AdminDashboardPage() {
                     handleSaveSettings("ai", settings.ai);
                     handleSaveSettings("security", settings.security);
                   }}
-                  className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#8CCB6B] to-[#5ea13d] hover:brightness-110 text-[#071306] font-extrabold text-sm shadow-xl shadow-[#8CCB6B]/20 transition-all flex items-center gap-2"
+                  className="px-8 py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-black text-sm shadow-xl transition-all flex items-center gap-2"
                 >
-                  <Save className="w-4 h-4" />
+                  <Save className="w-4 h-4 stroke-[2.5]" />
                   <span>Save All Settings to Neon Database</span>
                 </button>
               </div>
@@ -2505,13 +2386,13 @@ export default function AdminDashboardPage() {
       {/* MODAL 1: ADD NEW BOOKING MANUALLY */}
       {/* ========================================================= */}
       {showNewBookingModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-lg bg-[#0D1829] border border-slate-700 rounded-3xl p-6 sm:p-8 space-y-5 my-8">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="w-full max-w-lg bg-[#0A0A0A] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-5 my-8 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
               <h3 className="font-extrabold text-lg text-white">Create Direct Booking</h3>
               <button
                 onClick={() => setShowNewBookingModal(false)}
-                className="text-slate-400 hover:text-white"
+                className="text-zinc-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -2519,48 +2400,48 @@ export default function AdminDashboardPage() {
 
             <form onSubmit={handleCreateBooking} className="space-y-4 text-xs">
               <div>
-                <label className="text-slate-300 font-bold block mb-1">Client Full Name *</label>
+                <label className="text-zinc-300 font-bold block mb-1">Client Full Name *</label>
                 <input
                   type="text"
                   required
                   value={newBooking.clientName}
                   onChange={(e) => setNewBooking({ ...newBooking, clientName: e.target.value })}
                   placeholder="e.g. Kelvin Tan"
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Client Phone (WhatsApp) *</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Client Phone (WhatsApp) *</label>
                   <input
                     type="text"
                     required
                     value={newBooking.clientPhone}
                     onChange={(e) => setNewBooking({ ...newBooking, clientPhone: e.target.value })}
                     placeholder="+65 9123 4567"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Client Email (Optional)</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Client Email (Optional)</label>
                   <input
                     type="email"
                     value={newBooking.clientEmail}
                     onChange={(e) => setNewBooking({ ...newBooking, clientEmail: e.target.value })}
                     placeholder="client@gmail.com"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Service</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Service</label>
                   <select
                     value={newBooking.serviceName}
                     onChange={(e) => setNewBooking({ ...newBooking, serviceName: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   >
                     <option value="House Renovation">House Renovation</option>
                     <option value="Toilet Renovation">Toilet Renovation</option>
@@ -2574,84 +2455,84 @@ export default function AdminDashboardPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Property Type</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Property Type</label>
                   <input
                     type="text"
                     value={newBooking.propertyType}
                     onChange={(e) => setNewBooking({ ...newBooking, propertyType: e.target.value })}
                     placeholder="e.g. 4-Room BTO / Condo"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Inspection Date</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Inspection Date</label>
                   <input
                     type="date"
                     value={newBooking.inspectionDate}
                     onChange={(e) => setNewBooking({ ...newBooking, inspectionDate: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Time Slot</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Time Slot</label>
                   <input
                     type="text"
                     value={newBooking.timeSlot}
                     onChange={(e) => setNewBooking({ ...newBooking, timeSlot: e.target.value })}
                     placeholder="10:00 AM – 11:00 AM"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Postal Code</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Postal Code</label>
                   <input
                     type="text"
                     value={newBooking.postalCode}
                     onChange={(e) => setNewBooking({ ...newBooking, postalCode: e.target.value })}
                     placeholder="e.g. 520123"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Unit Number</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Unit Number</label>
                   <input
                     type="text"
                     value={newBooking.unitNumber}
                     onChange={(e) => setNewBooking({ ...newBooking, unitNumber: e.target.value })}
                     placeholder="#12-34"
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-slate-300 font-bold block mb-1">Client Notes</label>
+                <label className="text-zinc-300 font-bold block mb-1">Client Notes</label>
                 <textarea
                   rows={2}
                   value={newBooking.notes}
                   onChange={(e) => setNewBooking({ ...newBooking, notes: e.target.value })}
                   placeholder="Additional renovation requests or preferences..."
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-2 pt-2 border-t border-zinc-800">
                 <button
                   type="button"
                   onClick={() => setShowNewBookingModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-bold"
+                  className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 font-bold hover:text-white"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 rounded-xl bg-[#8CCB6B] text-[#071306] font-black hover:brightness-110"
+                  className="px-6 py-2 rounded-xl bg-white text-black font-black hover:bg-zinc-200"
                 >
                   Confirm &amp; Record Booking
                 </button>
@@ -2665,13 +2546,13 @@ export default function AdminDashboardPage() {
       {/* MODAL 2: EDIT PROJECT CMS MODAL */}
       {/* ========================================================= */}
       {editingProject && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-xl bg-[#0D1829] border border-slate-700 rounded-3xl p-6 sm:p-8 space-y-5 my-8">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="w-full max-w-xl bg-[#0A0A0A] border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-5 my-8 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
               <h3 className="font-extrabold text-lg text-white">Edit Portfolio Project</h3>
               <button
                 onClick={() => setEditingProject(null)}
-                className="text-slate-400 hover:text-white"
+                className="text-zinc-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -2679,114 +2560,114 @@ export default function AdminDashboardPage() {
 
             <form onSubmit={handleSaveProject} className="space-y-4 text-xs">
               <div>
-                <label className="text-slate-300 font-bold block mb-1">Project Title</label>
+                <label className="text-zinc-300 font-bold block mb-1">Project Title</label>
                 <input
                   type="text"
                   value={editingProject.title}
                   onChange={(e) => setEditingProject({ ...editingProject, title: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Category</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Category</label>
                   <input
                     type="text"
                     value={editingProject.category}
                     onChange={(e) =>
                       setEditingProject({ ...editingProject, category: e.target.value })
                     }
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Location</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Location</label>
                   <input
                     type="text"
                     value={editingProject.location}
                     onChange={(e) =>
                       setEditingProject({ ...editingProject, location: e.target.value })
                     }
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Cost Range</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Cost Range</label>
                   <input
                     type="text"
                     value={editingProject.costRange}
                     onChange={(e) =>
                       setEditingProject({ ...editingProject, costRange: e.target.value })
                     }
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Duration</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Duration</label>
                   <input
                     type="text"
                     value={editingProject.durationDays}
                     onChange={(e) =>
                       setEditingProject({ ...editingProject, durationDays: e.target.value })
                     }
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
-              <div className="space-y-3 pt-2 border-t border-slate-800">
+              <div className="space-y-3 pt-2 border-t border-zinc-800">
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">Before Photo URL</label>
+                  <label className="text-zinc-300 font-bold block mb-1">Before Photo URL</label>
                   <input
                     type="text"
                     value={editingProject.beforeImage}
                     onChange={(e) =>
                       setEditingProject({ ...editingProject, beforeImage: e.target.value })
                     }
-                    className="w-full px-4 py-2 rounded-xl bg-[#060C16] border border-slate-700 text-white font-mono text-[11px] focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2 rounded-xl bg-[#141414] border border-zinc-700 text-white font-mono text-[11px] focus:outline-none focus:border-white"
                   />
                 </div>
 
                 <div>
-                  <label className="text-slate-300 font-bold block mb-1">After Photo URL</label>
+                  <label className="text-zinc-300 font-bold block mb-1">After Photo URL</label>
                   <input
                     type="text"
                     value={editingProject.afterImage}
                     onChange={(e) =>
                       setEditingProject({ ...editingProject, afterImage: e.target.value })
                     }
-                    className="w-full px-4 py-2 rounded-xl bg-[#060C16] border border-slate-700 text-white font-mono text-[11px] focus:outline-none focus:border-[#8CCB6B]"
+                    className="w-full px-4 py-2 rounded-xl bg-[#141414] border border-zinc-700 text-white font-mono text-[11px] focus:outline-none focus:border-white"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-slate-300 font-bold block mb-1">Summary / Description</label>
+                <label className="text-zinc-300 font-bold block mb-1">Summary / Description</label>
                 <textarea
                   rows={3}
                   value={editingProject.description}
                   onChange={(e) =>
                     setEditingProject({ ...editingProject, description: e.target.value })
                   }
-                  className="w-full px-4 py-2 rounded-xl bg-[#060C16] border border-slate-700 text-white focus:outline-none focus:border-[#8CCB6B]"
+                  className="w-full px-4 py-2 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-2 pt-2 border-t border-zinc-800">
                 <button
                   type="button"
                   onClick={() => setEditingProject(null)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-bold"
+                  className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 font-bold hover:text-white"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 rounded-xl bg-[#8CCB6B] text-[#071306] font-black hover:brightness-110"
+                  className="px-6 py-2 rounded-xl bg-white text-black font-black hover:bg-zinc-200"
                 >
                   Save Project Changes
                 </button>

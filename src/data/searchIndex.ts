@@ -178,7 +178,7 @@ export const searchableServices: SearchableService[] = [
     pricingHint: "Custom Package with Itemized Scope",
     turnaround: "3 - 6 weeks",
     highlights: [
-      "Direct builder team with in-house tradesmen",
+      "Direct contractor team with in-house tradesmen",
       "Full statutory compliance: HDB permits & BCA submissions",
       "Single project manager accountability from start to finish",
       "3-tier milestone quality inspections with defect warranty",

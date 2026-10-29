@@ -78,7 +78,7 @@ export default function ProjectGalleryPage() {
         {/* Bottom Booking Banner */}
         <div className="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-sm">
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#166534] block mb-2">
-            Direct In-House Builder
+            Direct In-House Contractor
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0F172A] mb-4">
             Need an Itemized Renovation Quotation for Your Property?

@@ -183,7 +183,7 @@ export default function ToiletRenovationPage() {
             <div className="flex flex-col items-start gap-6">
               <span className="inline-flex items-center gap-2.5 rounded-full border border-[#8CCB6B]/50 bg-[#8CCB6B]/20 px-4 py-1.5 text-xs sm:text-sm font-bold text-white shadow-sm backdrop-blur-sm">
                 <Droplets className="w-4 h-4 text-[#A3E635]" />
-                <span>Signature Service · Direct In-House Builders</span>
+                <span>Signature Service · Direct In-House Contractors</span>
               </span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-extrabold tracking-tight text-white leading-[1.08]">
@@ -258,7 +258,7 @@ export default function ToiletRenovationPage() {
               </div>
 
               <h2 className="text-2xl font-black text-white mb-3">
-                Zero Subcontractors. 100% In-House Builders.
+                Zero Subcontractors. 100% In-House Tradesmen.
               </h2>
               <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-6 font-medium">
                 We assign a dedicated site engineer to manage hacking permits, waterproofing
@@ -418,7 +418,7 @@ export default function ToiletRenovationPage() {
         </div>
       </section>
 
-      {/* 4. DIRECT BUILDER VS INTERIOR DESIGN MIDDLEMAN COMPARISON MATRIX */}
+      {/* 4. DIRECT CONTRACTOR VS INTERIOR DESIGN MIDDLEMAN COMPARISON MATRIX */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -453,7 +453,7 @@ export default function ToiletRenovationPage() {
               </div>
               <div className="grid grid-cols-3 p-4 sm:p-5 bg-white items-center">
                 <span className="font-bold text-slate-900">Workmanship Supervision</span>
-                <span className="text-[#4E9A3C] font-bold">In-house master builders</span>
+                <span className="text-[#4E9A3C] font-bold">In-house master tradesmen</span>
                 <span className="text-slate-500">Subbed to anonymous workers</span>
               </div>
               <div className="grid grid-cols-3 p-4 sm:p-5 bg-[#F8FAFC] items-center">

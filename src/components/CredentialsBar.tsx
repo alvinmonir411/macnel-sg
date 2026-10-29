@@ -26,8 +26,8 @@ export function CredentialsBar() {
 
   const cleanLegalName = clean(legalName) || "Renovation Contractor SG";
   const cleanUen = clean(uen) || "202402481G";
-  const cleanHdb = clean(hdbLicense) || "HDB Registered Directory HB-00-0000X";
-  const cleanBca = clean(bcaLicense) || "BCA Registered Contractor (CR06 / General Builder)";
+  const cleanHdb = clean(hdbLicense);
+  const cleanBca = clean(bcaLicense) || "BCA Registered Workmanship";
   const cleanYears = clean(yearsInBusiness) || "12";
 
   return (
@@ -52,7 +52,7 @@ export function CredentialsBar() {
               </span>
               <span className="hidden sm:inline-block text-slate-300">·</span>
               <span className="text-xs text-slate-500 font-medium hidden sm:inline-block">
-                Direct In-House Builders · Zero Middleman Markups
+                Direct In-House Contractors · Zero Middleman Markups
               </span>
             </div>
           </div>
@@ -60,7 +60,7 @@ export function CredentialsBar() {
           <div className="flex items-center gap-2 text-[11px] font-bold text-slate-600">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-[#166534] border border-emerald-200">
               <ShieldCheck className="w-3.5 h-3.5 text-[#16a34a]" />
-              <span>ACRA &amp; HDB Verified</span>
+              <span>ACRA Registered &amp; Insured</span>
             </span>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
               <Lock className="w-3.5 h-3.5 text-slate-500" />
@@ -93,7 +93,7 @@ export function CredentialsBar() {
             </div>
           </div>
 
-          {/* Card 2: HDB & BCA Directory */}
+          {/* Card 2: Standards & Compliance */}
           <div className="group relative rounded-2xl bg-white border border-slate-200/90 p-4 sm:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-[#2C6BA6]/50 hover:-translate-y-0.5 transition-all duration-300">
             <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#2C6BA6] to-transparent opacity-80" />
             <div className="flex items-start gap-3.5">
@@ -102,10 +102,10 @@ export function CredentialsBar() {
               </div>
               <div className="min-w-0 flex-1">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 block mb-0.5">
-                  Statutory Licenses
+                  Trade Standards
                 </span>
                 <p className="text-sm font-bold text-slate-900 truncate leading-snug">
-                  {cleanHdb}
+                  {cleanHdb && !cleanHdb.includes("HB-00-0000X") ? cleanHdb : "Direct Trade Specialists"}
                 </p>
                 <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-50/70 border border-blue-200/80 text-[11px] font-medium text-[#1E3A8A] truncate max-w-full">
                   <ShieldCheck className="w-3 h-3 shrink-0 text-[#2C6BA6]" />

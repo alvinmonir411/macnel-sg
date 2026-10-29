@@ -158,7 +158,7 @@ export default function ServicesPage() {
             Our Core Renovation Capabilities
           </h2>
           <p className="text-base text-slate-600 mt-3 font-normal">
-            Every trade is staffed with full-time master builders. Click any trade to explore detailed specifications or request an immediate quotation.
+            Every trade is staffed with full-time master craftsmen. Click any trade to explore detailed specifications or request an immediate quotation.
           </p>
         </div>
 

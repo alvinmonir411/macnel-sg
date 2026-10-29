@@ -231,13 +231,13 @@ export default function AdminProjectsPage() {
   // Login PIN Screen
   if (!isAuthenticated && !loading) {
     return (
-      <div className="min-h-screen bg-[#070D18] flex items-center justify-center p-4">
-        <div className="w-full max-w-md rounded-3xl bg-[#0B1527] border border-slate-800 p-8 shadow-2xl text-center">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-[#8CCB6B] border border-emerald-500/20 flex items-center justify-center mx-auto mb-5">
-            <Lock className="w-7 h-7" />
+      <div className="min-h-screen bg-[#000000] flex items-center justify-center p-4">
+        <div className="w-full max-w-md rounded-3xl bg-[#0A0A0A] border border-zinc-800 p-8 shadow-2xl text-center">
+          <div className="w-14 h-14 rounded-2xl bg-zinc-900 text-white border border-zinc-700 flex items-center justify-center mx-auto mb-5 shadow-md">
+            <Lock className="w-7 h-7 text-white" />
           </div>
           <h1 className="text-2xl font-black text-white mb-2">Projects CMS</h1>
-          <p className="text-xs sm:text-sm text-slate-400 mb-6">
+          <p className="text-xs sm:text-sm text-zinc-400 mb-6">
             Enter admin PIN to manage project photos and homepage featured status.
           </p>
 
@@ -247,38 +247,38 @@ export default function AdminProjectsPage() {
                 type={showPin ? "text" : "password"}
                 value={pinInput}
                 onChange={(e) => setPinInput(e.target.value)}
-                placeholder="Enter 4 or 6-digit PIN"
-                className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-center text-lg tracking-widest focus:outline-none focus:border-[#8CCB6B]"
+                placeholder="Enter 5-digit PIN"
+                className="w-full px-4 py-3 rounded-xl bg-[#141414] border border-zinc-700 text-white text-center text-lg tracking-widest focus:outline-none focus:border-white font-mono"
                 autoFocus
               />
               <button
                 type="button"
                 onClick={() => setShowPin(!showPin)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white"
               >
                 {showPin ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
 
             {pinError && (
-              <p className="text-xs font-bold text-rose-400 flex items-center justify-center gap-1.5">
-                <AlertCircle className="w-3.5 h-3.5" />
+              <p className="text-xs font-bold text-zinc-300 flex items-center justify-center gap-1.5">
+                <AlertCircle className="w-3.5 h-3.5 text-white" />
                 <span>{pinError}</span>
               </p>
             )}
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl brand-gradient text-white font-bold text-sm shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="w-full py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black font-black text-sm shadow-lg transition-all cursor-pointer"
             >
               Authenticate &amp; Open Projects
             </button>
           </form>
 
-          <div className="mt-6 pt-5 border-t border-slate-800">
+          <div className="mt-6 pt-5 border-t border-zinc-800">
             <Link
               href="/admin"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-white"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-white"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back to Dashboard</span>
@@ -290,7 +290,7 @@ export default function AdminProjectsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#070D18] text-slate-100 pb-20">
+    <div className="min-h-screen bg-[#000000] text-zinc-100 pb-20">
       {/* Hidden file input */}
       <input
         ref={fileInputRef}
@@ -303,28 +303,20 @@ export default function AdminProjectsPage() {
       {/* Toast Notification */}
       {toastMessage && (
         <div
-          className={`fixed bottom-6 right-6 z-50 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-bold border transition-all animate-bounce ${
-            toastType === "success"
-              ? "bg-[#0A1A12] border-emerald-500/40 text-emerald-300"
-              : "bg-[#1F0A0A] border-rose-500/40 text-rose-300"
-          }`}
+          className="fixed bottom-6 right-6 z-50 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-bold border transition-all bg-zinc-900 border-zinc-700 text-white"
         >
-          {toastType === "success" ? (
-            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-          ) : (
-            <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />
-          )}
+          <CheckCircle2 className="w-5 h-5 text-white shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Header Bar */}
-      <header className="sticky top-0 z-40 bg-[#0B1527]/95 backdrop-blur-md border-b border-slate-800 px-4 sm:px-8 py-4">
+      <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-zinc-800 px-4 sm:px-8 py-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
               href="/admin"
-              className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-all shadow-sm"
+              className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 flex items-center justify-center text-zinc-300 hover:text-white transition-all shadow-sm"
               title="Return to Executive Overview"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -334,14 +326,14 @@ export default function AdminProjectsPage() {
                 <h1 className="text-xl sm:text-2xl font-black text-white">
                   Projects CMS &amp; Featured Slider
                 </h1>
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-[#8CCB6B]/20 text-[#8CCB6B] border border-[#8CCB6B]/30">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-zinc-800 text-white border border-zinc-700">
                   {featuredCount} Featured on Home
                 </span>
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-slate-800 text-slate-400">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-zinc-900 text-zinc-400 border border-zinc-800">
                   {projects.length} Total
                 </span>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-zinc-400">
                 Toggle &apos;Featured&apos; to show in the homepage slider. All projects appear on the full gallery page.
               </p>
             </div>
@@ -352,28 +344,28 @@ export default function AdminProjectsPage() {
               type="button"
               onClick={fetchProjects}
               disabled={loading}
-              className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white flex items-center gap-2 transition-all cursor-pointer"
+              className="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs font-bold text-zinc-300 hover:text-white flex items-center gap-2 transition-all cursor-pointer"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin text-white" : ""}`} />
               <span className="hidden sm:inline">Refresh</span>
             </button>
 
             <Link
               href="/#portfolio"
               target="_blank"
-              className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white flex items-center gap-2 transition-all"
+              className="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs font-bold text-zinc-300 hover:text-white flex items-center gap-2 transition-all"
             >
               <span>Preview on Home</span>
-              <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+              <ExternalLink className="w-3.5 h-3.5 text-zinc-500" />
             </Link>
 
             <button
               type="button"
               onClick={handleSaveAll}
               disabled={saving}
-              className="px-6 py-2.5 rounded-xl brand-gradient text-white text-xs sm:text-sm font-bold shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              className="px-6 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs sm:text-sm font-black shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
             >
-              <Save className="w-4 h-4" />
+              <Save className="w-4 h-4 stroke-[2.5]" />
               <span>{saving ? "Saving..." : "Save All Projects"}</span>
             </button>
           </div>
@@ -383,24 +375,24 @@ export default function AdminProjectsPage() {
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-8 pt-8">
         {/* Info Banner */}
-        <div className="mb-8 rounded-2xl bg-[#0F2236] border border-[#2C6BA6]/40 p-4 sm:p-5 flex items-start sm:items-center justify-between gap-4">
+        <div className="mb-8 rounded-2xl bg-[#0E0E0E] border border-zinc-800 p-4 sm:p-5 flex items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#2C6BA6]/20 text-[#8CCB6B] flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5 text-[#8CCB6B]" />
+            <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-700 text-white flex items-center justify-center shrink-0">
+              <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
               <p className="text-sm font-bold text-white">
                 Homepage Featured Slider Logic
               </p>
-              <p className="text-xs text-slate-300">
-                Turn ON <span className="text-emerald-400 font-bold">&quot;Featured on Home&quot;</span> on any project card below. Only those projects will appear in the high-impact homepage Before/After slider. All other projects remain published in the complete <Link href="/project-gallery" target="_blank" className="underline font-bold text-emerald-300">Project Gallery</Link>.
+              <p className="text-xs text-zinc-400">
+                Turn ON <span className="text-white font-bold">&quot;Featured on Home&quot;</span> on any project card below. Only those projects will appear in the high-impact homepage Before/After slider. All other projects remain published in the complete <Link href="/project-gallery" target="_blank" className="underline font-bold text-zinc-200 hover:text-white">Project Gallery</Link>.
               </p>
             </div>
           </div>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 bg-[#0B1527] border border-slate-800/90 p-4 rounded-2xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 bg-[#0E0E0E] border border-zinc-800 p-4 rounded-2xl">
           <div className="flex items-center gap-2">
             {[
               { id: "all", label: `All Projects (${projects.length})` },
@@ -413,8 +405,8 @@ export default function AdminProjectsPage() {
                 onClick={() => setFilterFeatured(tab.id as any)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   filterFeatured === tab.id
-                    ? "bg-[#14263E] text-white border border-[#8CCB6B]/40 shadow-sm"
-                    : "bg-slate-900/60 text-slate-400 hover:text-white hover:bg-slate-800/60"
+                    ? "bg-white text-black font-black shadow-sm"
+                    : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
                 }`}
               >
                 {tab.label}
@@ -423,13 +415,13 @@ export default function AdminProjectsPage() {
           </div>
 
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search projects..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#8CCB6B]"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white"
             />
           </div>
         </div>
@@ -437,8 +429,8 @@ export default function AdminProjectsPage() {
         {/* Loading state */}
         {loading && (
           <div className="py-20 text-center">
-            <RefreshCw className="w-8 h-8 text-[#8CCB6B] animate-spin mx-auto mb-3" />
-            <p className="text-sm font-bold text-slate-400">Loading project list...</p>
+            <RefreshCw className="w-8 h-8 text-white animate-spin mx-auto mb-3" />
+            <p className="text-sm font-bold text-zinc-400">Loading project list...</p>
           </div>
         )}
 
@@ -448,22 +440,22 @@ export default function AdminProjectsPage() {
             {filtered.map((proj, idx) => (
               <div
                 key={proj.id}
-                className={`rounded-3xl bg-[#0B1527] border overflow-hidden shadow-xl transition-all ${
+                className={`rounded-3xl bg-[#0E0E0E] border overflow-hidden shadow-xl transition-all ${
                   proj.featured
-                    ? "border-emerald-500/50 shadow-emerald-950/20"
-                    : "border-slate-800/90"
+                    ? "border-zinc-500 shadow-2xl"
+                    : "border-zinc-800"
                 }`}
               >
                 {/* Header bar with Featured Switch */}
-                <div className="px-6 py-4 bg-slate-900/80 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                <div className="px-6 py-4 bg-[#141414] border-b border-zinc-800 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <span className="w-7 h-7 rounded-lg bg-emerald-500/10 text-[#8CCB6B] border border-emerald-500/20 text-xs font-black flex items-center justify-center shrink-0">
+                    <span className="w-7 h-7 rounded-lg bg-zinc-800 text-white border border-zinc-700 text-xs font-black flex items-center justify-center shrink-0">
                       #{idx + 1}
                     </span>
                     <h2 className="text-base sm:text-lg font-black text-white truncate max-w-md">
                       {proj.title}
                     </h2>
-                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-zinc-900 text-zinc-300 border border-zinc-800">
                       {proj.category}
                     </span>
                   </div>
@@ -475,15 +467,15 @@ export default function AdminProjectsPage() {
                       onClick={() => handleToggleFeatured(proj.id)}
                       className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer shadow-md ${
                         proj.featured
-                          ? "bg-gradient-to-r from-emerald-600 to-[#166534] text-white ring-2 ring-emerald-400/50 shadow-emerald-900/30"
-                          : "bg-slate-800/80 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-700"
+                          ? "bg-white text-black"
+                          : "bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800"
                       }`}
                     >
                       <Star
                         className={`w-4 h-4 ${
                           proj.featured
-                            ? "fill-amber-300 text-amber-300"
-                            : "text-slate-500"
+                            ? "fill-black text-black"
+                            : "text-zinc-500"
                         }`}
                       />
                       <span>
@@ -497,7 +489,7 @@ export default function AdminProjectsPage() {
                 <div className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
                   {/* Left: Before vs After Images */}
                   <div className="lg:col-span-6 space-y-5">
-                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
                       Transformation Photos (Before &amp; After)
                     </label>
 
@@ -506,8 +498,8 @@ export default function AdminProjectsPage() {
                       {/* Before Box */}
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-xs font-bold">
-                          <span className="text-amber-400 flex items-center gap-1">
-                            <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
+                          <span className="text-zinc-400 flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-zinc-500 inline-block" />
                             Before Renovation
                           </span>
                           <button
@@ -516,20 +508,20 @@ export default function AdminProjectsPage() {
                               setActiveUploadTarget({ id: proj.id, type: "before" });
                               fileInputRef.current?.click();
                             }}
-                            className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                            className="text-[11px] text-zinc-400 hover:text-white flex items-center gap-1 cursor-pointer"
                           >
                             <Upload className="w-3 h-3" />
                             <span>Upload</span>
                           </button>
                         </div>
 
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 group shadow-inner">
+                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black border border-zinc-800 group shadow-inner">
                           <ProjectImage
                             src={proj.beforeImage}
                             alt={`${proj.title} Before`}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                           />
-                          <div className="absolute top-2 left-2 bg-amber-600/90 text-white text-[10px] font-black px-2 py-0.5 rounded shadow">
+                          <div className="absolute top-2 left-2 bg-zinc-900/90 text-white text-[10px] font-black px-2 py-0.5 rounded shadow border border-zinc-700">
                             BEFORE
                           </div>
                         </div>
@@ -541,15 +533,15 @@ export default function AdminProjectsPage() {
                             handleFieldChange(proj.id, "beforeImage", e.target.value)
                           }
                           placeholder="/images/projects/..."
-                          className="w-full px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-white font-mono placeholder-slate-600 focus:outline-none focus:border-[#8CCB6B]"
+                          className="w-full px-3 py-1.5 rounded-xl bg-[#141414] border border-zinc-700 text-[11px] text-white font-mono placeholder-zinc-500 focus:outline-none focus:border-white"
                         />
                       </div>
 
                       {/* After Box */}
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-xs font-bold">
-                          <span className="text-emerald-400 flex items-center gap-1">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
+                          <span className="text-white flex items-center gap-1.5 font-bold">
+                            <span className="w-2 h-2 rounded-full bg-white inline-block" />
                             After Handover
                           </span>
                           <button
@@ -558,20 +550,20 @@ export default function AdminProjectsPage() {
                               setActiveUploadTarget({ id: proj.id, type: "after" });
                               fileInputRef.current?.click();
                             }}
-                            className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                            className="text-[11px] text-zinc-400 hover:text-white flex items-center gap-1 cursor-pointer"
                           >
                             <Upload className="w-3 h-3" />
                             <span>Upload</span>
                           </button>
                         </div>
 
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 group shadow-inner">
+                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black border border-zinc-800 group shadow-inner">
                           <ProjectImage
                             src={proj.afterImage}
                             alt={`${proj.title} After`}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                           />
-                          <div className="absolute top-2 left-2 bg-emerald-700/90 text-white text-[10px] font-black px-2 py-0.5 rounded shadow">
+                          <div className="absolute top-2 left-2 bg-white text-black text-[10px] font-black px-2 py-0.5 rounded shadow">
                             AFTER
                           </div>
                         </div>
@@ -583,7 +575,7 @@ export default function AdminProjectsPage() {
                             handleFieldChange(proj.id, "afterImage", e.target.value)
                           }
                           placeholder="/images/projects/..."
-                          className="w-full px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-white font-mono placeholder-slate-600 focus:outline-none focus:border-[#8CCB6B]"
+                          className="w-full px-3 py-1.5 rounded-xl bg-[#141414] border border-zinc-700 text-[11px] text-white font-mono placeholder-zinc-500 focus:outline-none focus:border-white"
                         />
                       </div>
                     </div>
@@ -593,7 +585,7 @@ export default function AdminProjectsPage() {
                   <div className="lg:col-span-6 space-y-4">
                     {/* Title */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1">
                         Project Title
                       </label>
                       <input
@@ -602,14 +594,14 @@ export default function AdminProjectsPage() {
                         onChange={(e) =>
                           handleFieldChange(proj.id, "title", e.target.value)
                         }
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm font-bold text-white focus:outline-none focus:border-[#8CCB6B]"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-sm font-bold text-white focus:outline-none focus:border-white"
                       />
                     </div>
 
                     {/* Category & Location */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1">
                           Category
                         </label>
                         <select
@@ -617,7 +609,7 @@ export default function AdminProjectsPage() {
                           onChange={(e) =>
                             handleFieldChange(proj.id, "category", e.target.value)
                           }
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-[#8CCB6B]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white focus:outline-none focus:border-white"
                         >
                           <option value="House Renovation">House Renovation</option>
                           <option value="Toilet Renovation">Toilet Renovation</option>
@@ -629,7 +621,7 @@ export default function AdminProjectsPage() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1">
                           Location / Estate
                         </label>
                         <input
@@ -639,7 +631,7 @@ export default function AdminProjectsPage() {
                             handleFieldChange(proj.id, "location", e.target.value)
                           }
                           placeholder="e.g. Tampines GreenCourt"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-[#8CCB6B]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white focus:outline-none focus:border-white"
                         />
                       </div>
                     </div>
@@ -647,7 +639,7 @@ export default function AdminProjectsPage() {
                     {/* Budget & Duration */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1">
                           Cost Range
                         </label>
                         <input
@@ -657,12 +649,12 @@ export default function AdminProjectsPage() {
                             handleFieldChange(proj.id, "costRange", e.target.value)
                           }
                           placeholder="S$28,000 – S$35,000"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-[#8CCB6B]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white focus:outline-none focus:border-white"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
+                        <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1">
                           Duration
                         </label>
                         <input
@@ -672,14 +664,14 @@ export default function AdminProjectsPage() {
                             handleFieldChange(proj.id, "durationDays", e.target.value)
                           }
                           placeholder="38 Days"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white focus:outline-none focus:border-[#8CCB6B]"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-white focus:outline-none focus:border-white"
                         />
                       </div>
                     </div>
 
                     {/* Description */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider mb-1">
                         Case Study Description
                       </label>
                       <textarea
@@ -688,7 +680,7 @@ export default function AdminProjectsPage() {
                         onChange={(e) =>
                           handleFieldChange(proj.id, "description", e.target.value)
                         }
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 leading-relaxed focus:outline-none focus:border-[#8CCB6B]"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-xs text-zinc-300 leading-relaxed focus:outline-none focus:border-white"
                       />
                     </div>
                   </div>
@@ -699,19 +691,19 @@ export default function AdminProjectsPage() {
         )}
 
         {/* Bottom Save Bar */}
-        <div className="mt-12 p-6 rounded-3xl bg-[#0B1527] border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 p-6 rounded-3xl bg-[#0E0E0E] border border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <h3 className="text-base font-black text-white">
               Save Project Changes
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-zinc-400">
               Only projects with &quot;Featured on Home&quot; will be displayed in the homepage slider.
             </p>
           </div>
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <Link
               href="/admin"
-              className="px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white transition-all text-center flex-1 sm:flex-initial"
+              className="px-5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-xs font-bold text-zinc-300 hover:text-white transition-all text-center flex-1 sm:flex-initial"
             >
               Back to Dashboard
             </Link>
@@ -719,9 +711,9 @@ export default function AdminProjectsPage() {
               type="button"
               onClick={handleSaveAll}
               disabled={saving}
-              className="px-6 py-2.5 rounded-xl brand-gradient text-white text-xs sm:text-sm font-bold shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer flex-1 sm:flex-initial"
+              className="px-6 py-2.5 rounded-xl bg-white hover:bg-zinc-200 text-black text-xs sm:text-sm font-black shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer flex-1 sm:flex-initial"
             >
-              <Save className="w-4 h-4" />
+              <Save className="w-4 h-4 stroke-[2.5]" />
               <span>{saving ? "Saving..." : "Save All Projects"}</span>
             </button>
           </div>
@@ -730,4 +722,3 @@ export default function AdminProjectsPage() {
     </div>
   );
 }
-

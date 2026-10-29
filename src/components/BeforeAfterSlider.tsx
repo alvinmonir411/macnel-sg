@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { ProjectImage } from "@/components/ProjectImage";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -30,50 +30,59 @@ export function BeforeAfterSlider({
   }, []);
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    e.currentTarget.setPointerCapture(e.pointerId);
+    // Ignore button clicks
+    if ((e.target as HTMLElement).tagName === "BUTTON") return;
+    e.preventDefault();
     setIsDragging(true);
     updatePosition(e.clientX);
   };
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (isDragging) {
-      updatePosition(e.clientX);
-    }
-  };
+  // Window-level tracking so dragging never drops when cursor moves outside container
+  useEffect(() => {
+    if (!isDragging) return;
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (isDragging) {
+    const handleWindowPointerMove = (e: PointerEvent) => {
+      e.preventDefault();
+      updatePosition(e.clientX);
+    };
+
+    const handleWindowPointerUp = () => {
       setIsDragging(false);
-      try {
-        e.currentTarget.releasePointerCapture(e.pointerId);
-      } catch {
-        // Pointer capture already released
-      }
-    }
-  };
+    };
+
+    window.addEventListener("pointermove", handleWindowPointerMove, { passive: false });
+    window.addEventListener("pointerup", handleWindowPointerUp);
+    window.addEventListener("pointercancel", handleWindowPointerUp);
+
+    return () => {
+      window.removeEventListener("pointermove", handleWindowPointerMove);
+      window.removeEventListener("pointerup", handleWindowPointerUp);
+      window.removeEventListener("pointercancel", handleWindowPointerUp);
+    };
+  }, [isDragging, updatePosition]);
 
   return (
     <div
       ref={containerRef}
       onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
-      style={{ touchAction: "pan-y" }}
-      className={`group relative aspect-[16/11] sm:aspect-[4/3] w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 shadow-md hover:shadow-xl border border-slate-200/90 cursor-ew-resize select-none transition-shadow ${className}`}
+      onDragStart={(e) => e.preventDefault()}
+      style={{ touchAction: "none" }}
+      className={`group relative aspect-[16/11] sm:aspect-[4/3] w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-900 shadow-xl border border-slate-200/90 select-none ${
+        isDragging ? "cursor-grabbing" : "cursor-ew-resize"
+      } ${className}`}
     >
-      {/* After Image (Base layer) */}
-      <div className="absolute inset-0 w-full h-full">
+      {/* After Image (Base layer) - pointer-events-none prevents native ghost image drag */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
         <ProjectImage
           src={afterImage}
           alt={`${alt} After`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
+          className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 group-hover:scale-102"
         />
       </div>
 
-      {/* Before Image (Clipped overlay) */}
+      {/* Before Image (Clipped overlay) - pointer-events-none */}
       <div
-        className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
+        className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none"
         style={{
           clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
         }}
@@ -81,36 +90,51 @@ export function BeforeAfterSlider({
         <ProjectImage
           src={beforeImage}
           alt={`${alt} Before`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
+          className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-700 group-hover:scale-102"
         />
       </div>
 
       {/* Vertical Slider Divider Line */}
       <div
-        className="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_12px_rgba(0,0,0,0.7)] z-20 pointer-events-none"
+        className="absolute top-0 bottom-0 w-[3px] bg-white shadow-[0_0_16px_rgba(0,0,0,0.8)] z-20 pointer-events-none"
         style={{ left: `${sliderPosition}%` }}
       >
         {/* Center Drag Handle */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white shadow-2xl border-2 border-slate-800 flex items-center justify-center text-slate-800 transition-transform group-hover:scale-110">
-          <div className="flex items-center -space-x-1 text-slate-900">
-            <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
-            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
+        <div
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white shadow-[0_4px_25px_rgba(0,0,0,0.45)] border-2 border-slate-900/90 flex items-center justify-center text-slate-900 transition-all ${
+            isDragging ? "scale-125 ring-4 ring-[#8CCB6B]/70" : "group-hover:scale-110"
+          }`}
+        >
+          <div className="flex items-center -space-x-1 text-slate-950">
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.8]" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.8]" />
           </div>
         </div>
       </div>
 
+      {/* Accessible native range input overlay for keyboard and touch support */}
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={sliderPosition}
+        aria-label="Before and after comparison slider"
+        onChange={(e) => setSliderPosition(Number(e.target.value))}
+        className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-10 touch-none"
+      />
+
       {/* Interactive Switcher / Badges */}
-      <div className="absolute top-3 left-3 z-30 flex items-center gap-2 pointer-events-auto">
+      <div className="absolute top-3.5 left-3.5 z-30 flex items-center gap-2 pointer-events-auto">
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             setSliderPosition(100);
           }}
-          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all shadow-md backdrop-blur-md cursor-pointer ${
+          className={`px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md backdrop-blur-md cursor-pointer ${
             sliderPosition > 50
-              ? "bg-amber-600 text-white shadow-amber-600/30"
-              : "bg-black/60 text-white/85 hover:bg-black/80 hover:text-white"
+              ? "bg-amber-600 text-white ring-2 ring-white/30"
+              : "bg-black/60 text-white/80 hover:bg-black/80 hover:text-white"
           }`}
           title="Show Before view"
         >
@@ -118,17 +142,17 @@ export function BeforeAfterSlider({
         </button>
       </div>
 
-      <div className="absolute top-3 right-3 z-30 flex items-center gap-2 pointer-events-auto">
+      <div className="absolute top-3.5 right-3.5 z-30 flex items-center gap-2 pointer-events-auto">
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             setSliderPosition(0);
           }}
-          className={`px-3 py-1 rounded-lg text-xs font-bold transition-all shadow-md backdrop-blur-md cursor-pointer ${
+          className={`px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md backdrop-blur-md cursor-pointer ${
             sliderPosition < 50
-              ? "bg-[#166534] text-white shadow-[#166534]/30"
-              : "bg-black/60 text-white/85 hover:bg-black/80 hover:text-white"
+              ? "bg-[#166534] text-white ring-2 ring-white/30"
+              : "bg-black/60 text-white/80 hover:bg-black/80 hover:text-white"
           }`}
           title="Show After view"
         >

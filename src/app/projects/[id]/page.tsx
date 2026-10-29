@@ -242,7 +242,7 @@ async function ProjectDetailContent({ params }: PageProps) {
               {/* Direct Booking Card */}
               <div className="rounded-3xl bg-[#16263F] text-white p-6 sm:p-8 shadow-xl border border-slate-700">
                 <span className="text-xs font-black uppercase tracking-wider text-[#8CCB6B] block mb-1">
-                  Direct Builder Consultation
+                  Direct Contractor Consultation
                 </span>
                 <h4 className="text-xl font-bold text-white mb-2">
                   Planning a Similar Renovation?

@@ -58,7 +58,7 @@ export default function ProjectsPage() {
             <ShieldCheck className="w-8 h-8 text-[#16a34a]" />
           </div>
           <h3 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-3">
-            Want Similar Direct-to-Builder Quality for Your Home?
+            Want Similar Direct Contractor Quality for Your Home?
           </h3>
           <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto mb-8 font-normal leading-relaxed">
             We inspect your site, check floor plan layouts, and provide an itemized quote with

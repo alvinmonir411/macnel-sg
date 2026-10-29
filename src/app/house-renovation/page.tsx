@@ -136,7 +136,7 @@ export default function HouseRenovationPage() {
     },
     {
       feature: "On-Site Communication",
-      directContractor: "Direct coordination with senior site builders & project managers",
+      directContractor: "Direct coordination with senior site supervisors & project managers",
       idFirm: "Sales coordinator acts as middleman; messages often diluted",
     },
     {
@@ -158,7 +158,7 @@ export default function HouseRenovationPage() {
     },
     {
       q: "Can I do a whole house renovation without hiring an interior designer (ID)?",
-      a: "Absolutely. Over 60% of savvy Singaporean homeowners now hire direct contractors like Renovation Contractor SG. If you already have floor plan layouts, Pinterest mood boards, or standard aesthetic requirements, you can save anywhere from $15,000 to $35,000 by working directly with our master builders.",
+      a: "Absolutely. Over 60% of savvy Singaporean homeowners now hire direct contractors like Renovation Contractor SG. If you already have floor plan layouts, Pinterest mood boards, or standard aesthetic requirements, you can save anywhere from $15,000 to $35,000 by working directly with our master craftsmen.",
     },
     {
       q: "What is your payment milestone structure for whole house renovations?",
@@ -294,7 +294,7 @@ export default function HouseRenovationPage() {
             Our Master Turnkey Renovation Process
           </h2>
           <p className="text-base text-slate-600 mt-3 font-normal">
-            Every step is coordinated directly by our senior on-site builders to ensure zero delays, tight budget control,
+            Every step is coordinated directly by our senior on-site supervisors to ensure zero delays, tight budget control,
             and superior structural longevity.
           </p>
         </div>
