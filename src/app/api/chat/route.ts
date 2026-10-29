@@ -3,38 +3,29 @@ import { getSettings } from "@/lib/db";
 import { siteConfig } from "@/config/site";
 
 
-const DEFAULT_SYSTEM_PROMPT = `You are the official AI Assistant for Renovation Contractor SG (Website: https://renovationcontractorsg.org), a premier direct renovation contractor in Singapore.
+const DEFAULT_SYSTEM_PROMPT = `You are the official customer service assistant for Renovation Contractor SG (https://renovationcontractorsg.org), a premier direct renovation contractor in Singapore.
 
-🏢 COMPANY CREDENTIALS & VALUES:
-- Company Brand Name: Renovation Contractor SG
-- ACRA UEN: 202402481G
-- 100% In-House Master Tradesmen (Tilers, Plumbers, Carpenters, Electricians, Plasterers, Painters). Zero Interior Design (ID) middleman markup—clients save 20% to 35% on direct contractor rates.
-- Official Licenses: ACRA Registered & BCA Compliant Contractor.
-- 12-Month Structural & Workmanship Warranty on all projects with rapid 24–48 hour on-site service support.
+COMPANY FACTS:
+- Brand Name: Renovation Contractor SG | ACRA UEN: 202402481G
+- 100% In-House Master Tradesmen (Tilers, Plumbers, Carpenters, Electricians, Plasterers, Painters). Zero ID middleman markups (clients save 20% to 35% on direct contractor rates).
+- BCA Registered & HDB Directory. 12-Month Structural & Workmanship Warranty with 24-48h response.
 - Office & Showroom: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511.
-- Direct Call Hotline: +65 8653 1076 | WhatsApp: +65 8170 4063 | Email: contact@renovationcontractorsg.org.
-- Turnaround: Free on-site inspection and itemized quote within 2 hours.
+- Direct Hotline: +65 8653 1076 | WhatsApp: +65 8170 4063.
+- Free on-site inspection and itemized quote within 2 hours.
 
+SERVICES: Toilet Renovation with 3-layer waterproofing, Whole House Renovation (HDB BTO/Resale, Condo, Landed, Commercial), Floor & Wall Tiling, False Ceiling & Partition, House Painting & Plastering, Doors & Windows, SPC Vinyl Flooring, Electrical Rewiring, Carpentry & Cabinetry.
 
-🛠️ 8 CORE SPECIALIST SERVICES:
-1. Toilet Renovation: Complete hacking, 3-layer waterproofing membrane (BCA compliant water test), premium floor & wall tiles, plumbing & sanitary fittings.
-2. House Renovation: Full turnkey makeover for HDB (BTO & Resale 3/4/5-room), Private Condominium, Landed property, and Commercial retail/office.
-3. Floor & Wall Tiling: Large format porcelain, homogeneous, ceramic, marble, and anti-slip bathroom tiles with laser level alignment.
-4. False Ceiling & Partition: Gypsum plasterboard, cove lighting pelmets, acoustic soundproof partition walls (Saint-Gobain materials).
-5. House Painting & Plastering: Nippon Paint / Dulux anti-mould paint, skimming, wall plastering, hairline crack repair.
-6. Door & Window Services: Fire-rated main doors, soundproof sliding aluminium windows, bi-fold bathroom doors, digital locks.
-7. Flooring & Vinyl / Carpet: Heavy-duty SPC vinyl click flooring (5mm-6mm with IXPE acoustic underlay, 100% waterproof), office carpet tiles.
-8. Electrical Works & Rewiring: EMA licensed electrician, full house rewiring, DB box upgrade, lighting points, power sockets.
-
-
-
-💬 COMMUNICATION GUIDELINES:
-- Greet clients warmly and professionally on behalf of Renovation Contractor SG.
-- Always respond in the EXACT language used by the user (English, বাংলা / Bengali, 中文 / Chinese, Melayu / Malay, हिन्दी / Hindi, اردو / Urdu, العربية / Arabic).
-- State estimated direct contractor ranges when asked.
-- Provide practical Singapore renovation advice (e.g. HDB permit requirements, 3-year waterproofing rule, BTO timeline).
-- Encourage the customer to book a free on-site consultation, WhatsApp our supervisor directly at +65 8170 4063, or call +65 8653 1076.
-- Keep responses concise, readable, and well-structured with bullet points where appropriate.`;
+CRITICAL RULES FOR RESPONSES:
+1. VERY SHORT & CONCISE: Answers MUST be only 2 to 3 sentences maximum! Never write long essays or 10-point lists. Answer directly and concisely.
+2. NO ASTERISKS: NEVER use markdown bold asterisks (**like this**) and NEVER use list asterisks (*). Write clean, natural, fluid sentences.
+3. NO RAW LINKS: Never write bracketed markdown links like [WhatsApp](...). The chat interface displays clickable Call and WhatsApp action buttons automatically.
+4. STRICT OFF-TOPIC REFUSAL (DO NOT WASTE TOKENS):
+   You are strictly forbidden from answering anything unrelated to Singapore renovation, contracting works, pricing, or our company.
+   If the user asks about ANYTHING ELSE (e.g. coding, math, general trivia, weather, cooking, jokes, politics, school homework):
+   Refuse politely in 1 short sentence:
+   - Bengali: "আমি শুধুমাত্র সিঙ্গাপুরের হোম ও কমার্শিয়াল রেনোভেশন সংক্রান্ত তথ্যে সাহায্য করতে পারি। আপনার রেনোভেশন প্রজেক্ট নিয়ে যেকোনো প্রশ্ন করতে পারেন।"
+   - English: "I can only assist with Singapore home and commercial renovation inquiries. How can I help with your renovation project?"
+5. ACCURATELY UNDERSTAND ALL QUESTIONS: Understand any phrasing, slang, Singlish, Banglish ("koto dam", "toilet khoroc", "office koi"), English, Bengali, Chinese, Malay, Hindi, Urdu, or Arabic, and answer with contractor accuracy.`;
 
 
 const FALLBACK_RESPONSES: Record<string, { welcome: string; services: string; pricing: string; contact: string }> = {
@@ -227,6 +218,43 @@ export async function GET() {
   }
 }
 
+// Fast rule-based guardrail to reject completely off-topic questions without wasting Gemini API tokens
+function isOffTopicQuery(message: string): boolean {
+  const text = message.toLowerCase().trim();
+  if (!text || text.length < 2) return false;
+
+  // If query mentions any renovation / home / office / contracting / pricing / contact topic, it's ON-TOPIC
+  const onTopicKeywords = [
+    "renov", "contractor", "toilet", "bath", "hack", "waterproof", "tile", "tiling",
+    "floor", "wall", "paint", "plaster", "ceiling", "partition", "door", "window",
+    "vinyl", "carpet", "electric", "rewir", "wire", "pipe", "plumb", "leak",
+    "cabinet", "carpentry", "kitchen", "wardrobe", "hdb", "bto", "resale", "condo",
+    "landed", "office", "commercial", "quote", "price", "cost", "dam", "khoroch", "budget",
+    "inspect", "visit", "warranty", "license", "acra", "bca", "address",
+    "location", "contact", "phone", "call", "whatsapp", "number", "book", "appointment",
+    "measurement", "showroom", "worker", "supervisor", "site", "rate",
+    "রেনোভেশন", "টয়লেট", "বাথরুম", "টাইলস", "রং", "পেইন্ট", "সিলিং", "দরজা", "জানালা",
+    "ফ্লোর", "ইলেকট্রিক", "প্লাম্বিং", "কাঠ", "কেবিনেট", "খরচ", "দাম", "ঠিকানা", "অফিস",
+    "ফোন", "যোগাযোগ", "কন্ট্রাক্টর", "ফ্ল্যাট", "বাড়ি", "সিঙ্গাপুর", "কোটেশন"
+  ];
+
+  if (onTopicKeywords.some((kw) => text.includes(kw))) {
+    return false;
+  }
+
+  // Obvious non-renovation topics to strictly filter
+  const offTopicTriggers = [
+    /\b(python|javascript|typescript|react|html|css|c\+\+|java\b|sql|coding|write code|debug|algorithm|function|variable)\b/i,
+    /\b(write an essay|write a poem|write a song|solve this|equation|calculus|algebra|homework|quantum physics|chemistry formula)\b/i,
+    /\b(recipe|how to cook|ingredients for|biryani|chicken curry|bake a cake)\b/i,
+    /\b(who is the president|prime minister|capital of|weather in|who won the match|football score|cricket match|bitcoin|crypto price)\b/i,
+    /\b(flight ticket|visa process|hotel booking|tourist pass|job apply|software engineer hiring)\b/i,
+    /\b(কুকিং|রেসিপি|কবিতা লেখ|গান লেখ|কোডিং|রাজনীতি|প্রধান মন্ত্রী|আবহাওয়া|ক্রিকেট|ফুটবল|বিটকয়েন)\b/i,
+  ];
+
+  return offTopicTriggers.some((rgx) => rgx.test(text));
+}
+
 // POST: Process chat message with Google Gemini API & smart fallback
 export async function POST(request: Request) {
   try {
@@ -258,6 +286,19 @@ export async function POST(request: Request) {
       : (isTest ? "Hello! Please confirm connection in one sentence." : "");
 
     const detectedLang = detectLanguage(language, lastUserMessage);
+
+    // 0. Off-Topic Pre-check: Save Gemini API Quota!
+    if (!isTest && isOffTopicQuery(lastUserMessage)) {
+      const isBn = detectedLang === "bn";
+      return NextResponse.json({
+        success: true,
+        reply: isBn
+          ? "আমি শুধুমাত্র সিঙ্গাপুরের হোম ও কমার্শিয়াল রেনোভেশন সংক্রান্ত তথ্যে সাহায্য করতে পারি। আপনার ফ্ল্যাট, বাথরুম বা রেনোভেশন কাজ নিয়ে যেকোনো প্রশ্ন করতে পারেন অথবা নিচে সরাসরি কল বা হোয়াটসঅ্যাপ করুন।"
+          : "I can only assist with Singapore home and commercial renovation inquiries. Please feel free to ask about your renovation project or tap the Call and WhatsApp buttons below!",
+        source: "scope_guard_rejected",
+        isOffTopic: true,
+      });
+    }
 
     // If no Gemini API key is provided and this is not an explicit test, use our built-in smart multilingual fallback
     if (!apiKey) {
@@ -414,9 +455,17 @@ export async function POST(request: Request) {
     }
 
     if (geminiReply) {
+      // Clean asterisks, raw bullets, and bracketed links so text is clean and legible
+      const cleaned = geminiReply
+        .replace(/\*\*(.*?)\*\*/g, "$1") // strip **bold**
+        .replace(/\*(.*?)\*/g, "$1")     // strip *italic*
+        .replace(/^[\s]*[\*\-][\s]+/gm, "• ") // replace asterisk bullets with clean dots
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // replace [text](url) with text
+        .trim();
+
       return NextResponse.json({
         success: true,
-        reply: geminiReply,
+        reply: cleaned,
         source: "gemini",
         model: usedModel,
       });

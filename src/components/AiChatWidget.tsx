@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   MessageSquare,
   X,
@@ -10,6 +11,9 @@ import {
   Check,
   Bot,
   ExternalLink,
+  Phone,
+  MessageCircle,
+  Calendar,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
@@ -20,6 +24,85 @@ interface ChatMessage {
   time: string;
   delivered?: boolean;
 }
+
+// Clean and format assistant response: removes ugly asterisks, formats clean bullets, and renders 1-tap call/whatsapp buttons
+function FormattedBotMessage({
+  content,
+  whatsappUrl,
+}: {
+  content: string;
+  whatsappUrl: string;
+}) {
+  const lines = content.split("\n");
+
+  const renderLine = (line: string, idx: number) => {
+    const trimmed = line.trim();
+    if (!trimmed) return <div key={idx} className="h-1.5" />;
+
+    const isBullet = /^[•\*\-]\s+/.test(trimmed);
+    const isNumbered = /^\d+\.\s+/.test(trimmed);
+
+    // Strip raw markdown symbols so text is 100% clean
+    const cleanLine = trimmed
+      .replace(/^[•\*\-]\s+/, "")
+      .replace(/\*\*(.*?)\*\*/g, "$1") // clean bold
+      .replace(/\*(.*?)\*/g, "$1")     // clean italic
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1"); // clean bracketed links
+
+    if (isBullet || isNumbered) {
+      return (
+        <div key={idx} className="flex items-start gap-2 my-1 pl-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-2" />
+          <span className="text-[13px] leading-relaxed text-slate-800 font-normal">
+            {cleanLine}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <p key={idx} className="text-[13px] leading-relaxed text-slate-800 font-normal my-0.5">
+        {cleanLine}
+      </p>
+    );
+  };
+
+  return (
+    <div className="space-y-1">
+      <div>{lines.map((l, i) => renderLine(l, i))}</div>
+
+      {/* 1-Tap Call & WhatsApp Direct Action Buttons */}
+      <div className="mt-3 pt-2.5 border-t border-slate-100 flex flex-wrap items-center gap-1.5">
+        <a
+          href="tel:+6586531076"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+        >
+          <Phone className="w-3.5 h-3.5 text-white" />
+          <span>Call: +65 8653 1076</span>
+        </a>
+
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+        >
+          <MessageCircle className="w-3.5 h-3.5 text-white" />
+          <span>WhatsApp Us</span>
+        </a>
+
+        <Link
+          href="/book"
+          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 text-xs font-semibold transition-all border border-slate-200 cursor-pointer"
+        >
+          <Calendar className="w-3.5 h-3.5 text-slate-500" />
+          <span>Free Site Visit</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 
 const LANGUAGES = [
   { code: "en", label: "English", userLabel: "English" },
@@ -349,9 +432,9 @@ export function AiChatWidget() {
                   } animate-in fade-in slide-in-from-bottom-2 duration-150`}
                 >
                   {isBot ? (
-                    // Bot Message Bubble (Clean White Card)
-                    <div className="max-w-[86%] rounded-2xl rounded-tl-sm bg-white border border-slate-200/90 px-4 py-3 text-slate-800 text-[13px] leading-relaxed shadow-xs whitespace-pre-line">
-                      {msg.content}
+                    // Bot Message Bubble (Clean White Card with Formatted Text and 1-Tap Buttons)
+                    <div className="max-w-[88%] rounded-2xl rounded-tl-sm bg-white border border-slate-200/90 px-4 py-3 text-slate-800 text-[13px] leading-relaxed shadow-xs">
+                      <FormattedBotMessage content={msg.content} whatsappUrl={whatsappUrl} />
                     </div>
                   ) : (
                     // User Message Bubble (Solid Blue)
@@ -392,6 +475,39 @@ export function AiChatWidget() {
             )}
 
             <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick 1-Tap Direct Hotline & WhatsApp Action Bar */}
+          <div className="px-3 py-2 bg-slate-50/95 border-t border-slate-200 flex items-center justify-between gap-1.5 shrink-0">
+            <span className="text-[10px] font-black uppercase tracking-wider text-slate-500 shrink-0">
+              Direct:
+            </span>
+            <a
+              href="tel:+6586531076"
+              className="flex-1 inline-flex items-center justify-center gap-1 py-1.5 px-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-all active:scale-95 cursor-pointer"
+              title="Direct Call Hotline"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>Call Now</span>
+            </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-1 py-1.5 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-all active:scale-95 cursor-pointer"
+              title="Chat on WhatsApp"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp</span>
+            </a>
+            <Link
+              href="/book"
+              className="inline-flex items-center justify-center gap-1 py-1.5 px-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs border border-slate-200 transition-all active:scale-95 cursor-pointer"
+              title="Book Free Site Inspection"
+            >
+              <Calendar className="w-3.5 h-3.5 text-slate-600" />
+              <span>Book</span>
+            </Link>
           </div>
 
           {/* 4. Input Area */}
