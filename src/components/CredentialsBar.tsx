@@ -10,7 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export function CredentialsBar() {
+export function CredentialsBar({ credentials: customCreds }: { credentials?: any } = {}) {
   const {
     legalName,
     uen,

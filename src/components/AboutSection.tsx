@@ -14,9 +14,12 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export function AboutSection() {
+export function AboutSection({ customCredentials }: { customCredentials?: any } = {}) {
   const { companyStory, members } = teamData;
-  const { legalName, uen, bcaLicense, hdbLicense } = siteConfig;
+  const legalName = customCredentials?.legalName || siteConfig.legalName;
+  const uen = customCredentials?.uen || siteConfig.uen;
+  const bcaLicense = customCredentials?.bcaLicense || siteConfig.bcaLicense;
+  const hdbLicense = customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense;
   const founder = members[0] || {
     name: "Managing Director & Founder",
     role: "Managing Director & Lead Project Supervisor",

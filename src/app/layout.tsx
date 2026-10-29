@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
-import siteSettings from "../../data/siteSettings.json";
+import { getLiveSiteData } from "@/lib/db";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
@@ -25,6 +25,7 @@ const inter = Inter({
   display: "swap",
   preload: true,
 });
+
 
 export const metadata: Metadata = {
   title: {
@@ -78,11 +79,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const siteData = await getLiveSiteData();
   const socialsList = Object.values(siteConfig.socials).filter(
     (url) => url && !url.includes("TODO_REPLACE")
   );
@@ -204,20 +206,26 @@ export default function RootLayout({
           id="image-overrides-data"
           dangerouslySetInnerHTML={{
             __html: `window.__IMAGE_OVERRIDES__ = ${JSON.stringify(
-              (siteSettings as any)?.site_images || {}
+              siteData.site_images || {}
             )};`,
           }}
         />
+        <script
+          id="site-live-data"
+          dangerouslySetInnerHTML={{
+            __html: `window.__SITE_DATA__ = ${JSON.stringify(siteData)};`,
+          }}
+        />
         {/* Dynamic Marketing & Tracking Scripts (GA4, GTM, Meta Pixel, Custom Head) */}
-        <MarketingHeadScripts />
+        <MarketingHeadScripts marketing={siteData.marketing} />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
         {/* Dynamic Marketing Body Scripts (GTM Noscript, Chat Widgets, Custom Body) */}
-        <MarketingBodyScripts />
-        <Header />
+        <MarketingBodyScripts marketing={siteData.marketing} />
+        <Header customContact={siteData.contact} customCredentials={siteData.credentials} />
         <main className="flex-1">{children}</main>
-        <Footer />
-        <FloatingCTA />
+        <Footer customContact={siteData.contact} customCredentials={siteData.credentials} />
+        <FloatingCTA contact={siteData.contact} />
         <AiChatWidget />
         <CookieConsentBanner />
       </body>

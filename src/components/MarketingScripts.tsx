@@ -1,7 +1,7 @@
 import siteSettingsData from "../../data/siteSettings.json";
 
-export function MarketingHeadScripts() {
-  const marketing = (siteSettingsData as any)?.marketing || {};
+export function MarketingHeadScripts({ marketing: customMarketing }: { marketing?: any } = {}) {
+  const marketing = customMarketing || (siteSettingsData as any)?.marketing || {};
 
   const {
     gtmId,
@@ -90,8 +90,8 @@ ttq.page();
   );
 }
 
-export function MarketingBodyScripts() {
-  const marketing = (siteSettingsData as any)?.marketing || {};
+export function MarketingBodyScripts({ marketing: customMarketing }: { marketing?: any } = {}) {
+  const marketing = customMarketing || (siteSettingsData as any)?.marketing || {};
   const { gtmId, gtmEnabled, metaPixelId, metaPixelEnabled, customBodyScripts } =
     marketing;
 

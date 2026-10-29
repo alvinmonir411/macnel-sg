@@ -13,15 +13,15 @@ import {
   MessageCircle,
 } from "lucide-react";
 
-export function Footer() {
+export function Footer({ customContact, customCredentials }: { customContact?: any; customCredentials?: any } = {}) {
+  const contact = { ...siteConfig.contact, ...(customContact || {}) };
+  const uen = customCredentials?.uen || siteConfig.uen;
+  const legalName = customCredentials?.legalName || siteConfig.legalName;
+  const hdbLicense = customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense;
+  const bcaLicense = customCredentials?.bcaLicense || siteConfig.bcaLicense;
   const {
     name,
     tagline,
-    legalName,
-    uen,
-    hdbLicense,
-    bcaLicense,
-    contact,
     socials,
     coreServices,
   } = siteConfig;

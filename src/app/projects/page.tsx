@@ -1,3 +1,4 @@
+import { getLiveSiteData } from "@/lib/db";
 import type { Metadata } from "next";
 import projectsData from "../../../data/projects.json";
 import { siteConfig } from "@/config/site";
@@ -9,6 +10,7 @@ import {
   Sparkles,
   CalendarCheck,
 } from "lucide-react";
+
 
 export const metadata: Metadata = {
   title: "Completed Renovation Projects & Portfolio Singapore",
@@ -22,7 +24,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const siteData = await getLiveSiteData();
+  const projects = siteData.projects || projectsData;
   return (
     <main className="bg-[#F8FAFC] text-slate-900 min-h-screen py-16 sm:py-24 relative overflow-hidden border-b border-slate-200/70">
       {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
@@ -47,7 +51,7 @@ export default function ProjectsPage() {
 
         {/* Compact, Interactive Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projectsData.map((proj) => (
+          {projects.map((proj: any) => (
             <ProjectCard key={proj.id} project={proj} />
           ))}
         </div>

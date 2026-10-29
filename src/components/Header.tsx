@@ -33,7 +33,9 @@ import {
 } from "lucide-react";
 import { ServiceSearchModal } from "@/components/ServiceSearchModal";
 
-export function Header() {
+export function Header({ customContact, customCredentials }: { customContact?: any; customCredentials?: any } = {}) {
+  const contact = { ...siteConfig.contact, ...(customContact || {}) };
+  const uen = customCredentials?.uen || siteConfig.uen;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
@@ -178,7 +180,7 @@ export function Header() {
               <p className="text-[7.5px] sm:text-[8.5px] text-slate-300 tracking-[0.1em] uppercase font-bold whitespace-nowrap flex items-center gap-1.5">
                 <span className="text-[#8CCB6B]">Renovation Specialists</span>
                 <span className="w-1 h-1 rounded-full bg-[#8CCB6B] animate-pulse" />
-                <span>UEN: 202402481G</span>
+                <span>UEN: {uen}</span>
               </p>
             </div>
           </Link>
@@ -380,12 +382,12 @@ export function Header() {
           {/* Action CTA: Book Free Site Inspection Only */}
           <div className="hidden sm:flex items-center gap-2 xl:gap-3 shrink-0">
             <a
-              href={`tel:${siteConfig.contact.phoneTel}`}
+              href={`tel:${contact.phoneTel || contact.phonePrimary}`}
               className="hidden xl:inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/20 text-slate-200 hover:text-white transition-all whitespace-nowrap"
-              title={`Call hotline: ${siteConfig.contact.phonePrimary}`}
+              title={`Call hotline: ${contact.phonePrimary}`}
             >
               <Phone className="w-3.5 h-3.5 text-[#8CCB6B]" />
-              <span>Call: {siteConfig.contact.phonePrimary}</span>
+              <span>Call: {contact.phonePrimary}</span>
             </a>
 
             <Link
@@ -401,7 +403,7 @@ export function Header() {
           <div className="flex lg:hidden items-center gap-2">
             {/* Mobile WhatsApp Quick Action */}
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+              href={`https://wa.me/${contact.whatsapp}?text=Hello%20${encodeURIComponent(
                 siteConfig.name
               )}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
@@ -525,7 +527,7 @@ export function Header() {
 
               <div className="grid grid-cols-2 gap-2">
                 <a
-                  href={`tel:${siteConfig.contact.phoneTel}`}
+                  href={`tel:${contact.phoneTel || contact.phonePrimary}`}
                   className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs shadow-md transition-all"
                 >
                   <Phone className="w-4 h-4 text-[#8CCB6B]" />
@@ -533,7 +535,7 @@ export function Header() {
                 </a>
 
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                  href={`https://wa.me/${contact.whatsapp}?text=Hello%20${encodeURIComponent(
                     siteConfig.name
                   )}%2C%20I%20would%20like%20a%20free%20quotation.`}
                   target="_blank"

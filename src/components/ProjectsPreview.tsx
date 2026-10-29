@@ -14,11 +14,12 @@ import {
   Maximize2,
 } from "lucide-react";
 
-export function ProjectsPreview() {
+export function ProjectsPreview({ initialProjects }: { initialProjects?: any[] } = {}) {
+  const sourceProjects = (initialProjects && initialProjects.length > 0) ? initialProjects : projectsData;
   // Only display featured projects on the homepage
-  const featuredProjects = projectsData.filter((p) => p.featured === true);
+  const featuredProjects = sourceProjects.filter((p) => p.featured === true);
   const displayProjects =
-    featuredProjects.length > 0 ? featuredProjects : projectsData.slice(0, 3);
+    featuredProjects.length > 0 ? featuredProjects : sourceProjects.slice(0, 3);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);

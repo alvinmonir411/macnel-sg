@@ -13,8 +13,9 @@ import {
   Globe,
 } from "lucide-react";
 
-export function ContactLocationSection() {
-  const { contact, socials, awards, name } = siteConfig;
+export function ContactLocationSection({ contact: customContact }: { contact?: any } = {}) {
+  const contact = { ...siteConfig.contact, ...(customContact || {}) };
+  const { socials, awards, name } = siteConfig;
 
   return (
     <section id="contact-location" className="py-20 lg:py-28 bg-[#F8FAFC] text-slate-900 relative overflow-hidden border-b border-slate-200/70">

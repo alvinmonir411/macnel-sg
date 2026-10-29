@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
 import { saveSettings } from "@/lib/db";
@@ -62,6 +63,7 @@ export async function POST(request: Request) {
     await saveSettings("projects", projects);
     await writeProjectsFile(projects);
 
+    try { revalidatePath("/", "layout"); revalidatePath("/projects"); } catch (e) { console.warn("revalidatePath error:", e); }
     return NextResponse.json({
       success: true,
       message: "Projects updated successfully.",

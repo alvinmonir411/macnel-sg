@@ -1,3 +1,4 @@
+import { getLiveSiteData } from "@/lib/db";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
@@ -23,6 +24,7 @@ import {
   Droplets,
 } from "lucide-react";
 
+
 export const metadata: Metadata = {
   title: "Core Renovation Services Singapore | Renovation Contractor SG",
   description:
@@ -45,7 +47,12 @@ const mainServices = (servicesData as any[]).map((item) => ({
   icon: iconMap[item.iconName] || Home,
 }));
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const siteData = await getLiveSiteData();
+  const mainServices = (siteData.services || (servicesData as any[])).map((item: any) => ({
+    ...item,
+    icon: iconMap[item.iconName] || Home,
+  }));
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -163,7 +170,7 @@ export default function ServicesPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {mainServices.map((service, idx) => {
+          {mainServices.map((service: any, idx: number) => {
             const Icon = service.icon;
             return (
               <div

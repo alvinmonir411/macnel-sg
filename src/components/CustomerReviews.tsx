@@ -5,8 +5,9 @@ import reviewsData from "../../data/reviews.json";
 import { Star, ExternalLink, ShieldCheck, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { siteConfig } from "@/config/site";
 
-export function CustomerReviews() {
-  const { isRealData, googleReviewsUrl, reviews } = reviewsData;
+export function CustomerReviews({ initialReviews }: { initialReviews?: any } = {}) {
+  const activeData = initialReviews || reviewsData;
+  const { isRealData, googleReviewsUrl, reviews } = activeData;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(3);
 
@@ -43,7 +44,7 @@ export function CustomerReviews() {
         "@context": "https://schema.org",
         "@type": "HomeAndConstructionBusiness",
         name: siteConfig.name,
-        review: reviews.map((r) => ({
+        review: reviews.map((r: any) => ({
           "@type": "Review",
           author: {
             "@type": "Person",
@@ -131,7 +132,7 @@ export function CustomerReviews() {
               transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
             }}
           >
-            {reviews.map((rev) => (
+            {reviews.map((rev: any) => (
               <div
                 key={rev.id}
                 className="px-3 shrink-0"

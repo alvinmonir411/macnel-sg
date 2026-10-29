@@ -47,12 +47,13 @@ const iconMap: Record<string, any> = {
   Droplets,
 };
 
-export function OtherServices() {
+export function OtherServices({ initialServices }: { initialServices?: any[] } = {}) {
   const [activeTab, setActiveTab] = useState<
     "all" | "renovation" | "surfaces" | "walls-ceiling" | "doors"
   >("all");
 
-  const mainServicesList: MainService[] = (servicesData as any[]).map((item) => ({
+  const listSource = (initialServices && initialServices.length > 0) ? initialServices : servicesData;
+  const mainServicesList: MainService[] = (listSource as any[]).map((item) => ({
     ...item,
     icon: iconMap[item.iconName] || Home,
   }));

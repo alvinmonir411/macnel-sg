@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 import { getSettings, saveSettings } from "@/lib/db";
@@ -806,6 +807,7 @@ export async function POST(request: Request) {
           await saveLocalCloudinaryData(localData);
         }
 
+        try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
         return NextResponse.json({
           success: true,
           url: uploadedUrl,
@@ -857,6 +859,7 @@ export async function POST(request: Request) {
         await saveLocalCloudinaryData(localData);
       }
 
+      try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
       return NextResponse.json({
         success: true,
         message: `Updated image for ${slot?.label || slotId}!`,
@@ -881,6 +884,7 @@ export async function POST(request: Request) {
       await saveSettings("site_images", existingOverrides);
       await saveLocalCloudinaryData(localData);
 
+      try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
       return NextResponse.json({
         success: true,
         message: `Reset ${slot?.label || slotId} to default image.`,

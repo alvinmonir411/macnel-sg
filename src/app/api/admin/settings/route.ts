@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getSettings, saveSettings } from "@/lib/db";
 import { isAuthenticated } from "@/lib/auth";
@@ -111,6 +112,7 @@ export async function POST(request: Request) {
       }
     }
 
+    try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
     const updated = await getSettings();
     return NextResponse.json({
       success: true,

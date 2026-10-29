@@ -264,3 +264,47 @@ export async function saveSettings(category: string, value: any) {
   return { success: true };
 }
 
+import servicesFallback from "../../data/services.json";
+import projectsFallback from "../../data/projects.json";
+import pricingFallback from "../../data/pricing.json";
+import reviewsFallback from "../../data/reviews.json";
+import siteSettingsFallback from "../../data/siteSettings.json";
+
+export async function getLiveSiteData() {
+  "use cache";
+  const dbSettings = await getSettings();
+
+  return {
+    settings: dbSettings || {},
+    services:
+      dbSettings?.services && Array.isArray(dbSettings.services) && dbSettings.services.length > 0
+        ? dbSettings.services
+        : (servicesFallback as any[]),
+    projects:
+      dbSettings?.projects && Array.isArray(dbSettings.projects) && dbSettings.projects.length > 0
+        ? dbSettings.projects
+        : (projectsFallback as any[]),
+    pricing: dbSettings?.pricing || pricingFallback,
+    reviews: dbSettings?.reviews || reviewsFallback,
+    contact: {
+      ...(siteSettingsFallback.contact || {}),
+      ...(dbSettings?.contact || {}),
+    },
+    credentials: {
+      ...(siteSettingsFallback.credentials || {}),
+      ...(dbSettings?.credentials || {}),
+    },
+    marketing: {
+      ...(siteSettingsFallback.marketing || {}),
+      ...(dbSettings?.marketing || {}),
+    },
+    ai: {
+      ...(siteSettingsFallback.ai || {}),
+      ...(dbSettings?.ai || {}),
+    },
+    site_images: {
+      ...((siteSettingsFallback as any).site_images || {}),
+      ...(dbSettings?.site_images || {}),
+    },
+  };
+}

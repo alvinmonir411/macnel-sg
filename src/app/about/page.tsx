@@ -1,3 +1,4 @@
+import { getLiveSiteData } from "@/lib/db";
 import type { Metadata } from "next";
 import teamData from "../../../data/team.json";
 import { siteConfig } from "@/config/site";
@@ -14,6 +15,7 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
+
 
 export const metadata: Metadata = {
   title: "About Us & Licensed Renovation Contractor Singapore | Renovation Contractor SG",

@@ -3,8 +3,9 @@
 import { siteConfig } from "@/config/site";
 import { Phone, MessageCircle } from "lucide-react";
 
-export function FloatingCTA() {
-  const { contact, name } = siteConfig;
+export function FloatingCTA({ contact: customContact }: { contact?: any } = {}) {
+  const contact = { ...siteConfig.contact, ...(customContact || {}) };
+  const { name } = siteConfig;
 
   return (
     <>
