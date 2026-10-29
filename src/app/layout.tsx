@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - Direct Renovation Contractor Singapore`,
+        alt: `${siteConfig.name} - Singapore Renovation Specialists`,
       },
     ],
   },

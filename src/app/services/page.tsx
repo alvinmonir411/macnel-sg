@@ -26,7 +26,7 @@ import {
 export const metadata: Metadata = {
   title: "Core Renovation Services Singapore | Renovation Contractor SG",
   description:
-    "Direct renovation contractor services in Singapore: House Renovation, Tiling Services, Door & Window Replacement, False Ceiling & Partition, Painting, Plastering, Flooring & Carpets, and Toilet Renovation.",
+    "Full-service renovation contractor services in Singapore: House Renovation, Tiling Services, Door & Window Replacement, False Ceiling & Partition, Painting, Plastering, Flooring & Carpets, and Toilet Renovation.",
 };
 
 const iconMap: Record<string, any> = {

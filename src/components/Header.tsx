@@ -176,7 +176,7 @@ export function Header() {
                 Renovation Contractor SG
               </span>
               <p className="text-[7.5px] sm:text-[8.5px] text-slate-300 tracking-[0.1em] uppercase font-bold whitespace-nowrap flex items-center gap-1.5">
-                <span className="text-[#8CCB6B]">Direct Contractor SG</span>
+                <span className="text-[#8CCB6B]">Renovation Specialists</span>
                 <span className="w-1 h-1 rounded-full bg-[#8CCB6B] animate-pulse" />
                 <span>UEN: 202402481G</span>
               </p>

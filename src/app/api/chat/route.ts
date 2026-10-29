@@ -3,7 +3,7 @@ import { getSettings } from "@/lib/db";
 import { siteConfig } from "@/config/site";
 
 
-const DEFAULT_SYSTEM_PROMPT = `You are the official customer service assistant for Renovation Contractor SG (https://renovationcontractorsg.org), a premier direct renovation contractor in Singapore.
+const DEFAULT_SYSTEM_PROMPT = `You are the official customer service assistant for Renovation Contractor SG (https://renovationcontractorsg.org), a premier renovation contractor and specialist in Singapore.
 
 COMPANY FACTS:
 - Brand Name: Renovation Contractor SG | ACRA UEN: 202402481G
@@ -36,7 +36,7 @@ const FALLBACK_RESPONSES: Record<string, { welcome: string; services: string; pr
     contact: "আমাদের সিনিয়র প্রজেক্ট সুপারের সাথে সরাসরি কথা বলতে বা ফ্রি সাইট পরিদর্শনের তারিখ বুক করতে হোয়াটসঅ্যাপে মেসেজ দিন: +65 8170 4063 বা কল করুন: +65 8653 1076। আমাদের অফিস: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511."
   },
   en: {
-    welcome: "Welcome to Renovation Contractor SG! We are Singapore's direct renovation contractor. How can we assist with your home or commercial project today?",
+    welcome: "Welcome to Renovation Contractor SG! We are Singapore's trusted renovation specialists. How can we assist with your home or commercial project today?",
     services: "We handle direct in-house renovations without middleman designer markups (saving you 20%-35%): 1) Toilet & Bathroom Renovation with 3-Layer Waterproofing 2) Whole House Turnkey Renovation (HDB / Condo / Landed) 3) Floor & Wall Homogeneous Tiling 4) False Ceiling & Cove Light Partitions 5) Nippon / Dulux House Painting 6) BCA-Approved Doors & Windows 7) Waterproof SPC Vinyl Flooring 8) Licensed EMA Electrical Rewiring. Which service do you need?",
     pricing: "As direct contractors, our prices are transparent and itemized per foot run with zero hidden markups. We offer free on-site inspections and 2-hour quote turnaround. WhatsApp +65 8170 4063 or call +65 8653 1076 for an instant estimate.",
     contact: "You can reach our senior project manager directly on WhatsApp at +65 8170 4063, call us at +65 8653 1076, or visit our office at 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511. Would you like to schedule a free site measurement?"

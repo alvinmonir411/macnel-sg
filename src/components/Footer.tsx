@@ -43,7 +43,7 @@ export function Footer() {
                   </span>
                 </div>
                 <p className="text-[10px] text-slate-300 tracking-wider uppercase font-semibold">
-                  Direct Renovation Contractor
+                  Singapore Renovation Specialists
                 </p>
               </div>
             </Link>

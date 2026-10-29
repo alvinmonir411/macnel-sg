@@ -90,9 +90,9 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   // Brand & Public Names
   name: "Renovation Contractor SG",
-  tagline: "Singapore Direct Renovation Contractor · Hacking to Handover",
+  tagline: "Singapore Home & Commercial Renovation Specialists · Hacking to Handover",
   description:
-    "Renovation Contractor SG — Licensed direct renovation contractor in Singapore. Transparent pricing, dedicated on-site supervision for HDB flats, condominiums, landed homes, and commercial units.",
+    "Renovation Contractor SG — Licensed home and commercial renovation specialists in Singapore. Transparent pricing, dedicated on-site supervision for HDB flats, condominiums, landed homes, and commercial units.",
   url: "https://renovationcontractorsg.org",
 
   // 🏛️ Official Business Registration & Credentials
@@ -452,7 +452,7 @@ export const siteConfig: SiteConfig = {
     "carpet installation",
     "hardwood floor installation",
     "floor polishing service",
-    "direct renovation contractor",
+    "renovation specialists singapore",
     "Renovation Contractor SG",
   ],
 };

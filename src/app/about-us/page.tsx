@@ -23,7 +23,7 @@ import {
 export const metadata: Metadata = {
   title: "About Us | Renovation Contractor SG - Direct Singapore Contractor",
   description:
-    "Learn about Renovation Contractor SG (UEN: 202402481G) — direct renovation contractor in Singapore. In-house craftsmen handling core renovation trades with scheduled milestones and written warranties.",
+    "Learn about Renovation Contractor SG (UEN: 202402481G) — premier renovation contractor in Singapore. In-house craftsmen handling core renovation trades with scheduled milestones and written warranties.",
 };
 
 export default function AboutUsPage() {

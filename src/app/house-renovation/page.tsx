@@ -213,7 +213,7 @@ export default function HouseRenovationPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-md">
-              Transform your HDB, condominium, or landed property with Singapore&apos;s trusted direct renovation contractor.
+              Transform your HDB, condominium, or landed property with Singapore&apos;s trusted renovation specialists.
               Zero middleman interior design markups. We own the teams that hack, tile, wire, and build your dream home.
             </p>
 
