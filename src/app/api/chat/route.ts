@@ -209,7 +209,7 @@ export async function GET() {
       welcomeMessageBn:
         ai.welcomeMessageBn ||
         "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
-      model: ai.model || "gemini-2.0-flash",
+      model: ai.model || "gemini-flash-latest",
       isAiConfigured: Boolean(configuredKey && configuredKey.trim().length > 5),
     });
   } catch (error: any) {
@@ -221,7 +221,7 @@ export async function GET() {
       welcomeMessageEn: "Hi! How can we help you today?",
       welcomeMessageBn:
         "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
-      model: "gemini-2.0-flash",
+      model: "gemini-flash-latest",
       isAiConfigured: Boolean(process.env.GEMINI_API_KEY),
     });
   }
@@ -247,7 +247,7 @@ export async function POST(request: Request) {
     ).trim();
 
     const selectedModel = (
-      testModel || ai.model || "gemini-2.0-flash"
+      testModel || ai.model || "gemini-flash-latest"
     ).trim();
 
     const systemPrompt = ai.systemPrompt || DEFAULT_SYSTEM_PROMPT;
@@ -284,7 +284,7 @@ export async function POST(request: Request) {
     // Build candidate models list.
     // Try to dynamically discover supported models for this key from Google's v1beta endpoint
     const modelsToTry: string[] = [];
-    if (selectedModel && selectedModel !== "gemini-2.5-flash") {
+    if (selectedModel) {
       modelsToTry.push(selectedModel);
     }
 
@@ -305,11 +305,15 @@ export async function POST(request: Request) {
 
           supported.sort((a: string, b: string) => {
             const score = (name: string) => {
-              if (name === "gemini-2.0-flash") return 100;
-              if (name === "gemini-1.5-flash") return 90;
-              if (name.includes("flash")) return 80;
-              if (name.includes("pro")) return 70;
-              return 50;
+              if (name === "gemini-flash-latest") return 120;
+              if (name === "gemini-3.8-flash") return 115;
+              if (name === "gemini-3.7-flash") return 110;
+              if (name === "gemini-3.5-flash") return 105;
+              if (name === "gemini-2.5-flash") return 80;
+              if (name === "gemini-2.0-flash") return 70;
+              if (name.includes("flash")) return 90;
+              if (name.includes("pro")) return 60;
+              return 40;
             };
             return score(b) - score(a);
           });
@@ -324,11 +328,14 @@ export async function POST(request: Request) {
     }
 
     const defaultCandidates = [
+      "gemini-flash-latest",
+      "gemini-3.8-flash",
+      "gemini-3.7-flash",
+      "gemini-3.5-flash",
+      "gemini-2.5-flash",
       "gemini-2.0-flash",
       "gemini-1.5-flash",
-      "gemini-1.5-flash-latest",
-      "gemini-1.5-pro",
-      "gemini-pro",
+      "gemini-pro-latest",
     ];
     for (const d of defaultCandidates) {
       if (!modelsToTry.includes(d)) modelsToTry.push(d);
@@ -336,7 +343,7 @@ export async function POST(request: Request) {
 
     let lastError = "";
     let geminiReply = "";
-    let usedModel = modelsToTry[0] || "gemini-2.0-flash";
+    let usedModel = modelsToTry[0] || "gemini-flash-latest";
 
     // Convert messages to Gemini format: user vs model
     const contents: Array<{ role: string; parts: Array<{ text: string }> }> = [];
@@ -369,21 +376,27 @@ export async function POST(request: Request) {
           generationConfig: {
             temperature: 0.7,
             topP: 0.95,
-            maxOutputTokens: 600,
+            maxOutputTokens: 2048,
           },
         };
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 12000);
 
         const response = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
           cache: "no-store",
+          signal: controller.signal,
         });
+        clearTimeout(timeoutId);
 
         if (response.ok) {
           const data = await response.json();
-          const text =
-            data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+          const parts = data.candidates?.[0]?.content?.parts || [];
+          const textPart = parts.find((p: any) => p.text && !p.thought) || parts[0];
+          const text = textPart?.text || "";
           if (text) {
             geminiReply = text.trim();
             usedModel = modelCandidate;

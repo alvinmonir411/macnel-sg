@@ -32,7 +32,7 @@
   },
   "ai": {
     "geminiApiKey": "",
-    "model": "gemini-2.0-flash",
+    "model": "gemini-flash-latest",
     "botName": "Renovation Contractor SG",
     "botSubtitle": "AI assistant · replies instantly",
     "whatsapp": "6581704063",
