@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import {
   MessageCircle,
@@ -35,6 +36,8 @@ const CORE_TRADES = [
 ];
 
 export function Hero() {
+  const { contact: liveContact } = useSiteSettings();
+  const targetWhatsapp = liveContact?.whatsapp || siteConfig.contact.whatsapp;
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [shouldMountVideo, setShouldMountVideo] = useState(false);
@@ -173,7 +176,7 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1 w-full sm:w-auto">
             {/* WhatsApp CTA */}
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+              href={`https://wa.me/${targetWhatsapp}?text=Hello%20${encodeURIComponent(
                 siteConfig.name
               )}%2C%20I%20would%20like%20a%20free%20renovation%20quotation.`}
               target="_blank"

@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import {
   Phone,
   Mail,
@@ -14,11 +17,12 @@ import {
 } from "lucide-react";
 
 export function Footer({ customContact, customCredentials }: { customContact?: any; customCredentials?: any } = {}) {
-  const contact = { ...siteConfig.contact, ...(customContact || {}) };
-  const uen = customCredentials?.uen || siteConfig.uen;
-  const legalName = customCredentials?.legalName || siteConfig.legalName;
+  const { contact: contextContact, credentials: contextCredentials } = useSiteSettings();
+  const contact = { ...siteConfig.contact, ...(customContact || {}), ...(contextContact || {}) };
+  const uen = contextCredentials?.uen || customCredentials?.uen || siteConfig.uen;
+  const legalName = contextCredentials?.legalName || customCredentials?.legalName || siteConfig.legalName;
   const hdbLicense = customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense;
-  const bcaLicense = customCredentials?.bcaLicense || siteConfig.bcaLicense;
+  const bcaLicense = contextCredentials?.bcaLicense || customCredentials?.bcaLicense || siteConfig.bcaLicense;
   const {
     name,
     tagline,

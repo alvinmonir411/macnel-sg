@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { LiveImage } from "@/components/LiveImage";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -64,6 +65,7 @@ const loadMatrix = [
 
 export default async function ElectricalPage() {
   const siteData = await getLiveSiteData();
+  const contact = { ...siteConfig.contact, ...(siteData?.contact || {}) };
   const overrides = siteData?.site_images || {};
   const pageData = siteData?.service_pages?.electrical;
 
@@ -125,7 +127,7 @@ export default async function ElectricalPage() {
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20electrical%20works%20and%20rewiring.`}
+                href={`https://wa.me/${contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20electrical%20works%20and%20rewiring.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -135,11 +137,11 @@ export default async function ElectricalPage() {
               </a>
 
               <a
-                href={`tel:${siteConfig.contact.phoneTel}`}
+                href={`tel:${(contact.phoneTel || contact.phonePrimary.replace(/[^0-9+]/g, ""))}`}
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 text-white font-bold text-sm backdrop-blur-md transition-all"
               >
                 <Phone className="w-4 h-4 text-[#A3E635]" />
-                <span>Call {siteConfig.contact.phonePrimary}</span>
+                <span>Call {contact.phonePrimary}</span>
               </a>
             </div>
 
@@ -305,13 +307,13 @@ export default async function ElectricalPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20an%20electrical%20quotation.`}
+              href={`https://wa.me/${contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20an%20electrical%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-105 transition-all"
             >
               <MessageCircle className="w-5 h-5 fill-current" />
-              <span>WhatsApp: +65 {siteConfig.contact.whatsapp.slice(2)}</span>
+              <span>WhatsApp: +65 {contact.whatsapp.slice(2)}</span>
             </a>
 
             <Link

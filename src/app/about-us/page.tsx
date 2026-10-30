@@ -2,7 +2,7 @@ import { LiveImage } from "@/components/LiveImage";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getLiveSiteData } from "@/lib/db";
 import {
   ShieldCheck,
   Users,
@@ -21,13 +21,26 @@ import {
   Phone,
 } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "About Us | Renovation Contractor SG - Direct Singapore Contractor",
   description:
     "Learn about Renovation Contractor SG (UEN: 202402481G) — premier renovation contractor in Singapore. In-house craftsmen handling core renovation trades with scheduled milestones and written warranties.",
 };
 
-export default function AboutUsPage() {
+export default async function AboutUsPage() {
+  const siteData = await getLiveSiteData();
+  const contact = { ...siteConfig.contact, ...(siteData?.contact || {}) };
+  const credentials = { ...siteConfig, ...(siteData?.credentials || {}) };
+
+  const legalName = credentials.legalName || siteConfig.legalName;
+  const uen = credentials.uen || siteConfig.uen;
+  const whatsappNumber = contact.whatsapp || siteConfig.contact.whatsapp;
+  const whatsappDisplay = whatsappNumber.replace(/^65/, "");
+  const phonePrimary = contact.phonePrimary || siteConfig.contact.phonePrimary;
+  const phoneCallTarget = contact.phoneTel || phonePrimary.replace(/[^0-9+]/g, "");
+
   const tradeGuilds = [
     {
       trade: "In-House Carpentry Workshop",
@@ -96,7 +109,7 @@ export default function AboutUsPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#8CCB6B]/40 bg-[#8CCB6B]/15 px-4 py-1.5 text-xs font-bold text-white mb-6 backdrop-blur-md">
               <ShieldCheck className="w-3.5 h-3.5 text-[#A3E635]" />
-              <span>Renovation Contractor SG · UEN: 202402481G</span>
+              <span>{legalName} · UEN: {uen}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.12]">
@@ -105,14 +118,14 @@ export default function AboutUsPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-md">
-              At Renovation Contractor SG, we eliminate the bloated overhead of design sales agencies. We own our
+              At {siteConfig.name}, we eliminate the bloated overhead of design sales agencies. We own our
               carpentry workshop, employ our own tilers and plumbers, and deliver turnkey renovations with uncompromising structural
               integrity.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20renovation%20services.`}
+                href={`https://wa.me/${whatsappNumber}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20renovation%20services.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -169,7 +182,7 @@ export default function AboutUsPage() {
               a 20% to 35% margin while diluting quality control.
             </p>
             <p className="text-base text-slate-600 leading-relaxed mb-6 font-normal">
-              Renovation Contractor SG was established to restore pure direct contractor craftsmanship. When you work with us, you deal
+              {siteConfig.name} was established to restore pure direct contractor craftsmanship. When you work with us, you deal
               directly with our Founder, Managing Director, and master tradesmen responsible for your hacking, waterproofing, piping, tiling, electrical, and
               custom cabinetry.
             </p>
@@ -264,31 +277,31 @@ export default function AboutUsPage() {
             <span>Singapore Registered Business · UEN Verified</span>
           </div>
 
-          <h3 className="text-3xl sm:text-4xl font-extrabold mb-4">{siteConfig.legalName}</h3>
+          <h3 className="text-3xl sm:text-4xl font-extrabold mb-4">{legalName}</h3>
 
           <p className="text-slate-200 text-sm sm:text-base max-w-xl mx-auto mb-8 font-normal">
-            UEN: {siteConfig.uen} · 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511
+            UEN: {uen} · {contact.address}
             <br />
-            Operations: Monday – Saturday, 9:00 AM – 6:00 PM
+            Operations: {contact.operatingHours}
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.legalName)}%2C%20I%20would%20like%20to%20visit%20or%20inquire%20about%20renovation.`}
+              href={`https://wa.me/${whatsappNumber}?text=Hello%20${encodeURIComponent(legalName)}%2C%20I%20would%20like%20to%20visit%20or%20inquire%20about%20renovation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#25D366] text-slate-950 font-black text-sm shadow-2xl hover:scale-105 transition-all"
             >
               <MessageCircle className="w-5 h-5 fill-slate-950" />
-              <span>WhatsApp Us: +65 {siteConfig.contact.whatsapp.slice(2)}</span>
+              <span>WhatsApp Us: +65 {whatsappDisplay}</span>
             </a>
 
             <a
-              href={`tel:${siteConfig.contact.phoneTel}`}
+              href={`tel:${phoneCallTarget}`}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-[#16263F] font-bold text-sm shadow-xl hover:bg-slate-100 transition-all"
             >
               <Phone className="w-4 h-4 text-[#2C6BA6]" />
-              <span>Call Hotline: {siteConfig.contact.phonePrimary}</span>
+              <span>Call Hotline: {phonePrimary}</span>
             </a>
           </div>
         </div>

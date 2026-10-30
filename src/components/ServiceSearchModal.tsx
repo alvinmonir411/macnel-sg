@@ -17,6 +17,7 @@ import {
   Layers,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import {
   searchableServices,
   popularSearchQueries,
@@ -34,6 +35,8 @@ export function ServiceSearchModal({
   onClose,
   initialQuery = "",
 }: ServiceSearchModalProps) {
+  const { contact: liveContact } = useSiteSettings();
+  const targetWhatsapp = liveContact?.whatsapp || siteConfig.contact.whatsapp;
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
@@ -392,7 +395,7 @@ export function ServiceSearchModal({
                         </Link>
 
                         <a
-                          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                          href={`https://wa.me/${targetWhatsapp}?text=Hello%20${encodeURIComponent(
                             siteConfig.name
                           )}%2C%20I%20am%20inquiring%20about%20${encodeURIComponent(service.title)}.`}
                           target="_blank"
@@ -444,7 +447,7 @@ export function ServiceSearchModal({
                   Clear search filter
                 </button>
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                  href={`https://wa.me/${targetWhatsapp}?text=Hello%20${encodeURIComponent(
                     siteConfig.name
                   )}%2C%20I%20am%20looking%20for%20${encodeURIComponent(query)}.`}
                   target="_blank"

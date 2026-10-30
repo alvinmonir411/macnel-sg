@@ -624,6 +624,12 @@ export default function AdminDashboardPage() {
       const resData = await res.json();
       if (res.ok) {
         showToast(`${category.toUpperCase()} saved to Neon DB & Live Site!`);
+        try {
+          localStorage.setItem("site_settings_updated_at", Date.now().toString());
+          window.dispatchEvent(
+            new CustomEvent("site-settings-updated", { detail: { [category]: data } })
+          );
+        } catch {}
       } else {
         showToast(resData.error || "Failed to save settings.");
       }

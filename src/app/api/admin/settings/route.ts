@@ -24,6 +24,50 @@ async function writeJsonFile(fileName: string, data: any) {
   }
 }
 
+async function syncSiteConfig(category: string, data: any) {
+  try {
+    const configPath = path.join(process.cwd(), "data", "siteConfig.ts");
+    let content = await fs.readFile(configPath, "utf-8");
+    if (category === "contact" && data) {
+      if (data.email) {
+        content = content.replace(/email:\s*"[^"]*"/, `email: "${data.email}"`);
+      }
+      if (data.whatsapp) {
+        content = content.replace(/whatsapp:\s*"[^"]*"/, `whatsapp: "${data.whatsapp}"`);
+      }
+      if (data.phonePrimary) {
+        content = content.replace(/phonePrimary:\s*"[^"]*"/, `phonePrimary: "${data.phonePrimary}"`);
+        content = content.replace(/phoneTel:\s*"[^"]*"/, `phoneTel: "${data.phonePrimary.replace(/[^0-9+]/g, "")}"`);
+      }
+      if (data.phoneSecondary) {
+        content = content.replace(/phoneSecondary:\s*"[^"]*"/, `phoneSecondary: "${data.phoneSecondary}"`);
+      }
+      if (data.address) {
+        content = content.replace(/address:\s*"[^"]*"/, `address: "${data.address}"`);
+      }
+      if (data.operatingHours) {
+        content = content.replace(/operatingHours:\s*"[^"]*"/, `operatingHours: "${data.operatingHours}"`);
+      }
+    } else if (category === "credentials" && data) {
+      if (data.legalName) {
+        content = content.replace(/legalName:\s*"[^"]*"/, `legalName: "${data.legalName}"`);
+      }
+      if (data.uen) {
+        content = content.replace(/uen:\s*"[^"]*"/, `uen: "${data.uen}"`);
+      }
+      if (data.bcaLicense) {
+        content = content.replace(/bcaLicense:\s*"[^"]*"/, `bcaLicense: "${data.bcaLicense}"`);
+      }
+      if (data.hdbLicense !== undefined) {
+        content = content.replace(/hdbLicense:\s*"[^"]*"/, `hdbLicense: "${data.hdbLicense}"`);
+      }
+    }
+    await fs.writeFile(configPath, content, "utf-8");
+  } catch {
+    // Expected on read-only serverless platforms like Vercel
+  }
+}
+
 export async function GET() {
   try {
     const authenticated = await isAuthenticated();
@@ -95,6 +139,9 @@ export async function POST(request: Request) {
       currentSettings[category] = data;
       await writeJsonFile("siteSettings.json", currentSettings);
 
+      // Sync siteConfig.ts in dev / writeable environments
+      await syncSiteConfig(category, data);
+
       // If AI settings saved with a geminiApiKey, persist it to .env.local
       if (category === "ai" && data?.geminiApiKey) {
         try {
@@ -120,7 +167,18 @@ export async function POST(request: Request) {
       }
     }
 
-    try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
+    try {
+      revalidatePath("/", "layout");
+      revalidatePath("/contact-us");
+      revalidatePath("/about");
+      revalidatePath("/about-us");
+      revalidatePath("/book");
+      revalidatePath("/services");
+      revalidatePath("/projects");
+    } catch (e) {
+      console.warn("revalidatePath error:", e);
+    }
+
     const updated = await getSettings();
     return NextResponse.json({
       success: true,

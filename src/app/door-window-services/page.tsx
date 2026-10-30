@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { LiveImage } from "@/components/LiveImage";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
 
 export default async function DoorWindowPage() {
   const siteData = await getLiveSiteData();
+  const contact = { ...siteConfig.contact, ...(siteData?.contact || {}) };
   const overrides = siteData?.site_images || {};
   const pageData = siteData?.service_pages?.door_window;
 
@@ -132,7 +134,7 @@ export default async function DoorWindowPage() {
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20door%20and%20window%20replacement.`}
+                href={`https://wa.me/${contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20door%20and%20window%20replacement.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -142,11 +144,11 @@ export default async function DoorWindowPage() {
               </a>
 
               <a
-                href={`tel:${siteConfig.contact.phoneTel}`}
+                href={`tel:${(contact.phoneTel || contact.phonePrimary.replace(/[^0-9+]/g, ""))}`}
                 className="inline-flex items-center gap-2 px-7 py-4 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 text-white font-bold text-sm backdrop-blur-md transition-all"
               >
                 <Phone className="w-4 h-4 text-[#A3E635]" />
-                <span>Call {siteConfig.contact.phonePrimary}</span>
+                <span>Call {contact.phonePrimary}</span>
               </a>
             </div>
 
@@ -344,7 +346,7 @@ export default async function DoorWindowPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20door%20and%20window%20inspection%20quote.`}
+              href={`https://wa.me/${contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20door%20and%20window%20inspection%20quote.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl hover:scale-[1.02] transition-all"

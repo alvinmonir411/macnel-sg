@@ -32,10 +32,12 @@ import {
   Clock,
 } from "lucide-react";
 import { ServiceSearchModal } from "@/components/ServiceSearchModal";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 export function Header({ customContact, customCredentials }: { customContact?: any; customCredentials?: any } = {}) {
-  const contact = { ...siteConfig.contact, ...(customContact || {}) };
-  const uen = customCredentials?.uen || siteConfig.uen;
+  const { contact: contextContact, credentials: contextCredentials } = useSiteSettings();
+  const contact = { ...siteConfig.contact, ...(customContact || {}), ...(contextContact || {}) };
+  const uen = contextCredentials?.uen || customCredentials?.uen || siteConfig.uen;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);

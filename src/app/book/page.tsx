@@ -2,7 +2,10 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { BookingSystem } from "@/components/BookingSystem";
 import { siteConfig } from "@/config/site";
+import { getLiveSiteData } from "@/lib/db";
 import { ShieldCheck, Clock, Award, Phone, MessageCircle } from "lucide-react";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: `Book an Appointment | Free Site Inspection | ${siteConfig.name}`,
@@ -10,7 +13,10 @@ export const metadata: Metadata = {
     "Schedule a free on-site consultation and quotation in Singapore. Direct licensed contractor for toilet renovation, painting, tiling, false ceiling, and electrical works.",
 };
 
-export default function BookPage() {
+export default async function BookPage() {
+  const siteData = await getLiveSiteData();
+  const contact = { ...siteConfig.contact, ...(siteData?.contact || {}) };
+
   return (
     <div className="bg-[#F8FAFC] min-h-screen">
       {/* Hero Header Banner */}
@@ -48,7 +54,6 @@ export default function BookPage() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-
         {/* World-Class Booking System Component */}
         <Suspense
           fallback={
@@ -57,7 +62,7 @@ export default function BookPage() {
             </div>
           }
         >
-          <BookingSystem />
+          <BookingSystem customContact={contact} />
         </Suspense>
 
         {/* Trust Guarantees Below */}

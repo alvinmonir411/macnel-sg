@@ -17,17 +17,22 @@ import {
 export function AboutSection({
   customCredentials,
   customTeam,
+  customContact,
 }: {
   customCredentials?: any;
   customTeam?: any;
+  customContact?: any;
 } = {}) {
   const activeTeam = customTeam || teamDataFallback;
   const companyStory = activeTeam?.companyStory || teamDataFallback.companyStory;
   const members = activeTeam?.members || teamDataFallback.members;
+  const contact = { ...siteConfig.contact, ...(customContact || {}) };
   const legalName = customCredentials?.legalName || siteConfig.legalName;
   const uen = customCredentials?.uen || siteConfig.uen;
   const bcaLicense = customCredentials?.bcaLicense || siteConfig.bcaLicense;
-  const hdbLicense = customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense;
+  const hdbLicense = customCredentials?.hdbLicense !== undefined
+    ? customCredentials.hdbLicense
+    : siteConfig.hdbLicense;
   const founder = members?.[0] || {
     name: "Managing Director & Founder",
     role: "Managing Director & Lead Project Supervisor",
@@ -107,7 +112,7 @@ export function AboutSection({
 
               <div className="flex flex-col sm:flex-row items-center gap-2.5 pt-2">
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                  href={`https://wa.me/${contact.whatsapp}?text=Hello%20${encodeURIComponent(
                     siteConfig.name
                   )}%2C%20I%20would%20like%20to%20consult%20directly%20with%20your%20supervisor.`}
                   target="_blank"
@@ -119,7 +124,7 @@ export function AboutSection({
                 </a>
 
                 <a
-                  href={`tel:${siteConfig.contact.phoneTel}`}
+                  href={`tel:${contact.phoneTel || contact.phonePrimary.replace(/[^0-9+]/g, "")}`}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-sm transition-all"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#8CCB6B]" />

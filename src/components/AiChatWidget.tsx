@@ -16,6 +16,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 interface ChatMessage {
   id: string;
@@ -130,6 +131,7 @@ function formatCurrentTime(): string {
 }
 
 export function AiChatWidget() {
+  const { contact: liveContact, ai: liveAi } = useSiteSettings();
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [activeLang, setActiveLang] = useState<string>("en");

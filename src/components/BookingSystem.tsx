@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import {
   Calendar as CalendarIcon,
   Clock,
@@ -45,7 +46,9 @@ interface ServiceOption {
   };
 }
 
-export function BookingSystem() {
+export function BookingSystem({ customContact }: { customContact?: any } = {}) {
+  const { contact: contextContact } = useSiteSettings();
+  const contact = { ...siteConfig.contact, ...(customContact || {}), ...(contextContact || {}) };
   const searchParams = useSearchParams();
   const [step, setStep] = useState<number>(1);
 
@@ -408,7 +411,7 @@ export function BookingSystem() {
       `*Unit:* ${encodeURIComponent(unitNumber || "N/A")}%0A` +
       `*Remarks:* ${encodeURIComponent(additionalNotes || "N/A")}%0A%0A` +
       `Please confirm site engineer assignment.`;
-    return `https://wa.me/${siteConfig.contact.whatsapp}?text=${text}`;
+    return `https://wa.me/${contact.whatsapp}?text=${text}`;
   };
 
   // Generate .ics calendar invite file
@@ -419,7 +422,7 @@ export function BookingSystem() {
       `PRODID:-//${siteConfig.name}//Booking Engine//EN\n` +
       `BEGIN:VEVENT\n` +
       `SUMMARY:${siteConfig.name} On-Site Inspection (${currentServiceObj.name})\n` +
-      `DESCRIPTION:Booking ID: ${bookingId}. Site engineer inspection for ${propertyType}. Scope: ${serviceDetail}. Contact: ${siteConfig.contact.phonePrimary}\n` +
+      `DESCRIPTION:Booking ID: ${bookingId}. Site engineer inspection for ${propertyType}. Scope: ${serviceDetail}. Contact: ${contact.phonePrimary}\n` +
       `LOCATION:Singapore ${postalCode} ${unitNumber}\n` +
       `STATUS:CONFIRMED\n` +
       `END:VEVENT\n` +

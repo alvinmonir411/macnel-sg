@@ -1,8 +1,11 @@
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 import { Check, MessageCircle, ShieldCheck, Droplets, Sparkles } from "lucide-react";
 
 export function ToiletSpotlight() {
+  const { contact: liveContact } = useSiteSettings();
+  const targetWhatsapp = liveContact?.whatsapp || siteConfig.contact.whatsapp;
   const { toiletProcessSteps } = siteConfig;
 
   return (
@@ -113,7 +116,7 @@ export function ToiletSpotlight() {
               </div>
 
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                href={`https://wa.me/${targetWhatsapp}?text=Hello%20${encodeURIComponent(
                   siteConfig.name
                 )}%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
                 target="_blank"

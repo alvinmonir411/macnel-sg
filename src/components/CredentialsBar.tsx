@@ -9,13 +9,13 @@ import {
 } from "lucide-react";
 
 export function CredentialsBar({ credentials: customCreds }: { credentials?: any } = {}) {
-  const {
-    legalName,
-    uen,
-    bcaLicense,
-    hdbLicense,
-    yearsInBusiness,
-  } = siteConfig;
+  const credentials = { ...siteConfig, ...(customCreds || {}) };
+
+  const legalName = credentials.legalName || siteConfig.legalName;
+  const uen = credentials.uen || siteConfig.uen;
+  const bcaLicense = credentials.bcaLicense || siteConfig.bcaLicense;
+  const hdbLicense = credentials.hdbLicense !== undefined ? credentials.hdbLicense : siteConfig.hdbLicense;
+  const yearsInBusiness = credentials.yearsInBusiness || siteConfig.yearsInBusiness;
 
   // Helper to cleanly format placeholder text for display while preserving raw data
   const clean = (val: string | undefined) =>

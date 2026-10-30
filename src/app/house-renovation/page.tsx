@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { LiveImage } from "@/components/LiveImage";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -114,6 +115,7 @@ const comparison = [
 
 export default async function HouseRenovationPage() {
   const siteData = await getLiveSiteData();
+  const contact = { ...siteConfig.contact, ...(siteData?.contact || {}) };
   const overrides = siteData?.site_images || {};
   const pageData = siteData?.service_pages?.house_renovation;
 
@@ -175,7 +177,7 @@ export default async function HouseRenovationPage() {
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20whole%20house%20renovation.`}
+                href={`https://wa.me/${contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20whole%20house%20renovation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-2xl hover:scale-[1.02] transition-all"
@@ -417,7 +419,7 @@ export default async function HouseRenovationPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20whole%20house%20renovation.`}
+              href={`https://wa.me/${contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20whole%20house%20renovation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl hover:scale-[1.02] transition-all"

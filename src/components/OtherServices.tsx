@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { ProjectImage } from "@/components/ProjectImage";
 import servicesData from "../../data/services.json";
 import {
@@ -48,6 +49,8 @@ const iconMap: Record<string, any> = {
 };
 
 export function OtherServices({ initialServices }: { initialServices?: any[] } = {}) {
+  const { contact: liveContact } = useSiteSettings();
+  const targetWhatsapp = liveContact?.whatsapp || siteConfig.contact.whatsapp;
   const [activeTab, setActiveTab] = useState<
     "all" | "renovation" | "surfaces" | "walls-ceiling" | "doors"
   >("all");
@@ -195,7 +198,7 @@ export function OtherServices({ initialServices }: { initialServices?: any[] } =
                       </Link>
 
                       <a
-                        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(
+                        href={`https://wa.me/${targetWhatsapp}?text=Hello%20${encodeURIComponent(
                           siteConfig.name
                         )}%2C%20I%20would%20like%20a%20quotation%20for%20${encodeURIComponent(
                           service.title

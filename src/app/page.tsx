@@ -30,7 +30,7 @@ export default async function Home() {
       <ProjectsPreview initialProjects={siteData.projects} />
 
       {/* 6. About Us, Team Leadership & On-Site Works (RSC: 0KB Client JS) */}
-      <AboutSection customCredentials={siteData.credentials} customTeam={siteData.team} />
+      <AboutSection customCredentials={siteData.credentials} customTeam={siteData.team} customContact={siteData.contact} />
 
       {/* 7. Interactive Quote Request Form with SG Phone & PDPA Consent */}
       <QuoteCalculator />

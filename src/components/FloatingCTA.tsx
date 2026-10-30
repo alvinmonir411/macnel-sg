@@ -1,10 +1,12 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { Phone, MessageCircle } from "lucide-react";
 
 export function FloatingCTA({ contact: customContact }: { contact?: any } = {}) {
-  const contact = { ...siteConfig.contact, ...(customContact || {}) };
+  const { contact: contextContact } = useSiteSettings();
+  const contact = { ...siteConfig.contact, ...(customContact || {}), ...(contextContact || {}) };
   const { name } = siteConfig;
 
   return (

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { LiveImage } from "@/components/LiveImage";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -46,6 +47,7 @@ const carpentrySpecialties = [
 
 export default async function CarpentryPage() {
   const siteData = await getLiveSiteData();
+  const contact = { ...siteConfig.contact, ...(siteData?.contact || {}) };
   const overrides = siteData?.site_images || {};
   const pageData = siteData?.service_pages?.carpentry;
 
@@ -100,7 +102,7 @@ export default async function CarpentryPage() {
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
+                href={`https://wa.me/${contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -118,11 +120,11 @@ export default async function CarpentryPage() {
               </Link>
 
               <a
-                href={`tel:${siteConfig.contact.phoneTel}`}
+                href={`tel:${(contact.phoneTel || contact.phonePrimary.replace(/[^0-9+]/g, ""))}`}
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-white/35 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base backdrop-blur-sm transition-all"
               >
                 <Phone className="w-4 h-4 text-[#A3E635]" />
-                <span>Call {siteConfig.contact.phonePrimary}</span>
+                <span>Call {contact.phonePrimary}</span>
               </a>
             </div>
           </div>
@@ -266,7 +268,7 @@ export default async function CarpentryPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
+              href={`https://wa.me/${contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20carpentry%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"

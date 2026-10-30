@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getLiveSiteData } from "@/lib/db";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
   const siteData = await getLiveSiteData();
+  const contact = { ...siteConfig.contact, ...(siteData?.contact || {}) };
   const projects = siteData.projects || [];
   return (
     <main className="bg-[#F8FAFC] text-slate-900 min-h-screen py-16 sm:py-24 relative overflow-hidden border-b border-slate-200/70">
@@ -77,7 +79,7 @@ export default async function ProjectsPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20a%20free%20quotation.`}
+              href={`https://wa.me/${contact.whatsapp}?text=Hello%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20a%20free%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-sm sm:text-base shadow-sm transition-all"

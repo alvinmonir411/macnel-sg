@@ -118,11 +118,11 @@ export const siteConfig: SiteConfig = {
 
   // 📞 Direct Contact & Physical Presence
   contact: {
-    phonePrimary: "+65 8653 1076",
+    phonePrimary: "+65 8170 4063",
     phoneSecondary: "+65 8170 4063",
-    phoneTel: "+6586531076",
+    phoneTel: "+6581704063",
     whatsapp: "6581704063",
-    email: "info@renovationcontractorsg.org",
+    email: "alvinmonir411@gmail.com",
     address: "101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511",
     showroomNote: "Showroom visits and material consultations available by appointment",
     googleMapsEmbedUrl:
