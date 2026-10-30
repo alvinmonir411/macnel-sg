@@ -38,6 +38,19 @@ export function Hero() {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [shouldMountVideo, setShouldMountVideo] = useState(false);
+  const [heroDesktop, setHeroDesktop] = useState(() => getCloudinaryUrl("/hero-modern-desktop.webp"));
+  const [heroMobile, setHeroMobile] = useState(() => getCloudinaryUrl("/hero-modern-mobile.webp"));
+  const [heroVideo, setHeroVideo] = useState(() => getCloudinaryUrl("/hero-video.mp4"));
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setHeroDesktop(getCloudinaryUrl("/hero-modern-desktop.webp"));
+      setHeroMobile(getCloudinaryUrl("/hero-modern-mobile.webp"));
+      setHeroVideo(getCloudinaryUrl("/hero-video.mp4"));
+    };
+    window.addEventListener("live-image-updated", handleUpdate);
+    return () => window.removeEventListener("live-image-updated", handleUpdate);
+  }, []);
 
   // Defer desktop ambient video until idle thread
   useEffect(() => {
@@ -65,16 +78,16 @@ export function Hero() {
       <picture className="absolute inset-0 w-full h-full pointer-events-none">
         <source
           media="(max-width: 768px)"
-          srcSet={getCloudinaryUrl("/hero-modern-mobile.webp")}
+          srcSet={heroMobile}
           type="image/webp"
         />
         <source
           media="(min-width: 769px)"
-          srcSet={getCloudinaryUrl("/hero-modern-desktop.webp")}
+          srcSet={heroDesktop}
           type="image/webp"
         />
         <img
-          src={getCloudinaryUrl("/hero-modern-desktop.webp")}
+          src={heroDesktop}
           alt="Singapore Home & Commercial Renovation Specialists"
           fetchPriority="high"
           loading="eager"
@@ -97,7 +110,7 @@ export function Hero() {
           className={`hidden lg:block absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${videoLoaded ? "opacity-80" : "opacity-0"
             }`}
         >
-          <source src={getCloudinaryUrl("/hero-video.mp4")} type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
 
       )}

@@ -14,6 +14,37 @@ cloudinary.config({
   secure: true,
 });
 
+function revalidateAllSitePages(specificPath?: string) {
+  const routes = [
+    "/",
+    "/services",
+    "/door-window-services",
+    "/flooring-carpet-services",
+    "/carpentry-services",
+    "/false-ceiling",
+    "/house-painting-plastering",
+    "/house-renovation",
+    "/tiling-works",
+    "/toilet-renovation-in-singapore",
+    "/electrical-works-rewiring",
+    "/about-us",
+    "/about",
+    "/projects",
+    "/book",
+  ];
+  if (specificPath && !routes.includes(specificPath)) {
+    routes.push(specificPath);
+  }
+  for (const r of routes) {
+    try {
+      revalidatePath(r);
+    } catch {}
+  }
+  try {
+    revalidatePath("/", "layout");
+  } catch {}
+}
+
 // Defined image slots across website
 export const DEFAULT_IMAGE_SLOTS = [
   // ==========================================
@@ -899,11 +930,12 @@ export async function POST(request: Request) {
           await saveLocalCloudinaryData(localData);
         }
 
-        try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
+        revalidateAllSitePages(slot?.pagePath);
         return NextResponse.json({
           success: true,
           url: uploadedUrl,
           slotId,
+          paths: slot?.paths || [],
           message: `Photo successfully updated for ${slot?.label || slotId}!`,
         });
       }
@@ -951,11 +983,13 @@ export async function POST(request: Request) {
         await saveLocalCloudinaryData(localData);
       }
 
-      try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
+      revalidateAllSitePages(slot?.pagePath);
       return NextResponse.json({
         success: true,
         message: `Updated image for ${slot?.label || slotId}!`,
         currentUrl: newUrl,
+        slotId,
+        paths: slot?.paths || [],
       });
     }
 
@@ -976,11 +1010,13 @@ export async function POST(request: Request) {
       await saveSettings("site_images", existingOverrides);
       await saveLocalCloudinaryData(localData);
 
-      try { revalidatePath("/", "layout"); } catch (e) { console.warn("revalidatePath error:", e); }
+      revalidateAllSitePages(slot?.pagePath);
       return NextResponse.json({
         success: true,
         message: `Reset ${slot?.label || slotId} to default image.`,
         currentUrl: slot?.defaultUrl,
+        slotId,
+        paths: slot?.paths || [],
       });
     }
 

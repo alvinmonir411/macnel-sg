@@ -489,9 +489,24 @@ export default function AdminDashboardPage() {
         );
         showToast(data.message || "Media uploaded and published live!");
         if (typeof window !== "undefined") {
-          (window as any).__IMAGE_OVERRIDES__ = { ...((window as any).__IMAGE_OVERRIDES__ || {}), [activeUploadSlot]: data.url };
+          const slot = imageSlots.find((s) => s.id === activeUploadSlot);
+          const newMap: Record<string, string> = { [activeUploadSlot]: data.url };
+          if (slot?.paths) {
+            for (const p of slot.paths) {
+              newMap[p] = data.url;
+            }
+          }
+          (window as any).__IMAGE_OVERRIDES__ = {
+            ...((window as any).__IMAGE_OVERRIDES__ || {}),
+            ...newMap,
+          };
           localStorage.setItem("site_images_updated_at", Date.now().toString());
-          window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId: activeUploadSlot, url: data.url } }));
+          localStorage.setItem("site_images_latest_overrides", JSON.stringify(newMap));
+          window.dispatchEvent(
+            new CustomEvent("live-image-updated", {
+              detail: { slotId: activeUploadSlot, url: data.url, paths: slot?.paths },
+            })
+          );
         }
       } else {
         showToast(data.error || "Upload failed.");
@@ -528,9 +543,24 @@ export default function AdminDashboardPage() {
         setUrlInputMap((prev) => ({ ...prev, [slotId]: "" }));
         showToast(data.message || "Asset URL updated successfully!");
         if (typeof window !== "undefined") {
-          (window as any).__IMAGE_OVERRIDES__ = { ...((window as any).__IMAGE_OVERRIDES__ || {}), [slotId]: newUrl };
+          const slot = imageSlots.find((s) => s.id === slotId);
+          const newMap: Record<string, string> = { [slotId]: newUrl };
+          if (slot?.paths) {
+            for (const p of slot.paths) {
+              newMap[p] = newUrl;
+            }
+          }
+          (window as any).__IMAGE_OVERRIDES__ = {
+            ...((window as any).__IMAGE_OVERRIDES__ || {}),
+            ...newMap,
+          };
           localStorage.setItem("site_images_updated_at", Date.now().toString());
-          window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId, url: newUrl } }));
+          localStorage.setItem("site_images_latest_overrides", JSON.stringify(newMap));
+          window.dispatchEvent(
+            new CustomEvent("live-image-updated", {
+              detail: { slotId, url: newUrl, paths: slot?.paths },
+            })
+          );
         }
       } else {
         showToast(data.error || "Failed to update URL.");
@@ -559,8 +589,23 @@ export default function AdminDashboardPage() {
         );
         showToast(data.message || "Reverted to default media.");
         if (typeof window !== "undefined") {
+          const slot = imageSlots.find((s) => s.id === slotId);
+          const defaultUrl = data.currentUrl || slot?.defaultUrl || "";
+          const resetMap: Record<string, string> = { [slotId]: defaultUrl };
+          if (slot?.paths) {
+            for (const p of slot.paths) {
+              resetMap[p] = defaultUrl;
+            }
+          }
+          (window as any).__IMAGE_OVERRIDES__ = {
+            ...((window as any).__IMAGE_OVERRIDES__ || {}),
+            ...resetMap,
+          };
           localStorage.setItem("site_images_updated_at", Date.now().toString());
-          window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId } }));
+          localStorage.setItem("site_images_latest_overrides", JSON.stringify(resetMap));
+          window.dispatchEvent(
+            new CustomEvent("live-image-updated", { detail: { slotId, paths: slot?.paths } })
+          );
         }
       }
     } catch {

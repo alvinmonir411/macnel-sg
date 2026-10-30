@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { getLiveSiteData } from "@/lib/db";
 import { SiteShell } from "@/components/SiteShell";
 import { MarketingHeadScripts } from "@/components/MarketingScripts";
+import { setBatchRuntimeOverrides } from "@/lib/cloudinary";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -81,6 +82,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const siteData = await getLiveSiteData();
+  if (siteData?.site_images) {
+    setBatchRuntimeOverrides(siteData.site_images);
+  }
   const socialsList = Object.values(siteConfig.socials).filter(
     (url) => url && !url.includes("TODO_REPLACE")
   );

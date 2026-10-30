@@ -20,16 +20,27 @@ export function SiteShell({
   const pathname = usePathname();
   const isAdminRoute = pathname?.startsWith("/admin");
 
-  // 1. Initial sync from SSR siteData
+  // 1. Initial sync from SSR siteData + localStorage instant cache
   useEffect(() => {
-    if (siteData?.site_images) {
+    let localOverrides: any = {};
+    try {
+      const raw = localStorage.getItem("site_images_latest_overrides");
+      if (raw) localOverrides = JSON.parse(raw);
+    } catch {}
+
+    const combined = {
+      ...(siteData?.site_images || {}),
+      ...localOverrides,
+    };
+
+    if (Object.keys(combined).length > 0) {
       if (typeof window !== "undefined") {
         (window as any).__IMAGE_OVERRIDES__ = {
           ...((window as any).__IMAGE_OVERRIDES__ || {}),
-          ...siteData.site_images,
+          ...combined,
         };
       }
-      setBatchRuntimeOverrides(siteData.site_images);
+      setBatchRuntimeOverrides(combined);
       window.dispatchEvent(new CustomEvent("live-image-updated"));
     }
   }, [siteData?.site_images]);
@@ -66,9 +77,23 @@ export function SiteShell({
     // Re-check when window regains focus (e.g. user switched back from admin dashboard)
     window.addEventListener("focus", fetchLiveImages);
     
-    // Cross-tab real-time sync via storage event
+    // Cross-tab real-time sync via storage event (0ms instantaneous updates)
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === "site_images_updated_at") {
+        try {
+          const raw = localStorage.getItem("site_images_latest_overrides");
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (typeof window !== "undefined") {
+              (window as any).__IMAGE_OVERRIDES__ = {
+                ...((window as any).__IMAGE_OVERRIDES__ || {}),
+                ...parsed,
+              };
+            }
+            setBatchRuntimeOverrides(parsed);
+            window.dispatchEvent(new CustomEvent("live-image-updated"));
+          }
+        } catch {}
         fetchLiveImages();
       }
     };

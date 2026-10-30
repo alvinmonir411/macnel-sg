@@ -188,14 +188,6 @@ export async function deleteInquiry(id: number) {
 
 export async function getSettings() {
   try {
-    await sql`
-      CREATE TABLE IF NOT EXISTS site_settings (
-        key VARCHAR(100) PRIMARY KEY,
-        value JSONB NOT NULL,
-        updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-      );
-    `;
-
     const rows = await sql`
       SELECT key, value FROM site_settings;
     `;
@@ -207,8 +199,19 @@ export async function getSettings() {
       }
       return dbSettings;
     }
-  } catch (err) {
-    console.warn("Neon DB getSettings fallback to JSON:", err);
+  } catch (err: any) {
+    if (err?.message?.includes("does not exist") || err?.code === "42P01") {
+      try {
+        await sql`
+          CREATE TABLE IF NOT EXISTS site_settings (
+            key VARCHAR(100) PRIMARY KEY,
+            value JSONB NOT NULL,
+            updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+          );
+        `;
+      } catch {}
+    }
+    console.warn("Neon DB getSettings fallback to JSON:", err?.message || err);
   }
 
   // Fallback to local JSON file
