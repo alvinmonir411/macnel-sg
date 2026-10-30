@@ -72,8 +72,18 @@ export function getCloudinaryUrl(
   if (runtimeOverrides[unslashedPath]) return runtimeOverrides[unslashedPath];
   if (runtimeOverrides[localPath]) return runtimeOverrides[localPath];
 
-  // 3. Check window.__IMAGE_OVERRIDES__ if on client side
+  // 3. Check client localStorage & window.__IMAGE_OVERRIDES__ if on client side
   if (typeof window !== "undefined") {
+    try {
+      const raw = localStorage.getItem("site_images_latest_overrides");
+      if (raw) {
+        const stored = JSON.parse(raw);
+        if (stored[cleanPath]) return stored[cleanPath];
+        if (stored[unslashedPath]) return stored[unslashedPath];
+        if (stored[localPath]) return stored[localPath];
+      }
+    } catch {}
+
     const winOverrides = (window as any).__IMAGE_OVERRIDES__;
     if (winOverrides) {
       if (winOverrides[cleanPath]) return winOverrides[cleanPath];

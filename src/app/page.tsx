@@ -9,7 +9,6 @@ import { ContactLocationSection } from "@/components/ContactLocationSection";
 import { FAQSection } from "@/components/FAQSection";
 import { getLiveSiteData } from "@/lib/db";
 
-
 export default async function Home() {
   const siteData = await getLiveSiteData();
 
@@ -31,7 +30,7 @@ export default async function Home() {
       <ProjectsPreview initialProjects={siteData.projects} />
 
       {/* 6. About Us, Team Leadership & On-Site Works (RSC: 0KB Client JS) */}
-      <AboutSection customCredentials={siteData.credentials} />
+      <AboutSection customCredentials={siteData.credentials} customTeam={siteData.team} />
 
       {/* 7. Interactive Quote Request Form with SG Phone & PDPA Consent */}
       <QuoteCalculator />

@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
-import servicesData from "../../../data/services.json";
 import {
   MessageCircle,
   Phone,
@@ -43,14 +42,9 @@ const iconMap: Record<string, any> = {
   Droplets,
 };
 
-const mainServices = (servicesData as any[]).map((item) => ({
-  ...item,
-  icon: iconMap[item.iconName] || Home,
-}));
-
 export default async function ServicesPage() {
   const siteData = await getLiveSiteData();
-  const mainServices = (siteData.services || (servicesData as any[])).map((item: any) => ({
+  const mainServices = (siteData.services || []).map((item: any) => ({
     ...item,
     icon: iconMap[item.iconName] || Home,
   }));

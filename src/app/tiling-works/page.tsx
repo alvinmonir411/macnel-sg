@@ -1,24 +1,22 @@
-"use client";
-
 import { LiveImage } from "@/components/LiveImage";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getLiveSiteData } from "@/lib/db";
 import {
   Grid3X3,
   MessageCircle,
   Phone,
-  ShieldCheck,
   CheckCircle2,
   CalendarCheck,
   ChevronDown,
-  ArrowRight,
-  Sparkles,
-  Layers,
-  Award,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Precision Tiling Services Singapore | Direct Master Tilers - Renovation Contractor SG",
+  description:
+    "Direct tile contractor in Singapore. Master floor and wall tiling, 100% solid buttering (zero hollow tiles), laser alignment, 45-degree mitred corners & Mapei anti-mold epoxy grouting.",
+};
 
 const tilingTypologies = [
   {
@@ -47,60 +45,31 @@ const tilingTypologies = [
   },
 ];
 
-const workmanshipStandards = [
-  {
-    step: "01",
-    title: "100% Solid Buttering (Zero Hollow Tiles)",
-    image: "/images/tiling/38.jpeg",
-    desc: "Inexperienced contractors use 'spot bonding', leaving empty hollow pockets beneath tiles that crack when stepped on. We apply full-coverage combed polymer mortar on both floor and tile back, ensuring 100% solid compaction and zero hollow sound ('drumming').",
-  },
-  {
-    step: "02",
-    title: "Laser Cross-Line Optical Alignment",
-    image: "/images/tiling/44.jpeg",
-    desc: "Every single row is aligned using 3D multi-line laser leveling instruments. Grout spacing is locked to ultra-tight 1.5mm–2.0mm tolerances with reusable leveling clips to eliminate tile lippage completely.",
-  },
-  {
-    step: "03",
-    title: "45-Degree Mitred Edge Finishing",
-    image: "/images/tiling/11.jpeg",
-    desc: "Instead of cheap PVC plastic corner trims that discolor and peel, our craftsmen wet-cut tile edges to exact 45-degree angles for seamless, high-end architectural stone junctions on kerbs and ledges.",
-  },
-  {
-    step: "04",
-    title: "Anti-Mold Epoxy Grouting (Mapei)",
-    image: "/images/tiling/13.jpeg",
-    desc: "Standard cement grout absorbs water, turning black and moldy in humid Singapore bathrooms. We seal joints with two-part epoxy grout that is 100% waterproof, stain-proof, and easily wiped clean.",
-  },
-];
+export default async function TilingWorksPage() {
+  const siteData = await getLiveSiteData();
+  const overrides = siteData?.site_images || {};
+  const pageData = siteData?.service_pages?.tiling_works;
 
-const faqs = [
-  {
-    q: "Can I overlay new tiles over my existing flooring without hacking?",
-    a: "Yes, tile overlay is popular in Singapore for condominiums and newer HDB flats. If your existing floor is structurally sound, level, and has zero hollow spots, we apply high-bonding primer before laying new tiles. This saves approximately 30%-40% on hacking and disposal costs.",
-  },
-  {
-    q: "Why do tiles in Singapore homes pop up ('dislodge') during weather changes?",
-    a: "Popping tiles are caused by inadequate expansion gaps around perimeter walls, sub-par cement adhesion, or thermal expansion. We provide flexible perimeter expansion joints and polymer-modified adhesive that accommodates temperature fluctuations.",
-  },
-  {
-    q: "Do you supply the tiles, or can I purchase my own from Hafary / Soon Bee Huat?",
-    a: "You have complete freedom. We can supply certified homogeneous tiles from our partner catalogs, or you can pick your dream tiles from Hafary, Soon Bee Huat, or Lian Seng Hin. We handle site delivery coordination and material calculations.",
-  },
-  {
-    q: "How long does whole-house floor tiling take?",
-    a: "For a 4-room or 5-room HDB flat (approx 900–1,100 sqft), full living room, kitchen, and bedroom floor tiling takes roughly 5 to 8 working days from screeding to chemical cleaning.",
-  },
-];
+  const heroImage =
+    overrides["tiling_hero"] ||
+    overrides["/images/tiling/hero.jpeg"] ||
+    pageData?.hero?.defaultImage ||
+    "/images/tiling/hero.jpeg";
 
-export default function TilingWorksPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const workmanshipStandards = (pageData?.steps || []).map((std: any) => ({
+    ...std,
+    image: overrides[std.slotId] || overrides[std.image] || std.image,
+  }));
+
+  const faqs = pageData?.faqs || [];
 
   return (
     <div className="bg-white">
       {/* 1. HERO BANNER */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[85vh] lg:min-h-screen flex items-center py-20 lg:py-28">
-        <LiveImage src={"/images/tiling/hero.jpeg"}
+        <LiveImage
+          src={heroImage}
+          slotId="tiling_hero"
           alt="Master Tile Flooring Installation Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-1000 scale-105"
           style={{ opacity: 0.85 }}
@@ -118,18 +87,16 @@ export default function TilingWorksPage() {
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2.5 rounded-full border border-[#8CCB6B]/50 bg-[#8CCB6B]/20 px-4 py-1.5 text-xs sm:text-sm font-bold text-white shadow-sm mb-6 backdrop-blur-sm">
               <Grid3X3 className="w-4 h-4 text-[#A3E635]" />
-              <span>Singapore Direct Tile Floor Installers &amp; Bathroom Tilers</span>
+              <span>{pageData?.hero?.subtitle || "BCA Certified Tilers · 100% Solid Buttering (Zero Hollow Tiles)"}</span>
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-extrabold tracking-tight text-white leading-[1.08] mb-6">
-              Precision Tiling Services, <br />
-              <span className="brand-gradient-text">Zero Hollow Drum Spots.</span>
+              {pageData?.hero?.title || "Precision Masonry & Master Tiling Services"}
             </h1>
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
-              Searching for professional tile installers or floor tile contractors near you?
-              Renovation Contractor SG executes millimeter-accurate floor and wall tile installation, bathroom tile
-              replacements, and commercial tiling across Singapore with full polymer adhesive bonding.
+              {pageData?.hero?.desc ||
+                "Flawless laser-aligned tile laying for floors, feature walls, balconies, and bathrooms using premium polymer adhesives and anti-mold epoxy grouting."}
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
@@ -235,7 +202,7 @@ export default function TilingWorksPage() {
           </div>
 
           <div className="space-y-16">
-            {workmanshipStandards.map((std, idx) => {
+            {workmanshipStandards.map((std: any, idx: number) => {
               const isEven = idx % 2 === 1;
               return (
                 <div
@@ -245,10 +212,11 @@ export default function TilingWorksPage() {
                   }`}
                 >
                   <div className={`relative rounded-2xl overflow-hidden shadow-lg aspect-[16/11] ${isEven ? "lg:col-start-2" : ""}`}>
-                    <LiveImage src={std.image}
+                    <LiveImage
+                      src={std.image}
+                      slotId={std.slotId}
                       alt={std.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
                     />
                     <div className="absolute top-4 left-4 bg-[#16263F]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-white text-xs font-black text-[#A3E635] border border-white/20">
                       STEP {std.step}
@@ -286,34 +254,20 @@ export default function TilingWorksPage() {
           </div>
 
           <div className="space-y-3.5">
-            {faqs.map((faq, i) => {
-              const isOpen = openFaq === i;
-              return (
-                <div
-                  key={i}
-                  className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                    className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-[#2C6BA6] transition-colors"
-                  >
-                    <span className="text-sm sm:text-base pr-4">{faq.q}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? "rotate-180 text-[#2C6BA6]" : ""
-                      }`}
-                    />
-                  </button>
-
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
-                      {faq.a}
-                    </div>
-                  )}
+            {faqs.map((faq: any, i: number) => (
+              <details
+                key={i}
+                className="group rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"
+              >
+                <summary className="cursor-pointer list-none flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-[#2C6BA6] transition-colors">
+                  <span className="text-sm sm:text-base pr-4">{faq.q}</span>
+                  <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 group-open:rotate-180 group-open:text-[#2C6BA6] transition-transform duration-200" />
+                </summary>
+                <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                  {faq.a}
                 </div>
-              );
-            })}
+              </details>
+            ))}
           </div>
         </div>
       </section>
@@ -322,27 +276,27 @@ export default function TilingWorksPage() {
       <section className="py-20 bg-[#16263F] text-white text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-black mb-4">
-            Get an Exact Floor Tile Quotation Today
+            Ready to Upgrade Your Floor &amp; Wall Tiles?
           </h2>
           <p className="text-slate-300 text-sm sm:text-base mb-8">
-            Send us your floor plan or floor area measurements for a prompt, itemized quote with zero obligation.
+            WhatsApp us your floorplan or visit Hafary/Soon Bee Huat tile showrooms with our direct contractor discount codes.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
               href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20tiling%20services.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <MessageCircle className="w-5 h-5 fill-current" />
-              <span>Instant Quote on WhatsApp</span>
+              <span>WhatsApp Master Tiler</span>
             </a>
             <Link
               href="/book"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              <CalendarCheck className="w-5 h-5" />
-              <span>Book Free Site Visit</span>
+              <CalendarCheck className="w-4 h-4" />
+              <span>Book Site Inspection</span>
             </Link>
           </div>
         </div>

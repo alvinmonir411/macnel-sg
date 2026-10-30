@@ -1,23 +1,21 @@
-"use client";
-
 import { LiveImage } from "@/components/LiveImage";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getLiveSiteData } from "@/lib/db";
 import {
   Paintbrush,
   MessageCircle,
   Phone,
-  ShieldCheck,
-  CheckCircle2,
   CalendarCheck,
   ChevronDown,
-  ArrowRight,
-  Sparkles,
-  Layers,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Professional Painting & Plastering Services Singapore | Nippon Paint - Renovation Contractor SG",
+  description:
+    "Direct painting and wall plastering contractor in Singapore. Whole house Nippon odour-less painting, wall skim coating, water damage ceiling repair & exterior weatherproofing.",
+};
 
 const paintingScopes = [
   {
@@ -46,50 +44,31 @@ const paintingScopes = [
   },
 ];
 
-const paintingProcess = [
-  {
-    step: "01",
-    title: "100% Furniture Wrapping & Floor Protection",
-    image: "/images/doc-updates/image41.jpg",
-    desc: "Before opening a single can of paint, our team covers all flooring with heavy-duty corrugated cardboard and wraps sofas, electronics, and cabinetry in electrostatic dust-protection plastic sheets.",
-  },
-  {
-    step: "02",
-    title: "Surface Scraping, Plaster Patching & Skimming",
-    image: "/images/doc-updates/image68.jpg",
-    desc: "We scrape off loose flaking paint, dig out old nail anchors, patch wall cracks with high-adhesion putty, and skim uneven patches until every square inch is glass-smooth.",
-  },
-  {
-    step: "03",
-    title: "Alkaline-Resistant Sealer & 2 Finish Coats",
-    image: "/images/doc-updates/image5.jpg",
-    desc: "We apply a full coat of alkali-resistant sealer to block moisture and ensure color brilliance. Followed by two thick, uniform topcoats of authentic Nippon Paint applied with precision microfiber rollers.",
-  },
-];
+export default async function PaintingPage() {
+  const siteData = await getLiveSiteData();
+  const overrides = siteData?.site_images || {};
+  const pageData = siteData?.service_pages?.painting_plastering;
 
-const faqs = [
-  {
-    q: "How long does whole-house painting take for a 4-room or 5-room HDB flat?",
-    a: "A complete whole-house repainting (living hall, dining, all bedrooms, kitchen, and both bathrooms) takes 2 to 3 working days with our dedicated team of 3 painters.",
-  },
-  {
-    q: "Do you use authentic Nippon Paint or diluted contractor paint?",
-    a: "We use 100% genuine, undiluted Nippon Paint delivered in factory-sealed cans. You are welcome to inspect all paint cans on site before we begin.",
-  },
-  {
-    q: "Do we need to move our heavy furniture before the painters arrive?",
-    a: "No! Our painters will carefully shift sofas, beds, and tables to the center of each room, wrap them securely with protective sheeting, and place everything back exactly where it belongs upon completion.",
-  },
-];
+  const heroImage =
+    overrides["painting_hero"] ||
+    overrides["/images/painting/hero.jpeg"] ||
+    pageData?.hero?.defaultImage ||
+    "/images/painting/hero.jpeg";
 
-export default function PaintingPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const processes = (pageData?.processes || []).map((proc: any) => ({
+    ...proc,
+    image: overrides[proc.slotId] || overrides[proc.image] || proc.image,
+  }));
+
+  const faqs = pageData?.faqs || [];
 
   return (
     <div className="bg-white">
       {/* 1. HERO BANNER */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[85vh] lg:min-h-screen flex items-center py-20 lg:py-28">
-        <LiveImage src={"/images/painting/hero.jpeg"}
+        <LiveImage
+          src={heroImage}
+          slotId="painting_hero"
           alt="House Painting Services SG and Plastering"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-1000 scale-105"
           style={{ opacity: 0.85 }}
@@ -107,23 +86,21 @@ export default function PaintingPage() {
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2.5 rounded-full border border-[#8CCB6B]/50 bg-[#8CCB6B]/20 px-4 py-1.5 text-xs sm:text-sm font-bold text-white shadow-sm mb-6 backdrop-blur-sm">
               <Paintbrush className="w-4 h-4 text-[#A3E635]" />
-              <span>Nippon Paint Certified Applicator · Zero Mess Guarantee</span>
+              <span>{pageData?.hero?.subtitle || "Professional Painting & Wall Preparation · Singapore"}</span>
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-extrabold tracking-tight text-white leading-[1.08] mb-6">
-              House Painting Services SG &amp; <br />
-              <span className="brand-gradient-text">Complete Wall Plastering.</span>
+              {pageData?.hero?.title || "Professional Painting, Skim Coating & Surface Restoration"}
             </h1>
 
             <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
-              Looking for professional house painters or plaster wall repair in Singapore?
-              Renovation Contractor SG delivers smooth, blemish-free walls, certified Nippon painting, and complete
-              plastering services with full floor protection and spotless cleanup.
+              {pageData?.hero?.desc ||
+                "Give your home a pristine, vibrant finish that stands the test of time. Renovation Contractor SG provides full interior and exterior painting services using 100% genuine Nippon Paint and professional multi-layer skim coating."}
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20painting%20and%20plastering%20services.`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20painting%20quotation.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -137,7 +114,7 @@ export default function PaintingPage() {
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <CalendarCheck className="w-4 h-4" />
-                <span>Book Free Color Consultation</span>
+                <span>Book Site Inspection</span>
               </Link>
 
               <a
@@ -148,54 +125,34 @@ export default function PaintingPage() {
                 <span>Call {siteConfig.contact.phonePrimary}</span>
               </a>
             </div>
-
-            <div className="flex flex-wrap items-center gap-y-2.5 gap-x-6 pt-8 text-xs sm:text-sm font-semibold text-slate-100 border-t border-white/20 mt-8 w-full">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#A3E635]" />
-                <span>100% Genuine Nippon Paint</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#A3E635]" />
-                <span>Free Furniture Moving &amp; Wrapping</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#A3E635]" />
-                <span>Plaster Crack &amp; Flake Repair Included</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. SPECIALTIES SHOWCASE */}
-      <section className="py-24 bg-[#F8FAFC]">
+      {/* 2. SERVICES OVERVIEW */}
+      <section className="py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
-              Wall &amp; Ceiling Treatments
+              Painting Disciplines
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-4">
-              Comprehensive Painting &amp; Plastering Solutions
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
+              Interior &amp; Exterior Finishes
             </h2>
-            <p className="text-base text-slate-600">
-              From fresh move-in color transformations to fixing years of moisture and peeling plaster.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {paintingScopes.map((item, idx) => (
               <div
                 key={idx}
-                className="p-7 rounded-2xl bg-white border border-slate-200/90 shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-white border border-slate-200 shadow-md hover:border-[#8CCB6B] transition-all flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-[#2C6BA6]/10 text-[#2C6BA6] px-2.5 py-1 rounded-full mb-3 inline-block">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#EAF5E5] text-[#4E9A3C] mb-3">
                     {item.tag}
                   </span>
-                  <h3 className="text-lg font-bold text-[#0F172A] mb-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  <h3 className="text-lg font-bold text-[#0F172A] mb-2">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 font-normal">
                     {item.desc}
                   </p>
                 </div>
@@ -208,51 +165,56 @@ export default function PaintingPage() {
         </div>
       </section>
 
-      {/* 3. PAINTING METHODOLOGY (ZIG-ZAG SHOWCASE) */}
+      {/* 3. 3-STAGE WORKMANSHIP PROCESS (ZIG-ZAG) */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
-              Clean Execution
+              Our 3-Stage Process
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">
-              Meticulous Prep Work. Zero Splatters.
+              Meticulous Wall Prep &amp; Even Application
             </h2>
             <p className="text-base text-slate-600">
-              Why our paint jobs look smooth and clean years after completion.
+              80% of a flawless paint job lies in the preparation. Here is how our certified painters achieve flat, roller-mark-free results.
             </p>
           </div>
 
           <div className="space-y-16">
-            {paintingProcess.map((std, idx) => {
+            {processes.map((proc: any, idx: number) => {
               const isEven = idx % 2 === 1;
               return (
                 <div
-                  key={std.step}
+                  key={proc.step}
                   className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center p-8 sm:p-12 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-xl ${
                     isEven ? "lg:grid-flow-dense" : ""
                   }`}
                 >
-                  <div className={`relative rounded-2xl overflow-hidden shadow-lg aspect-[16/11] ${isEven ? "lg:col-start-2" : ""}`}>
-                    <LiveImage src={std.image}
-                      alt={std.title}
+                  <div
+                    className={`relative rounded-2xl overflow-hidden shadow-lg aspect-[16/11] ${
+                      isEven ? "lg:col-start-2" : ""
+                    }`}
+                  >
+                    <LiveImage
+                      src={proc.image}
+                      slotId={proc.slotId}
+                      alt={proc.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
                     />
                     <div className="absolute top-4 left-4 bg-[#16263F]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-white text-xs font-black text-[#A3E635] border border-white/20">
-                      STEP {std.step}
+                      STEP {proc.step}
                     </div>
                   </div>
 
                   <div>
                     <span className="text-3xl sm:text-4xl font-black text-[#2C6BA6]/25 block mb-2">
-                      {std.step}
+                      {proc.step}
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] mb-4">
-                      {std.title}
+                      {proc.title}
                     </h3>
                     <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                      {std.desc}
+                      {proc.desc}
                     </p>
                   </div>
                 </div>
@@ -270,39 +232,25 @@ export default function PaintingPage() {
               Painting FAQs
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A]">
-              Frequently Asked Questions About House Painting
+              Frequently Asked Questions About Painting Services
             </h2>
           </div>
 
           <div className="space-y-3.5">
-            {faqs.map((faq, i) => {
-              const isOpen = openFaq === i;
-              return (
-                <div
-                  key={i}
-                  className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                    className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-[#2C6BA6] transition-colors"
-                  >
-                    <span className="text-sm sm:text-base pr-4">{faq.q}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? "rotate-180 text-[#2C6BA6]" : ""
-                      }`}
-                    />
-                  </button>
-
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
-                      {faq.a}
-                    </div>
-                  )}
+            {faqs.map((faq: any, i: number) => (
+              <details
+                key={i}
+                className="group rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"
+              >
+                <summary className="cursor-pointer list-none flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-[#2C6BA6] transition-colors">
+                  <span className="text-sm sm:text-base pr-4">{faq.q}</span>
+                  <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 group-open:rotate-180 group-open:text-[#2C6BA6] transition-transform duration-200" />
+                </summary>
+                <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                  {faq.a}
                 </div>
-              );
-            })}
+              </details>
+            ))}
           </div>
         </div>
       </section>
@@ -311,27 +259,27 @@ export default function PaintingPage() {
       <section className="py-20 bg-[#16263F] text-white text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-black mb-4">
-            Get an All-Inclusive House Painting Quotation
+            Ready to Refresh Your Home Walls?
           </h2>
           <p className="text-slate-300 text-sm sm:text-base mb-8">
-            Tell us your flat type (HDB 3/4/5-Room, Condo, or Landed) for a fast fixed-price quote with zero surprise extras.
+            WhatsApp us your flat type and estate location for an instant upfront package quotation.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20painting%20and%20plastering%20services.`}
+              href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20painting%20quotation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <MessageCircle className="w-5 h-5 fill-current" />
-              <span>Instant Quote on WhatsApp</span>
+              <span>WhatsApp Painting Team</span>
             </a>
             <Link
               href="/book"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              <CalendarCheck className="w-5 h-5" />
-              <span>Book Free Site Visit</span>
+              <CalendarCheck className="w-4 h-4" />
+              <span>Book Site Inspection</span>
             </Link>
           </div>
         </div>

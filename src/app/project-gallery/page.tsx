@@ -1,10 +1,8 @@
-"use client";
-
-import { useState } from "react";
+import { getLiveSiteData } from "@/lib/db";
+import type { Metadata } from "next";
 import Link from "next/link";
-import projectsData from "../../../data/projects.json";
 import { siteConfig } from "@/config/site";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectGalleryClient } from "@/components/ProjectGalleryClient";
 import {
   Sparkles,
   ArrowRight,
@@ -12,26 +10,19 @@ import {
   CalendarCheck,
 } from "lucide-react";
 
-export default function ProjectGalleryPage() {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+export const metadata: Metadata = {
+  title: "Completed Renovation Projects Gallery Singapore | Renovation Contractor SG",
+  description:
+    "Interactive before and after renovation gallery across HDB flats, condominiums, and landed homes in Singapore. View detailed scopes and actual transformation photos.",
+};
 
-  const categories = [
-    "All",
-    "House Renovation",
-    "Toilet Renovation",
-    "Condo Renovation",
-    "Carpentry",
-    "False Ceiling",
-  ];
-
-  const filteredProjects =
-    activeCategory === "All"
-      ? projectsData
-      : projectsData.filter((p) => p.category === activeCategory);
+export default async function ProjectGalleryPage() {
+  const siteData = await getLiveSiteData();
+  const projects = siteData.projects || [];
 
   return (
     <main className="bg-[#F8FAFC] text-slate-900 min-h-screen py-16 sm:py-24 relative overflow-hidden border-b border-slate-200/70">
-      {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}
+      {/* Subtle Architectural Dot Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,30 +41,8 @@ export default function ProjectGalleryPage() {
           </p>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-12">
-          {categories.map((cat) => (
-            <button
-              type="button"
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
-                activeCategory === cat
-                  ? "bg-[#16263F] text-white shadow-md scale-[1.02]"
-                  : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 shadow-sm"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Compact, Interactive Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {filteredProjects.map((proj) => (
-            <ProjectCard key={proj.id} project={proj} />
-          ))}
-        </div>
+        {/* Dynamic Client Grid from Database */}
+        <ProjectGalleryClient initialProjects={projects} />
 
         {/* Bottom Booking Banner */}
         <div className="rounded-3xl bg-white border border-slate-200/90 p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-sm">

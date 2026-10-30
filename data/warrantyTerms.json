@@ -3,25 +3,25 @@
   "tradeWarranties": [
     {
       "trade": "Waterproofing Membrane",
-      "duration": "TODO_REPLACE: 5-Year Leak-Proof Warranty",
+      "duration": "5-Year Leak-Proof Warranty",
       "covered": "Membrane delamination, water ponding leakage, ceiling seepage to floor below",
       "notCovered": "Post-handover drilling into floor slab by 3rd parties, structural building movement"
     },
     {
       "trade": "Floor & Wall Tiling",
-      "duration": "TODO_REPLACE: 12-Month Workmanship Warranty",
+      "duration": "12-Month Workmanship Warranty",
       "covered": "Hollow tiles, tile debonding, hairline grout cracking, uneven joint rectification",
       "notCovered": "Physical impact chipping from dropped heavy objects, cleaning with harsh unauthorized acids"
     },
     {
       "trade": "Custom Carpentry",
-      "duration": "TODO_REPLACE: 12-Month Workmanship Warranty",
+      "duration": "12-Month Workmanship Warranty",
       "covered": "Door hinge sagging, drawer track misalignment, edge banding delamination",
       "notCovered": "Direct water soaking of internal carcass boards, deliberate overloading beyond shelf limits"
     },
     {
       "trade": "Electrical & Concealed Plumbing",
-      "duration": "TODO_REPLACE: 6-Month Workmanship Warranty",
+      "duration": "6-Month Workmanship Warranty",
       "covered": "Joint leakages, concealed pipe connection defects, breaker wiring faults",
       "notCovered": "Client-supplied light fixtures, external appliances, user short-circuits"
     }

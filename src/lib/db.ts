@@ -272,9 +272,11 @@ import projectsFallback from "../../data/projects.json";
 import pricingFallback from "../../data/pricing.json";
 import reviewsFallback from "../../data/reviews.json";
 import siteSettingsFallback from "../../data/siteSettings.json";
+import servicePagesFallback from "../../data/servicePages.json";
+import teamFallback from "../../data/team.json";
+import warrantyFallback from "../../data/warrantyTerms.json";
 
 export async function getLiveSiteData() {
-  "use cache";
   const dbSettings = await getSettings();
 
   return {
@@ -289,6 +291,8 @@ export async function getLiveSiteData() {
         : (projectsFallback as any[]),
     pricing: dbSettings?.pricing || pricingFallback,
     reviews: dbSettings?.reviews || reviewsFallback,
+    team: dbSettings?.team || teamFallback,
+    warranty: dbSettings?.warranty || warrantyFallback,
     contact: {
       ...(siteSettingsFallback.contact || {}),
       ...(dbSettings?.contact || {}),
@@ -308,6 +312,10 @@ export async function getLiveSiteData() {
     site_images: {
       ...((siteSettingsFallback as any).site_images || {}),
       ...(dbSettings?.site_images || {}),
+    },
+    service_pages: {
+      ...(servicePagesFallback || {}),
+      ...(dbSettings?.service_pages || {}),
     },
   };
 }

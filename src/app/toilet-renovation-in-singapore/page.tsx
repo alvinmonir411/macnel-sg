@@ -1,101 +1,22 @@
-"use client";
-
 import { LiveImage } from "@/components/LiveImage";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getLiveSiteData } from "@/lib/db";
 import {
   Droplets,
   MessageCircle,
   Phone,
-  ShieldCheck,
   CheckCircle2,
   CalendarCheck,
   ChevronDown,
-  Building2,
-  Home,
-  Layers,
-  ArrowRight,
-  Sparkles,
-  Award,
 } from "lucide-react";
 
-const toiletProcessStages = [
-  {
-    step: "01",
-    title: "Controlled Hacking & Site Demolition",
-    image: "/images/doc-updates/image62.jpg",
-    tagline: "Dust-sealed protection & HDB approved debris disposal",
-    desc: "We apply heavy-duty protective floor corrugated boards across all access hallways and lifts. Certified hacking teams safely remove existing wall and floor tiles, mortar screed, old copper pipes, and worn-out sanitary fixtures without damaging the underlying structural floor slab.",
-    highlights: [
-      "Heavy-duty corridor and lift protection padding",
-      "Full disposal to NEA-licensed recycling depots",
-      "Official HDB / MCST renovation permit submission",
-    ],
-  },
-  {
-    step: "02",
-    title: "3-Coat Waterproofing & 24-Hr Ponding Test",
-    image: "/images/doc-updates/image79.jpg",
-    tagline: "The most critical stage — zero leaks guaranteed",
-    desc: "We apply two thick coats of elastomeric polymer-modified cementitious waterproofing membrane (SikaTop / K11) with fiberglass mesh reinforcement along all floor-to-wall corner joints (minimum 300mm upturn, 1800mm shower area). A strict 24-hour water ponding test is conducted and signed off before tiling starts.",
-    highlights: [
-      "1,800mm shower splash zone waterproofing height",
-      "24-Hour continuous water ponding test with photographic proof",
-      "12-Month written leak-proof structural warranty",
-    ],
-  },
-  {
-    step: "03",
-    title: "Laser-Aligned Floor & Wall Tiling",
-    image: "/images/doc-updates/image47.jpg",
-    tagline: "100% level gradient towards floor traps for instant drainage",
-    desc: "Our master tilers screed the floor with exact 1:80 fall gradient to ensure zero stagnant puddles around your drain trap. We lay large format 600x600 or 600x1200 homogeneous porcelain tiles using premium polymer tile adhesive, checked with precision digital laser levels.",
-    highlights: [
-      "Anti-slip R10 rated bathroom floor tiles",
-      "Mapei Ultracolor Plus anti-mold, stain-resistant epoxy grouting",
-      "Seamless 45° mitred tile edge finishing on feature curbs",
-    ],
-  },
-  {
-    step: "04",
-    title: "Concealed Stainless Steel / PPR Plumbing",
-    image: "/images/doc-updates/image90.jpg",
-    tagline: "PUB licensed water service plumbing & leak prevention",
-    desc: "All incoming hot and cold water pipes are routed with high-grade stainless steel or heat-fused PPR pipes concealed inside brick walls. Drainage lines, floor waste gullies, and inspection traps are repositioned with certified PUB licensed plumbers.",
-    highlights: [
-      "Stainless steel Grade 304 pressure-tested lines",
-      "Concealed mixer valves and instant/storage heater rough-ins",
-      "PUB regulatory submission and water test compliance",
-    ],
-  },
-  {
-    step: "05",
-    title: "Sanitary Fixture & Glass Screen Installation",
-    image: "/images/tiling/12.jpeg",
-    tagline: "Designer aesthetics with millimeter mounting accuracy",
-    desc: "We install your choice of wall-hung or floor-mounted WC, vanity cabinetry with quartz countertop, under-mount basins, rain shower sets, and 10mm tempered glass shower screens with stainless steel hardware.",
-    highlights: [
-      "10mm clear tempered safety glass shower partition",
-      "Custom anti-warp solid plywood vanity cabinet installation",
-      "Silent soft-close hinges and concealed water traps",
-    ],
-  },
-  {
-    step: "06",
-    title: "Chemical Deep Wash & Client Handover",
-    image: "/images/tiling/38.jpeg",
-    tagline: "Spotless, move-in ready handover with site inspection",
-    desc: "After grout curing, our post-renovation cleaners perform chemical acid wash to remove all cement hazes and protective films. You conduct the joint site handover inspection with our project manager to ensure every silicon bead, drainage flow, and light fixture is 100% flawless.",
-    highlights: [
-      "Professional chemical tile wash & silicon sealant inspection",
-      "Comprehensive handover defect checklist inspection",
-      "Official warranty certificate handed to homeowner",
-    ],
-  },
-];
+export const metadata: Metadata = {
+  title: "Toilet & Bathroom Renovation Singapore | 24-Hr Ponding Test - Renovation Contractor SG",
+  description:
+    "Direct toilet renovation contractor in Singapore. Complete bathroom overhaul, hacking, 3-coat waterproofing, 24-hour ponding test, laser tiling & PUB-certified plumbing.",
+};
 
 const materialsShowcase = [
   {
@@ -136,41 +57,36 @@ const materialsShowcase = [
   },
 ];
 
-const faqs = [
-  {
-    q: "Can we stay in the house while our toilet is being renovated?",
-    a: "Yes. For HDB flats and condominiums with two bathrooms, we renovate one bathroom first, keeping the second fully functional for your family's daily use. Once the first toilet is completed and inspected, we proceed with the second.",
-  },
-  {
-    q: "How long does a complete toilet renovation take in Singapore?",
-    a: "A full hacking-to-handover toilet overhaul typically takes 7 to 10 working days per bathroom. This includes 1 day for hacking, 2 days for plumbing rough-in, 2 days for 3-coat waterproofing and the mandatory 24-hour ponding test, 3 days for wall & floor tiling, and 2 days for sanitary ware and shower screen installation.",
-  },
-  {
-    q: "Do you handle the HDB or MCST condo renovation permits?",
-    a: "Yes, 100%. We handle all official permit paperwork, submission of contractor All-Risk insurance policies, lift protection padding, and statutory hacking notifications to neighbors and the Town Council or condo management.",
-  },
-  {
-    q: "What warranty do you provide against water leakage?",
-    a: "We provide an official 12-Month Workmanship & Watertightness Warranty covering the waterproofing membrane and plumbing joints. If any moisture anomaly is detected, our emergency response team attends within 24 hours at zero cost.",
-  },
-];
+export default async function ToiletRenovationPage() {
+  const siteData = await getLiveSiteData();
+  const overrides = siteData?.site_images || {};
+  const pageData = siteData?.service_pages?.toilet_renovation;
 
-export default function ToiletRenovationPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const heroImage =
+    overrides["toilet_reno_hero"] ||
+    overrides["/images/tiling/13.jpeg"] ||
+    pageData?.hero?.defaultImage ||
+    "/images/tiling/7.jpeg";
+
+  const stages = (pageData?.stages || []).map((stage: any) => ({
+    ...stage,
+    image: overrides[stage.slotId] || overrides[stage.image] || stage.image,
+  }));
+
+  const faqs = pageData?.faqs || [];
 
   return (
     <div className="bg-white">
       {/* 1. ULTRA HIGH-IMPACT HERO BANNER */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[85vh] lg:min-h-screen flex items-center py-20 lg:py-28">
-        {/* Crisp Local Image with High Color Vibrancy */}
-        <img
-          src="/images/tiling/13.jpeg"
+        <LiveImage
+          src={heroImage}
+          slotId="toilet_reno_hero"
           alt="Luxury Bathroom Renovation Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-1000 scale-105"
           style={{ opacity: 0.82 }}
         />
 
-        {/* Directional Gradient: Rich Dark Readability on Left, Crisp Image on Right */}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
@@ -185,18 +101,16 @@ export default function ToiletRenovationPage() {
             <div className="flex flex-col items-start gap-6">
               <span className="inline-flex items-center gap-2.5 rounded-full border border-[#8CCB6B]/50 bg-[#8CCB6B]/20 px-4 py-1.5 text-xs sm:text-sm font-bold text-white shadow-sm backdrop-blur-sm">
                 <Droplets className="w-4 h-4 text-[#A3E635]" />
-                <span>Signature Service · Direct In-House Contractors</span>
+                <span>{pageData?.hero?.subtitle || "3-Coat Waterproofing Membrane · 24-Hour Ponding Test Guarantee"}</span>
               </span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-extrabold tracking-tight text-white leading-[1.08]">
-                Toilet &amp; Bathroom Renovation, <br />
-                <span className="brand-gradient-text">Hacking to Handover.</span>
+                {pageData?.hero?.title || "Toilet & Bathroom Renovation Specialist Singapore"}
               </h1>
 
               <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed max-w-xl drop-shadow-sm">
-                An old, leaking toilet ruins the comfort of your whole home.
-                Skip middleman markup brokers — Renovation Contractor SG coordinates hacking,
-                3-coat waterproofing, laser tiling, and plumbing under one direct in-house team.
+                {pageData?.hero?.desc ||
+                  "Complete overhaul and transformation for HDB and condominium bathrooms. Hacking, screeding, anti-slip tiling, concealed plumbing, and sanitary fixture installation."}
               </p>
 
               {/* Action Buttons */}
@@ -248,131 +162,128 @@ export default function ToiletRenovationPage() {
             {/* Right Column: Glassmorphic Architectural Spec Card */}
             <div
               style={{ backgroundColor: "rgba(22, 38, 63, 0.85)" }}
-              className="rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-white/20 backdrop-blur-xl"
+              className="rounded-3xl border border-white/20 p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6"
             >
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/15">
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#A3E635]">
-                  Turnkey Package Highlights
-                </span>
-                <span className="text-xs bg-[#8CCB6B]/25 text-[#A3E635] px-2.5 py-0.5 rounded-full font-bold">
-                  Condo &amp; HDB
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#A3E635]">
+                    Engineering Compliance
+                  </span>
+                  <h3 className="text-xl font-black text-white">Full Turnkey Bathroom Specs</h3>
+                </div>
+                <span className="text-xs font-black px-2.5 py-1 rounded-full bg-[#8CCB6B]/20 text-[#A3E635] border border-[#8CCB6B]/40">
+                  HDB Approved
                 </span>
               </div>
 
-              <h2 className="text-2xl font-black text-white mb-3">
-                Zero Subcontractors. 100% In-House Tradesmen.
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-6 font-medium">
-                We assign a dedicated site engineer to manage hacking permits, waterproofing
-                ponding testing, tile fall alignment, and final defect inspection.
-              </p>
+              <div className="space-y-4 text-xs sm:text-sm">
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#8CCB6B]/20 text-[#A3E635] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                    1
+                  </span>
+                  <div>
+                    <h4 className="font-bold text-white">SikaTop Seal 107 Waterproofing</h4>
+                    <p className="text-slate-300 text-xs mt-0.5">
+                      2-Coat fiber mesh reinforced elastomeric membrane up to 1,800mm shower zone.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="space-y-3 pb-6 border-b border-white/15 text-xs sm:text-sm">
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="w-4 h-4 text-[#A3E635] shrink-0" />
-                  <span>3-Coat SikaTop polymer waterproofing membrane</span>
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#8CCB6B]/20 text-[#A3E635] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                    2
+                  </span>
+                  <div>
+                    <h4 className="font-bold text-white">24-Hour Ponding Test Protocol</h4>
+                    <p className="text-slate-300 text-xs mt-0.5">
+                      Continuous water flood verification inspected and signed off before tiling commences.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="w-4 h-4 text-[#A3E635] shrink-0" />
-                  <span>Full floor screed with precise slope to drainage traps</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="w-4 h-4 text-[#A3E635] shrink-0" />
-                  <span>Heavy-duty concealed stainless steel Grade 304 plumbing</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="w-4 h-4 text-[#A3E635] shrink-0" />
-                  <span>10mm tempered frameless glass shower enclosure</span>
+
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#8CCB6B]/20 text-[#A3E635] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                    3
+                  </span>
+                  <div>
+                    <h4 className="font-bold text-white">PUB Licensed Water Plumber</h4>
+                    <p className="text-slate-300 text-xs mt-0.5">
+                      Concealed stainless steel Grade 304 water lines and certified drainage slopes.
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 mt-6 text-center">
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <span className="block text-xl font-black text-white">7–10</span>
-                  <span className="text-[10px] text-slate-300 font-semibold">Working Days</span>
-                </div>
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <span className="block text-xl font-black text-[#A3E635]">12 Mo</span>
-                  <span className="text-[10px] text-slate-300 font-semibold">Leak Warranty</span>
-                </div>
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <span className="block text-xl font-black text-white">$0</span>
-                  <span className="text-[10px] text-slate-300 font-semibold">On-site Quote</span>
-                </div>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
+                <span>Standard Duration: <strong>7 - 10 Days</strong></span>
+                <span className="text-[#A3E635] font-bold">12-Month Structural Leak Warranty</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. EDITORIAL STEP-BY-STEP PROCESS WALKTHROUGH (NOT JUST GRID CARDS) */}
-      <section className="py-24 bg-[#F8FAFC]">
+      {/* 2. ARCHITECTURAL PROCESS TIMELINE (6 STEPS) */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
-              Engineering Excellence
+              Step-By-Step Execution
             </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">
-              Six Stages Executed Properly
+              How We Renovate Your Bathroom
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-              Bathrooms are the highest-risk renovation area in any Singapore home.
-              Here is our exact step-by-step methodology to ensure lifelong durability with zero moisture leaks.
+            <p className="text-base text-slate-600">
+              Every phase is executed by full-time tradesmen with rigorous quality checks at every step.
             </p>
           </div>
 
-          {/* Alternating Architectural Showcase */}
           <div className="space-y-16">
-            {toiletProcessStages.map((stage, idx) => {
+            {stages.map((stage: any, idx: number) => {
               const isEven = idx % 2 === 1;
               return (
                 <div
                   key={stage.step}
-                  className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-xl ${
+                  className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center p-8 sm:p-12 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-xl ${
                     isEven ? "lg:grid-flow-dense" : ""
                   }`}
                 >
-                  {/* Photo Showcase */}
                   <div className={`relative rounded-2xl overflow-hidden shadow-lg aspect-[16/11] ${isEven ? "lg:col-start-2" : ""}`}>
-                    <LiveImage src={stage.image}
+                    <LiveImage
+                      src={stage.image}
+                      slotId={stage.slotId}
                       alt={stage.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
                     />
-                    <div className="absolute top-4 left-4 bg-[#16263F]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-white flex items-center gap-2 border border-white/20">
-                      <span className="text-xs font-black text-[#A3E635]">STAGE {stage.step}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
-                      <span className="text-xs font-semibold">Strict Inspection</span>
+                    <div className="absolute top-4 left-4 bg-[#16263F]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-white text-xs font-black text-[#A3E635] border border-white/20">
+                      STAGE {stage.step}
                     </div>
                   </div>
 
-                  {/* Narrative Details */}
-                  <div className="flex flex-col justify-center">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-3xl sm:text-4xl font-black text-[#2C6BA6]/25">
-                        {stage.step}
-                      </span>
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#4E9A3C] bg-[#4E9A3C]/10 px-3 py-1 rounded-full">
-                        {stage.tagline}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] mb-4">
+                  <div>
+                    <span className="text-3xl sm:text-4xl font-black text-[#2C6BA6]/25 block mb-2">
+                      {stage.step}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] mb-2">
                       {stage.title}
                     </h3>
-
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 font-normal">
+                    <p className="text-xs sm:text-sm font-bold text-[#4E9A3C] mb-4">
+                      {stage.tagline}
+                    </p>
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
                       {stage.desc}
                     </p>
 
-                    <div className="space-y-2.5 pt-4 border-t border-slate-100">
-                      {stage.highlights.map((h, i) => (
-                        <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-800">
-                          <CheckCircle2 className="w-4 h-4 text-[#4E9A3C] shrink-0" />
-                          <span>{h}</span>
-                        </div>
-                      ))}
-                    </div>
+                    {stage.highlights && (
+                      <div className="space-y-2 pt-2 border-t border-slate-200">
+                        {stage.highlights.map((h: string, hIdx: number) => (
+                          <div key={hIdx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 font-medium">
+                            <CheckCircle2 className="w-4 h-4 text-[#8CCB6B] shrink-0" />
+                            <span>{h}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -381,103 +292,48 @@ export default function ToiletRenovationPage() {
         </div>
       </section>
 
-      {/* 3. ARCHITECTURAL MATERIALS & CERTIFICATION BOARD */}
-      <section className="py-20 bg-[#16263F] text-white">
+      {/* 3. CERTIFIED MATERIALS SPECIFICATION GRID */}
+      <section className="py-20 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#A3E635] block mb-2">
-              Tested Specifications
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
+              Certified Materials
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-              Premium European &amp; Singapore-Approved Materials
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
+              Only Proven Architectural Brands
             </h2>
-            <p className="text-sm sm:text-base text-slate-300">
-              We never compromise on cheap uncertified adhesives or generic grouts.
-              Every batch used on your property is backed by manufacturer warranties.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {materialsShowcase.map((mat, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {materialsShowcase.map((mat, idx) => (
               <div
-                key={i}
-                className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-[#8CCB6B]/60 transition-all"
+                key={idx}
+                className="p-6 rounded-2xl bg-white border border-slate-200 shadow-md flex flex-col justify-between"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                    {mat.category}
-                  </span>
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-[#8CCB6B]/20 text-[#A3E635] border border-[#8CCB6B]/40 px-2 py-0.5 rounded-full">
-                    {mat.badge}
-                  </span>
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-bold text-slate-500 uppercase">{mat.category}</span>
+                    <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#EAF5E5] text-[#4E9A3C]">
+                      {mat.badge}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-[#0F172A] mb-2">{mat.name}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    {mat.desc}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{mat.name}</h3>
-                <p className="text-xs text-slate-300 leading-relaxed font-normal">{mat.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. DIRECT CONTRACTOR VS INTERIOR DESIGN MIDDLEMAN COMPARISON MATRIX */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
-              Transparent Value
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-3">
-              Direct Contractor vs Interior Design (ID) Agency
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600">
-              Why thousands of Singapore homeowners work directly with Renovation Contractor SG:
-            </p>
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-xl">
-            <div className="grid grid-cols-3 bg-[#16263F] text-white p-4 sm:p-5 font-bold text-xs sm:text-sm">
-              <div>Aspect</div>
-              <div className="text-[#A3E635]">Renovation Contractor SG (Direct)</div>
-              <div className="text-slate-300">Third-Party ID Firm</div>
-            </div>
-
-            <div className="divide-y divide-slate-100 text-xs sm:text-sm font-medium">
-              <div className="grid grid-cols-3 p-4 sm:p-5 bg-white items-center">
-                <span className="font-bold text-slate-900">Pricing &amp; Markups</span>
-                <span className="text-[#4E9A3C] font-bold">Direct trade factory pricing</span>
-                <span className="text-slate-500">25% – 35% sub-contract markup</span>
-              </div>
-              <div className="grid grid-cols-3 p-4 sm:p-5 bg-[#F8FAFC] items-center">
-                <span className="font-bold text-slate-900">Communication</span>
-                <span className="text-[#4E9A3C] font-bold">Direct WhatsApp with site manager</span>
-                <span className="text-slate-500">Relayed via salesperson</span>
-              </div>
-              <div className="grid grid-cols-3 p-4 sm:p-5 bg-white items-center">
-                <span className="font-bold text-slate-900">Workmanship Supervision</span>
-                <span className="text-[#4E9A3C] font-bold">In-house master tradesmen</span>
-                <span className="text-slate-500">Subbed to anonymous workers</span>
-              </div>
-              <div className="grid grid-cols-3 p-4 sm:p-5 bg-[#F8FAFC] items-center">
-                <span className="font-bold text-slate-900">Turnaround Speed</span>
-                <span className="text-[#4E9A3C] font-bold">Fast 7–10 days per toilet</span>
-                <span className="text-slate-500">Often 3–5 weeks with scheduling delays</span>
-              </div>
-              <div className="grid grid-cols-3 p-4 sm:p-5 bg-white items-center">
-                <span className="font-bold text-slate-900">Warranty Support</span>
-                <span className="text-[#4E9A3C] font-bold">12-Month direct contractor warranty</span>
-                <span className="text-slate-500">Finger-pointing between ID &amp; sub-con</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. INTERACTIVE CONTRACTOR FAQ ACCORDION */}
+      {/* 4. FAQ ACCORDION */}
       <section className="py-20 bg-[#F2F6F9]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#2C6BA6] block mb-2">
-              Common Questions
+              Bathroom FAQs
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A]">
               Frequently Asked Questions About Toilet Renovation
@@ -485,71 +341,49 @@ export default function ToiletRenovationPage() {
           </div>
 
           <div className="space-y-3.5">
-            {faqs.map((faq, i) => {
-              const isOpen = openFaq === i;
-              return (
-                <div
-                  key={i}
-                  className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden transition-all"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                    className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-[#2C6BA6] transition-colors"
-                  >
-                    <span className="text-sm sm:text-base pr-4">{faq.q}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? "rotate-180 text-[#2C6BA6]" : ""
-                      }`}
-                    />
-                  </button>
-
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
-                      {faq.a}
-                    </div>
-                  )}
+            {faqs.map((faq: any, i: number) => (
+              <details
+                key={i}
+                className="group rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"
+              >
+                <summary className="cursor-pointer list-none flex items-center justify-between p-5 text-left font-bold text-slate-900 hover:text-[#2C6BA6] transition-colors">
+                  <span className="text-sm sm:text-base pr-4">{faq.q}</span>
+                  <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 group-open:rotate-180 group-open:text-[#2C6BA6] transition-transform duration-200" />
+                </summary>
+                <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                  {faq.a}
                 </div>
-              );
-            })}
+              </details>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 6. CALL TO ACTION FOOTER BANNER */}
+      {/* 5. CTA FOOTER */}
       <section className="py-20 bg-[#16263F] text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30 pointer-events-none" style={{ backgroundImage: "url('/images/tiling/13.jpeg')" }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#16263F] via-[#16263F]/90 to-[#16263F]/80" />
-
-        <div className="relative z-10 max-w-3xl mx-auto px-4">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-[#A3E635] block mb-3">
-            Get Your Exact Itemized Quotation
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
-            Ready to Renovate Your Bathroom with Zero Leaks?
+        <div className="max-w-3xl mx-auto px-4 relative z-10">
+          <h2 className="text-3xl sm:text-4xl font-black mb-4">
+            Ready for a Fresh, Leak-Free Bathroom?
           </h2>
-          <p className="text-slate-200 text-sm sm:text-base leading-relaxed mb-8">
-            WhatsApp us your floor plan or schedule our site engineer for a 100% free on-site measurement.
+          <p className="text-slate-300 text-sm sm:text-base mb-8">
+            WhatsApp us your floorplan or book a free on-site bathroom assessment with our direct renovation team.
           </p>
-
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
               href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Hello%20Renovation%20Contractor%20SG%2C%20I%20would%20like%20a%20quotation%20for%20toilet%20renovation.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <MessageCircle className="w-5 h-5 fill-current" />
-              <span>Instant Quote on WhatsApp</span>
+              <span>WhatsApp Bathroom Specialist</span>
             </a>
-
             <Link
               href="/book"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl brand-gradient text-white font-bold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              <CalendarCheck className="w-5 h-5" />
-              <span>Book Free Site Visit</span>
+              <CalendarCheck className="w-4 h-4" />
+              <span>Book On-Site Inspection</span>
             </Link>
           </div>
         </div>

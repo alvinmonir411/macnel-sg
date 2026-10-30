@@ -1,6 +1,5 @@
 import { getLiveSiteData } from "@/lib/db";
 import type { Metadata } from "next";
-import projectsData from "../../../data/projects.json";
 import { siteConfig } from "@/config/site";
 import { ProjectCard } from "@/components/ProjectCard";
 import Link from "next/link";
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
   const siteData = await getLiveSiteData();
-  const projects = siteData.projects || projectsData;
+  const projects = siteData.projects || [];
   return (
     <main className="bg-[#F8FAFC] text-slate-900 min-h-screen py-16 sm:py-24 relative overflow-hidden border-b border-slate-200/70">
       {/* Subtle Architectural Dot Grid - Matching Core Services (NO LINE GRID) */}

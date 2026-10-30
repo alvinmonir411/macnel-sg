@@ -615,8 +615,8 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Trade 01 · Main Doors & Gates",
     label: "Trade 01: Fire-Rated Main Entrance Doors & Matching Designer Metal Gates",
     description: "Solid core acoustic insulation with 1/2hr - 1hr fire certificate & custom privacy gates",
-    paths: ["/images/doc-updates/image3.jpg"],
-    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092302/renovation-contractor-sg/Door_window/nch930yir3js4pchyjoa.jpg",
+    paths: ["/images/doc-updates/image37.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793304961/renovation-contractor-sg/dashboard-uploads/ovu1pbuwcdytwwpztixg.jpg",
   },
   {
     id: "door_cat_2",
@@ -637,8 +637,8 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Trade 03 · Interior Doors",
     label: "Trade 03: Toilet Bi-Fold Doors, Slide & Swing, and Pocket Bedroom Doors",
     description: "Space-saving trackless bottom aluminium bi-fold systems with silent top rollers",
-    paths: ["/images/doc-updates/image37.jpg"],
-    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092302/renovation-contractor-sg/Door_window/nch930yir3js4pchyjoa.jpg",
+    paths: ["/images/doc-updates/image3.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793382935/renovation-contractor-sg/dashboard-uploads/rmzmrwfdtnct4na9e3mk.jpg",
   },
 
   // ==========================================
@@ -851,15 +851,13 @@ export async function POST(request: Request) {
         }
       }
 
-      // 1. Try Cloudinary Direct Upload using the configured upload_preset
+      // 1. Try Cloudinary Direct Upload using the configured upload_preset with base64 data URI
       if (!uploadedUrl) {
         try {
           const uploadFormData = new FormData();
           uploadFormData.append("upload_preset", uploadPreset);
           uploadFormData.append("folder", "renovation-contractor-sg/dashboard-uploads");
-
-          const blob = new Blob([buffer], { type: mime });
-          uploadFormData.append("file", blob, fileName);
+          uploadFormData.append("file", `data:${mime};base64,${buffer.toString("base64")}`);
 
           const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
             method: "POST",
@@ -871,28 +869,14 @@ export async function POST(request: Request) {
             uploadedUrl = data.secure_url || data.url;
           } else {
             const errText = await res.text();
-            console.warn("Cloudinary upload returned non-200, trying signed upload:", errText);
+            console.warn("Cloudinary upload returned non-200:", errText);
           }
         } catch (cloudErr) {
           console.warn("Cloudinary direct upload fetch error:", cloudErr);
         }
       }
 
-      // 2. If direct preset failed, try signed SDK upload
-      if (!uploadedUrl) {
-        try {
-          const base64Uri = `data:${mime};base64,${buffer.toString("base64")}`;
-          const uploadRes = await cloudinary.uploader.upload(base64Uri, {
-            folder: "renovation-contractor-sg/dashboard-uploads",
-            resource_type: "image",
-          });
-          uploadedUrl = uploadRes.secure_url;
-        } catch (signedErr) {
-          console.warn("Cloudinary signed upload error:", signedErr);
-        }
-      }
-
-      // 3. Robust Local Fallback (if Cloudinary is unavailable)
+      // 2. Fallback: try local file write only if directory is writable; otherwise fallback to data URI
       if (!uploadedUrl) {
         try {
           const uploadsDir = path.join(process.cwd(), "public", "images", "uploads");
@@ -902,7 +886,8 @@ export async function POST(request: Request) {
           await fs.writeFile(filePath, buffer);
           uploadedUrl = `/images/uploads/${safeName}`;
         } catch (localErr: any) {
-          throw new Error(`Failed to save image locally and to Cloudinary: ${localErr.message}`);
+          console.warn("Local filesystem write skipped (serverless environment):", localErr.message);
+          uploadedUrl = `data:${mime};base64,${buffer.toString("base64")}`;
         }
       }
 

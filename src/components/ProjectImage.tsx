@@ -25,24 +25,39 @@ export function ProjectImage({
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 }: ProjectImageProps) {
   const [hasError, setHasError] = useState(false);
-  const [activeSrc, setActiveSrc] = useState<string>(() => getCloudinaryUrl(src));
+  const resolveSrc = () => {
+    if (typeof window !== "undefined" && src) {
+      try {
+        const raw = localStorage.getItem("site_images_latest_overrides");
+        if (raw) {
+          const stored = JSON.parse(raw);
+          if (stored[src]) return stored[src];
+        }
+      } catch {}
+    }
+    return getCloudinaryUrl(src);
+  };
+
+  const [activeSrc, setActiveSrc] = useState<string>(() => resolveSrc());
 
   // Sync when prop changes or on client hydration
   useEffect(() => {
-    setActiveSrc(getCloudinaryUrl(src));
+    setActiveSrc(resolveSrc());
     setHasError(false);
   }, [src]);
 
   // Listen to live instant updates triggered from dashboard without page refresh
   useEffect(() => {
     const handleLiveImageUpdate = () => {
-      setActiveSrc(getCloudinaryUrl(src));
+      setActiveSrc(resolveSrc());
       setHasError(false);
     };
 
     window.addEventListener("live-image-updated", handleLiveImageUpdate);
+    window.addEventListener("storage", handleLiveImageUpdate);
     return () => {
       window.removeEventListener("live-image-updated", handleLiveImageUpdate);
+      window.removeEventListener("storage", handleLiveImageUpdate);
     };
   }, [src]);
 
@@ -69,6 +84,7 @@ export function ProjectImage({
 
   return (
     <Image
+      key={activeSrc}
       src={activeSrc}
       alt={alt}
       fill

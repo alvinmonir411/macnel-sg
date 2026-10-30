@@ -1,0 +1,586 @@
+{
+  "door_window": {
+    "hero": {
+      "title": "Door & Window Replacement, Soundproofing & Repair",
+      "subtitle": "BCA Approved Door & Window Specialist · Singapore",
+      "desc": "Enhance home security, eliminate external traffic rumble, and prevent water ingress with certified craftsmanship. From fire-rated timber entrance doors to acoustic double glazing and bi-fold systems.",
+      "imageSlot": "doors_windows_hero",
+      "defaultImage": "/images/door-window/4.jpeg"
+    },
+    "trades": [
+      {
+        "trade": "Trade 01",
+        "title": "Fire-Rated Main Entrance Doors & Matching Designer Metal Gates",
+        "subtitle": "Solid Core Acoustic Insulation with 1/2hr - 1hr Fire Cert",
+        "desc": "Custom-built timber laminate main entrance doors engineered for exceptional acoustic sound insulation and structural rigidity. Fully compatible with digital smart locks (Samsung, Philips, Yale, Kaadas) with custom laser-cut designer privacy gates.",
+        "specs": [
+          "Class 1/2hr & 1hr certified fire door",
+          "High-density solid timber core acoustic damping",
+          "Over 100+ scratch-resistant laminate finishes",
+          "Heavy-duty stainless steel ball-bearing butt hinges"
+        ],
+        "slotId": "door_cat_1",
+        "image": "/images/doc-updates/image37.jpg",
+        "tag": "Main Doors & Gates"
+      },
+      {
+        "trade": "Trade 02",
+        "title": "BCA-Certified Aluminium Casement & Sliding Windows",
+        "subtitle": "SS 212 Safety Certified with Heavy-Duty SS304 Rivets",
+        "desc": "All window installations comply strictly with Singapore Building & Construction Authority (BCA) regulations. We replace worn friction stays and aluminium rivets with certified SS304 stainless steel hardware to ensure zero risk of dislodgement.",
+        "specs": [
+          "Full BCA & HDB window permit submission",
+          "Grade SS304 stainless steel safety rivets & friction stays",
+          "High-spec double weather-stripping gasket seals",
+          "Laminated safety glass or tempered toughened glass"
+        ],
+        "slotId": "door_cat_2",
+        "image": "/images/doc-updates/image67.jpg",
+        "tag": "Aluminium Windows"
+      },
+      {
+        "trade": "Trade 03",
+        "title": "Toilet Bi-Fold Doors, Slide & Swing, and Pocket Bedroom Doors",
+        "subtitle": "Space-Saving Trackless Systems with Smooth Roller Mechanism",
+        "desc": "Say goodbye to clunky, derailed toilet doors. We supply and fit high-grade aluminium bi-fold doors, innovative Slide & Swing systems without bottom tracks, and recessed sliding pocket doors for seamless bedroom and bathroom entry.",
+        "specs": [
+          "Trackless bottom designs prevent dust & tripping",
+          "Heavy-duty nylon bearing top rollers for silent glide",
+          "Acrylic louvre panels or tempered frosted glass",
+          "Zero tile hacking required during replacement"
+        ],
+        "slotId": "door_cat_3",
+        "image": "/images/doc-updates/image3.jpg",
+        "tag": "Interior Doors"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Are your window installers BCA certified in Singapore?",
+        "a": "Yes. All our window installers are certified by the Building and Construction Authority (BCA). Under Singapore law, all window replacements and repairs must be executed by BCA-approved window installers. We handle mandatory HDB/BCA notification paperwork."
+      },
+      {
+        "q": "Can I replace my toilet door without hacking the existing wall tiles?",
+        "a": "Yes, our Slide & Swing and aluminium bi-fold door systems are custom-fabricated to fit your existing door frame sub-assembly or can be overlaid with sleek aluminium sub-frames, requiring zero hacking of your delicate bathroom tiles."
+      },
+      {
+        "q": "How effective are double-glazed acoustic windows against MRT train noise?",
+        "a": "Extremely effective. Standard single-pane glass only reduces noise by 20dB, leaving screeching train tracks clearly audible. Our laminated double-glazed acoustic windows reduce sound by 38dB to 42dB, cutting perception of train and highway rumble by up to 80%."
+      },
+      {
+        "q": "Do you supply fire-rated main entrance doors with official CoC certificate?",
+        "a": "Yes. All our 1/2 hour and 1 hour fire-rated timber main entrance doors come with an official Certificate of Conformity (CoC) label issued by accredited testing bodies, satisfying all Singapore Civil Defence Force (SCDF) and HDB requirements."
+      }
+    ]
+  },
+  "flooring_carpet": {
+    "hero": {
+      "title": "Engineered Flooring, Parquet Restoration & Commercial Carpet",
+      "subtitle": "Singapore Flooring Specialist · Direct In-House Installers",
+      "desc": "From German Bona 99% dust-free parquet sanding to 100% waterproof click SPC vinyl and high-traffic acoustic commercial carpet tiles. Installed by dedicated local flooring specialists.",
+      "imageSlot": "flooring_hero",
+      "defaultImage": "/images/flooring/hero.jpeg"
+    },
+    "trades": [
+      {
+        "trade": "Trade 01",
+        "title": "Solid Parquet & Hardwood Floor Sanding, Staining & Varnishing",
+        "subtitle": "German Bona Dust-Free Belt Sanding & Non-Toxic Traffic HD Polyurethane",
+        "desc": "Restore dull, scratched Burma teak, balau, or oak parquet to showroom condition. We use commercial continuous belt sanding machines equipped with HEPA dust extractors to ensure 99% dust-free sanding, followed by 3 coats of eco-friendly, zero-VOC Bona polyurethane varnish.",
+        "specs": [
+          "Dust-free multi-grit belt sanding (36/60/100/120 grit)",
+          "3 coats Swedish Bona Traffic HD commercial lacquer",
+          "Matte, satin, or high-gloss sheen options",
+          "Non-toxic, ultra-low VOC safe for children & pets"
+        ],
+        "slotId": "floor_cat_1",
+        "image": "/images/doc-updates/image69.png",
+        "tag": "Hardwood Restoration"
+      },
+      {
+        "trade": "Trade 02",
+        "title": "100% Waterproof SPC Rigid Core & Luxury Vinyl Tile (LVT)",
+        "subtitle": "5mm - 7.5mm Click-Lock with Integrated IXPE Acoustic Underlay",
+        "desc": "The ultimate pet-friendly and water-resistant flooring for Singapore homes. Our stone plastic composite (SPC) planks feature high-definition European timber textures, a 0.5mm commercial wear layer, and anti-bacterial acoustic backing that deadens footsteps.",
+        "specs": [
+          "Zero formaldehyde, E0 European emissions certified",
+          "100% waterproof core impervious to kitchen & mop water",
+          "Direct overlay on existing tiles without door hacking",
+          "Integrated IXPE acoustic pad reduces step impact noise"
+        ],
+        "slotId": "floor_cat_2",
+        "image": "/images/doc-updates/image40.jpg",
+        "tag": "SPC & Luxury Vinyl"
+      },
+      {
+        "trade": "Trade 03",
+        "title": "Commercial Carpet Tiles & Heavy-Duty Wall-to-Wall Broadloom",
+        "subtitle": "Acoustic Noise Absorption & Castor Chair Resistant Nylon Fibres",
+        "desc": "Designed for commercial offices, co-working studios, boardrooms, and boutique clinics. Modular 50x50cm carpet tiles allow fast individual tile replacement if stained, while high-density solution-dyed nylon tufts resist fading and heavy office chair wheels.",
+        "specs": [
+          "Heavy commercial wear rating (Class 33)",
+          "Solution-dyed nylon with Scotchgard stain resistance",
+          "Flame retardant Class Bfl-s1 fire certified",
+          "Tackifier adhesive enables easy single-tile replacement"
+        ],
+        "slotId": "floor_cat_3",
+        "image": "/images/doc-updates/image85.png",
+        "tag": "Commercial Carpet"
+      },
+      {
+        "trade": "Trade 04",
+        "title": "Diamond Pad Marble, Granite & Terrazzo Floor Crystallization",
+        "subtitle": "Rotary Diamond Grinding & Chemical Mirror Polish Restoration",
+        "desc": "Eliminate etching, dull spots, scratches, and lippage on natural marble, travertine, and granite slabs. We grind surface imperfections using sequential diamond resin pads (grit 50 to 3000) and finish with Italian chemical crystallization powder for deep optical mirror reflections.",
+        "specs": [
+          "Deep mechanical diamond honing removes deep scratches",
+          "Italian Klindex crystallization for wet-look shine",
+          "Neutral pH stone penetrating sealer prevents wine/tea stains",
+          "Restores natural veining contrast and slip resistance"
+        ],
+        "slotId": "floor_cat_4",
+        "image": "/images/doc-updates/image76.jpg",
+        "tag": "Marble Crystallization"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Can SPC vinyl flooring be laid directly over my old ceramic tiles?",
+        "a": "Yes. In 95% of cases, click-lock SPC rigid core planks can be laid directly over clean, sound ceramic, homogenous, or parquet floors without messy hacking. We verify door clearance and plane door bottoms slightly if required."
+      },
+      {
+        "q": "Is your parquet floor sanding process truly dust-free?",
+        "a": "Our Bona industrial belt sanders utilize two-stage cyclone HEPA containment filters that capture 99% of airborne wood dust directly at the cutter head. Minimal household cleaning is required after our sanding crews finish."
+      },
+      {
+        "q": "What is the difference between carpet tiles and wall-to-wall broadloom carpet?",
+        "a": "Modular carpet tiles (typically 50cm x 50cm) allow easy access to underfloor electrical wiring and let you replace individual stained tiles without redoing the entire room. Broadloom carpet provides a seamless, plush hotel finish across large continuous spaces."
+      },
+      {
+        "q": "How often should natural marble floors be re-crystallized or polished?",
+        "a": "For typical residential apartments, a light diamond crystallization every 2 to 3 years is sufficient to maintain showroom mirror clarity. High-traffic commercial reception areas benefit from an annual polishing cycle."
+      }
+    ]
+  },
+  "carpentry": {
+    "hero": {
+      "title": "Custom Carpentry & Cabinetry, Built to Millimeter Precision.",
+      "subtitle": "Direct In-House Joinery Workshop · Singapore",
+      "desc": "Bring your dream spaces to life with custom fabricated furniture. Renovation Contractor SG crafts kitchen cabinets, full-height built-in wardrobes, suspended TV consoles, and vanity counters using solid marine plywood and authentic Blum hardware.",
+      "imageSlot": "carpentry_hero",
+      "defaultImage": "/images/carpentry/5.jpeg"
+    },
+    "standards": [
+      {
+        "step": "01",
+        "title": "100% Solid Marine-Grade Plywood (Zero Chipboard)",
+        "slotId": "carpentry_std_1",
+        "image": "/images/carpentry/4.jpeg",
+        "desc": "Many mass-market contractors use cheap chipboard or MDF that swells, sags, and rots within 2 years in Singapore's humid climate. Renovation Contractor SG uses only heavy-duty solid plywood carcasses that withstand heavy loads, moisture, and pests for decades."
+      },
+      {
+        "step": "02",
+        "title": "Seamless 1mm ABS Edge Banding",
+        "slotId": "carpentry_std_2",
+        "image": "/images/carpentry/7.jpeg",
+        "desc": "We apply 1mm high-pressure ABS edge banding using computer-controlled hot-melt technology. This eliminates unsightly black glue lines, protects corners from chipping, and prevents peeling over time."
+      },
+      {
+        "step": "03",
+        "title": "Authentic Blum & Austrian Hydraulic Hardware",
+        "slotId": "carpentry_std_3",
+        "image": "/images/carpentry/2.jpeg",
+        "desc": "All doors and drawers come standard with genuine Blum BLUMOTION soft-close hinges and concealed drawer runners tested for 200,000 opening cycles with lifetime operational reliability."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you build custom internal configurations for wardrobes?",
+        "a": "Yes. Every drawer height, hanging rod level, jewelry tray, trouser rack, and hidden safe compartment is built to your exact custom specifications."
+      },
+      {
+        "q": "Can I choose my own laminate brand (e.g. Lamitak, Jennings, EDL)?",
+        "a": "Yes. We fabricate with all major Singapore laminate distributors including Lamitak, Jennings, EDL, Formica, and Admira with over 1,000+ catalog finishes."
+      },
+      {
+        "q": "How long does custom carpentry fabrication and on-site assembly take?",
+        "a": "Factory fabrication takes 2 to 3 weeks following final site measurements, while on-site installation and alignment take just 3 to 5 days."
+      }
+    ]
+  },
+  "false_ceiling": {
+    "hero": {
+      "title": "Architectural False Ceilings, Cove Lighting & Partitions",
+      "subtitle": "Saint-Gobain Certified · Heavy Galvanised Steel Framing",
+      "desc": "Conceal exposed electrical trunking, air-conditioning pipes, and concrete beams with precision drop ceilings, ambient LED cove pelmets, and acoustic drywall partitions.",
+      "imageSlot": "false_ceiling_hero",
+      "defaultImage": "/images/partition-ceiling/12.jpeg"
+    },
+    "standards": [
+      {
+        "step": "01",
+        "title": "Heavy-Duty Galvanised Metal Stud Framework",
+        "slotId": "false_ceiling_std_1",
+        "image": "/images/doc-updates/image31.jpg",
+        "desc": "We never use cheap thin metal channels that bend under ceiling weight. Renovation Contractor SG frames ceilings with heavy-duty galvanised steel furring channels spaced at strict 400mm centers, suspended with zinc-coated threaded steel rods anchored to concrete slabs."
+      },
+      {
+        "step": "02",
+        "title": "Saint-Gobain Gyproc Fire-Rated Boards",
+        "slotId": "false_ceiling_std_2",
+        "image": "/images/doc-updates/image60.jpg",
+        "desc": "We use genuine Saint-Gobain Gyproc plasterboard certified for fire safety and environmental air quality. Boards are precision-cut with bevelled edges to create invisible seams after compound taping."
+      },
+      {
+        "step": "03",
+        "title": "3-Coat Joint Taping (Zero Hairline Cracks)",
+        "slotId": "false_ceiling_std_3",
+        "image": "/images/doc-updates/image66.jpg",
+        "desc": "Hairline cracks in false ceilings occur when joints are skimped. We embed high-tensile fiberglass perforated joint tape across all seams and apply three feathered coats of premixed joint compound, followed by fine mechanical sanding."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How much ceiling height will I lose with a false ceiling in an HDB flat?",
+        "a": "A standard flat false ceiling typically drops between 100mm to 150mm (4 to 6 inches) from the existing concrete soffit. This provides ample cavity space to hide downlights, wiring, and air-conditioning conduits while maintaining comfortable 2.4m–2.6m headroom."
+      },
+      {
+        "q": "Can false ceilings support heavy ceiling fans or designer chandeliers?",
+        "a": "Yes, but heavy fixtures require dedicated reinforced timber or steel structural backing plates anchored directly to the concrete ceiling slab above."
+      },
+      {
+        "q": "Will moisture cause the bathroom false ceiling to sag or grow mold?",
+        "a": "In wet areas like bathrooms and kitchens, we use specialized green-core moisture-resistant plasterboard sealed with anti-fungal sealer paint."
+      }
+    ]
+  },
+  "painting_plastering": {
+    "hero": {
+      "title": "Professional Painting, Skim Coating & Surface Restoration",
+      "subtitle": "Genuine Nippon Paint · 100% Furniture Dust Protection",
+      "desc": "Transform your home with immaculate wall skimming, crack patching, and uniform paint coats using authentic low-VOC Nippon Paint. Clean, fast, and odorless.",
+      "imageSlot": "painting_hero",
+      "defaultImage": "/images/painting/hero.jpeg"
+    },
+    "processes": [
+      {
+        "step": "01",
+        "title": "100% Furniture Wrapping & Floor Protection",
+        "slotId": "painting_std_1",
+        "image": "/images/doc-updates/image41.jpg",
+        "desc": "Before opening a single can of paint, our team covers all flooring with heavy-duty corrugated cardboard and wraps sofas, electronics, and cabinetry in electrostatic dust-protection plastic sheets."
+      },
+      {
+        "step": "02",
+        "title": "Surface Scraping, Plaster Patching & Skimming",
+        "slotId": "painting_std_2",
+        "image": "/images/doc-updates/image68.jpg",
+        "desc": "We scrape off loose flaking paint, dig out old nail anchors, patch wall cracks with high-adhesion putty, and skim uneven patches until every square inch is glass-smooth."
+      },
+      {
+        "step": "03",
+        "title": "Alkaline-Resistant Sealer & 2 Finish Coats",
+        "slotId": "painting_std_3",
+        "image": "/images/doc-updates/image5.jpg",
+        "desc": "We apply a full coat of alkali-resistant sealer to block moisture and ensure color brilliance. Followed by two thick, uniform topcoats of authentic Nippon Paint applied with precision microfiber rollers."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How long does whole-house painting take for a 4-room or 5-room HDB flat?",
+        "a": "A complete whole-house repainting (living hall, dining, all bedrooms, kitchen, and both bathrooms) takes 2 to 3 working days with our dedicated team of 3 painters."
+      },
+      {
+        "q": "Is Nippon Odour-Less paint truly safe to sleep in on the same night?",
+        "a": "Yes. Genuine Nippon Odour-Less All-In-1 emits zero harmful VOCs and has virtually no smell, allowing families with infants or elderly members to reoccupy bedrooms on the same day."
+      },
+      {
+        "q": "What causes paint to bubble and peel on ceiling surfaces?",
+        "a": "Peeling and bubbling usually occur when paint was applied without an alkaline-resistant sealer or from high humidity in bathrooms. We scrape back to the plaster, apply moisture sealer, and repaint."
+      }
+    ]
+  },
+  "house_renovation": {
+    "hero": {
+      "title": "Turnkey House Renovation Specialist Singapore",
+      "subtitle": "BCA & HDB Approved Direct Contractor · Zero Middleman Markup",
+      "desc": "Comprehensive turnkey house renovations for HDB BTO flats, resale apartments, condominiums, and landed homes. One accountable project manager, transparent milestone pricing, and defect-free handover.",
+      "imageSlot": "house_reno_hero",
+      "defaultImage": "/images/house-reno/hero.jpeg"
+    },
+    "phases": [
+      {
+        "phase": "Phase 01",
+        "title": "HDB/BCA Permit Submission, Protection & Structural Hacking",
+        "subtitle": "Safe Demolition with Full Floor & Lift Padding",
+        "desc": "We handle all mandatory HDB and MCST permit filings before commencement. Heavy-duty corrugated cardboard and corrugated plastic sheets protect common corridors, lifts, and existing fixtures before pneumatic hacking.",
+        "specs": [
+          "HDB e-permit submission & approval",
+          "Lifting corridor & lift protection",
+          "Load-bearing wall radar verification",
+          "Daily debris bagging & disposal"
+        ],
+        "slotId": "house_reno_phase_1",
+        "image": "/images/house-reno/1.jpeg",
+        "tag": "Site Prep & Demolition"
+      },
+      {
+        "phase": "Phase 02",
+        "title": "Wet Trade Masonry, Screeding & High-Precision Tiling",
+        "subtitle": "Laser-Guided Leveling with Zero-Hollow Bonding",
+        "desc": "Our master masons cast reinforced kerbs, shower drop kerbs, and pre-packed screed beds. Tiles are back-buttered with C2TE flexible cementitious adhesive and spaced with reusable leveling clips for flush, razor-sharp grout lines.",
+        "specs": [
+          "C2TE heavy-duty polymer adhesive",
+          "Double-coat SikaTop 107 seal",
+          "Laser 3D horizontal floor leveling",
+          "Micro-mitred 45° marble edges"
+        ],
+        "slotId": "house_reno_phase_2",
+        "image": "/images/doc-updates/image75.jpg",
+        "tag": "Wet Trade & Masonry"
+      },
+      {
+        "phase": "Phase 03",
+        "title": "Architectural False Ceilings, Pelmets & Drywall Partitions",
+        "subtitle": "Heavy-Duty Galvanised Framing & Anti-Crack Finishing",
+        "desc": "We construct seamless drop ceilings, cove lighting pelmets, and acoustic drywall acoustic dividers using Saint-Gobain 9mm/12mm moisture-resistant boards mounted on hot-dipped galvanised steel channel grids.",
+        "specs": [
+          "Hot-dipped zinc galvanised studs",
+          "Saint-Gobain Gyproc board",
+          "3-coat fiber-reinforced joint tape",
+          "Precision recessed spotlight cuts"
+        ],
+        "slotId": "house_reno_phase_3",
+        "image": "/images/doc-updates/image29.jpg",
+        "tag": "Ceiling & Partition"
+      },
+      {
+        "phase": "Phase 04",
+        "title": "Premium Surface Painting, Chemical Wash & Handover",
+        "subtitle": "Multi-Coat Skim Coat & Zero-VOC Anti-Bacterial Coating",
+        "desc": "Complete wall skimming with pre-mixed skim coat removes all undulations before 1 sealer coat and 2 topcoats of Nippon Odourless or Benjamin Moore paint. Deep chemical acid cleaning and joint sealant touch-up completes the handover.",
+        "specs": [
+          "Nippon 5101 odour-less wall sealer",
+          "2 coats Nippon Medifresh anti-bacterial",
+          "Full chemical acid cleaning",
+          "12-month defect warranty cert"
+        ],
+        "slotId": "house_reno_phase_4",
+        "image": "/images/doc-updates/image25.jpg",
+        "tag": "Finishing & Handover"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How long does a full 4-room or 5-room HDB renovation take?",
+        "a": "A full turnkey renovation for a 4-room or 5-room resale flat typically takes 6 to 8 weeks, while BTO flats with no existing hacking usually take 4 to 6 weeks."
+      },
+      {
+        "q": "Do you provide transparent milestone progressive payments?",
+        "a": "Yes. Payment is split into clearly defined milestones: deposit on permit approval, hacking completion, wet trades/tiling completion, carpentry delivery, and final balance after joint defect inspection."
+      },
+      {
+        "q": "Are HDB permit submissions and corridor protection included?",
+        "a": "Yes. All statutory HDB and BCA submissions, lift padding protection, and corridor cardboard wrapping are managed and included by our team."
+      }
+    ]
+  },
+  "tiling_works": {
+    "hero": {
+      "title": "Precision Masonry & Master Tiling Services",
+      "subtitle": "BCA Certified Tilers · 100% Solid Buttering (Zero Hollow Tiles)",
+      "desc": "Flawless laser-aligned tile laying for floors, feature walls, balconies, and bathrooms using premium polymer adhesives and anti-mold epoxy grouting.",
+      "imageSlot": "tiling_hero",
+      "defaultImage": "/images/tiling/hero.jpeg"
+    },
+    "steps": [
+      {
+        "step": "01",
+        "title": "100% Solid Buttering (Zero Hollow Tiles)",
+        "slotId": "tiling_step_1",
+        "image": "/images/tiling/38.jpeg",
+        "desc": "Inexperienced contractors use 'spot bonding', leaving empty hollow pockets beneath tiles that crack when stepped on. We apply full-coverage combed polymer mortar on both floor and tile back, ensuring 100% solid compaction and zero hollow sound ('drumming')."
+      },
+      {
+        "step": "02",
+        "title": "Laser Cross-Line Optical Alignment",
+        "slotId": "tiling_step_2",
+        "image": "/images/tiling/44.jpeg",
+        "desc": "Every single row is aligned using 3D multi-line laser leveling instruments. Grout spacing is locked to ultra-tight 1.5mm–2.0mm tolerances with reusable leveling clips to eliminate tile lippage completely."
+      },
+      {
+        "step": "03",
+        "title": "45-Degree Mitred Edge Finishing",
+        "slotId": "tiling_step_3",
+        "image": "/images/tiling/11.jpeg",
+        "desc": "Instead of cheap PVC plastic corner trims that discolor and peel, our craftsmen wet-cut tile edges to exact 45-degree angles for seamless, high-end architectural stone junctions on kerbs and ledges."
+      },
+      {
+        "step": "04",
+        "title": "Anti-Mold Epoxy Grouting (Mapei)",
+        "slotId": "tiling_step_4",
+        "image": "/images/tiling/13.jpeg",
+        "desc": "Standard cement grout absorbs water, turning black and moldy in humid Singapore bathrooms. We seal joints with two-part epoxy grout that is 100% waterproof, stain-proof, and easily wiped clean."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What is hollow tile 'drumming' and how do you prevent it?",
+        "a": "Hollow tile drumming occurs when tile adhesive doesn't achieve full coverage under the tile. We back-butter 100% of the tile surface with heavy-duty polymer adhesive to guarantee solid bedding."
+      },
+      {
+        "q": "What is the difference between cement grout and epoxy grout?",
+        "a": "Cement grout is porous and absorbs dirty mop water, causing mold and yellow stains. Epoxy grout is completely non-porous, waterproof, and chemically stain-resistant."
+      },
+      {
+        "q": "Can I supply my own tiles purchased from Hafary or Soon Bee Huat?",
+        "a": "Yes. Many of our clients select their tiles from Hafary, Soon Bee Huat, or Lian Seng Hin. We calculate tile quantities with 10% wastage allowances and handle transport collection."
+      }
+    ]
+  },
+  "toilet_renovation": {
+    "hero": {
+      "title": "Toilet & Bathroom Renovation Specialist Singapore",
+      "subtitle": "3-Coat Waterproofing Membrane · 24-Hour Ponding Test Guarantee",
+      "desc": "Complete overhaul and transformation for HDB and condominium bathrooms. Hacking, screeding, anti-slip tiling, concealed plumbing, and sanitary fixture installation.",
+      "imageSlot": "toilet_reno_hero",
+      "defaultImage": "/images/tiling/7.jpeg"
+    },
+    "stages": [
+      {
+        "step": "01",
+        "title": "Controlled Hacking & Site Demolition",
+        "slotId": "toilet_stage_1",
+        "image": "/images/doc-updates/image62.jpg",
+        "desc": "Safe removal of old wall & floor tiles, mortar screed, old piping, and sanitary fixtures with dust protection and HDB permits."
+      },
+      {
+        "step": "02",
+        "title": "3-Coat Waterproofing & 24-Hr Ponding Test",
+        "slotId": "toilet_stage_2",
+        "image": "/images/doc-updates/image79.jpg",
+        "desc": "Elastomeric polymer membrane, corner mesh reinforcement & 24-hour water ponding test to guarantee zero water seepage to lower floor."
+      },
+      {
+        "step": "03",
+        "title": "Laser-Aligned Floor & Wall Tiling",
+        "slotId": "toilet_stage_3",
+        "image": "/images/doc-updates/image47.jpg",
+        "desc": "1:80 fall gradient towards floor traps for instant drainage, anti-slip R10 floor tiles, and anti-mold epoxy grouting."
+      },
+      {
+        "step": "04",
+        "title": "Concealed Stainless / PPR Plumbing",
+        "slotId": "toilet_stage_4",
+        "image": "/images/doc-updates/image90.jpg",
+        "desc": "PUB licensed water service plumbing with concealed Grade 304 pressure-tested lines, hot water mixer rough-ins, and floor traps."
+      },
+      {
+        "step": "05",
+        "title": "Sanitary Fixture & Glass Screen Installation",
+        "slotId": "toilet_stage_5",
+        "image": "/images/tiling/12.jpeg",
+        "desc": "Precision installation of one-piece water closets, custom vanities, rain showers, and 10mm tempered frameless glass screens."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How long does a complete toilet renovation take in Singapore?",
+        "a": "A single toilet overhaul takes 7 to 9 working days. If doing both master and common toilets concurrently, completion takes 10 to 14 working days."
+      },
+      {
+        "q": "What is the 24-hour water ponding test?",
+        "a": "After applying the dual-layer waterproofing membrane, we plug the floor traps and fill the bathroom floor with 25mm of water for 24 hours to verify zero seepage through the concrete slab."
+      },
+      {
+        "q": "Do you assist with HDB bathroom permit applications?",
+        "a": "Yes. In Singapore, hacking bathroom floors requires mandatory HDB renovation permits. We handle all paperwork and submit drawings directly."
+      }
+    ]
+  },
+  "electrical": {
+    "hero": {
+      "title": "Licensed EMA Electrical Works & Complete House Rewiring",
+      "subtitle": "Singapore Standard CP5 Compliant · EMA Licensed Electricians",
+      "desc": "Certified electrical installation and rewiring for HDB flats, condominiums, and commercial spaces. Concealed conduits, distribution board upgrades, architectural cove LED lighting, and smart home switches.",
+      "imageSlot": "electrical_hero",
+      "defaultImage": "/images/electrical/hero.jpeg"
+    },
+    "disciplines": [
+      {
+        "discipline": "Discipline 01",
+        "title": "Full House Rewiring & Concealed Conduit Chasing",
+        "subtitle": "Singapore CP5 Electrical Standard with Neutral Wires for Smart Automation",
+        "desc": "Old brittle rubber or substandard wiring poses severe fire hazards. Our EMA-licensed electricians run 100% high-purity copper core cables enclosed inside heavy-gauge high-impact PVC conduits. We chase clean wall channels and conceal all cables flush with the wall.",
+        "specs": [
+          "Singapore Standard CP5 & SS 638 compliance",
+          "Concealed wall chasing or ultra-slim surface casing",
+          "Dedicated neutral wiring at every light switch for smart homes",
+          "Full continuity and insulation resistance megger testing"
+        ],
+        "slotId": "electrical_feat_1",
+        "image": "/images/partition-ceiling/2.jpeg",
+        "tag": "Concealed Rewiring"
+      },
+      {
+        "discipline": "Discipline 02",
+        "title": "Main Distribution Board (DB Box) Upgrades & RCD Protection",
+        "subtitle": "ABB, Hager & Schneider Residual Current Devices (30mA Safety)",
+        "desc": "Upgrade obsolete fuse boxes with modern modular consumer units. We install sensitive 30mA Residual Current Circuit Breakers (RCCB/RCD) and individual miniature circuit breakers (MCB) to prevent fatal shocks and localize electrical faults without tripping the entire house.",
+        "specs": [
+          "High-grade Hager or Schneider Electric components",
+          "Type A 30mA RCD protection for lightning surge safety",
+          "Individual loop isolation for fridges and critical devices",
+          "Clear color-coded printed circuit directory labels"
+        ],
+        "slotId": "electrical_feat_2",
+        "image": "/images/partition-ceiling/10.jpeg",
+        "tag": "DB Box Replacement"
+      },
+      {
+        "discipline": "Discipline 03",
+        "title": "Architectural Cove Lighting, Track Lights & Smart Automation",
+        "subtitle": "Flicker-Free High CRI90+ LED Drivers & Zigbee/Matter Integration",
+        "desc": "Elevate your interior ambience with architectural lighting circuits. We design customized double-switched loops, aluminum profile cove extrusions, magnetic low-voltage tracks, and smart dimmer modules compatible with Apple HomeKit, Google Home, and Alexa.",
+        "specs": [
+          "High CRI > 90 LED strip channels with zero dotting",
+          "Constant-voltage flicker-free Mean Well drivers",
+          "Neutral wire included for smart rocker switch compatibility",
+          "Multi-zone mood control for living, dining, and bedrooms"
+        ],
+        "slotId": "electrical_feat_3",
+        "image": "/images/partition-ceiling/1.jpeg",
+        "tag": "Architectural Lighting"
+      },
+      {
+        "discipline": "Discipline 04",
+        "title": "High-Amp Sockets, Cooker Points & Water Heater Isolators",
+        "subtitle": "Dedicated 15A/20A/32A High-Load Radial Circuits",
+        "desc": "Prevent breaker tripping with dedicated electrical circuits for heavy appliances. We run individual high-amp lines for induction hobs, built-in ovens, instantaneous water heaters, air conditioners, and EV chargers.",
+        "specs": [
+          "Double-pole 20A water heater switches with neon indicator",
+          "Dedicated 32A cooker radial circuit for induction cooktops",
+          "Schneider AvatarOn / Legrand Galion designer switch plates",
+          "Safe earth bonding to all metal conduit junction enclosures"
+        ],
+        "slotId": "electrical_feat_4",
+        "image": "/images/carpentry/6.jpeg",
+        "tag": "Power Points & Isolators"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Why do older HDB resale flats require a complete electrical rewiring?",
+        "a": "Older flats built before the 1990s use degraded PVC or rubber cabling that deteriorates over decades. Modern households place heavy power loads (induction hobs, dishwashers, multiple aircon units) that older wiring cannot safely handle."
+      },
+      {
+        "q": "Will electrical cables be concealed inside the walls or run on surface trunking?",
+        "a": "In HDB flats, wiring on hollow brick walls can be completely concealed by wall chasing. On load-bearing reinforced concrete shear walls, we use neat, paintable ultra-slim PVC casing."
+      },
+      {
+        "q": "Do you provide EMA Single Line Diagrams (SLD) and CS/3 testing endorsement?",
+        "a": "Yes. All our electrical installations are supervised by EMA Licensed Electrical Workers (LEW). We perform insulation resistance testing and submit certification paperwork."
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import teamData from "../../data/team.json";
+import teamDataFallback from "../../data/team.json";
 import { siteConfig } from "@/config/site";
 import { ProjectImage } from "@/components/ProjectImage";
 import {
@@ -14,13 +14,21 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export function AboutSection({ customCredentials }: { customCredentials?: any } = {}) {
-  const { companyStory, members } = teamData;
+export function AboutSection({
+  customCredentials,
+  customTeam,
+}: {
+  customCredentials?: any;
+  customTeam?: any;
+} = {}) {
+  const activeTeam = customTeam || teamDataFallback;
+  const companyStory = activeTeam?.companyStory || teamDataFallback.companyStory;
+  const members = activeTeam?.members || teamDataFallback.members;
   const legalName = customCredentials?.legalName || siteConfig.legalName;
   const uen = customCredentials?.uen || siteConfig.uen;
   const bcaLicense = customCredentials?.bcaLicense || siteConfig.bcaLicense;
   const hdbLicense = customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense;
-  const founder = members[0] || {
+  const founder = members?.[0] || {
     name: "Managing Director & Founder",
     role: "Managing Director & Lead Project Supervisor",
     experience: "12+ Years Singapore Renovation Specialist",
