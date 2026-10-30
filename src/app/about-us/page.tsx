@@ -1,3 +1,4 @@
+import { LiveImage } from "@/components/LiveImage";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
@@ -189,8 +190,7 @@ export default function AboutUsPage() {
           </div>
 
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-[#8CCB6B]/40 group">
-            <img
-              src={getCloudinaryUrl("/images/team/owner.jpg")}
+            <LiveImage src={"/images/team/owner.jpg"}
               alt="Renovation Contractor SG Founder & Managing Director on site"
               className="w-full h-[520px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
             />

@@ -10,7 +10,7 @@
       "Full HDB and BCA renovation permit submission",
       "Guaranteed milestone schedule and defect checks"
     ],
-    "image": "/images/house-reno/1.jpeg",
+    "image": "/images/services/house-renovation.jpg",
     "href": "/house-renovation",
     "iconName": "Home"
   },
@@ -25,7 +25,7 @@
       "3D laser leveling with zero tile lippage",
       "Waterproof anti-mold cement and epoxy grouting"
     ],
-    "image": "/images/doc-updates/image20.jpg",
+    "image": "/images/services/tiling-services.jpg",
     "href": "/tiling-works",
     "iconName": "Grid3X3"
   },
@@ -40,7 +40,7 @@
       "Acoustic noise reduction glass configurations",
       "Trackless Slide & Swing toilet bi-fold doors"
     ],
-    "image": "/images/door-window/4.jpeg",
+    "image": "/images/services/door-window.jpg",
     "href": "/door-window-services",
     "iconName": "DoorOpen"
   },
@@ -55,7 +55,7 @@
       "Moisture-resistant plasterboard for wet areas",
       "Acoustic rockwool sound insulation infills"
     ],
-    "image": "/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg",
+    "image": "/images/services/false-ceiling.jpg",
     "href": "/false-ceiling",
     "iconName": "Lightbulb"
   },
@@ -70,7 +70,7 @@
       "2 finishing coats of genuine Nippon paint",
       "Complete floor and furniture masking protection"
     ],
-    "image": "/images/partition-ceiling/6.jpeg",
+    "image": "/images/services/painting-services.jpg",
     "href": "/house-painting-plastering",
     "iconName": "Paintbrush"
   },
@@ -85,7 +85,7 @@
       "Fiberglass mesh reinforcement on crack joints",
       "Laser-flat surface inspection prior to painting"
     ],
-    "image": "/images/partition-ceiling/4.jpeg",
+    "image": "/images/services/plastering-services.jpg",
     "href": "/house-painting-plastering",
     "iconName": "Hammer"
   },
@@ -100,7 +100,7 @@
       "Swedish Bona 99% dust-free parquet restoration",
       "Heavy-traffic commercial modular carpet tiles"
     ],
-    "image": "/images/tiling/11.jpeg",
+    "image": "/images/services/flooring-carpet.jpg",
     "href": "/flooring-carpet-services",
     "iconName": "Layers"
   },
@@ -115,9 +115,8 @@
       "Dual-coat waterproof membrane & 48-hr ponding test",
       "PUB-licensed plumbing and sanitary fixture setup"
     ],
-    "image": "/images/tiling/12.jpeg",
+    "image": "/images/services/toilet-renovation.jpg",
     "href": "/toilet-renovation-in-singapore",
     "iconName": "Droplets"
   }
 ]
-

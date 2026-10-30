@@ -90,8 +90,8 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 01 · House Renovation",
     label: "House Renovation Card Photo",
     description: "Featured visual on the Core Services card on homepage & /services",
-    paths: ["/images/house-reno/1.jpeg"],
-    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092307/renovation-contractor-sg/House_reno/kp1ixhf6xovgkbyehhwn.jpg",
+    paths: ["/images/services/house-renovation.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793289125/renovation-contractor-sg/dashboard-uploads/f0ozp82bcj8s6fex6c1b.jpg",
   },
   {
     id: "service_tiling",
@@ -101,7 +101,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 02 · Tiling Services",
     label: "Tiling Services Card Photo",
     description: "Featured visual on the Tiling Services card on homepage & /services",
-    paths: ["/images/doc-updates/image20.jpg"],
+    paths: ["/images/services/tiling-services.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/pgg34u2g076q3f4zhyjh.jpg",
   },
   {
@@ -112,7 +112,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 03 · Doors & Windows",
     label: "Door & Window Services Card Photo",
     description: "Featured visual on the Doors & Windows card on homepage & /services",
-    paths: ["/images/door-window/4.jpeg"],
+    paths: ["/images/services/door-window.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/door-window/d30kkw2q72m8y7vj5r3z.jpg",
   },
   {
@@ -123,7 +123,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 04 · False Ceiling",
     label: "False Ceiling & Partition Card Photo",
     description: "Featured visual on the False Ceiling & Partition card on homepage & /services",
-    paths: ["/images/partition-ceiling/Floating-Ceiling-Effect_Picfinder.jpg"],
+    paths: ["/images/services/false-ceiling.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
   },
   {
@@ -134,7 +134,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 05 · Painting Services",
     label: "Painting Services Card Photo",
     description: "Featured visual on the Painting Services card on homepage & /services",
-    paths: ["/images/partition-ceiling/6.jpeg"],
+    paths: ["/images/services/painting-services.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
   },
   {
@@ -145,7 +145,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 06 · Plastering Services",
     label: "Plastering Services Card Photo",
     description: "Featured visual on the Plastering Services card on homepage & /services",
-    paths: ["/images/partition-ceiling/4.jpeg"],
+    paths: ["/images/services/plastering-services.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
   },
   {
@@ -156,7 +156,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 07 · Flooring & Carpet",
     label: "Flooring & Carpet Card Photo",
     description: "Featured visual on the Flooring & Carpet card on homepage & /services",
-    paths: ["/images/tiling/11.jpeg"],
+    paths: ["/images/services/flooring-carpet.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
   },
   {
@@ -167,7 +167,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Service Card 08 · Toilet Renovation",
     label: "Toilet Renovation Card Photo",
     description: "Featured visual on the Toilet Renovation card on homepage & /services",
-    paths: ["/images/tiling/12.jpeg"],
+    paths: ["/images/services/toilet-renovation.jpg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/pgg34u2g076q3f4zhyjh.jpg",
   },
 
@@ -182,7 +182,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Hero Header Banner",
     label: "House Renovation - Hero Banner Background",
     description: "Full-width background image in the hero banner of the House Renovation page",
-    paths: ["/images/house-reno/hero.jpeg", "/images/house-reno/1.jpeg"],
+    paths: ["/images/house-reno/hero.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092307/renovation-contractor-sg/House_reno/kp1ixhf6xovgkbyehhwn.jpg",
   },
   {
@@ -309,9 +309,9 @@ export const DEFAULT_IMAGE_SLOTS = [
     pagePath: "/tiling-works",
     pageTitle: "Tiling Works",
     sectionName: "Hero Header",
-    label: "Tiling Works - Hero Banner Visual",
-    description: "Header visual on the Floor & Wall Tiling services page",
-    paths: ["/images/tiling/44.jpeg", "/images/tiling/27.jpeg"],
+    label: "Tiling Works - Hero Background",
+    description: "Header visual on Tiling Works page",
+    paths: ["/images/tiling/hero.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/s29ff99hvhg4hft2d9v5.jpg",
   },
   {
@@ -462,11 +462,11 @@ export const DEFAULT_IMAGE_SLOTS = [
     id: "electrical_hero",
     category: "electrical",
     pagePath: "/electrical-works-rewiring",
-    pageTitle: "Electrical Works",
+    pageTitle: "Electrical & Rewiring",
     sectionName: "Hero Header",
-    label: "Electrical Works - Hero Showcase",
-    description: "Header visual on Electrical Works & Rewiring page",
-    paths: ["/images/partition-ceiling/12.jpeg"],
+    label: "Electrical Works - Hero Spotlight",
+    description: "Header visual on Electrical & Rewiring page",
+    paths: ["/images/electrical/hero.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
   },
   {
@@ -523,9 +523,9 @@ export const DEFAULT_IMAGE_SLOTS = [
     pagePath: "/house-painting-plastering",
     pageTitle: "Painting & Plastering",
     sectionName: "Hero Header",
-    label: "Painting - Hero Showcase",
-    description: "Header visual on House Painting & Plastering page",
-    paths: ["/images/partition-ceiling/10.jpeg"],
+    label: "Painting - Hero Header",
+    description: "Header visual on Painting & Plastering page",
+    paths: ["/images/painting/hero.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
   },
   {
@@ -621,7 +621,7 @@ export const DEFAULT_IMAGE_SLOTS = [
     sectionName: "Hero Header",
     label: "Flooring - Hero Showcase",
     description: "Header visual on Flooring & Carpet Services page",
-    paths: ["/images/tiling/11.jpeg"],
+    paths: ["/images/flooring/hero.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092323/renovation-contractor-sg/images/tiling/p4u1m6f9f9yq46r9f4w4.jpg",
   },
   {

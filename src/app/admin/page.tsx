@@ -490,6 +490,7 @@ export default function AdminDashboardPage() {
         showToast(data.message || "Media uploaded and published live!");
         if (typeof window !== "undefined") {
           (window as any).__IMAGE_OVERRIDES__ = { ...((window as any).__IMAGE_OVERRIDES__ || {}), [activeUploadSlot]: data.url };
+          localStorage.setItem("site_images_updated_at", Date.now().toString());
           window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId: activeUploadSlot, url: data.url } }));
         }
       } else {
@@ -528,6 +529,7 @@ export default function AdminDashboardPage() {
         showToast(data.message || "Asset URL updated successfully!");
         if (typeof window !== "undefined") {
           (window as any).__IMAGE_OVERRIDES__ = { ...((window as any).__IMAGE_OVERRIDES__ || {}), [slotId]: newUrl };
+          localStorage.setItem("site_images_updated_at", Date.now().toString());
           window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId, url: newUrl } }));
         }
       } else {
@@ -557,6 +559,7 @@ export default function AdminDashboardPage() {
         );
         showToast(data.message || "Reverted to default media.");
         if (typeof window !== "undefined") {
+          localStorage.setItem("site_images_updated_at", Date.now().toString());
           window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId } }));
         }
       }

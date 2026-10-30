@@ -1,3 +1,4 @@
+import { LiveImage } from "@/components/LiveImage";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
@@ -141,8 +142,7 @@ export default function FlooringCarpetPage() {
     <div className="bg-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-screen flex items-center py-20 lg:py-28">
-        <img
-          src={getCloudinaryUrl("/images/tiling/11.jpeg")}
+        <LiveImage src={"/images/flooring/hero.jpeg"}
           alt="Flooring and Carpet Services Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-transform duration-1000"
           style={{ opacity: 0.85 }}
@@ -274,8 +274,7 @@ export default function FlooringCarpetPage() {
                 {/* Visual Side */}
                 <div className="w-full lg:w-1/2">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
-                    <img
-                      src={getCloudinaryUrl(floor.image)}
+                    <LiveImage src={floor.image}
                       alt={floor.title}
                       className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
                     />

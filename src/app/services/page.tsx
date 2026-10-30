@@ -1,3 +1,4 @@
+import { LiveImage } from "@/components/LiveImage";
 import { getLiveSiteData } from "@/lib/db";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -57,8 +58,7 @@ export default async function ServicesPage() {
     <div className="bg-white">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-screen flex items-center py-20 lg:py-28">
-        <img
-          src={getCloudinaryUrl("/images/tiling/44.jpeg")}
+        <LiveImage src={"/images/services/hero.jpeg"}
           alt="Renovation Services in Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-105 transition-transform duration-1000"
           style={{ opacity: 0.85 }}
@@ -179,8 +179,7 @@ export default async function ServicesPage() {
               >
                 {/* Visual Image Header */}
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
-                  <img
-                    src={getCloudinaryUrl(service.image)}
+                  <LiveImage src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
