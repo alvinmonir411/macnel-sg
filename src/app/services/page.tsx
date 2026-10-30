@@ -178,7 +178,7 @@ export default async function ServicesPage() {
                 className="group rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl hover:border-[#8CCB6B]/60 transition-all duration-500 flex flex-col justify-between"
               >
                 {/* Visual Image Header */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
                   <img
                     src={getCloudinaryUrl(service.image)}
                     alt={service.title}

@@ -3,12 +3,8 @@ import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { getLiveSiteData } from "@/lib/db";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { FloatingCTA } from "@/components/FloatingCTA";
-import { AiChatWidget } from "@/components/AiChatWidget";
-import { CookieConsentBanner } from "@/components/CookieConsentBanner";
-import { MarketingHeadScripts, MarketingBodyScripts } from "@/components/MarketingScripts";
+import { SiteShell } from "@/components/SiteShell";
+import { MarketingHeadScripts } from "@/components/MarketingScripts";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -220,14 +216,7 @@ export default async function RootLayout({
         <MarketingHeadScripts marketing={siteData.marketing} />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
-        {/* Dynamic Marketing Body Scripts (GTM Noscript, Chat Widgets, Custom Body) */}
-        <MarketingBodyScripts marketing={siteData.marketing} />
-        <Header customContact={siteData.contact} customCredentials={siteData.credentials} />
-        <main className="flex-1">{children}</main>
-        <Footer customContact={siteData.contact} customCredentials={siteData.credentials} />
-        <FloatingCTA contact={siteData.contact} />
-        <AiChatWidget />
-        <CookieConsentBanner />
+        <SiteShell siteData={siteData}>{children}</SiteShell>
       </body>
     </html>
   );

@@ -488,6 +488,10 @@ export default function AdminDashboardPage() {
           )
         );
         showToast(data.message || "Media uploaded and published live!");
+        if (typeof window !== "undefined") {
+          (window as any).__IMAGE_OVERRIDES__ = { ...((window as any).__IMAGE_OVERRIDES__ || {}), [activeUploadSlot]: data.url };
+          window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId: activeUploadSlot, url: data.url } }));
+        }
       } else {
         showToast(data.error || "Upload failed.");
       }
@@ -522,6 +526,10 @@ export default function AdminDashboardPage() {
         );
         setUrlInputMap((prev) => ({ ...prev, [slotId]: "" }));
         showToast(data.message || "Asset URL updated successfully!");
+        if (typeof window !== "undefined") {
+          (window as any).__IMAGE_OVERRIDES__ = { ...((window as any).__IMAGE_OVERRIDES__ || {}), [slotId]: newUrl };
+          window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId, url: newUrl } }));
+        }
       } else {
         showToast(data.error || "Failed to update URL.");
       }
@@ -548,6 +556,9 @@ export default function AdminDashboardPage() {
           )
         );
         showToast(data.message || "Reverted to default media.");
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("live-image-updated", { detail: { slotId } }));
+        }
       }
     } catch {
       showToast("Error resetting slot.");
@@ -770,12 +781,11 @@ export default function AdminDashboardPage() {
               <span>Unlock Admin Dashboard</span>
             </button>
 
-            <div className="pt-4 border-t border-zinc-800 flex items-center justify-between text-[11px] text-zinc-400">
+            <div className="pt-4 border-t border-zinc-800 flex items-center justify-center text-[11px] text-zinc-400">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                <span>Neon PostgreSQL Active</span>
+                <span>Secure session · Neon PostgreSQL connected</span>
               </span>
-              <span className="text-zinc-500 font-mono">PIN: 13663</span>
             </div>
           </form>
         </div>
@@ -810,8 +820,8 @@ export default function AdminDashboardPage() {
       {/* ========================================================= */}
       <aside
         className={`${
-          sidebarOpen ? "w-72" : "w-20"
-        } shrink-0 bg-[#0A0A0A] border-r border-zinc-800 flex flex-col justify-between transition-all duration-300 z-30 sticky top-0 h-screen`}
+          sidebarOpen ? "lg:w-72" : "lg:w-20"
+        } w-full shrink-0 bg-[#0A0A0A] border-b lg:border-b-0 lg:border-r border-zinc-800 flex flex-col justify-between transition-all duration-300 z-30 sticky top-0 lg:h-screen`}
       >
         <div className="flex flex-col h-full overflow-hidden">
           {/* Brand Header */}
@@ -844,7 +854,7 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5">
+          <div className="flex lg:flex-1 overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto px-3 py-3 lg:py-4 gap-2 lg:block lg:space-y-1.5 no-scrollbar">
             {[
               { id: "overview", label: "Executive Overview", icon: LayoutDashboard },
               { id: "bookings", label: "Bookings", badge: bookings.length, icon: Calendar },
@@ -861,7 +871,7 @@ export default function AdminDashboardPage() {
                   <Link
                     key={tab.id}
                     href={tab.href}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-zinc-300 hover:text-white hover:bg-zinc-900 border border-zinc-800 bg-zinc-950/60 group"
+                    className="w-auto lg:w-full shrink-0 flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-zinc-300 hover:text-white hover:bg-zinc-900 border border-zinc-800 bg-zinc-950/60 group"
                     title={tab.label}
                   >
                     <Icon className="w-4 h-4 shrink-0 text-zinc-400 group-hover:text-white group-hover:scale-105 transition-all" />
@@ -880,7 +890,7 @@ export default function AdminDashboardPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                  className={`w-auto lg:w-full shrink-0 flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
                     active
                       ? "bg-white text-black shadow-lg font-black"
                       : "text-zinc-400 hover:text-white hover:bg-zinc-900/70"
@@ -909,7 +919,7 @@ export default function AdminDashboardPage() {
 
           {/* System Health Indicators */}
           {sidebarOpen && (
-            <div className="p-4 mx-3 mb-3 bg-[#141414] border border-zinc-800 rounded-2xl space-y-2">
+            <div className="hidden lg:block p-4 mx-3 mb-3 bg-[#141414] border border-zinc-800 rounded-2xl space-y-2">
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-zinc-400 flex items-center gap-1.5 font-medium">
                   <Database className="w-3.5 h-3.5 text-white" />
@@ -931,7 +941,7 @@ export default function AdminDashboardPage() {
           )}
 
           {/* User Profile Footer */}
-          <div className="p-3 border-t border-zinc-800 flex items-center justify-between gap-2">
+          <div className="hidden lg:flex p-3 border-t border-zinc-800 items-center justify-between gap-2">
             <div className="flex items-center gap-2 overflow-hidden">
               <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 font-bold text-xs shrink-0">
                 AD
@@ -939,7 +949,7 @@ export default function AdminDashboardPage() {
               {sidebarOpen && (
                 <div className="overflow-hidden">
                   <p className="text-xs font-bold text-white truncate">Administrator</p>
-                  <p className="text-[10px] text-zinc-400 font-mono">PIN: 13663</p>
+                  <p className="text-[10px] text-zinc-400">Authenticated session</p>
                 </div>
               )}
             </div>
@@ -1596,6 +1606,7 @@ export default function AdminDashboardPage() {
                   <div className="flex flex-wrap items-center gap-2">
                     {[
                       { id: "all", label: "🌟 All Website Photos", count: imageSlots.length },
+                      { id: "services", label: "🛠️ Core Services Cards (Home & /services)", count: imageSlots.filter((s) => s.category === "services").length },
                       { id: "house-renovation", label: "🏠 House Renovation (/house-renovation)", count: imageSlots.filter((s) => s.category === "house-renovation").length },
                       { id: "toilet-renovation", label: "🚿 Toilet Renovation (/toilet-renovation-in-singapore)", count: imageSlots.filter((s) => s.category === "toilet-renovation").length },
                       { id: "tiling", label: "🧱 Tiling Works (/tiling-works)", count: imageSlots.filter((s) => s.category === "tiling").length },
@@ -2291,7 +2302,8 @@ export default function AdminDashboardPage() {
                   <div>
                     <label className="text-zinc-400 block mb-1.5 font-bold">Admin Master PIN</label>
                     <input
-                      type="text"
+                      type="password"
+                      autoComplete="new-password"
                       value={settings.security.adminPin}
                       onChange={(e) =>
                         setSettings({

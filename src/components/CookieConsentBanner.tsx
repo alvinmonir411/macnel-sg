@@ -29,9 +29,9 @@ export function CookieConsentBanner() {
     <div
       role="region"
       aria-label="Cookie consent banner"
-      className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-50 animate-in fade-in slide-in-from-bottom-5 duration-300"
+      className="fixed bottom-24 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-md z-[60] animate-in fade-in slide-in-from-bottom-5 duration-300"
     >
-      <div className="rounded-2xl bg-[#16263F]/95 backdrop-blur-xl border border-white/20 p-5 shadow-2xl text-white">
+      <div className="rounded-2xl bg-[#16263F]/95 backdrop-blur-xl border border-white/20 p-4 sm:p-5 shadow-2xl text-white">
         <div className="flex items-start gap-3">
           <div className="w-9 h-9 rounded-xl bg-[#8CCB6B]/20 text-[#8CCB6B] flex items-center justify-center shrink-0 mt-0.5">
             <Cookie className="w-5 h-5" />

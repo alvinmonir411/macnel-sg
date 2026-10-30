@@ -81,7 +81,9 @@ export async function POST(request: Request) {
     const settings = await getSettings();
     const expectedPin = settings?.security?.adminPin || "13663";
 
-    if (pin.trim() !== expectedPin.trim() && pin.trim() !== "13663") {
+    // Only the currently configured passcode may authenticate. The previous
+    // fallback comparison meant an old bootstrap PIN remained valid forever.
+    if (pin.trim() !== expectedPin.trim()) {
       recordFailedAttempt(clientIp);
       return NextResponse.json(
         { error: "Invalid Master PIN. Please check your passcode and try again." },

@@ -65,6 +65,28 @@ body {
   overflow-x: hidden;
 }
 
+/* Make keyboard navigation obvious without changing the visual language. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid rgba(140, 203, 107, 0.9);
+  outline-offset: 3px;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ==========================================================================
    🌈 HIGH-CONTRAST BRAND GRADIENTS (Crystal Clear Visibility)
    ========================================================================== */

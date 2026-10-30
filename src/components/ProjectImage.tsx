@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Camera } from "lucide-react";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
@@ -25,6 +25,26 @@ export function ProjectImage({
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 }: ProjectImageProps) {
   const [hasError, setHasError] = useState(false);
+  const [activeSrc, setActiveSrc] = useState<string>(() => getCloudinaryUrl(src));
+
+  // Sync when prop changes or on client hydration
+  useEffect(() => {
+    setActiveSrc(getCloudinaryUrl(src));
+    setHasError(false);
+  }, [src]);
+
+  // Listen to live instant updates triggered from dashboard without page refresh
+  useEffect(() => {
+    const handleLiveImageUpdate = () => {
+      setActiveSrc(getCloudinaryUrl(src));
+      setHasError(false);
+    };
+
+    window.addEventListener("live-image-updated", handleLiveImageUpdate);
+    return () => {
+      window.removeEventListener("live-image-updated", handleLiveImageUpdate);
+    };
+  }, [src]);
 
   // If no source or failed to load, show neutral placeholder
   if (!src || hasError) {
@@ -49,7 +69,7 @@ export function ProjectImage({
 
   return (
     <Image
-      src={getCloudinaryUrl(src)}
+      src={activeSrc}
       alt={alt}
       fill
       sizes={sizes}

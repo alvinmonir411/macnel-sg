@@ -26,6 +26,14 @@ async function writeJsonFile(fileName: string, data: any) {
 
 export async function GET() {
   try {
+    const authenticated = await isAuthenticated();
+    if (!authenticated) {
+      return NextResponse.json(
+        { error: "Unauthorized. Valid admin session required." },
+        { status: 401 }
+      );
+    }
+
     const dbSettings = await getSettings();
     const projects = await readJsonFile("projects.json", []);
     const pricing = await readJsonFile("pricing.json", {});

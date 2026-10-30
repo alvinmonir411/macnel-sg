@@ -92,6 +92,85 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const contentType = request.headers.get("content-type") || "";
+
+    // 1. Direct Multipart Form File Upload (used by /admin/services & /admin/projects)
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await request.formData();
+      const file = formData.get("file") as File | null;
+      const folder = (formData.get("folder") as string) || "general";
+
+      if (!file) {
+        return NextResponse.json({ error: "No file provided" }, { status: 400 });
+      }
+
+      const { cloudName, uploadPreset } = getCloudinaryCredentials();
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      const mime = file.type || "image/jpeg";
+      const fileName = file.name || "upload.jpg";
+
+      let uploadedUrl = "";
+
+      // Try unsigned Cloudinary upload
+      try {
+        const uploadFormData = new FormData();
+        uploadFormData.append("upload_preset", uploadPreset);
+        uploadFormData.append("folder", `renovation-contractor-sg/${folder}`);
+        const blob = new Blob([buffer], { type: mime });
+        uploadFormData.append("file", blob, fileName);
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          method: "POST",
+          body: uploadFormData,
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          uploadedUrl = data.secure_url || data.url;
+        }
+      } catch (cloudErr) {
+        console.warn("Direct upload error:", cloudErr);
+      }
+
+      // Fallback to signed Cloudinary SDK upload
+      if (!uploadedUrl) {
+        try {
+          const base64Uri = `data:${mime};base64,${buffer.toString("base64")}`;
+          const uploadRes = await cloudinary.uploader.upload(base64Uri, {
+            folder: `renovation-contractor-sg/${folder}`,
+            resource_type: "image",
+          });
+          uploadedUrl = uploadRes.secure_url;
+        } catch (signedErr) {
+          console.warn("Signed upload error:", signedErr);
+        }
+      }
+
+      // Local fallback
+      if (!uploadedUrl) {
+        try {
+          const uploadsDir = path.join(process.cwd(), "public", "images", "uploads");
+          if (!fs.existsSync(uploadsDir)) {
+            fs.mkdirSync(uploadsDir, { recursive: true });
+          }
+          const safeName = `${Date.now()}-${fileName.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
+          const filePath = path.join(uploadsDir, safeName);
+          fs.writeFileSync(filePath, buffer);
+          uploadedUrl = `/images/uploads/${safeName}`;
+        } catch (localErr: any) {
+          throw new Error(`Failed to save image: ${localErr.message}`);
+        }
+      }
+
+      return NextResponse.json({
+        success: true,
+        url: uploadedUrl,
+        message: "Image uploaded successfully!",
+      });
+    }
+
+    // 2. JSON actions (e.g. test connection)
     const body = await request.json();
     const { action, cloudName, uploadPreset } = body;
 
@@ -100,7 +179,6 @@ export async function POST(request: Request) {
 
     if (action === "test") {
       try {
-        // Test an actual test upload with the unsigned preset
         const formData = new FormData();
         formData.append("upload_preset", activePreset);
         formData.append("folder", "renovation-contractor-sg/_healthcheck");

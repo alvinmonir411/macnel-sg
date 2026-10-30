@@ -131,7 +131,7 @@ export function OtherServices({ initialServices }: { initialServices?: any[] } =
                 className="group relative rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-2xl hover:border-[#8CCB6B]/60 transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Visual Image Header using <ProjectImage> */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-900">
+                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
                   <ProjectImage
                     src={service.image}
                     alt={service.title}
