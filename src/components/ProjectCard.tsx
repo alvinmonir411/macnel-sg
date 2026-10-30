@@ -7,9 +7,7 @@ import {
   MapPin,
   Maximize2,
   Clock,
-  Banknote,
   ArrowRight,
-  ShieldCheck,
 } from "lucide-react";
 
 export interface ProjectCardProps {
@@ -21,7 +19,7 @@ export interface ProjectCardProps {
     location: string;
     sizeSqft: string;
     durationDays: string;
-    costRange: string;
+    costRange?: string;
     beforeImage: string;
     afterImage: string;
     summary: string;
@@ -172,10 +170,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <div className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
               <span className="font-medium truncate">{clean(project.durationDays)}</span>
-            </div>
-            <div className="col-span-2 flex items-center gap-1.5 font-bold text-slate-900 pt-1">
-              <Banknote className="w-3.5 h-3.5 text-[#16a34a] shrink-0" />
-              <span>Cost: <span className="text-[#166534]">{clean(project.costRange)}</span></span>
             </div>
           </div>
         </div>

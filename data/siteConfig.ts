@@ -96,13 +96,13 @@ export const siteConfig: SiteConfig = {
   url: "https://renovationcontractorsg.org",
 
   // 🏛️ Official Business Registration & Credentials
-  legalName: "Renovation Contractor SG",
+  legalName: "MACNEL CONSTRUCTION PTE LTD",
   
   // ACRA Official UEN
   uen: "202402481G",
   
   // BCA Contractor Registry
-  bcaLicense: "BCA Registered Contractor (CR06 / Interior Decoration)",
+  bcaLicense: "BCA Registered Contractor (CR06 / L1 Interior Decoration)",
   
   // HDB Registered Renovation Contractor Directory No. (leave empty until assigned)
   hdbLicense: "",

@@ -4,9 +4,7 @@ import {
   Building2,
   HardHat,
   Award,
-  CheckCircle2,
   Lock,
-  FileCheck,
   Sparkles,
 } from "lucide-react";
 
@@ -17,17 +15,16 @@ export function CredentialsBar({ credentials: customCreds }: { credentials?: any
     bcaLicense,
     hdbLicense,
     yearsInBusiness,
-    insurance,
   } = siteConfig;
 
   // Helper to cleanly format placeholder text for display while preserving raw data
   const clean = (val: string | undefined) =>
     val ? val.replace(/^TODO_REPLACE:\s*/i, "").trim() : "";
 
-  const cleanLegalName = clean(legalName) || "Renovation Contractor SG";
+  const cleanLegalName = clean(legalName) || "MACNEL CONSTRUCTION PTE LTD";
   const cleanUen = clean(uen) || "202402481G";
   const cleanHdb = clean(hdbLicense);
-  const cleanBca = clean(bcaLicense) || "BCA Registered Workmanship";
+  const cleanBca = clean(bcaLicense) || "BCA Registered Contractor (CR06 / L1 Interior Decoration)";
   const cleanYears = clean(yearsInBusiness) || "12";
 
   return (
@@ -48,7 +45,7 @@ export function CredentialsBar({ credentials: customCreds }: { credentials?: any
             </span>
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs font-black uppercase tracking-[0.18em] text-[#166534]">
-                Singapore Licensed &amp; Insured Entity
+                Singapore Licensed Contractor Entity
               </span>
               <span className="hidden sm:inline-block text-slate-300">·</span>
               <span className="text-xs text-slate-500 font-medium hidden sm:inline-block">
@@ -60,7 +57,7 @@ export function CredentialsBar({ credentials: customCreds }: { credentials?: any
           <div className="flex items-center gap-2 text-[11px] font-bold text-slate-600">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-[#166534] border border-emerald-200">
               <ShieldCheck className="w-3.5 h-3.5 text-[#16a34a]" />
-              <span>ACRA Registered &amp; Insured</span>
+              <span>ACRA Registered Entity</span>
             </span>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
               <Lock className="w-3.5 h-3.5 text-slate-500" />
@@ -69,8 +66,8 @@ export function CredentialsBar({ credentials: customCreds }: { credentials?: any
           </div>
         </div>
 
-        {/* 4 Architectural Credential Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* 3 Architectural Credential Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Card 1: Registered Company & UEN */}
           <div className="group relative rounded-2xl bg-white border border-slate-200/90 p-4 sm:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-[#16a34a]/50 hover:-translate-y-0.5 transition-all duration-300">
             <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#16a34a] to-transparent opacity-80" />
@@ -115,29 +112,7 @@ export function CredentialsBar({ credentials: customCreds }: { credentials?: any
             </div>
           </div>
 
-          {/* Card 3: WIC & Public Liability Insurance */}
-          <div className="group relative rounded-2xl bg-white border border-slate-200/90 p-4 sm:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-[#16a34a]/50 hover:-translate-y-0.5 transition-all duration-300">
-            <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[#16a34a] to-transparent opacity-80" />
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-[#166534] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                <ShieldCheck className="w-5 h-5 text-[#16a34a]" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 block mb-0.5">
-                  Insurance Protection
-                </span>
-                <p className="text-sm font-bold text-slate-900 truncate leading-snug">
-                  WIC &amp; S$1M Liability
-                </p>
-                <div className="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-50/80 border border-emerald-200 text-[11px] font-semibold text-[#166534]">
-                  <CheckCircle2 className="w-3 h-3 text-[#16a34a]" />
-                  <span>100% Policy Covered</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 4: Track Record & Warranty */}
+          {/* Card 3: Track Record & Warranty */}
           <div className="group relative rounded-2xl bg-white border border-slate-200/90 p-4 sm:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-amber-500/50 hover:-translate-y-0.5 transition-all duration-300">
             <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-80" />
             <div className="flex items-start gap-3.5">

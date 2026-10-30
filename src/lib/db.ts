@@ -278,6 +278,7 @@ import warrantyFallback from "../../data/warrantyTerms.json";
 
 export async function getLiveSiteData() {
   const dbSettings = await getSettings();
+  const rawFallback = siteSettingsFallback as Record<string, any>;
 
   return {
     settings: dbSettings || {},
@@ -294,23 +295,23 @@ export async function getLiveSiteData() {
     team: dbSettings?.team || teamFallback,
     warranty: dbSettings?.warranty || warrantyFallback,
     contact: {
-      ...(siteSettingsFallback.contact || {}),
+      ...(rawFallback.contact || {}),
       ...(dbSettings?.contact || {}),
     },
     credentials: {
-      ...(siteSettingsFallback.credentials || {}),
+      ...(rawFallback.credentials || {}),
       ...(dbSettings?.credentials || {}),
     },
     marketing: {
-      ...(siteSettingsFallback.marketing || {}),
+      ...(rawFallback.marketing || {}),
       ...(dbSettings?.marketing || {}),
     },
     ai: {
-      ...(siteSettingsFallback.ai || {}),
+      ...(rawFallback.ai || {}),
       ...(dbSettings?.ai || {}),
     },
     site_images: {
-      ...((siteSettingsFallback as any).site_images || {}),
+      ...(rawFallback.site_images || {}),
       ...(dbSettings?.site_images || {}),
     },
     service_pages: {

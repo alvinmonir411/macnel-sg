@@ -39,7 +39,7 @@ export function Footer({ customContact, customCredentials }: { customContact?: a
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
                   <span className="font-extrabold text-xl tracking-tight text-white">
-                    {name}
+                    {legalName || name}
                   </span>
                 </div>
                 <p className="text-[10px] text-slate-300 tracking-wider uppercase font-semibold">
@@ -221,7 +221,7 @@ export function Footer({ customContact, customCredentials }: { customContact?: a
         {/* Bottom Credits & Legal Links (Rule A.4 & Section D) */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
           <p>
-            &copy; 2026 {name}. All rights reserved.
+            &copy; 2026 {legalName || name}. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center gap-5 sm:gap-6">

@@ -49,3 +49,4 @@ export function ProjectGalleryClient({ initialProjects }: { initialProjects: any
     </>
   );
 }
+

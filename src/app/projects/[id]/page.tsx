@@ -9,7 +9,6 @@ import { ProjectDetailClient } from "@/components/ProjectDetailClient";
 
 import {
   Calendar,
-  Banknote,
   Maximize2,
   MapPin,
   Clock,
@@ -142,8 +141,8 @@ async function ProjectDetailContent({ params }: PageProps) {
         />
 
         {/* Project Metrics Ribbon */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-10 p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm">
-          <div className="p-3 border-r sm:border-r border-slate-100 last:border-r-0">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-10 p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm">
+          <div className="p-3 border-b sm:border-b-0 sm:border-r border-slate-100">
             <span className="text-xs text-slate-500 font-medium block mb-1 flex items-center gap-1.5">
               <Maximize2 className="w-3.5 h-3.5 text-[#16a34a]" />
               <span>Floor Area</span>
@@ -153,23 +152,13 @@ async function ProjectDetailContent({ params }: PageProps) {
             </p>
           </div>
 
-          <div className="p-3 border-r sm:border-r border-slate-100 last:border-r-0">
+          <div className="p-3 border-b sm:border-b-0 sm:border-r border-slate-100">
             <span className="text-xs text-slate-500 font-medium block mb-1 flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-[#16a34a]" />
               <span>Completion Time</span>
             </span>
             <p className="text-base sm:text-xl font-black text-slate-900">
               {clean(project.durationDays)}
-            </p>
-          </div>
-
-          <div className="p-3 border-r sm:border-r border-slate-100 last:border-r-0">
-            <span className="text-xs text-slate-500 font-medium block mb-1 flex items-center gap-1.5">
-              <Banknote className="w-3.5 h-3.5 text-[#16a34a]" />
-              <span>Indicative Cost</span>
-            </span>
-            <p className="text-base sm:text-xl font-black text-[#166534]">
-              {clean(project.costRange)}
             </p>
           </div>
 
