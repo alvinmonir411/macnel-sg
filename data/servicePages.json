@@ -582,5 +582,55 @@
         "a": "Yes. All our electrical installations are supervised by EMA Licensed Electrical Workers (LEW). We perform insulation resistance testing and submit certification paperwork."
       }
     ]
+  },
+  "plastering_services": {
+    "hero": {
+      "title": "Professional Wall Plastering, Skim Coating & Surface Smoothing",
+      "subtitle": "Level 5 Glass-Smooth Wall Finish · Saint-Gobain Certified",
+      "desc": "Transform rough, pitted, or cracked walls into flawlessly flat, baby-smooth surfaces. Renovation Contractor SG delivers master skim coating, hollow plaster restoration, and anti-crack drywall taping across Singapore.",
+      "imageSlot": "service_plastering",
+      "defaultImage": "/images/services/plastering-services.jpg"
+    },
+    "processes": [
+      {
+        "step": "01",
+        "title": "Hollow Wall Inspection & Defective Plaster Hacking",
+        "slotId": "service_plastering",
+        "image": "/images/services/plastering-services.jpg",
+        "desc": "We tap and sound-test every wall section to identify hollow or drummy plaster. Loose or blistered plaster is cleanly chipped back to solid masonry and sealed with bonding primer."
+      },
+      {
+        "step": "02",
+        "title": "Fiberglass Joint Mesh & Base Skim Coat Application",
+        "slotId": "service_ceiling_partition",
+        "image": "/images/services/false-ceiling.jpg",
+        "desc": "High-tensile fiberglass mesh is embedded over all joint lines and hairline stress fractures before applying a polymer-modified base skim coat to level out surface dips and bumps."
+      },
+      {
+        "step": "03",
+        "title": "Ultra-Fine Top Finish Skim & Dust-Free Machine Sanding",
+        "slotId": "service_painting",
+        "image": "/images/services/painting-services.jpg",
+        "desc": "Our master plasterers apply an ultra-fine finishing skim coat, followed by orbital vacuum power sanding with HEPA filtration to produce an impeccably flat, paint-ready Level 5 finish."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What is the difference between wall plastering and skim coating?",
+        "a": "Traditional plastering is thick (10mm - 20mm) cement mortar applied over bare brick or concrete to build the wall straight. Skim coating is a fine (1mm - 3mm) smooth compound applied over existing walls or drywall to create an ultra-flat, mirror-smooth surface ready for primer and painting."
+      },
+      {
+        "q": "Can skim coating solve wavy or uneven walls in older resale HDB flats?",
+        "a": "Yes! Mature resale flats often have heavy surface undulations from repeated paint coats or rough original precast joints. A full 2-coat to 3-coat skim coating with laser-edge straight rulers completely flattens and restores the walls."
+      },
+      {
+        "q": "How many days does whole-house wall skim coating take?",
+        "a": "For a typical 4-room or 5-room HDB flat, whole-house wall skimming and machine sanding usually takes 2 to 3 days, followed by 1 day for moisture curing before sealer and paint application."
+      },
+      {
+        "q": "Do you provide dust extraction during wall sanding?",
+        "a": "Yes. We use commercial drywall sanders connected directly to industrial HEPA dust extractors, capturing over 95% of airborne gypsum dust to keep your premises clean and healthy."
+      }
+    ]
   }
 }

@@ -124,7 +124,7 @@ export function Header({ customContact, customCredentials }: { customContact?: a
     },
     {
       title: "Plastering Services",
-      href: "/house-painting-plastering",
+      href: "/plastering-services",
       desc: "Skim coating, wall smoothing & crack repair",
       badge: "Skim Coat",
       icon: <Hammer className="w-4 h-4 text-brand-accent" />,

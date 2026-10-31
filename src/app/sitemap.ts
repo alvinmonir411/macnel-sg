@@ -49,6 +49,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      path: "/plastering-services",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
+    {
       path: "/flooring-carpet-services",
       priority: 0.85,
       changeFrequency: "weekly" as const,
