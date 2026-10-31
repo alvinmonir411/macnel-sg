@@ -127,6 +127,7 @@ interface SiteSettings {
     operatingHours: string;
   };
   credentials: {
+    legalName?: string;
     uen: string;
     hdbLicense: string;
     bcaLicense: string;
@@ -165,7 +166,8 @@ const DEFAULT_SETTINGS: SiteSettings = {
   credentials: {
     uen: "202402481G",
     hdbLicense: "",
-    bcaLicense: "BCA Registered Contractor (CR06 / Interior)",
+    legalName: "MACNEL CONSTRUCTION PTE LTD",
+    bcaLicense: "BCA Registered Contractor (CR06 / L1 Interior Decoration)",
     bizSafe: "bizSAFE Level 3 Certified",
     yearsInBusiness: "12",
   },
@@ -2236,6 +2238,21 @@ export default function AdminDashboardPage() {
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                  <div>
+                    <label className="text-zinc-400 block mb-1.5 font-bold">Company Legal Name</label>
+                    <input
+                      type="text"
+                      value={settings.credentials.legalName || "MACNEL CONSTRUCTION PTE LTD"}
+                      onChange={(e) =>
+                        setSettings({
+                          ...settings,
+                          credentials: { ...settings.credentials, legalName: e.target.value },
+                        })
+                      }
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
+                    />
+                  </div>
+
                   <div>
                     <label className="text-zinc-400 block mb-1.5 font-bold">ACRA UEN Number</label>
                     <input

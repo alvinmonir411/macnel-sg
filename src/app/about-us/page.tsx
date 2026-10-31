@@ -217,7 +217,7 @@ export default async function AboutUsPage() {
                 Direct Hands-On Supervision from Founder to Handover
               </p>
               <p className="text-xs text-slate-300 mt-2">
-                Certified compliance with BCA SS CP5, PUB Code of Practice, and HDB renovation guidelines.
+                BCA Registered Contractor (CR06 / L1 Interior Decoration) · Compliance with BCA SS CP5, PUB Code of Practice, and HDB guidelines.
               </p>
             </div>
           </div>

@@ -113,7 +113,7 @@ export const siteConfig: SiteConfig = {
   // 🛡️ Insurance & Liability Protection (Rule B.1)
   insurance: {
     workInjuryCompensation: "Insured with NTUC Income (Work Injury Compensation)",
-    publicLiability: "S$1,000,000 Public Liability Insurance Coverage",
+    publicLiability: "",
   },
 
   // 📞 Direct Contact & Physical Presence
@@ -336,7 +336,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       q: "Do you handle HDB renovation permits and condo management approvals?",
-      a: "Yes. We submit all required HDB renovation permits, structural endorsement forms, and condo management documentation including public liability insurance copies and lift protection deposits.",
+      a: "Yes. We submit all required HDB renovation permits, structural endorsement forms, and condo management documentation including lift protection deposits and site safety protections.",
     },
     {
       q: "How long does it take to get a detailed quotation after site measurement?",

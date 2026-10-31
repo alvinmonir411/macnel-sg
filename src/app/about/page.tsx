@@ -96,10 +96,12 @@ export default async function AboutPage() {
               <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider block mb-1">Work Injury Compensation (WIC)</span>
               <span className="font-extrabold text-[#0F172A] text-base">{clean(insurance?.workInjuryCompensation) || "Covered up to S$1,000,000 per claim"}</span>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200">
-              <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider block mb-1">Public Liability Insurance</span>
-              <span className="font-extrabold text-[#0F172A] text-base">{clean(insurance?.publicLiability) || "Covered up to S$1,000,000 per occurrence"}</span>
-            </div>
+            {clean(insurance?.publicLiability) && (
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider block mb-1">Public Liability Insurance</span>
+                <span className="font-extrabold text-[#0F172A] text-base">{clean(insurance?.publicLiability)}</span>
+              </div>
+            )}
           </div>
         </div>
 
