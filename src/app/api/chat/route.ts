@@ -279,22 +279,23 @@ export async function POST(request: Request) {
     const settings = await getSettings();
     const ai = settings?.ai || {};
 
-    // Validate key
-    const rawKey = (
+    // Clean & sanitize key
+    let rawKey = (
       testKey !== undefined
         ? testKey
         : ai.geminiApiKey || process.env.GEMINI_API_KEY || ""
     ).trim();
 
-    const isValidGeminiKey = Boolean(
-      rawKey &&
-      rawKey.startsWith("AIzaSy") &&
-      rawKey.length >= 35 &&
-      !rawKey.includes("@") &&
-      !rawKey.includes("[")
-    );
+    // Remove any leading 'GEMINI_API_KEY=', surrounding quotes, or whitespace
+    rawKey = rawKey
+      .replace(/^GEMINI_API_KEY\s*=\s*/i, "")
+      .replace(/^["'`]|["'`]$/g, "")
+      .trim();
 
-    const apiKey = isValidGeminiKey ? rawKey : "";
+    const isEmail = rawKey.includes("@") || rawKey.includes("mailto:");
+    const hasKey = Boolean(rawKey && rawKey.length > 5 && !isEmail);
+    const apiKey = hasKey ? rawKey : "";
+
     const selectedModel = (testModel || ai.model || "gemini-2.5-flash").trim();
     const systemPrompt = ai.systemPrompt || DEFAULT_SYSTEM_PROMPT;
 
@@ -317,13 +318,22 @@ export async function POST(request: Request) {
       });
     }
 
-    // 1. If key is missing or not a valid Google AI key:
+    // 1. If key is missing or is an email:
     if (!apiKey) {
       if (isTest) {
+        if (isEmail) {
+          return NextResponse.json(
+            {
+              success: false,
+              error: "An email address was entered instead of an API key. Please copy your Google Gemini API key from Google AI Studio (https://aistudio.google.com/app/apikey).",
+            },
+            { status: 400 }
+          );
+        }
         return NextResponse.json(
           {
             success: false,
-            error: "Invalid Gemini API key. Google Gemini API keys start with 'AIzaSy...'. Please copy your valid key from Google AI Studio (https://aistudio.google.com/app/apikey).",
+            error: "No API key entered. Please paste your Gemini API key from Google AI Studio (https://aistudio.google.com/app/apikey).",
           },
           { status: 400 }
         );

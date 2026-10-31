@@ -246,24 +246,29 @@ export default function AdminDashboardPage() {
 
   const [editingProject, setEditingProject] = useState<ProjectItem | null>(null);
   const [testingAiKey, setTestingAiKey] = useState<boolean>(false);
+  const [showApiKey, setShowApiKey] = useState<boolean>(false);
   const [aiTestResult, setAiTestResult] = useState<{ success: boolean; message: string } | null>(null);
 
   const handleTestAiKey = async () => {
     setTestingAiKey(true);
     setAiTestResult(null);
+    const cleaned = (settings.ai.geminiApiKey || "")
+      .replace(/^GEMINI_API_KEY\s*=\s*/i, "")
+      .replace(/^["'`]|["'`]$/g, "")
+      .trim();
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          testKey: settings.ai.geminiApiKey,
+          testKey: cleaned,
         }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
         setAiTestResult({
           success: true,
-          message: data.source === "gemini" ? `Connected successfully (${data.model || "Gemini"})!` : "Active and working!",
+          message: data.source === "gemini" ? `Connected successfully to Google Gemini (${data.model || "Gemini"})!` : "Active and working!",
         });
       } else {
         setAiTestResult({
@@ -2460,19 +2465,33 @@ export default function AdminDashboardPage() {
                       </a>
                     </div>
                     <div className="flex gap-2">
-                      <input
-                        type="password"
-                        value={settings.ai.geminiApiKey}
-                        placeholder="AIzaSy... (leave blank to use built-in smart contractor engine)"
-                        onChange={(e) => {
-                          setSettings({
-                            ...settings,
-                            ai: { ...settings.ai, geminiApiKey: e.target.value },
-                          });
-                          setAiTestResult(null);
-                        }}
-                        className="flex-1 px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white font-mono text-xs"
-                      />
+                      <div className="relative flex-1">
+                        <input
+                          type={showApiKey ? "text" : "password"}
+                          value={settings.ai.geminiApiKey}
+                          placeholder="Paste Gemini API Key here (or leave blank for smart engine)"
+                          onChange={(e) => {
+                            const cleaned = e.target.value
+                              .replace(/^GEMINI_API_KEY\s*=\s*/i, "")
+                              .replace(/^["'`]|["'`]$/g, "")
+                              .trim();
+                            setSettings({
+                              ...settings,
+                              ai: { ...settings.ai, geminiApiKey: cleaned },
+                            });
+                            setAiTestResult(null);
+                          }}
+                          className="w-full pl-4 pr-10 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white font-mono text-xs"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowApiKey(!showApiKey)}
+                          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white p-1"
+                          title={showApiKey ? "Hide Key" : "Show Key"}
+                        >
+                          {showApiKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                        </button>
+                      </div>
                       <button
                         type="button"
                         onClick={handleTestAiKey}
