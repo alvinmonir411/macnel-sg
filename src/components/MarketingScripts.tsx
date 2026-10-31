@@ -18,7 +18,7 @@ export function MarketingHeadScripts({ marketing: customMarketing }: { marketing
   return (
     <>
       {/* 1. Google Tag Manager (Head) */}
-      {gtmEnabled && gtmId && (
+      {gtmEnabled && gtmId && gtmId.trim() !== "GTM-WQL9F32Q" && (
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

@@ -1,7 +1,7 @@
 {
   "marketing": {
-    "gtmId": "",
-    "gtmEnabled": false,
+    "gtmId": "GTM-WQL9F32Q",
+    "gtmEnabled": true,
     "ga4Id": "",
     "ga4Enabled": false,
     "metaPixelId": "",

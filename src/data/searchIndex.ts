@@ -23,7 +23,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "tiling-works",
     image: "/images/tiling/2.jpeg",
     badge: "Direct Craftsmen",
-    pricingHint: "From $38/sqft (Direct Rates)",
+    pricingHint: "Direct Trade Rates",
     turnaround: "3 - 7 days",
     highlights: [
       "Hacking, screeding & water-ponding test",
@@ -64,7 +64,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "door-window",
     image: "/images/door-window/4.jpeg",
     badge: "BCA Certified",
-    pricingHint: "From $280/door installed",
+    pricingHint: "Direct Factory Rates",
     turnaround: "1 - 3 days",
     highlights: [
       "BCA-licensed window installers",
@@ -99,7 +99,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "false-ceiling-partition",
     image: "/images/partition-ceiling/2.jpeg",
     badge: "Aesthetic Lighting Ready",
-    pricingHint: "From $4.50/sqft",
+    pricingHint: "Direct Installer Rates",
     turnaround: "2 - 5 days",
     highlights: [
       "Moisture-resistant drywall & acoustic insulation",
@@ -134,7 +134,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "painting-services",
     image: "/images/painting/3.jpeg",
     badge: "Nippon Paint Certified",
-    pricingHint: "HDB 3-Room from $880",
+    pricingHint: "Direct Trade Rates",
     turnaround: "2 - 4 days",
     highlights: [
       "Full surface prep with moisture-proof primer",
@@ -175,7 +175,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "plastering-services",
     image: "/images/services/plastering-services.jpg",
     badge: "Level 5 Finish",
-    pricingHint: "HDB room from $350",
+    pricingHint: "Direct Plasterer Rates",
     turnaround: "2 - 3 days",
     highlights: [
       "Multi-layer polymer-modified fine skim coat application",
@@ -245,7 +245,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "flooring-carpet-services",
     image: "/images/flooring/5.jpeg",
     badge: "100% Waterproof SPC",
-    pricingHint: "From $3.80/sqft supplied & installed",
+    pricingHint: "Direct Supply & Install",
     turnaround: "1 - 4 days",
     highlights: [
       "Zero-formaldehyde SPC vinyl flooring with acoustic padding",
@@ -283,7 +283,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "toilet-renovation",
     image: "/images/toilet/4.jpeg",
     badge: "Leak-Proof Certified",
-    pricingHint: "Complete Package from $4,880",
+    pricingHint: "Turnkey Direct Rates",
     turnaround: "7 - 10 days",
     highlights: [
       "HDB approved hacking with heavy debris disposal",
@@ -315,7 +315,7 @@ export const searchableServices: SearchableService[] = [
     bookServiceId: "carpentry",
     image: "/images/house-reno/5.jpeg",
     badge: "In-House Workshop",
-    pricingHint: "From $120/pfr",
+    pricingHint: "In-House Workshop Rates",
     turnaround: "2 - 3 weeks",
     highlights: [
       "Solid plywood carcass with premium laminate finishes",
