@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import {
   MapPin,
   Phone,
@@ -14,7 +15,8 @@ import {
 } from "lucide-react";
 
 export function ContactLocationSection({ contact: customContact }: { contact?: any } = {}) {
-  const contact = { ...siteConfig.contact, ...(customContact || {}) };
+  const { contact: contextContact } = useSiteSettings();
+  const contact = { ...siteConfig.contact, ...(customContact || {}), ...(contextContact || {}) };
   const { socials, awards, name } = siteConfig;
 
   return (
@@ -130,96 +132,95 @@ export function ContactLocationSection({ contact: customContact }: { contact?: a
                 )}%2C%20I%20would%20like%20to%20arrange%20a%20showroom%20visit.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-slate-950 text-xs sm:text-sm font-black shadow-md hover:scale-[1.01] transition-all"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
               >
-                <MessageCircle className="w-4 h-4 fill-slate-950" />
-                <span>Arrange Showroom Appointment</span>
+                <MessageCircle className="w-5 h-5 fill-current" />
+                <span>Message on WhatsApp</span>
               </a>
             </div>
           </div>
 
-          {/* Right Column: Embedded Lazy-Loaded Google Map */}
-          <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-200/90 bg-slate-100 min-h-[380px] shadow-sm relative">
+          {/* Right Column: Google Maps Embed */}
+          <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm relative min-h-[420px] bg-slate-100 flex flex-col">
             <iframe
               src={contact.googleMapsEmbedUrl}
               width="100%"
               height="100%"
-              style={{ border: 0, minHeight: "420px" }}
+              style={{ border: 0 }}
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Renovation Contractor SG Office Location Map"
-              className="w-full h-full object-cover"
+              title={`${name} Office Location`}
+              className="w-full flex-1 min-h-[380px]"
             />
+            <div className="p-4 bg-white border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#16a34a]" />
+                <span className="font-medium text-slate-900">
+                  {contact.address.replace("TODO_REPLACE: ", "")}
+                </span>
+              </div>
+              <a
+                href="https://maps.google.com/?q=101+Kitchener+Road+Jalan+Besar+Plaza+Singapore"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-bold text-[#166534] hover:underline"
+              >
+                <span>Open in Maps</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Social Proof Strip & Verified Profiles (Rule B.9) */}
-        <div className="pt-8 border-t border-slate-200/80 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <Globe className="w-4 h-4 text-[#16a34a]" />
-            <span>Connect with our official profiles:</span>
-          </div>
+        {/* Social Proof Strip & Industry Recognition */}
+        <div className="rounded-3xl bg-white border border-slate-200/90 p-8 shadow-sm">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#166534] block mb-1">
+                Verified Socials &amp; Updates
+              </span>
+              <p className="text-slate-600 text-sm">
+                Follow our ongoing site installations, weekly handover photos, and Singapore renovation tips.
+              </p>
+            </div>
 
-          {/* Social Links: Only rendered when verified non-placeholder URLs are configured */}
-          {((socials.googleBusiness && !socials.googleBusiness.includes("TODO_REPLACE") && !socials.googleBusiness.includes("your-business")) ||
-            (socials.facebook && !socials.facebook.includes("TODO_REPLACE") && !socials.facebook.includes("your-business")) ||
-            (socials.instagram && !socials.instagram.includes("TODO_REPLACE") && !socials.instagram.includes("your-business"))) && (
             <div className="flex flex-wrap items-center gap-3">
-              {socials.googleBusiness && !socials.googleBusiness.includes("TODO_REPLACE") && !socials.googleBusiness.includes("your-business") && (
-                <a
-                  href={socials.googleBusiness}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
-                >
-                  <span>Google Business</span>
-                  <ExternalLink className="w-3 h-3 text-[#16a34a]" />
-                </a>
-              )}
-
-              {socials.facebook && !socials.facebook.includes("TODO_REPLACE") && !socials.facebook.includes("your-business") && (
+              {socials.facebook && !socials.facebook.includes("TODO_REPLACE") && (
                 <a
                   href={socials.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 hover:border-[#1877F2] hover:text-[#1877F2] text-xs font-bold transition-all text-slate-700"
                 >
-                  <span>Facebook</span>
-                  <ExternalLink className="w-3 h-3 text-[#16a34a]" />
+                  <Globe className="w-4 h-4" />
+                  <span>Facebook Page</span>
                 </a>
               )}
-
-              {socials.instagram && !socials.instagram.includes("TODO_REPLACE") && !socials.instagram.includes("your-business") && (
+              {socials.instagram && !socials.instagram.includes("TODO_REPLACE") && (
                 <a
                   href={socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs text-slate-700 hover:text-slate-900 transition-all flex items-center gap-1.5 shadow-sm"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 hover:border-[#E4405F] hover:text-[#E4405F] text-xs font-bold transition-all text-slate-700"
                 >
+                  <Globe className="w-4 h-4" />
                   <span>Instagram</span>
-                  <ExternalLink className="w-3 h-3 text-[#16a34a]" />
+                </a>
+              )}
+              {socials.googleBusiness && !socials.googleBusiness.includes("TODO_REPLACE") && (
+                <a
+                  href={socials.googleBusiness}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 hover:border-[#4285F4] hover:text-[#4285F4] text-xs font-bold transition-all text-slate-700"
+                >
+                  <Award className="w-4 h-4" />
+                  <span>Google Profile</span>
                 </a>
               )}
             </div>
-          )}
-
-          {/* Awards / Media Mentions: Hidden if empty array (Rule B.9) */}
-          {awards.length > 0 && (
-            <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-amber-500" />
-              <div className="flex flex-wrap gap-2">
-                {awards.map((award, i) => (
-                  <span
-                    key={i}
-                    className="text-xs bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-1 rounded-lg font-medium"
-                  >
-                    {award}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </section>

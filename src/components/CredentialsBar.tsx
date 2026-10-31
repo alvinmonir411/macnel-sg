@@ -1,3 +1,6 @@
+"use client";
+
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import { siteConfig } from "@/config/site";
 import {
   ShieldCheck,
@@ -9,7 +12,8 @@ import {
 } from "lucide-react";
 
 export function CredentialsBar({ credentials: customCreds }: { credentials?: any } = {}) {
-  const credentials = { ...siteConfig, ...(customCreds || {}) };
+  const { credentials: contextCreds } = useSiteSettings();
+  const credentials = { ...siteConfig, ...(customCreds || {}), ...(contextCreds || {}) };
 
   const legalName = credentials.legalName || siteConfig.legalName;
   const uen = credentials.uen || siteConfig.uen;

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import {
   MessageCircle,
   Calculator,
@@ -19,7 +20,9 @@ import {
 } from "lucide-react";
 
 export function QuoteCalculator() {
-  const { contact, name } = siteConfig;
+  const { contact: contextContact } = useSiteSettings();
+  const contact = { ...siteConfig.contact, ...(contextContact || {}) };
+  const { name } = siteConfig;
 
   // Form Fields
   const [fullName, setFullName] = useState("");

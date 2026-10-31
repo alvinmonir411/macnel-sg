@@ -136,10 +136,13 @@ export function SiteSettingsProvider({
       }
     };
 
-    // Re-check on focus (e.g. user updated setting in admin and returned to public tab)
+    // 1. Immediately fetch fresh live settings on mount!
+    fetchLiveSettings();
+
+    // 2. Re-check on focus (e.g. user updated setting in admin and returned to public tab)
     window.addEventListener("focus", fetchLiveSettings);
 
-    // Re-check on custom event
+    // 3. Re-check on custom event
     const handleCustomEvent = (e: any) => {
       if (e?.detail) {
         setSettings((prev) => ({
@@ -151,7 +154,7 @@ export function SiteSettingsProvider({
     };
     window.addEventListener("site-settings-updated", handleCustomEvent);
 
-    // Re-check on storage event across browser tabs
+    // 4. Re-check on storage event across browser tabs
     const handleStorage = (e: StorageEvent) => {
       if (e.key === "site_settings_updated_at") {
         fetchLiveSettings();
@@ -177,4 +180,3 @@ export function SiteSettingsProvider({
 export function useSiteSettings() {
   return useContext(SiteSettingsContext);
 }
-

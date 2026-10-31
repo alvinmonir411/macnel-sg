@@ -1,3 +1,6 @@
+"use client";
+
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 import Link from "next/link";
 import teamDataFallback from "../../data/team.json";
 import { siteConfig } from "@/config/site";
@@ -26,13 +29,14 @@ export function AboutSection({
   const activeTeam = customTeam || teamDataFallback;
   const companyStory = activeTeam?.companyStory || teamDataFallback.companyStory;
   const members = activeTeam?.members || teamDataFallback.members;
-  const contact = { ...siteConfig.contact, ...(customContact || {}) };
-  const legalName = customCredentials?.legalName || siteConfig.legalName;
-  const uen = customCredentials?.uen || siteConfig.uen;
-  const bcaLicense = customCredentials?.bcaLicense || siteConfig.bcaLicense;
-  const hdbLicense = customCredentials?.hdbLicense !== undefined
-    ? customCredentials.hdbLicense
-    : siteConfig.hdbLicense;
+  const { credentials: contextCreds, contact: contextContact } = useSiteSettings();
+  const contact = { ...siteConfig.contact, ...(customContact || {}), ...(contextContact || {}) };
+  const legalName = contextCreds?.legalName || customCredentials?.legalName || siteConfig.legalName;
+  const uen = contextCreds?.uen || customCredentials?.uen || siteConfig.uen;
+  const bcaLicense = contextCreds?.bcaLicense || customCredentials?.bcaLicense || siteConfig.bcaLicense;
+  const hdbLicense = contextCreds?.hdbLicense !== undefined
+    ? contextCreds.hdbLicense
+    : (customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense);
   const founder = members?.[0] || {
     name: "Managing Director & Founder",
     role: "Managing Director & Lead Project Supervisor",
