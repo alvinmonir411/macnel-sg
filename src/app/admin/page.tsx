@@ -180,7 +180,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
     metaPixelEnabled: false,
   },
   ai: {
-    botName: "Renovation Contractor SG",
+    botName: "Chat with contractor",
     botSubtitle: "AI assistant · replies instantly",
     welcomeMessageEn: "Hi! Welcome to Renovation Contractor SG. How can we help you today?",
     welcomeMessageBn: "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন।",

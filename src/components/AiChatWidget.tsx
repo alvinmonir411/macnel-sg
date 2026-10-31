@@ -138,7 +138,7 @@ export function AiChatWidget() {
   const [activeLang, setActiveLang] = useState<string>("en");
   const [isTyping, setIsTyping] = useState(false);
   const [config, setConfig] = useState({
-    botName: "Renovation Contractor SG",
+    botName: liveAi?.botName || "Chat with contractor",
     botSubtitle: "AI assistant · replies instantly",
     whatsapp: siteConfig.contact.whatsapp,
     welcomeMessageEn: "Hi! How can we help you today?",
@@ -336,7 +336,7 @@ export function AiChatWidget() {
 
             <div className="text-left hidden sm:block">
               <p className="text-xs font-bold leading-tight flex items-center gap-1.5">
-                <span>Chat with AI</span>
+                <span>Chat with contractor</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               </p>
               <p className="text-[10px] text-blue-100 font-medium leading-tight">

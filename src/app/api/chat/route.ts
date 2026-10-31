@@ -208,7 +208,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
-      botName: ai.botName || "Renovation Contractor SG",
+      botName: ai.botName || "Chat with contractor",
       botSubtitle: ai.botSubtitle || "AI assistant · replies instantly",
       whatsapp: ai.whatsapp || contact.whatsapp || siteConfig.contact.whatsapp,
       welcomeMessageEn: ai.welcomeMessageEn || "Hi! How can we help you today?",
@@ -221,7 +221,7 @@ export async function GET() {
   } catch {
     return NextResponse.json({
       success: true,
-      botName: "Renovation Contractor SG",
+      botName: "Chat with contractor",
       botSubtitle: "AI assistant · replies instantly",
       whatsapp: siteConfig.contact.whatsapp,
       welcomeMessageEn: "Hi! How can we help you today?",
