@@ -1,4 +1,5 @@
 "use client";
+import { LiveImage } from "@/components/LiveImage";
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
@@ -173,7 +174,7 @@ export function Header({ customContact, customCredentials }: { customContact?: a
           {/* Brand Logo - Compact & Crisp */}
           <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group py-0.5">
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border border-[#8CCB6B]/40 ring-1 ring-white/10 flex items-center justify-center bg-[#0B1A2E] shadow-[0_0_12px_rgba(140,203,107,0.25)] group-hover:border-[#8CCB6B] transition-all shrink-0">
-              <img src="/macnel-icon.svg" alt="Renovation Contractor SG" className="w-full h-full object-contain p-1" />
+              <LiveImage src="/macnel-icon.svg" slotId="brand_logo" alt="Renovation Contractor SG" className="w-full h-full object-contain p-1" />
             </div>
             <div className="flex flex-col shrink-0">
               <span className="font-extrabold text-[13.5px] sm:text-[15.5px] tracking-tight text-white whitespace-nowrap drop-shadow-sm">

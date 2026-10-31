@@ -1,4 +1,5 @@
 "use client";
+import { LiveImage } from "@/components/LiveImage";
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
@@ -324,16 +325,11 @@ export function AiChatWidget() {
 
             {/* Avatar with active green dot */}
             <div className="relative w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 shadow-inner overflow-hidden">
-              <Image
+              <LiveImage
                 src="/macnel-icon.svg"
+                slotId="brand_logo"
                 alt="Renovation Contractor SG"
-                width={22}
-                height={22}
-                className="object-contain"
-                onError={(e) => {
-                  // Fallback to bot icon if image fails
-                  e.currentTarget.style.display = "none";
-                }}
+                className="w-full h-full object-contain p-0.5"
               />
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-1.5 ring-white" />
             </div>
@@ -365,15 +361,11 @@ export function AiChatWidget() {
             <div className="flex items-center gap-3 min-w-0">
               {/* White avatar badge with company logo & green online dot */}
               <div className="relative w-10 h-10 rounded-full bg-white p-1 flex items-center justify-center shrink-0 shadow-sm">
-                <Image
+                <LiveImage
                   src="/macnel-icon.svg"
+                  slotId="brand_logo"
                   alt="Renovation Contractor SG"
-                  width={28}
-                  height={28}
-                  className="object-contain"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
+                  className="w-full h-full object-contain p-0.5"
                 />
                 <span className="absolute bottom-0.5 right-0.5 w-3 h-3 rounded-full bg-[#22c55e] ring-2 ring-white" />
               </div>
