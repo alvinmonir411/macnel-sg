@@ -13,23 +13,13 @@ import { optimizeCloudinaryUrl } from "@/lib/cloudinary";
 export default async function Home() {
   const siteData = await getLiveSiteData();
 
-  const mobileHero = optimizeCloudinaryUrl(
-    siteData.site_images?.hero_mobile ||
-      siteData.site_images?.["/hero-modern-mobile.webp"] ||
-      "/hero-modern-mobile.webp",
-    { width: 768 }
-  );
-
-  const desktopHero = optimizeCloudinaryUrl(
-    siteData.site_images?.hero_desktop ||
-      siteData.site_images?.["/hero-modern-desktop.webp"] ||
-      "/hero-modern-desktop.webp",
-    { width: 1920 }
-  );
+  // Pure static local high-performance WebP assets for instant LCP on any connection (Mobile: 25KB, Desktop: 162KB)
+  const mobileHero = "/hero-modern-mobile.webp";
+  const desktopHero = "/hero-modern-desktop.webp";
 
   return (
     <>
-      {/* 1. Hero Section with Responsive Image & Deferred HD Ambient Video */}
+      {/* 1. Hero Section with Responsive Static Image & Deferred HD Ambient Video */}
       <Hero
         initialMobileHero={mobileHero}
         initialDesktopHero={desktopHero}

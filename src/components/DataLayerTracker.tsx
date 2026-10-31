@@ -120,3 +120,4 @@ export function DataLayerTracker() {
 
   return null;
 }
+

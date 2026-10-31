@@ -175,19 +175,9 @@ export default async function RootLayout({
     ],
   };
 
-  const mobileHeroUrl = optimizeCloudinaryUrl(
-    siteData.site_images?.hero_mobile ||
-      siteData.site_images?.["/hero-modern-mobile.webp"] ||
-      "/hero-modern-mobile.webp",
-    { width: 768 }
-  );
-
-  const desktopHeroUrl = optimizeCloudinaryUrl(
-    siteData.site_images?.hero_desktop ||
-      siteData.site_images?.["/hero-modern-desktop.webp"] ||
-      "/hero-modern-desktop.webp",
-    { width: 1920 }
-  );
+  // High-performance static local WebP assets for instant Core Web Vitals LCP
+  const mobileHeroUrl = "/hero-modern-mobile.webp";
+  const desktopHeroUrl = "/hero-modern-desktop.webp";
 
   return (
     <html
@@ -215,6 +205,7 @@ export default async function RootLayout({
         <link
           rel="preload"
           as="image"
+          type="image/webp"
           href={mobileHeroUrl}
           media="(max-width: 768px)"
           fetchPriority="high"
@@ -222,6 +213,7 @@ export default async function RootLayout({
         <link
           rel="preload"
           as="image"
+          type="image/webp"
           href={desktopHeroUrl}
           media="(min-width: 769px)"
           fetchPriority="high"
