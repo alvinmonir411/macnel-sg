@@ -23,6 +23,7 @@ function revalidateAllSitePages(specificPath?: string) {
     "/carpentry-services",
     "/false-ceiling",
     "/house-painting-plastering",
+    "/plastering-services",
     "/house-renovation",
     "/tiling-works",
     "/toilet-renovation-in-singapore",
