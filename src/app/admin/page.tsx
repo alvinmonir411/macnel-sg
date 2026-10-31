@@ -245,6 +245,41 @@ export default function AdminDashboardPage() {
   });
 
   const [editingProject, setEditingProject] = useState<ProjectItem | null>(null);
+  const [testingAiKey, setTestingAiKey] = useState<boolean>(false);
+  const [aiTestResult, setAiTestResult] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handleTestAiKey = async () => {
+    setTestingAiKey(true);
+    setAiTestResult(null);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          testKey: settings.ai.geminiApiKey,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setAiTestResult({
+          success: true,
+          message: data.source === "gemini" ? `Connected successfully (${data.model || "Gemini"})!` : "Active and working!",
+        });
+      } else {
+        setAiTestResult({
+          success: false,
+          message: data.error || "Connection failed. Please check the API key.",
+        });
+      }
+    } catch (e: any) {
+      setAiTestResult({
+        success: false,
+        message: e.message || "Failed to test connection",
+      });
+    } finally {
+      setTestingAiKey(false);
+    }
+  };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeUploadSlot, setActiveUploadSlot] = useState<string | null>(null);
@@ -2412,20 +2447,58 @@ export default function AdminDashboardPage() {
                     />
                   </div>
 
-                  <div>
-                    <label className="text-zinc-400 block mb-1.5 font-bold">Google Gemini API Key</label>
-                    <input
-                      type="password"
-                      value={settings.ai.geminiApiKey}
-                      placeholder="AIzaSy... (optional, smart rules active by default)"
-                      onChange={(e) =>
-                        setSettings({
-                          ...settings,
-                          ai: { ...settings.ai, geminiApiKey: e.target.value },
-                        })
-                      }
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white"
-                    />
+                  <div className="sm:col-span-2">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="text-zinc-400 font-bold block">Google Gemini API Key</label>
+                      <a
+                        href="https://aistudio.google.com/app/apikey"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-emerald-400 hover:text-emerald-300 underline font-medium"
+                      >
+                        Get Free API Key from Google AI Studio &rarr;
+                      </a>
+                    </div>
+                    <div className="flex gap-2">
+                      <input
+                        type="password"
+                        value={settings.ai.geminiApiKey}
+                        placeholder="AIzaSy... (leave blank to use built-in smart contractor engine)"
+                        onChange={(e) => {
+                          setSettings({
+                            ...settings,
+                            ai: { ...settings.ai, geminiApiKey: e.target.value },
+                          });
+                          setAiTestResult(null);
+                        }}
+                        className="flex-1 px-4 py-2.5 rounded-xl bg-[#141414] border border-zinc-700 text-white focus:outline-none focus:border-white font-mono text-xs"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleTestAiKey}
+                        disabled={testingAiKey || !settings.ai.geminiApiKey}
+                        className="px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 disabled:opacity-40 text-white text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 cursor-pointer"
+                      >
+                        {testingAiKey ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5 text-emerald-400" />}
+                        <span>Test Connection</span>
+                      </button>
+                    </div>
+
+                    {aiTestResult && (
+                      <div
+                        className={`mt-2 p-2.5 rounded-xl text-xs font-medium flex items-center gap-2 ${
+                          aiTestResult.success
+                            ? "bg-emerald-950/60 border border-emerald-800 text-emerald-300"
+                            : "bg-red-950/60 border border-red-800 text-red-300"
+                        }`}
+                      >
+                        {aiTestResult.success ? <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" /> : <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />}
+                        <span>{aiTestResult.message}</span>
+                      </div>
+                    )}
+                    <p className="text-[11px] text-zinc-500 mt-1">
+                      If left blank, the website automatically uses our direct Singapore contractor smart knowledge engine.
+                    </p>
                   </div>
 
                   <div className="sm:col-span-2">

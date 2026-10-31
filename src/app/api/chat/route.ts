@@ -2,13 +2,12 @@ import { NextResponse } from "next/server";
 import { getSettings } from "@/lib/db";
 import { siteConfig } from "@/config/site";
 
-
 const DEFAULT_SYSTEM_PROMPT = `You are the official customer service assistant for Renovation Contractor SG (https://renovationcontractorsg.org), a premier renovation contractor and specialist in Singapore.
 
 COMPANY FACTS:
-- Brand Name: Renovation Contractor SG | ACRA UEN: 202402481G
+- Brand Name: Renovation Contractor SG | ACRA UEN: 202402481G | Company: MACNEL CONSTRUCTION PTE LTD
 - 100% In-House Master Tradesmen (Tilers, Plumbers, Carpenters, Electricians, Plasterers, Painters). Zero ID middleman markups (clients save 20% to 35% on direct contractor rates).
-- BCA Registered & HDB Directory. 12-Month Structural & Workmanship Warranty with 24-48h response.
+- BCA Registered Contractor (CR06 / L1 Interior Decoration) & HDB Directory. 12-Month Structural & Workmanship Warranty with 24-48h response.
 - Office & Showroom: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511.
 - Direct Hotline: +65 8653 1076 | WhatsApp: +65 8170 4063.
 - Free on-site inspection and itemized quote within 2 hours.
@@ -26,52 +25,6 @@ CRITICAL RULES FOR RESPONSES:
    - Bengali: "আমি শুধুমাত্র সিঙ্গাপুরের হোম ও কমার্শিয়াল রেনোভেশন সংক্রান্ত তথ্যে সাহায্য করতে পারি। আপনার রেনোভেশন প্রজেক্ট নিয়ে যেকোনো প্রশ্ন করতে পারেন।"
    - English: "I can only assist with Singapore home and commercial renovation inquiries. How can I help with your renovation project?"
 5. ACCURATELY UNDERSTAND ALL QUESTIONS: Understand any phrasing, slang, Singlish, Banglish ("koto dam", "toilet khoroc", "office koi"), English, Bengali, Chinese, Malay, Hindi, Urdu, or Arabic, and answer with contractor accuracy.`;
-
-
-const FALLBACK_RESPONSES: Record<string, { welcome: string; services: string; pricing: string; contact: string }> = {
-  bn: {
-    welcome: "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
-    services: "আমরা সিঙ্গাপুরে সরাসরি কন্ট্রাক্টর হিসেবে কাজ করি। কোনো মিডলম্যান বা আইডি চার্জ নেই। আমাদের প্রধান সেবাসমূহ: ১) টয়লেট রেনোভেশন ও ওয়াটারপ্রুফিং ২) সম্পূর্ণ বাড়ি/ফ্ল্যাট রেনোভেশন ৩) ফ্লোর ও ওয়াল টাইলিং ৪) ফলস সিলিং ও পার্টেশন ৫) নিপ্পন পেইন্ট দিয়ে রঙ ও প্লাস্টারিং ৬) দরজা ও জানালা পরিবর্তন ৭) এসপিসি ভিনাইল ফ্লোরিং ৮) অনুমোদিত ইলেকট্রিক্যাল কাজ। আপনি কোন কাজটি করাতে চাচ্ছেন?",
-    pricing: "সরাসরি কন্ট্রাক্টর হওয়ায় আমরা হোলসেল রেটে কাজ করি (আইডি ফার্মের চেয়ে ২০-৩৫% সাশ্রয়ী)। সাইট ভিজিট এবং কোটেশন সম্পূর্ণ ফ্রি। বিস্তারিত খরচের জন্য আমাদের সাথে হোয়াটসঅ্যাপে +65 8170 4063 নম্বরে যোগাযোগ করুন।",
-    contact: "আমাদের সিনিয়র প্রজেক্ট সুপারের সাথে সরাসরি কথা বলতে বা ফ্রি সাইট পরিদর্শনের তারিখ বুক করতে হোয়াটসঅ্যাপে মেসেজ দিন: +65 8170 4063 বা কল করুন: +65 8653 1076। আমাদের অফিস: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511."
-  },
-  en: {
-    welcome: "Welcome to Renovation Contractor SG! We are Singapore's trusted renovation specialists. How can we assist with your home or commercial project today?",
-    services: "We handle direct in-house renovations without middleman designer markups (saving you 20%-35%): 1) Toilet & Bathroom Renovation with 3-Layer Waterproofing 2) Whole House Turnkey Renovation (HDB / Condo / Landed) 3) Floor & Wall Homogeneous Tiling 4) False Ceiling & Cove Light Partitions 5) Nippon / Dulux House Painting 6) BCA-Approved Doors & Windows 7) Waterproof SPC Vinyl Flooring 8) Licensed EMA Electrical Rewiring. Which service do you need?",
-    pricing: "As direct contractors, our prices are transparent and itemized per foot run with zero hidden markups. We offer free on-site inspections and 2-hour quote turnaround. WhatsApp +65 8170 4063 or call +65 8653 1076 for an instant estimate.",
-    contact: "You can reach our senior project manager directly on WhatsApp at +65 8170 4063, call us at +65 8653 1076, or visit our office at 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511. Would you like to schedule a free site measurement?"
-  },
-  zh: {
-    welcome: "欢迎来到 Renovation Contractor SG！我们是新加坡直属装修总承包商。请问今天我们在哪些装修工程上可以为您提供帮助？",
-    services: "我们拥有自有工匠团队，免除室内设计中介溢价，为您节省20%至35%费用：1) 卫生间翻新与三层防水 2) 全屋整装翻新（HDB组屋/公寓/有地住宅）3) 地砖与墙砖铺贴 4) 假天花板与隔墙 5) 品牌油漆与批灰粉刷 6) 门窗更换 7) SPC防水锁扣地板 8) 持证电工全屋布线。请问您需要了解哪项服务？",
-    pricing: "直接承包商价格透明，无任何隐藏收费。我们提供免费上门勘测测量与2小时出具详细报价单。欢迎通过 WhatsApp +65 8170 4063 或致电 +65 8653 1076 咨询！",
-    contact: "欢迎通过 WhatsApp +65 8170 4063 联系我们的施工主管，致电 +65 8653 1076，或预约参观我们的展厅：101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511。"
-  },
-  ms: {
-    welcome: "Selamat datang ke Renovation Contractor SG! Kami adalah kontraktor renovasi terus di Singapura. Bagaimana kami boleh membantu projek rumah atau pejabat anda hari ini?",
-    services: "Kami menyediakan tukang mahir in-house tanpa komisen pereka tengah (jimat 20%-35%): 1) Renovasi Tandas & Kalis Air 2) Renovasi Keseluruhan Rumah 3) Pemasangan Jubin Lantai & Dinding 4) Siling Palsu & Dinding Pemisah 5) Mengecat Rumah Nippon/Dulux 6) Pintu & Tingkap Diluluskan BCA 7) Lantai Vinil SPC 8) Pendawaian Elektrik Berlesen EMA.",
-    pricing: "Harga kontraktor langsung sangat berpatutan dengan pecahan kos yang jelas tanpa caj tersembunyi. Pemeriksaan tapak dan sebut harga adalah percuma. Hubungi WhatsApp +65 8170 4063 atau hubungi +65 8653 1076.",
-    contact: "Hubungi pengurus projek kami terus di WhatsApp +65 8170 4063, telefon +65 8653 1076, atau kunjungi kami di 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapura 208511."
-  },
-  hi: {
-    welcome: "Renovation Contractor SG में आपका स्वागत है! हम सिंगापुर के डायरेक्ट रिनोवेशन कॉन्ट्रैक्टर हैं। आज हम आपके नवीनीकरण कार्य में क्या सहायता कर सकते हैं?",
-    services: "हमारी इन-हाउस कारीगरों की टीम बिना किसी बिचौलिए शुल्क के काम करती है (20%-35% की बचत): 1) टॉयलेट रिनोवेशन व वॉटरप्रूफिंग 2) संपूर्ण मकान रिनोवेशन (HDB/कंडो) 3) टाइलिंग कार्य 4) फॉल्स सीलिंग 5) हाउस पेंटिंग 6) दरवाजे व खिड़कियां 7) विनाइल फ्लोरिंग 8) इलेक्ट्रिकल वायरिंग।",
-    pricing: "डायरेक्ट कॉन्ट्रैक्टर रेट्स पूरी तरह पारदर्शी हैं। फ्री ऑन-साइट इंस्पेक्शन और कोटेशन के लिए WhatsApp +65 8170 4063 पर संपर्क करें या कॉल करें +65 8653 1076।",
-    contact: "हमारे प्रोजेक्ट सुपरवाइजर से सीधे WhatsApp +65 8170 4063 पर संपर्क करें या 101 Kitchener Road, Jalan Besar Plaza, Singapore में पधारें।"
-  },
-  ur: {
-    welcome: "Renovation Contractor SG میں خوش آمدید! ہم سنگاپور کے ڈائریکٹ رینوویشن کنٹریکٹر ہیں۔ آج ہم آپ کے گھر یا دفتر کی تزئین و آرائش میں کیا مدد کر سکتے ہیں؟",
-    services: "ہم بغیر کسی مڈل مین چارجز کے براہ راست کام کرتے ہیں (20% تا 35% بچت): 1) ٹوائلٹ رینوویشن و واٹر پروفنگ 2) مکمل گھر کی تزئین و آرائش 3) ٹائلز کا کام 4) فالس سیلنگ 5) پینٹ و پلاسٹر 6) دروازے اور کھڑکیاں 7) ونائل فلورنگ 8) الیکٹریکل وائرنگ।",
-    pricing: "ہمارے ریٹس مارکیٹ سے مناسب اور شفاف ہیں۔ مفت سائٹ معائنے کے لیے واٹس ایپ +65 8170 4063 یا کال +65 8653 1076 پر رابطہ کریں۔",
-    contact: "سائٹ وزٹ یا معلومات کے لیے واٹس ایپ +65 8170 4063 پر رابطہ فرمائیں یا 101 Kitchener Road, Jalan Besar Plaza تشریف لائیں۔"
-  },
-  ar: {
-    welcome: "مرحباً بكم في Renovation Contractor SG! مقاول التجديد المباشر في سنغافورة. كيف يمكننا مساعدتك في تجديد منزلك أو مكتبك اليوم؟",
-    services: "نقدم خدمات التجديد المباشرة بدون وساطة وبتوفير 20%-35%: 1) تجديد الحمامات والعزل المائي 2) تجديد شامل للمنازل 3) تركيب البلاط 4) الأسقف المعلقة 5) دهانات نيبون وديلوكس 6) الأبواب والنوافذ المعتمدة 7) أرضيات الفينيل SPC 8) الأعمال الكهربائية المعتمدة.",
-    pricing: "أسعار مقاول مباشرة وشفافة مع فحص مجاني للموقع وعرض أسعار فوري خلال ساعتين. تواصل عبر واتساب +65 8170 4063 أو اتصل بنا على +65 8653 1076.",
-    contact: "للتواصل المباشر مع مدير المشروع عبر واتساب: +65 8170 4063 أو تفضل بزيارة مكتبنا في 101 Kitchener Road, Jalan Besar Plaza, سنغافورة."
-  }
-};
 
 // Helper to detect language code from text or language tag
 function detectLanguage(lang?: string, text?: string): string {
@@ -99,86 +52,146 @@ function detectLanguage(lang?: string, text?: string): string {
   return "en";
 }
 
-// Generate smart fallback response based on user message and language
-function getSmartFallbackReply(userMessage: string, lang: string): string {
+// Highly responsive local contractor knowledge base
+function getSmartContractorReply(userMessage: string, lang: string): string {
   const detected = detectLanguage(lang, userMessage);
-  const fb = FALLBACK_RESPONSES[detected] || FALLBACK_RESPONSES.en;
-  const lower = userMessage.toLowerCase();
+  const isBn = detected === "bn";
+  const lower = userMessage.toLowerCase().trim();
 
-  // Price / Quote queries
+  // 1. Toilet / Bathroom / Waterproofing
   if (
-    lower.includes("price") ||
-    lower.includes("cost") ||
-    lower.includes("quote") ||
-    lower.includes("dam") ||
-    lower.includes("khoroch") ||
-    lower.includes("খরচ") ||
-    lower.includes("দাম") ||
-    lower.includes("কত") ||
-    lower.includes("budget") ||
-    lower.includes("কত টাকা") ||
-    lower.includes("多少钱") ||
-    lower.includes("价格") ||
-    lower.includes("harga") ||
-    lower.includes("कीमत") ||
-    lower.includes("قیمت") ||
-    lower.includes("سعر")
+    lower.includes("toilet") || lower.includes("bath") || lower.includes("washroom") ||
+    lower.includes("leak") || lower.includes("waterproof") || lower.includes("পুকুর") ||
+    lower.includes("টয়লেট") || lower.includes("বাথরুম") || lower.includes("লিক") || lower.includes("পানি")
   ) {
-    return `${fb.pricing}\n\n${fb.contact}`;
+    if (isBn) {
+      return "আমাদের নিজস্ব প্লাম্বার ও টাইলস মিস্ত্রি দল দিয়ে আমরা সিঙ্গাপুরে সম্পূর্ণ টয়লেট ও বাথরুম রেনোভেশন করি। কাজের মধ্যে রয়েছে সম্পূর্ণ হ্যাকিং, ৩-কোট সিকা ওয়াটারপ্রুফিং মেমব্রেন, বাধ্যতামূলক ৪৮ ঘণ্টার ওয়াটার পন্ডিং লিক টেস্ট, অ্যান্টি-স্লিপ হোমোজিনাস টাইলস এবং স্যানিটারি ফিটিংস ইন্সটলেশন (৭-১০ দিনের কাজ ও ৫ বছরের লিক গ্যারান্টি)। ফ্রি পরিদর্শনের জন্য হোয়াটসঅ্যাপে মেসেজ দিন: +65 8170 4063 বা কল করুন: +65 8653 1076।";
+    }
+    return "Our in-house master plumbers and tilers handle complete toilet and bathroom renovations across Singapore. Works include full hacking, 3-coat Sika/Davco waterproofing with mandatory 48-hour water ponding leak test, anti-slip homogeneous tiles, and sanitary fixture installation (7 to 10 days turnaround with 5-year waterproofing warranty). WhatsApp +65 8170 4063 or call +65 8653 1076 for a free on-site quote.";
   }
 
-  // Contact / WhatsApp / Office queries
+  // 2. Pricing, Cost, Rates, Quotation
   if (
-    lower.includes("contact") ||
-    lower.includes("whatsapp") ||
-    lower.includes("phone") ||
-    lower.includes("call") ||
-    lower.includes("number") ||
-    lower.includes("jogajog") ||
-    lower.includes("যোগাযোগ") ||
-    lower.includes("নম্বর") ||
-    lower.includes("ফোন") ||
-    lower.includes("address") ||
-    lower.includes("thikana") ||
-    lower.includes("ঠিকানা") ||
-    lower.includes("电话") ||
-    lower.includes("nombor") ||
-    lower.includes("नंबर") ||
-    lower.includes("رقم")
+    lower.includes("price") || lower.includes("cost") || lower.includes("quote") ||
+    lower.includes("budget") || lower.includes("dam") || lower.includes("khoroc") ||
+    lower.includes("খরচ") || lower.includes("দাম") || lower.includes("কত") ||
+    lower.includes("rate") || lower.includes("package")
   ) {
-    return fb.contact;
+    if (isBn) {
+      return "সরাসরি কন্ট্রাক্টর হওয়ায় আমাদের রেট পুরোপুরি পাইকারি ও স্বচ্ছ, কোনো ইন্টেরিয়র ডিজাইনার মিডলম্যান চার্জ নেই (আইডি ফার্মের চেয়ে ২০-৩৫% সাশ্রয়ী)। সাইট পরিদর্শন, মাপজোখ এবং কোটেশন সম্পূর্ণ ফ্রি। আপনার ফ্লোর প্ল্যান বা কাজের বিবরণ সহ বিস্তারিত খরচের জন্য আমাদের সাথে সরাসরি হোয়াটসঅ্যাপে +65 8170 4063 নম্বরে যোগাযোগ করুন।";
+    }
+    return "As direct in-house contractors, our pricing is fully itemized with zero middleman or interior design markups (saving you 20% to 35% on direct trade rates). We provide 100% free on-site measurements and detailed transparent quotations within 2 to 24 hours. WhatsApp your floor plan to +65 8170 4063 or call +65 8653 1076 for an instant estimate.";
   }
 
-  // Specific service queries
+  // 3. Tiling & Flooring & Vinyl
   if (
-    lower.includes("toilet") ||
-    lower.includes("bathroom") ||
-    lower.includes("tile") ||
-    lower.includes("tiling") ||
-    lower.includes("ceiling") ||
-    lower.includes("paint") ||
-    lower.includes("door") ||
-    lower.includes("window") ||
-    lower.includes("floor") ||
-    lower.includes("vinyl") ||
-    lower.includes("electric") ||
-    lower.includes("carpentry") ||
-    lower.includes("cabinet") ||
-    lower.includes("টয়লেট") ||
-    lower.includes("টাইলস") ||
-    lower.includes("সিলিং") ||
-    lower.includes("রং") ||
-    lower.includes("দরজা") ||
-    lower.includes("জানালা") ||
-    lower.includes("ফ্লোর") ||
-    lower.includes("ইলেকট্রিক") ||
-    lower.includes("কাঠ")
+    lower.includes("tile") || lower.includes("tiling") || lower.includes("floor") ||
+    lower.includes("vinyl") || lower.includes("spc") || lower.includes("parquet") ||
+    lower.includes("টাইলস") || lower.includes("ফ্লোর") || lower.includes("মেঝে") || lower.includes("ভিনাইল")
   ) {
-    return `${fb.services}\n\n${fb.contact}`;
+    if (isBn) {
+      return "আমরা হেভি-ডিউটি হোমোজিনাস ফ্লোর ও ওয়াল টাইলস (৬০০x৬০০, ৩০০x৬০০), বাথরুমের অ্যান্টি-স্লিপ টাইলস এবং ৫ মিমি ওয়াটারপ্রুফ এসপিসি ক্লিক-লক ভিনাইল ফ্লোরিং সরাসরি ফ্যাক্টরি রেটে সরবরাহ ও স্থাপন করি। লেজার অ্যালাইনমেন্ট ও ওয়াটারপ্রুফ গ্রাউটিং অন্তর্ভুক্ত। ফ্রি স্যাম্পল ও মাপের জন্য হোয়াটসঅ্যাপ করুন: +65 8170 4063।";
+    }
+    return "We supply and install premium 600x600 homogeneous floor and wall tiles, anti-slip bathroom tiles, and 5mm heavy-duty waterproof SPC click-lock vinyl flooring. All works include precision laser leveling, waterproof grouting, and defect checks. WhatsApp +65 8170 4063 for material samples and a free on-site measurement.";
   }
 
-  // Default welcome/helpful response
-  return `${fb.welcome}\n\n${fb.services}`;
+  // 4. Painting & Plastering
+  if (
+    lower.includes("paint") || lower.includes("plaster") || lower.includes("skim") ||
+    lower.includes("wall repair") || lower.includes("crack") || lower.includes("colour") ||
+    lower.includes("রং") || lower.includes("পেইন্ট") || lower.includes("প্লাস্টার")
+  ) {
+    if (isBn) {
+      return "আমরা অরিজিনাল নিপ্পন পেইন্ট (ভিনিলেক্স ৫০০০ / ওডোর-লেস) ও ডুল্যাক্স দিয়ে ৩-কোট সিস্টেমে (১টি সিলার + ২টি ফিনিশ কোট) নিখুঁত রঙ ও প্লাস্টারিং কাজ করি। দেয়ালের ফাটল মেরামত, স্কিম কোটিং এবং লেভেল ৫ স্মুথ ফিনিশিং অন্তর্ভুক্ত। হোয়াটসঅ্যাপে যোগাযোগ করুন: +65 8170 4063 বা কল করুন: +65 8653 1076।";
+    }
+    return "We provide professional painting and plastering using authentic Nippon Paint (Vinilex 5000 / Odour-less) and Dulux with a strict 3-coat system (1 anti-alkali sealer + 2 topcoats). Our services also include Level 5 skim coating, crack mesh reinforcement, and hollow wall repairs. WhatsApp +65 8170 4063 for an instant quotation.";
+  }
+
+  // 5. False Ceiling & Partitions
+  if (
+    lower.includes("ceiling") || lower.includes("partition") || lower.includes("l-box") ||
+    lower.includes("cove") || lower.includes("gypsum") || lower.includes("সিলিং") || lower.includes("পার্টেশন")
+  ) {
+    if (isBn) {
+      return "আমরা সেন্ট-গোবেন ময়েসচার-রেজিস্ট্যান্ট প্লাস্টারবোর্ড ও হট-ডিপড গ্যালভানাইজড স্টিল ফ্রেম দিয়ে ফলস সিলিং, এল-বক্স, কোভ লাইটিং পেলমেট এবং ড্রাইয়াল পার্টেশন তৈরি করি। দ্রুত মাপ ও কোটেশনের জন্য হোয়াটসঅ্যাপে মেসেজ দিন: +65 8170 4063।";
+    }
+    return "We fabricate moisture-resistant plasterboard false ceilings, cove lighting pelmets, curtain pelmets, and acoustic drywall partitions using hot-dipped galvanized steel channels. WhatsApp +65 8170 4063 to schedule a free site measurement and lighting layout review.";
+  }
+
+  // 6. Custom Carpentry & Kitchen Cabinets
+  if (
+    lower.includes("carpentry") || lower.includes("cabinet") || lower.includes("wardrobe") ||
+    lower.includes("kitchen") || lower.includes("wood") || lower.includes("কাঠ") || lower.includes("কেবিনেট")
+  ) {
+    if (isBn) {
+      return "আমাদের নিজস্ব সিঙ্গাপুর কারপেন্ট্রি ওয়ার্কশপে সলিড প্লাইউড ও অস্ট্রিয়ান ব্লুম সফট-ক্লোজ কব্জা দিয়ে কিচেন কেবিনেট, ফুল-হাইট ওয়ারড্রোব ও টিভি ফিচার ওয়াল তৈরি করি (আইডি ফি ছাড়া সরাসরি ফ্যাক্টরি রেটে)। হোয়াটসঅ্যাপে যোগাযোগ করুন: +65 8170 4063।";
+    }
+    return "We fabricate bespoke kitchen cabinets, full-height wardrobes, and TV feature walls directly in our Singapore carpentry workshop using solid plywood carcasses and genuine Blum soft-close fittings (saving you 20% to 35% on ID markups). WhatsApp +65 8170 4063 for a free 3D design consultation.";
+  }
+
+  // 7. Doors & Windows
+  if (
+    lower.includes("door") || lower.includes("window") || lower.includes("grille") ||
+    lower.includes("slide") || lower.includes("দরজা") || lower.includes("জানালা")
+  ) {
+    if (isBn) {
+      return "আমরা বিসিএ ও এইচডিবি অনুমোদিত অ্যালুমিনিয়াম স্লাইড-অ্যান্ড-ফোল্ড টয়লেট দরজা, সাউন্ডপ্রুফ স্লাইডিং জানালা এবং সলিড টিম্বার বেডরুমের দরজা ফ্যাক্টরি রেটে সরবরাহ ও লাগিয়ে দিই। ক্যাটালগ ও দামের জন্য হোয়াটসঅ্যাপ করুন: +65 8170 4063।";
+    }
+    return "We supply and install BCA and HDB compliant aluminium slide-and-fold toilet doors, double-glazed soundproof casement windows, safety grilles, and solid core timber veneer bedroom doors. WhatsApp +65 8170 4063 for our full product catalogue and pricing.";
+  }
+
+  // 8. Electrical & Wiring
+  if (
+    lower.includes("electric") || lower.includes("wiring") || lower.includes("rewir") ||
+    lower.includes("socket") || lower.includes("lighting") || lower.includes("db box") ||
+    lower.includes("ইলেকট্রিক") || lower.includes("ওয়ারিং") || lower.includes("সকেট")
+  ) {
+    if (isBn) {
+      return "আমাদের সমস্ত ইলেকট্রিক্যাল কাজ লাইসেন্সপ্রাপ্ত EMA ইলেকট্রিশিয়ান দ্বারা সম্পন্ন হয়। সম্পূর্ণ বাড়ি রিওয়্যারিং, ডিবি বক্স আপগ্রেড, লাইটিং পয়েন্ট ও পাওয়ার সকেট ইনস্টলেশন নিরাপদভাবে করা হয়। ফ্রি পরিদর্শনের জন্য কল করুন: +65 8653 1076 বা হোয়াটসঅ্যাপ করুন: +65 8170 4063।";
+    }
+    return "All electrical works and full-house rewiring are executed by licensed EMA electricians with official certification. We handle DB box upgrades, concealed conduit rewiring, LED lighting points, and power socket relocations. WhatsApp +65 8170 4063 or call +65 8653 1076 for an inspection.";
+  }
+
+  // 9. Contact, Office Location, Phone, WhatsApp
+  if (
+    lower.includes("contact") || lower.includes("whatsapp") || lower.includes("phone") ||
+    lower.includes("call") || lower.includes("number") || lower.includes("address") ||
+    lower.includes("location") || lower.includes("office") || lower.includes("thikana") ||
+    lower.includes("ঠিকানা") || lower.includes("যোগাযোগ") || lower.includes("ফোন") || lower.includes("অফিস")
+  ) {
+    if (isBn) {
+      return "আমাদের অফিসের ঠিকানা: 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511। কাজের সময়: সোমবার থেকে শনিবার সকাল ৯:০০ টা থেকে সন্ধ্যা ৬:৩০ টা। সরাসরি কথা বলতে বা ফ্রি সাইট ভিজিট বুক করতে হোয়াটসঅ্যাপে মেসেজ দিন: +65 8170 4063 বা হটলাইনে কল করুন: +65 8653 1076।";
+    }
+    return "Our office & showroom is located at 101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511. Hours: Monday to Saturday, 9:00 AM – 6:30 PM. To speak with our project supervisor or book a free site visit, WhatsApp us directly at +65 8170 4063 or call our hotline at +65 8653 1076.";
+  }
+
+  // 10. Permits & BCA / HDB / Condo MCST
+  if (
+    lower.includes("permit") || lower.includes("license") || lower.includes("acra") ||
+    lower.includes("bca") || lower.includes("hdb") || lower.includes("mcst") ||
+    lower.includes("approval") || lower.includes("অনুমোদন") || lower.includes("লাইসেন্স")
+  ) {
+    if (isBn) {
+      return "হ্যাঁ! আমরা বিসিএ রেজিস্টার্ড কন্ট্রাক্টর (CR06 / L1 Interior Decoration) এবং এসিআরএ রেজিস্টার্ড (UEN: 202402481G, MACNEL CONSTRUCTION PTE LTD)। সমস্ত এইচডিবি রেনোভেশন পারমিট সাবমিশন এবং কনডো এমসিএসটি প্রটেকশন ডিপোজিট ও অনুমোদন আমরা সরাসরি পরিচালনা করি।";
+    }
+    return "Yes! We are an ACRA registered Singapore entity (UEN: 202402481G, MACNEL CONSTRUCTION PTE LTD) and BCA Registered Contractor (CR06 / L1 Interior Decoration). We handle all required HDB renovation permits, structural forms, and condominium MCST approvals directly with zero hassle for you.";
+  }
+
+  // 11. Warranty
+  if (
+    lower.includes("warranty") || lower.includes("guarantee") || lower.includes("গ্যারান্টি") || lower.includes("ওয়ারেন্টি")
+  ) {
+    if (isBn) {
+      return "আমাদের প্রতিটি কাজের সাথে অফিসিয়াল লিখিত চুক্তি ও ওয়ারেন্টি থাকে: ওয়াটারপ্রুফিংয়ে ৫ বছরের লিক গ্যারান্টি, টাইলিং ও কারপেন্ট্রিতে ১২ মাসের কাঠামোগত ওয়ারেন্টি এবং ২৪-৪৮ ঘণ্টার দ্রুত ডিফেক্ট রেসপন্স। বিস্তারিত তথ্যের জন্য হোয়াটসঅ্যাপ করুন: +65 8170 4063।";
+    }
+    return "Every project is backed by written contractual warranties: 5-year warranty on waterproofing membranes against leaks, 12-month structural and workmanship warranty on tiling and carpentry, and fast 24 to 48 hour defect response. WhatsApp +65 8170 4063 for details.";
+  }
+
+  // Default welcome & services summary
+  if (isBn) {
+    return "আপনাকে স্বাগতম! Renovation Contractor SG-তে আমরা সরাসরি ইন-হাউস কারিগরদের মাধ্যমে টয়লেট সংস্কার, সম্পূর্ণ বাড়ি রেনোভেশন, টাইলিং, ফলস সিলিং, পেইন্টিং, কারপেন্ট্রি ও ইলেকট্রিক্যাল কাজ করি (আইডি চার্জ ছাড়া ২০-৩৫% সাশ্রয়ী)। আপনি কোন কাজটির খরচ বা বিস্তারিত জানতে চান? ফ্রি সাইট পরিদর্শনের জন্য হোয়াটসঅ্যাপে মেসেজ দিন: +65 8170 4063 বা কল করুন: +65 8653 1076।";
+  }
+  return "Welcome to Renovation Contractor SG! We are Singapore's direct contractor specializing in toilet renovations, whole-house remodelling, homogeneous tiling, false ceiling, painting, carpentry, and electrical works (saving you 20% to 35% on direct rates). Which service or project would you like assistance with? WhatsApp +65 8170 4063 or call +65 8653 1076 for free advice.";
 }
 
 // GET: Return public chat assistant configuration
@@ -188,8 +201,10 @@ export async function GET() {
     const ai = settings?.ai || {};
     const contact = settings?.contact || {};
 
-    const configuredKey =
-      ai.geminiApiKey || process.env.GEMINI_API_KEY || "";
+    const rawKey = (ai.geminiApiKey || process.env.GEMINI_API_KEY || "").trim();
+    const isAiConfigured = Boolean(
+      rawKey && rawKey.startsWith("AIzaSy") && rawKey.length >= 35 && !rawKey.includes("@")
+    );
 
     return NextResponse.json({
       success: true,
@@ -200,10 +215,10 @@ export async function GET() {
       welcomeMessageBn:
         ai.welcomeMessageBn ||
         "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
-      model: ai.model || "gemini-flash-latest",
-      isAiConfigured: Boolean(configuredKey && configuredKey.trim().length > 5),
+      model: ai.model || "gemini-2.5-flash",
+      isAiConfigured,
     });
-  } catch (error: any) {
+  } catch {
     return NextResponse.json({
       success: true,
       botName: "Renovation Contractor SG",
@@ -212,18 +227,17 @@ export async function GET() {
       welcomeMessageEn: "Hi! How can we help you today?",
       welcomeMessageBn:
         "আপনাকে স্বাগতম! Renovation Contractor SG-এর ওয়েবসাইটে আপনি কী খুঁজছেন তা জানাতে পারেন। রঙ করা, টাইলস/টাইলিং, ফলস সিলিং, ইলেকট্রিক্যাল, কাঠের কাজ বা টয়লেট সংস্কার, যেকোনো বিষয়ে আমি সাহায্য করতে পারি।",
-      model: "gemini-flash-latest",
-      isAiConfigured: Boolean(process.env.GEMINI_API_KEY),
+      model: "gemini-2.5-flash",
+      isAiConfigured: false,
     });
   }
 }
 
-// Fast rule-based guardrail to reject completely off-topic questions without wasting Gemini API tokens
+// Fast rule-based guardrail to reject completely off-topic questions
 function isOffTopicQuery(message: string): boolean {
   const text = message.toLowerCase().trim();
   if (!text || text.length < 2) return false;
 
-  // If query mentions any renovation / home / office / contracting / pricing / contact topic, it's ON-TOPIC
   const onTopicKeywords = [
     "renov", "contractor", "toilet", "bath", "hack", "waterproof", "tile", "tiling",
     "floor", "wall", "paint", "plaster", "ceiling", "partition", "door", "window",
@@ -232,17 +246,16 @@ function isOffTopicQuery(message: string): boolean {
     "landed", "office", "commercial", "quote", "price", "cost", "dam", "khoroch", "budget",
     "inspect", "visit", "warranty", "license", "acra", "bca", "address",
     "location", "contact", "phone", "call", "whatsapp", "number", "book", "appointment",
-    "measurement", "showroom", "worker", "supervisor", "site", "rate",
+    "measurement", "showroom", "worker", "supervisor", "site", "rate", "hello", "hi", "hey",
     "রেনোভেশন", "টয়লেট", "বাথরুম", "টাইলস", "রং", "পেইন্ট", "সিলিং", "দরজা", "জানালা",
     "ফ্লোর", "ইলেকট্রিক", "প্লাম্বিং", "কাঠ", "কেবিনেট", "খরচ", "দাম", "ঠিকানা", "অফিস",
-    "ফোন", "যোগাযোগ", "কন্ট্রাক্টর", "ফ্ল্যাট", "বাড়ি", "সিঙ্গাপুর", "কোটেশন"
+    "ফোন", "যোগাযোগ", "কন্ট্রাক্টর", "ফ্ল্যাট", "বাড়ি", "সিঙ্গাপুর", "কোটেশন", "কেমন"
   ];
 
   if (onTopicKeywords.some((kw) => text.includes(kw))) {
     return false;
   }
 
-  // Obvious non-renovation topics to strictly filter
   const offTopicTriggers = [
     /\b(python|javascript|typescript|react|html|css|c\+\+|java\b|sql|coding|write code|debug|algorithm|function|variable)\b/i,
     /\b(write an essay|write a poem|write a song|solve this|equation|calculus|algebra|homework|quantum physics|chemistry formula)\b/i,
@@ -255,39 +268,43 @@ function isOffTopicQuery(message: string): boolean {
   return offTopicTriggers.some((rgx) => rgx.test(text));
 }
 
-// POST: Process chat message with Google Gemini API & smart fallback
+// POST: Process chat message with Google Gemini API & smart contractor engine
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { messages, language, testKey, testModel } = body;
 
-    // Check if this is a connection test from Admin Dashboard
     const isTest = Boolean(testKey !== undefined);
 
     const settings = await getSettings();
     const ai = settings?.ai || {};
 
-    // API Key resolution: explicit test key -> saved dashboard key -> env var
-    const apiKey = (
+    // Validate key
+    const rawKey = (
       testKey !== undefined
         ? testKey
         : ai.geminiApiKey || process.env.GEMINI_API_KEY || ""
     ).trim();
 
-    const selectedModel = (
-      testModel || ai.model || "gemini-flash-latest"
-    ).trim();
+    const isValidGeminiKey = Boolean(
+      rawKey &&
+      rawKey.startsWith("AIzaSy") &&
+      rawKey.length >= 35 &&
+      !rawKey.includes("@") &&
+      !rawKey.includes("[")
+    );
 
+    const apiKey = isValidGeminiKey ? rawKey : "";
+    const selectedModel = (testModel || ai.model || "gemini-2.5-flash").trim();
     const systemPrompt = ai.systemPrompt || DEFAULT_SYSTEM_PROMPT;
 
-    // Last user message
     const lastUserMessage = Array.isArray(messages) && messages.length > 0
       ? messages[messages.length - 1].content
       : (isTest ? "Hello! Please confirm connection in one sentence." : "");
 
     const detectedLang = detectLanguage(language, lastUserMessage);
 
-    // 0. Off-Topic Pre-check: Save Gemini API Quota!
+    // 0. Off-Topic Pre-check: Save API Quota!
     if (!isTest && isOffTopicQuery(lastUserMessage)) {
       const isBn = detectedLang === "bn";
       return NextResponse.json({
@@ -300,95 +317,42 @@ export async function POST(request: Request) {
       });
     }
 
-    // If no Gemini API key is provided and this is not an explicit test, use our built-in smart multilingual fallback
+    // 1. If key is missing or not a valid Google AI key:
     if (!apiKey) {
       if (isTest) {
         return NextResponse.json(
           {
             success: false,
-            error: "No Gemini API Key provided. Please paste your Gemini API Key.",
+            error: "Invalid Gemini API key. Google Gemini API keys start with 'AIzaSy...'. Please copy your valid key from Google AI Studio (https://aistudio.google.com/app/apikey).",
           },
           { status: 400 }
         );
       }
 
-      const fallbackReply = getSmartFallbackReply(lastUserMessage, detectedLang);
+      // Instant high-accuracy response from local contractor engine
+      const smartReply = getSmartContractorReply(lastUserMessage, detectedLang);
       return NextResponse.json({
         success: true,
-        reply: fallbackReply,
-        source: "fallback_engine",
-        notice:
-          "Gemini API key is not configured in the Admin Dashboard (/admin). Using high-accuracy local knowledge base.",
+        reply: smartReply,
+        source: "smart_contractor_engine",
+        isAiConfigured: false,
       });
     }
 
-    // Build candidate models list.
-    // Try to dynamically discover supported models for this key from Google's v1beta endpoint
-    const modelsToTry: string[] = [];
-    if (selectedModel) {
-      modelsToTry.push(selectedModel);
-    }
-
-    try {
-      const listRes = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
-        { cache: "no-store" }
-      );
-      if (listRes.ok) {
-        const listData = await listRes.json();
-        if (Array.isArray(listData.models)) {
-          const supported = listData.models
-            .filter((m: any) =>
-              Array.isArray(m.supportedGenerationMethods) &&
-              m.supportedGenerationMethods.includes("generateContent")
-            )
-            .map((m: any) => m.name.replace(/^models\//, ""));
-
-          supported.sort((a: string, b: string) => {
-            const score = (name: string) => {
-              if (name === "gemini-flash-latest") return 120;
-              if (name === "gemini-3.8-flash") return 115;
-              if (name === "gemini-3.7-flash") return 110;
-              if (name === "gemini-3.5-flash") return 105;
-              if (name === "gemini-2.5-flash") return 80;
-              if (name === "gemini-2.0-flash") return 70;
-              if (name.includes("flash")) return 90;
-              if (name.includes("pro")) return 60;
-              return 40;
-            };
-            return score(b) - score(a);
-          });
-
-          for (const m of supported) {
-            if (!modelsToTry.includes(m)) modelsToTry.push(m);
-          }
-        }
-      }
-    } catch {
-      // Fall through to default candidates
-    }
-
-    const defaultCandidates = [
-      "gemini-flash-latest",
-      "gemini-3.8-flash",
-      "gemini-3.7-flash",
-      "gemini-3.5-flash",
+    // 2. If valid key provided, call Google Gemini API
+    const modelsToTry = [
+      selectedModel,
       "gemini-2.5-flash",
-      "gemini-2.0-flash",
       "gemini-1.5-flash",
-      "gemini-pro-latest",
-    ];
-    for (const d of defaultCandidates) {
-      if (!modelsToTry.includes(d)) modelsToTry.push(d);
-    }
+      "gemini-2.0-flash",
+      "gemini-flash-latest"
+    ].filter((m, i, arr) => arr.indexOf(m) === i);
 
     let lastError = "";
     let geminiReply = "";
-    let usedModel = modelsToTry[0] || "gemini-flash-latest";
+    let usedModel = modelsToTry[0];
 
-    // Convert messages to Gemini format: user vs model
     const contents: Array<{ role: string; parts: Array<{ text: string }> }> = [];
-
     if (Array.isArray(messages) && messages.length > 0) {
       const recent = messages.slice(-6);
       for (const m of recent) {
@@ -404,25 +368,21 @@ export async function POST(request: Request) {
       });
     }
 
-    // Try Gemini API with fallbacks
     for (const modelCandidate of modelsToTry) {
       try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${modelCandidate}:generateContent?key=${apiKey}`;
-
         const payload = {
-          system_instruction: {
-            parts: [{ text: systemPrompt }],
-          },
+          system_instruction: { parts: [{ text: systemPrompt }] },
           contents,
           generationConfig: {
             temperature: 0.7,
             topP: 0.95,
-            maxOutputTokens: 2048,
+            maxOutputTokens: 1024,
           },
         };
 
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 12000);
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
 
         const response = await fetch(endpoint, {
           method: "POST",
@@ -445,9 +405,7 @@ export async function POST(request: Request) {
           }
         } else {
           const errData = await response.json().catch(() => ({}));
-          lastError =
-            errData?.error?.message ||
-            `HTTP ${response.status}: ${response.statusText}`;
+          lastError = errData?.error?.message || `HTTP ${response.status}`;
         }
       } catch (err: any) {
         lastError = err?.message || String(err);
@@ -455,12 +413,11 @@ export async function POST(request: Request) {
     }
 
     if (geminiReply) {
-      // Clean asterisks, raw bullets, and bracketed links so text is clean and legible
       const cleaned = geminiReply
-        .replace(/\*\*(.*?)\*\*/g, "$1") // strip **bold**
-        .replace(/\*(.*?)\*/g, "$1")     // strip *italic*
-        .replace(/^[\s]*[\*\-][\s]+/gm, "• ") // replace asterisk bullets with clean dots
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // replace [text](url) with text
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        .replace(/\*(.*?)\*/g, "$1")
+        .replace(/^[\s]*[\*\-][\s]+/gm, "• ")
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
         .trim();
 
       return NextResponse.json({
@@ -468,10 +425,10 @@ export async function POST(request: Request) {
         reply: cleaned,
         source: "gemini",
         model: usedModel,
+        isAiConfigured: true,
       });
     }
 
-    // If Gemini API call failed (e.g. invalid key or quota)
     if (isTest) {
       return NextResponse.json(
         {
@@ -482,25 +439,21 @@ export async function POST(request: Request) {
       );
     }
 
-    // Graceful fallback for visitors so the chatbot never shows a broken error
-    const fallbackReply = getSmartFallbackReply(lastUserMessage, detectedLang);
+    // Graceful fallback if Gemini call had a transient error
+    const smartReply = getSmartContractorReply(lastUserMessage, detectedLang);
     return NextResponse.json({
       success: true,
-      reply: fallbackReply,
-      source: "fallback_engine",
+      reply: smartReply,
+      source: "smart_contractor_engine",
       apiError: lastError,
+      isAiConfigured: true,
     });
   } catch (error: any) {
     console.error("Chat API error:", error);
-    return NextResponse.json(
-      {
-        success: true,
-        reply:
-          "Thank you for reaching out to Renovation Contractor SG! We are currently assisting multiple clients. Please message our senior supervisor directly on WhatsApp at +65 8170 4063 or call us at +65 8653 1076 for an instant quotation.",
-        source: "emergency_fallback",
-        error: error.message,
-      },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      success: true,
+      reply: "Thank you for contacting Renovation Contractor SG! Please message our senior supervisor directly on WhatsApp at +65 8170 4063 or call us at +65 8653 1076 for an instant quotation.",
+      source: "emergency_fallback",
+    });
   }
 }
