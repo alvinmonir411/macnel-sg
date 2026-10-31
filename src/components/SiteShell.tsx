@@ -10,6 +10,7 @@ import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { MarketingBodyScripts } from "@/components/MarketingScripts";
 import { setBatchRuntimeOverrides } from "@/lib/cloudinary";
 import { SiteSettingsProvider } from "@/contexts/SiteSettingsContext";
+import { DataLayerTracker } from "@/components/DataLayerTracker";
 
 export function SiteShell({
   children,
@@ -114,6 +115,7 @@ export function SiteShell({
 
   return (
     <SiteSettingsProvider initialSettings={siteData}>
+      <DataLayerTracker />
       <MarketingBodyScripts marketing={siteData?.marketing} />
       <Header
         customContact={siteData?.contact}

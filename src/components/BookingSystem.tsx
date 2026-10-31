@@ -380,6 +380,20 @@ export function BookingSystem({ customContact }: { customContact?: any } = {}) {
           return;
         }
 
+        if (typeof window !== "undefined") {
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: "generate_lead",
+            event_category: "booking",
+            form_name: "site_inspection_booking",
+            booking_id: generated,
+            service_name: currentServiceObj.name,
+            selected_date: selectedDate,
+            selected_slot: selectedSlot,
+            timestamp: new Date().toISOString(),
+          });
+        }
+
         setStep(5);
       } catch (err) {
         console.error("Failed to persist booking to Neon database:", err);

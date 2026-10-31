@@ -154,6 +154,18 @@ export function QuoteCalculator() {
         throw new Error("Unable to submit form. Please use WhatsApp direct quote.");
       }
 
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "generate_lead",
+          event_category: "lead",
+          form_name: "quote_calculator",
+          service: selectedServices.join(", "),
+          property_type: propertyType,
+          timestamp: new Date().toISOString(),
+        });
+      }
+
       setIsSubmitted(true);
     } catch (err: any) {
       console.warn("Quote submission fallback to WhatsApp:", err);
