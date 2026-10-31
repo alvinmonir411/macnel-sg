@@ -546,7 +546,7 @@ export const DEFAULT_IMAGE_SLOTS = [
   },
 
   // ==========================================
-  // 9. 🎨 PAINTING & PLASTERING (/house-painting-plastering)
+  // 9. 🎨 PAINTING SERVICES (/house-painting-plastering)
   // ==========================================
   {
     id: "painting_hero",
@@ -590,6 +590,54 @@ export const DEFAULT_IMAGE_SLOTS = [
     label: "Process 03: Alkaline-Resistant Sealer & 2 Finish Coats (Nippon Paint)",
     description: "Alkali-resistant moisture barrier primer plus two thick, uniform topcoats of Nippon Paint",
     paths: ["/images/doc-updates/image5.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+
+    // ==========================================
+  // 9B. 🔨 PLASTERING SERVICES (/plastering-services)
+  // ==========================================
+  {
+    id: "plastering_hero",
+    category: "plastering",
+    pagePath: "/plastering-services",
+    pageTitle: "Plastering Services",
+    sectionName: "Hero Header",
+    label: "Plastering - Hero Header Banner",
+    description: "Main full-width background visual on Plastering & Skim Coating page",
+    paths: ["/images/plastering/hero.jpeg", "/images/services/plastering-services.jpg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
+  },
+  {
+    id: "plastering_std_1",
+    category: "plastering",
+    pagePath: "/plastering-services",
+    pageTitle: "Plastering Services",
+    sectionName: "Stage 01 · Inspection & Hacking",
+    label: "Stage 01: Hollow Wall Inspection & Defective Plaster Hacking",
+    description: "Acoustic sound testing, hacking drummy hollow plaster back to solid masonry",
+    paths: ["/images/plastering/stage1.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
+  },
+  {
+    id: "plastering_std_2",
+    category: "plastering",
+    pagePath: "/plastering-services",
+    pageTitle: "Plastering Services",
+    sectionName: "Stage 02 · Anti-Crack Mesh & Base Skim",
+    label: "Stage 02: Fiberglass Joint Mesh & Base Skim Coat Application",
+    description: "High-tensile joint mesh reinforcement over crack lines and polymer-modified base skim coat",
+    paths: ["/images/plastering/stage2.jpeg"],
+    defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
+  },
+  {
+    id: "plastering_std_3",
+    category: "plastering",
+    pagePath: "/plastering-services",
+    pageTitle: "Plastering Services",
+    sectionName: "Stage 03 · Level 5 Finish & Sanding",
+    label: "Stage 03: Ultra-Fine Top Finish Skim & Dust-Free Machine Sanding",
+    description: "Final microscopic smooth skim coating and HEPA dust-extracted orbital machine sanding",
+    paths: ["/images/plastering/stage3.jpeg"],
     defaultUrl: "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
   },
 
