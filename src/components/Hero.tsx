@@ -35,14 +35,20 @@ const CORE_TRADES = [
   { name: "Custom Carpentry", href: "/carpentry-services", icon: Hammer },
 ];
 
-export function Hero() {
+export function Hero({
+  initialMobileHero,
+  initialDesktopHero,
+}: {
+  initialMobileHero?: string;
+  initialDesktopHero?: string;
+} = {}) {
   const { contact: liveContact } = useSiteSettings();
   const targetWhatsapp = liveContact?.whatsapp || siteConfig.contact.whatsapp;
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [shouldMountVideo, setShouldMountVideo] = useState(false);
-  const [heroDesktop, setHeroDesktop] = useState(() => getCloudinaryUrl("/hero-modern-desktop.webp"));
-  const [heroMobile, setHeroMobile] = useState(() => getCloudinaryUrl("/hero-modern-mobile.webp"));
+  const [heroDesktop, setHeroDesktop] = useState(() => initialDesktopHero || getCloudinaryUrl("/hero-modern-desktop.webp"));
+  const [heroMobile, setHeroMobile] = useState(() => initialMobileHero || getCloudinaryUrl("/hero-modern-mobile.webp"));
   const [heroVideo, setHeroVideo] = useState(() => getCloudinaryUrl("/hero-video.mp4"));
 
   useEffect(() => {
@@ -82,19 +88,17 @@ export function Hero() {
         <source
           media="(max-width: 768px)"
           srcSet={heroMobile}
-          type="image/webp"
         />
         <source
           media="(min-width: 769px)"
           srcSet={heroDesktop}
-          type="image/webp"
         />
         <img
-          src={heroDesktop}
+          src={heroMobile}
           alt="Singapore Home & Commercial Renovation Specialists"
           fetchPriority="high"
           loading="eager"
-          decoding="sync"
+          decoding="async"
           className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${videoLoaded ? "opacity-0" : "opacity-80 sm:opacity-90"
             }`}
         />

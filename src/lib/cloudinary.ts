@@ -49,6 +49,36 @@ export function setBatchRuntimeOverrides(overrides: Record<string, string>) {
  * Returns the Cloudinary CDN URL for a given local public image path.
  * If not found in the mapping, gracefully returns the original local path.
  */
+
+/**
+ * Automatically injects Cloudinary on-the-fly modern compression and format conversion (AVIF/WebP).
+ * Never mutates SVGs or non-Cloudinary assets.
+ */
+export function optimizeCloudinaryUrl(
+  url: string | null | undefined,
+  options: { width?: number; quality?: string; format?: string } = {}
+): string {
+  if (!url || typeof url !== "string") return "";
+  if (!url.includes("res.cloudinary.com") || !url.includes("/image/upload/")) {
+    return url;
+  }
+  // Keep SVGs untouched (vector graphics)
+  if (url.toLowerCase().endsWith(".svg") || url.includes(".svg?")) {
+    return url;
+  }
+  // Don't re-transform if already transformed with f_auto or q_auto
+  if (url.includes("/f_auto") || url.includes("/q_auto")) {
+    return url;
+  }
+
+  const { width, quality = "auto", format = "auto" } = options;
+  const transforms = [`f_${format}`, `q_${quality}`];
+  if (width) transforms.push(`w_${width}`, "c_limit");
+
+  const transformStr = transforms.join(",") + "/";
+  return url.replace("/image/upload/", `/image/upload/${transformStr}`);
+}
+
 export function getCloudinaryUrl(
   localPath: string | null | undefined,
   siteImagesOverrides?: Record<string, string>
@@ -62,15 +92,15 @@ export function getCloudinaryUrl(
 
   // 1. Explicitly passed in live site overrides (from getLiveSiteData / RSC props)
   if (siteImagesOverrides) {
-    if (siteImagesOverrides[cleanPath]) return siteImagesOverrides[cleanPath];
-    if (siteImagesOverrides[unslashedPath]) return siteImagesOverrides[unslashedPath];
-    if (siteImagesOverrides[localPath]) return siteImagesOverrides[localPath];
+    if (siteImagesOverrides[cleanPath]) return optimizeCloudinaryUrl(siteImagesOverrides[cleanPath]);
+    if (siteImagesOverrides[unslashedPath]) return optimizeCloudinaryUrl(siteImagesOverrides[unslashedPath]);
+    if (siteImagesOverrides[localPath]) return optimizeCloudinaryUrl(siteImagesOverrides[localPath]);
   }
 
   // 2. Check runtime in-memory overrides (e.g. from DB / dashboard live updates)
-  if (runtimeOverrides[cleanPath]) return runtimeOverrides[cleanPath];
-  if (runtimeOverrides[unslashedPath]) return runtimeOverrides[unslashedPath];
-  if (runtimeOverrides[localPath]) return runtimeOverrides[localPath];
+  if (runtimeOverrides[cleanPath]) return optimizeCloudinaryUrl(runtimeOverrides[cleanPath]);
+  if (runtimeOverrides[unslashedPath]) return optimizeCloudinaryUrl(runtimeOverrides[unslashedPath]);
+  if (runtimeOverrides[localPath]) return optimizeCloudinaryUrl(runtimeOverrides[localPath]);
 
   // 3. Check client localStorage & window.__IMAGE_OVERRIDES__ if on client side
   if (typeof window !== "undefined") {
@@ -78,27 +108,28 @@ export function getCloudinaryUrl(
       const raw = localStorage.getItem("site_images_latest_overrides");
       if (raw) {
         const stored = JSON.parse(raw);
-        if (stored[cleanPath]) return stored[cleanPath];
-        if (stored[unslashedPath]) return stored[unslashedPath];
-        if (stored[localPath]) return stored[localPath];
+        if (stored[cleanPath]) return optimizeCloudinaryUrl(stored[cleanPath]);
+        if (stored[unslashedPath]) return optimizeCloudinaryUrl(stored[unslashedPath]);
+        if (stored[localPath]) return optimizeCloudinaryUrl(stored[localPath]);
       }
     } catch {}
 
     const winOverrides = (window as any).__IMAGE_OVERRIDES__;
     if (winOverrides) {
-      if (winOverrides[cleanPath]) return winOverrides[cleanPath];
-      if (winOverrides[unslashedPath]) return winOverrides[unslashedPath];
-      if (winOverrides[localPath]) return winOverrides[localPath];
+      if (winOverrides[cleanPath]) return optimizeCloudinaryUrl(winOverrides[cleanPath]);
+      if (winOverrides[unslashedPath]) return optimizeCloudinaryUrl(winOverrides[unslashedPath]);
+      if (winOverrides[localPath]) return optimizeCloudinaryUrl(winOverrides[localPath]);
     }
   }
 
   // 4. Check persistent siteSettings JSON
-  if (siteSettingsOverrides[cleanPath]) return siteSettingsOverrides[cleanPath];
-  if (siteSettingsOverrides[unslashedPath]) return siteSettingsOverrides[unslashedPath];
-  if (siteSettingsOverrides[localPath]) return siteSettingsOverrides[localPath];
+  if (siteSettingsOverrides[cleanPath]) return optimizeCloudinaryUrl(siteSettingsOverrides[cleanPath]);
+  if (siteSettingsOverrides[unslashedPath]) return optimizeCloudinaryUrl(siteSettingsOverrides[unslashedPath]);
+  if (siteSettingsOverrides[localPath]) return optimizeCloudinaryUrl(siteSettingsOverrides[localPath]);
 
   // 5. Check persistent Cloudinary JSON mapping
-  return map[cleanPath] || map[unslashedPath] || localPath;
+  const finalUrl = map[cleanPath] || map[unslashedPath] || localPath;
+  return optimizeCloudinaryUrl(finalUrl);
 }
 
 export default cloudinaryData as unknown as CloudinaryMapping;

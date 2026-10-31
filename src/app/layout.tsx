@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { getLiveSiteData } from "@/lib/db";
 import { SiteShell } from "@/components/SiteShell";
 import { MarketingHeadScripts } from "@/components/MarketingScripts";
-import { setBatchRuntimeOverrides } from "@/lib/cloudinary";
+import { setBatchRuntimeOverrides, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -175,12 +175,32 @@ export default async function RootLayout({
     ],
   };
 
+  const mobileHeroUrl = optimizeCloudinaryUrl(
+    siteData.site_images?.hero_mobile ||
+      siteData.site_images?.["/hero-modern-mobile.webp"] ||
+      "/hero-modern-mobile.webp",
+    { width: 768 }
+  );
+
+  const desktopHeroUrl = optimizeCloudinaryUrl(
+    siteData.site_images?.hero_desktop ||
+      siteData.site_images?.["/hero-modern-desktop.webp"] ||
+      "/hero-modern-desktop.webp",
+    { width: 1920 }
+  );
+
   return (
     <html
       lang="en"
       className={`${montserrat.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <head>
+        {/* Preconnect to external CDNs for 0ms connection latency */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
         {/* Google tag (gtag.js) */}
         <script
           async
@@ -195,16 +215,14 @@ export default async function RootLayout({
         <link
           rel="preload"
           as="image"
-          type="image/webp"
-          href="/hero-modern-mobile.webp"
+          href={mobileHeroUrl}
           media="(max-width: 768px)"
           fetchPriority="high"
         />
         <link
           rel="preload"
           as="image"
-          type="image/webp"
-          href="/hero-modern-desktop.webp"
+          href={desktopHeroUrl}
           media="(min-width: 769px)"
           fetchPriority="high"
         />
@@ -212,6 +230,11 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Dynamic Marketing & Tracking Scripts (GA4, GTM, Meta Pixel, Custom Head) */}
+        <MarketingHeadScripts marketing={siteData.marketing} />
+      </head>
+      <body className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
+        <SiteShell siteData={siteData}>{children}</SiteShell>
         <script
           id="image-overrides-data"
           dangerouslySetInnerHTML={{
@@ -226,11 +249,6 @@ export default async function RootLayout({
             __html: `window.__SITE_DATA__ = ${JSON.stringify(siteData)};`,
           }}
         />
-        {/* Dynamic Marketing & Tracking Scripts (GA4, GTM, Meta Pixel, Custom Head) */}
-        <MarketingHeadScripts marketing={siteData.marketing} />
-      </head>
-      <body className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
-        <SiteShell siteData={siteData}>{children}</SiteShell>
       </body>
     </html>
   );

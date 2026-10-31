@@ -8,6 +8,7 @@ import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { ContactLocationSection } from "@/components/ContactLocationSection";
 import { FAQSection } from "@/components/FAQSection";
 import { getLiveSiteData } from "@/lib/db";
+import { optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 export default async function Home() {
   const siteData = await getLiveSiteData();
