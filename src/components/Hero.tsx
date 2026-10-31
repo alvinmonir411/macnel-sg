@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { useSiteSettings } from "@/contexts/SiteSettingsContext";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getCloudinaryUrl, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 import {
   MessageCircle,
   CalendarCheck,
@@ -47,14 +47,14 @@ export function Hero({
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [shouldMountVideo, setShouldMountVideo] = useState(false);
-  const [heroDesktop, setHeroDesktop] = useState(() => initialDesktopHero || getCloudinaryUrl("/hero-modern-desktop.webp"));
-  const [heroMobile, setHeroMobile] = useState(() => initialMobileHero || getCloudinaryUrl("/hero-modern-mobile.webp"));
+  const [heroDesktop, setHeroDesktop] = useState(() => initialDesktopHero || optimizeCloudinaryUrl(getCloudinaryUrl("/hero-modern-desktop.webp"), { width: 1920 }));
+  const [heroMobile, setHeroMobile] = useState(() => initialMobileHero || optimizeCloudinaryUrl(getCloudinaryUrl("/hero-modern-mobile.webp"), { width: 768 }));
   const [heroVideo, setHeroVideo] = useState(() => getCloudinaryUrl("/hero-video.mp4"));
 
   useEffect(() => {
     const handleUpdate = () => {
-      setHeroDesktop(getCloudinaryUrl("/hero-modern-desktop.webp"));
-      setHeroMobile(getCloudinaryUrl("/hero-modern-mobile.webp"));
+      setHeroDesktop(optimizeCloudinaryUrl(getCloudinaryUrl("/hero-modern-desktop.webp"), { width: 1920 }));
+      setHeroMobile(optimizeCloudinaryUrl(getCloudinaryUrl("/hero-modern-mobile.webp"), { width: 768 }));
       setHeroVideo(getCloudinaryUrl("/hero-video.mp4"));
     };
     window.addEventListener("live-image-updated", handleUpdate);

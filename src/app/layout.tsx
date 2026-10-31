@@ -234,19 +234,23 @@ export default async function RootLayout({
         <MarketingHeadScripts marketing={siteData.marketing} />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
-        <SiteShell siteData={siteData}>{children}</SiteShell>
+        <SiteShell
+          siteData={{
+            contact: siteData.contact,
+            credentials: siteData.credentials,
+            marketing: siteData.marketing,
+            ai: siteData.ai,
+            site_images: siteData.site_images,
+          }}
+        >
+          {children}
+        </SiteShell>
         <script
           id="image-overrides-data"
           dangerouslySetInnerHTML={{
             __html: `window.__IMAGE_OVERRIDES__ = ${JSON.stringify(
               siteData.site_images || {}
             )};`,
-          }}
-        />
-        <script
-          id="site-live-data"
-          dangerouslySetInnerHTML={{
-            __html: `window.__SITE_DATA__ = ${JSON.stringify(siteData)};`,
           }}
         />
       </body>

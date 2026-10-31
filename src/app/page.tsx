@@ -13,10 +13,27 @@ import { optimizeCloudinaryUrl } from "@/lib/cloudinary";
 export default async function Home() {
   const siteData = await getLiveSiteData();
 
+  const mobileHero = optimizeCloudinaryUrl(
+    siteData.site_images?.hero_mobile ||
+      siteData.site_images?.["/hero-modern-mobile.webp"] ||
+      "/hero-modern-mobile.webp",
+    { width: 768 }
+  );
+
+  const desktopHero = optimizeCloudinaryUrl(
+    siteData.site_images?.hero_desktop ||
+      siteData.site_images?.["/hero-modern-desktop.webp"] ||
+      "/hero-modern-desktop.webp",
+    { width: 1920 }
+  );
+
   return (
     <>
       {/* 1. Hero Section with Responsive Image & Deferred HD Ambient Video */}
-      <Hero />
+      <Hero
+        initialMobileHero={mobileHero}
+        initialDesktopHero={desktopHero}
+      />
 
       {/* 2. Official Business Credentials Bar (RSC: 0KB Client JS) */}
       <CredentialsBar credentials={siteData.credentials} />

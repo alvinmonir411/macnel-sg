@@ -90,6 +90,7 @@ export function ProjectImage({
       fill
       sizes={sizes}
       priority={priority}
+      loading={priority ? undefined : "lazy"}
       onError={() => setHasError(true)}
       className={`object-cover object-center ${className}`}
     />
