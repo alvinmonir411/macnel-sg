@@ -58,6 +58,8 @@ export default async function PlasteringPage() {
   const pageData = siteData?.service_pages?.plastering_services;
 
   const heroImage =
+    overrides["plastering_hero"] ||
+    overrides["/images/plastering/hero.jpeg"] ||
     overrides["service_plastering"] ||
     overrides["/images/services/plastering-services.jpg"] ||
     pageData?.hero?.defaultImage ||
@@ -76,7 +78,7 @@ export default async function PlasteringPage() {
       <section className="relative overflow-hidden bg-[#16263F] text-white min-h-[85vh] lg:min-h-screen flex items-center py-20 lg:py-28">
         <LiveImage
           src={heroImage}
-          slotId="service_plastering"
+          slotId="plastering_hero"
           alt="Professional Wall Plastering and Skim Coating Services Singapore"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-1000 scale-105"
           style={{ opacity: 0.85 }}

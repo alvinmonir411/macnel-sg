@@ -588,29 +588,29 @@
       "title": "Professional Wall Plastering, Skim Coating & Surface Smoothing",
       "subtitle": "Level 5 Glass-Smooth Wall Finish · Saint-Gobain Certified",
       "desc": "Transform rough, pitted, or cracked walls into flawlessly flat, baby-smooth surfaces. Renovation Contractor SG delivers master skim coating, hollow plaster restoration, and anti-crack drywall taping across Singapore.",
-      "imageSlot": "service_plastering",
-      "defaultImage": "/images/services/plastering-services.jpg"
+      "imageSlot": "plastering_hero",
+      "defaultImage": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg"
     },
     "processes": [
       {
         "step": "01",
         "title": "Hollow Wall Inspection & Defective Plaster Hacking",
-        "slotId": "service_plastering",
-        "image": "/images/services/plastering-services.jpg",
+        "slotId": "plastering_std_1",
+        "image": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/vks1v9m8a1naw5o2r6j2.jpg",
         "desc": "We tap and sound-test every wall section to identify hollow or drummy plaster. Loose or blistered plaster is cleanly chipped back to solid masonry and sealed with bonding primer."
       },
       {
         "step": "02",
         "title": "Fiberglass Joint Mesh & Base Skim Coat Application",
-        "slotId": "service_ceiling_partition",
-        "image": "/images/services/false-ceiling.jpg",
+        "slotId": "plastering_std_2",
+        "image": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
         "desc": "High-tensile fiberglass mesh is embedded over all joint lines and hairline stress fractures before applying a polymer-modified base skim coat to level out surface dips and bumps."
       },
       {
         "step": "03",
         "title": "Ultra-Fine Top Finish Skim & Dust-Free Machine Sanding",
-        "slotId": "service_painting",
-        "image": "/images/services/painting-services.jpg",
+        "slotId": "plastering_std_3",
+        "image": "https://res.cloudinary.com/dgaiqqh7k/image/upload/v1793092314/renovation-contractor-sg/images/partition-ceiling/aedg32l78d91g8b6uh1k.jpg",
         "desc": "Our master plasterers apply an ultra-fine finishing skim coat, followed by orbital vacuum power sanding with HEPA filtration to produce an impeccably flat, paint-ready Level 5 finish."
       }
     ],
