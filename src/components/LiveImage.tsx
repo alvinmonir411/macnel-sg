@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { getCloudinaryUrl } from "@/lib/cloudinary";
+import { getCloudinaryUrl, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 interface LiveImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -18,26 +18,38 @@ export function LiveImage({
   ...props
 }: LiveImageProps) {
   const resolveUrl = () => {
+    let url = "";
     if (typeof window !== "undefined") {
       // 1. Direct synchronous localStorage read (instant cross-tab & hard refresh cache)
       try {
         const raw = localStorage.getItem("site_images_latest_overrides");
         if (raw) {
           const stored = JSON.parse(raw);
-          if (slotId && stored[slotId]) return stored[slotId];
-          if (stored[src]) return stored[src];
+          if (slotId && stored[slotId]) url = stored[slotId];
+          else if (stored[src]) url = stored[src];
         }
       } catch {}
 
       // 2. Global window overrides injected by root layout or live updates
-      const winOverrides = (window as any).__IMAGE_OVERRIDES__;
-      if (winOverrides) {
-        if (slotId && winOverrides[slotId]) return winOverrides[slotId];
-        if (winOverrides[src]) return winOverrides[src];
+      if (!url) {
+        const winOverrides = (window as any).__IMAGE_OVERRIDES__;
+        if (winOverrides) {
+          if (slotId && winOverrides[slotId]) url = winOverrides[slotId];
+          else if (winOverrides[src]) url = winOverrides[src];
+        }
       }
     }
 
-    return getCloudinaryUrl(src);
+    if (!url) {
+      url = getCloudinaryUrl(src);
+    }
+
+    // Auto-optimize if this is brand_logo or icon to 80px thumbnail
+    if (slotId === "brand_logo" || src.includes("icon") || src.includes("logo")) {
+      return optimizeCloudinaryUrl(url, { width: 80, quality: "auto" });
+    }
+
+    return url;
   };
 
   const [currentSrc, setCurrentSrc] = useState<string>(() => resolveUrl());

@@ -111,21 +111,22 @@ export function ProjectsPreview({ initialProjects }: { initialProjects?: any[] }
         >
           {/* Main Large Before/After Display */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/90 bg-slate-950">
-            {displayProjects.map((proj, idx) => (
-              <div
-                key={proj.id}
-                className={`transition-opacity duration-500 ${
-                  idx === currentIndex ? "block opacity-100" : "hidden opacity-0"
-                }`}
-              >
-                <BeforeAfterSlider
-                  beforeImage={proj.beforeImage}
-                  afterImage={proj.afterImage}
-                  alt={proj.title || "Renovation Project"}
-                  className="aspect-[16/10] sm:aspect-[16/9] min-h-[360px] sm:min-h-[520px] w-full rounded-none border-0"
-                />
-              </div>
-            ))}
+            {displayProjects.map((proj, idx) => {
+              if (idx !== currentIndex) return null;
+              return (
+                <div
+                  key={proj.id}
+                  className="block opacity-100 transition-opacity duration-500"
+                >
+                  <BeforeAfterSlider
+                    beforeImage={proj.beforeImage}
+                    afterImage={proj.afterImage}
+                    alt={proj.title || "Renovation Project"}
+                    className="aspect-[16/10] sm:aspect-[16/9] min-h-[360px] sm:min-h-[520px] w-full rounded-none border-0"
+                  />
+                </div>
+              );
+            })}
 
             {/* Floating Left / Right Arrow Buttons on Image */}
             <button
@@ -167,6 +168,10 @@ export function ProjectsPreview({ initialProjects }: { initialProjects?: any[] }
                   <img
                     src={proj.afterImage}
                     alt="thumbnail"
+                    loading="lazy"
+                    decoding="async"
+                    width={80}
+                    height={54}
                     className="w-full h-full object-cover"
                   />
                   {currentIndex === idx && (

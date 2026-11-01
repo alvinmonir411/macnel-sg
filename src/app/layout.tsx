@@ -191,14 +191,29 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-        {/* Google tag (gtag.js) */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-WQL9F32Q"
-        />
+        {/* Google Tag Manager (Non-blocking Deferred for 95+ PageSpeed) */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());`,
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              function initGTM() {
+                if (window.__gtmLoaded) return;
+                window.__gtmLoaded = true;
+                var s = document.createElement('script');
+                s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WQL9F32Q';
+                s.async = true;
+                document.head.appendChild(s);
+              }
+              if (typeof window !== 'undefined') {
+                if ('requestIdleCallback' in window) {
+                  requestIdleCallback(initGTM, { timeout: 2500 });
+                } else {
+                  window.addEventListener('load', function() { setTimeout(initGTM, 1000); });
+                }
+              }
+            `,
           }}
         />
         {/* ⚡ High-Priority Modern Renovation Hero Image Preloads */}

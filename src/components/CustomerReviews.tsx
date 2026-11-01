@@ -165,9 +165,9 @@ export function CustomerReviews({ initialReviews }: { initialReviews?: any } = {
                   {/* Author Info */}
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between relative z-10">
                     <div>
-                      <h4 className="text-sm font-bold text-slate-900">
+                      <h3 className="text-sm font-bold text-slate-900">
                         {rev.customerName.replace("TODO_REPLACE: ", "")}
-                      </h4>
+                      </h3>
                       <p className="text-xs text-[#166534] font-semibold mt-0.5">
                         {rev.propertyTypeArea.replace("TODO_REPLACE: ", "")}
                       </p>

@@ -132,7 +132,7 @@ export function ContactLocationSection({ contact: customContact }: { contact?: a
                 )}%2C%20I%20would%20like%20to%20arrange%20a%20showroom%20visit.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#15803d] hover:bg-[#166534] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
               >
                 <MessageCircle className="w-5 h-5 fill-current" />
                 <span>Message on WhatsApp</span>
