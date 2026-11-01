@@ -207,32 +207,19 @@ export default async function RootLayout({
                 document.head.appendChild(s);
               }
               if (typeof window !== 'undefined') {
-                if ('requestIdleCallback' in window) {
-                  requestIdleCallback(initGTM, { timeout: 2500 });
+                var triggerGTM = function() {
+                  setTimeout(initGTM, 1800);
+                };
+                if (document.readyState === 'complete') {
+                  triggerGTM();
                 } else {
-                  window.addEventListener('load', function() { setTimeout(initGTM, 1000); });
+                  window.addEventListener('load', triggerGTM, { once: true });
                 }
               }
             `,
           }}
         />
-        {/* ⚡ High-Priority Modern Renovation Hero Image Preloads */}
-        <link
-          rel="preload"
-          as="image"
-          type="image/webp"
-          href={mobileHeroUrl}
-          media="(max-width: 768px)"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="image"
-          type="image/webp"
-          href={desktopHeroUrl}
-          media="(min-width: 769px)"
-          fetchPriority="high"
-        />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

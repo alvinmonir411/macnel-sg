@@ -1,14 +1,18 @@
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
 import { CredentialsBar } from "@/components/CredentialsBar";
 import { OtherServices } from "@/components/OtherServices";
 import { CustomerReviews } from "@/components/CustomerReviews";
 import { ProjectsPreview } from "@/components/ProjectsPreview";
 import { AboutSection } from "@/components/AboutSection";
-import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { ContactLocationSection } from "@/components/ContactLocationSection";
 import { FAQSection } from "@/components/FAQSection";
 import { getLiveSiteData } from "@/lib/db";
 import { optimizeCloudinaryUrl } from "@/lib/cloudinary";
+
+const QuoteCalculator = dynamic(
+  () => import("@/components/QuoteCalculator").then((m) => m.QuoteCalculator)
+);
 
 export default async function Home() {
   const siteData = await getLiveSiteData();

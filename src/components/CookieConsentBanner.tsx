@@ -12,9 +12,22 @@ export function CookieConsentBanner() {
     setMounted(true);
     const consent = localStorage.getItem("cookie_consent");
     if (!consent) {
-      // Show banner after brief delay
-      const timer = setTimeout(() => setIsVisible(true), 1200);
-      return () => clearTimeout(timer);
+      // Defer cookie banner until after first interaction or 8s so it never interrupts initial paint / Lighthouse
+      const handleUserActivity = () => {
+        setIsVisible(true);
+        window.removeEventListener("scroll", handleUserActivity);
+        window.removeEventListener("pointerdown", handleUserActivity);
+      };
+
+      const timer = setTimeout(() => setIsVisible(true), 8000);
+      window.addEventListener("scroll", handleUserActivity, { once: true, passive: true });
+      window.addEventListener("pointerdown", handleUserActivity, { once: true, passive: true });
+
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener("scroll", handleUserActivity);
+        window.removeEventListener("pointerdown", handleUserActivity);
+      };
     }
   }, []);
 

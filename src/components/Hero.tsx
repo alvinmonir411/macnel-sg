@@ -95,9 +95,7 @@ export function Hero({
           decoding="async"
           width={768}
           height={1024}
-          className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-opacity duration-700 ${
-            videoLoaded ? "opacity-0" : "opacity-80 sm:opacity-90"
-          }`}
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none opacity-85 sm:opacity-90"
         />
       </picture>
 

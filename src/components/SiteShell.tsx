@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
-import { AiChatWidget } from "@/components/AiChatWidget";
-import { CookieConsentBanner } from "@/components/CookieConsentBanner";
+import dynamic from "next/dynamic";
+const AiChatWidget = dynamic(() => import("@/components/AiChatWidget").then((m) => m.AiChatWidget), { ssr: false });
+const CookieConsentBanner = dynamic(() => import("@/components/CookieConsentBanner").then((m) => m.CookieConsentBanner), { ssr: false });
 import { MarketingBodyScripts } from "@/components/MarketingScripts";
 import { setBatchRuntimeOverrides } from "@/lib/cloudinary";
 import { SiteSettingsProvider } from "@/contexts/SiteSettingsContext";
@@ -74,7 +75,13 @@ export function SiteShell({
       }
     };
 
-    fetchLiveImages();
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(fetchLiveImages, { timeout: 4000 });
+      } else {
+        setTimeout(fetchLiveImages, 3000);
+      }
+    }
 
     // Re-check when window regains focus (e.g. user switched back from admin dashboard)
     window.addEventListener("focus", fetchLiveImages);
