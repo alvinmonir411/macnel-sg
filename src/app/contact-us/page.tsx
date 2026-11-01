@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site";
 import { ContactUsClient } from "./ContactUsClient";
 import type { Metadata } from "next";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: `Contact Us | Licensed Renovation Contractor Singapore | ${siteConfig.name}`,

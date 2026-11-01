@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { getLiveSiteData } from "@/lib/db";
 import { ShieldCheck, Clock, Award, Phone, MessageCircle } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: `Book an Appointment | Free Site Inspection | ${siteConfig.name}`,

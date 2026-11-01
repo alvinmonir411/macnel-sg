@@ -49,6 +49,16 @@ export function LiveImage({
       return optimizeCloudinaryUrl(url, { width: 80, quality: "auto" });
     }
 
+    // Auto-optimize service page hero images to 1200px responsive WebP
+    if (slotId && slotId.toLowerCase().includes("hero")) {
+      return optimizeCloudinaryUrl(url, { width: 1200, quality: "auto" });
+    }
+
+    // Ensure all other Cloudinary images get auto-format (WebP/AVIF) and auto-quality
+    if (url && url.includes("res.cloudinary.com")) {
+      return optimizeCloudinaryUrl(url, { quality: "auto" });
+    }
+
     return url;
   };
 
@@ -83,12 +93,17 @@ export function LiveImage({
     };
   }, [src, slotId]);
 
+  const isHero = Boolean(slotId?.toLowerCase().includes("hero"));
+
   return (
     <img
       ref={imgRef}
       key={currentSrc}
       src={currentSrc}
       alt={alt}
+      loading={props.loading || (isHero ? "eager" : "lazy")}
+      fetchPriority={props.fetchPriority || (isHero ? "high" : "auto")}
+      decoding="async"
       className={className}
       style={style}
       {...props}

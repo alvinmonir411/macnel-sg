@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 import { LiveImage } from "@/components/LiveImage";
 import { getLiveSiteData } from "@/lib/db";
 import type { Metadata } from "next";
