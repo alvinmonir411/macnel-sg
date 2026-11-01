@@ -185,6 +185,22 @@ export default async function RootLayout({
       className={`${montserrat.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <head>
+        {/* Preload critical LCP Hero images for instant sub-second paint */}
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-modern-mobile.webp"
+          type="image/webp"
+          media="(max-width: 768px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-modern-desktop.webp"
+          type="image/webp"
+          media="(min-width: 769px)"
+        />
+
         {/* Preconnect to external CDNs for 0ms connection latency */}
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />

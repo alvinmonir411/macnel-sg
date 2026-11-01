@@ -171,6 +171,27 @@ export function Hero({
             </span>
           </div>
 
+          {/* 🔍 Interactive Instant Search Bar */}
+          <div className="w-full max-w-xl pt-0.5">
+            <button
+              type="button"
+              onClick={() => setSearchModalOpen(true)}
+              className="w-full text-left group flex items-center justify-between px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white/[0.12] hover:bg-white/[0.18] border border-white/20 hover:border-[#8CCB6B]/60 shadow-lg backdrop-blur-md transition-all cursor-pointer"
+              title="Search renovation services (⌘K or /)"
+            >
+              <span className="flex items-center gap-2.5 min-w-0">
+                <Search className="w-4 h-4 text-[#8CCB6B] group-hover:scale-110 transition-transform shrink-0" />
+                <span className="text-xs sm:text-sm text-slate-200 group-hover:text-white truncate">
+                  Search services (e.g. Bathroom, Tiling, False Ceiling, Painting)...
+                </span>
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-black/40 border border-white/20 text-[10px] font-mono text-[#8CCB6B] shrink-0">
+                <span>Search</span>
+                <kbd className="opacity-70">⌘K</kbd>
+              </span>
+            </button>
+          </div>
+
           {/* Primary Action Buttons: Clean 2-CTA Stack on Mobile */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1 w-full sm:w-auto">
             {/* WhatsApp CTA */}
