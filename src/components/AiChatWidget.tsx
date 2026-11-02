@@ -329,7 +329,7 @@ export function AiChatWidget() {
                 src="/macnel-icon.svg"
                 slotId="brand_logo"
                 alt="Renovation Contractor SG"
-                className="w-full h-full object-contain p-0.5"
+                className="w-full h-full object-contain"
               />
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-1.5 ring-white" />
             </div>

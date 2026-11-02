@@ -173,8 +173,8 @@ export function Header({ customContact, customCredentials }: { customContact?: a
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 lg:gap-5">
           {/* Brand Logo - Compact & Crisp */}
           <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group py-0.5">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border border-[#8CCB6B]/40 ring-1 ring-white/10 flex items-center justify-center bg-[#0B1A2E] shadow-[0_0_12px_rgba(140,203,107,0.25)] group-hover:border-[#8CCB6B] transition-all shrink-0">
-              <LiveImage src="/macnel-icon.svg" slotId="brand_logo" alt="Renovation Contractor SG" width={36} height={36} className="w-full h-full object-contain p-1" />
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-white/30 bg-white p-1 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:border-[#8CCB6B] transition-all shrink-0">
+              <LiveImage src="/macnel-icon.svg" slotId="brand_logo" alt="Renovation Contractor SG" width={44} height={44} className="w-full h-full object-contain" />
             </div>
             <div className="flex flex-col shrink-0">
               <span className="font-extrabold text-[13.5px] sm:text-[15.5px] tracking-tight text-white whitespace-nowrap drop-shadow-sm">

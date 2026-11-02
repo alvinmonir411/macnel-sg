@@ -38,8 +38,8 @@ export function Footer({ customContact, customCredentials }: { customContact?: a
           {/* Brand Info & Legal Entity */}
           <div>
             <Link href="/" className="flex items-center gap-3 mb-4 group">
-              <div className="w-11 h-11 rounded-xl overflow-hidden border border-[#8CCB6B]/40 flex items-center justify-center bg-[#0B1A2E] shadow group-hover:scale-105 transition-transform shrink-0">
-                <LiveImage src="/macnel-icon.svg" slotId="brand_logo" alt={name} className="w-full h-full object-contain p-1" />
+              <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/25 bg-white p-1.5 flex items-center justify-center shadow group-hover:scale-105 transition-transform shrink-0">
+                <LiveImage src="/macnel-icon.svg" slotId="brand_logo" alt={name} className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
