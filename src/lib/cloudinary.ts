@@ -76,6 +76,9 @@ export function optimizeCloudinaryUrl(
   if (width) transforms.push(`w_${width}`, "c_limit");
 
   const transformStr = transforms.join(",") + "/";
+  if (url.includes("/image/upload/e_trim/")) {
+    return url.replace("/image/upload/e_trim/", `/image/upload/e_trim/${transformStr}`);
+  }
   return url.replace("/image/upload/", `/image/upload/${transformStr}`);
 }
 

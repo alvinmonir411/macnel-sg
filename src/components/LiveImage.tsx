@@ -46,7 +46,7 @@ export function LiveImage({
 
     // Auto-optimize if this is brand_logo or icon to 80px thumbnail
     if (slotId === "brand_logo" || src.includes("icon") || src.includes("logo")) {
-      return optimizeCloudinaryUrl(url, { width: 80, quality: "auto" });
+      return optimizeCloudinaryUrl(url, { width: 240, quality: "auto" });
     }
 
     // Auto-optimize service page hero images to 1200px responsive WebP
