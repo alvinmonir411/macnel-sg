@@ -45,3 +45,4 @@ next-env.d.ts
 
 .vercel
 powershell.cmd
+.env*.local

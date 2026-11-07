@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
+import { LeadCapturePopup } from "@/components/LeadCapturePopup";
 import dynamic from "next/dynamic";
 const AiChatWidget = dynamic(() => import("@/components/AiChatWidget").then((m) => m.AiChatWidget), { ssr: false });
 const CookieConsentBanner = dynamic(() => import("@/components/CookieConsentBanner").then((m) => m.CookieConsentBanner), { ssr: false });
@@ -136,6 +137,7 @@ export function SiteShell({
       <FloatingCTA contact={siteData?.contact} />
       <AiChatWidget />
       <CookieConsentBanner />
+      <LeadCapturePopup />
     </SiteSettingsProvider>
   );
 }

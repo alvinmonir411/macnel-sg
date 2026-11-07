@@ -36,6 +36,16 @@ export interface InquiryRecord {
   source?: string;
 }
 
+export interface PopupLeadRecord {
+  id?: number;
+  phone: string;
+  email: string;
+  source?: string;
+  status?: string;
+  notes?: string;
+  created_at?: string;
+}
+
 export async function ensureCoreTables() {
   try {
     await sql`
@@ -71,6 +81,18 @@ export async function ensureCoreTables() {
         estimated_budget VARCHAR(100),
         message TEXT,
         source VARCHAR(100) DEFAULT 'website',
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS popup_leads (
+        id SERIAL PRIMARY KEY,
+        phone VARCHAR(50) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        source VARCHAR(100) DEFAULT 'website_popup',
+        status VARCHAR(50) DEFAULT 'new',
+        notes TEXT,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
       );
     `;
@@ -184,6 +206,161 @@ export async function deleteInquiry(id: number) {
     RETURNING *;
   `;
   return result[0];
+}
+
+export async function savePopupLead(lead: { phone: string; email: string; source?: string }) {
+  await ensureCoreTables();
+  let dbResult: any = null;
+
+  try {
+    const rows = await sql`
+      INSERT INTO popup_leads (
+        phone,
+        email,
+        source,
+        status
+      ) VALUES (
+        ${lead.phone},
+        ${lead.email},
+        ${lead.source || "website_popup"},
+        'new'
+      )
+      RETURNING *;
+    `;
+    dbResult = rows[0];
+  } catch (err) {
+    console.warn("Neon DB savePopupLead warning, saving to local backup:", err);
+  }
+
+  // Also mirror to inquiries table so it appears in unified inquiries tab
+  try {
+    await sql`
+      INSERT INTO inquiries (
+        name,
+        phone,
+        email,
+        service,
+        message,
+        source
+      ) VALUES (
+        'Popup Lead',
+        ${lead.phone},
+        ${lead.email},
+        'Website Consultation Popup',
+        'Lead captured via 2-second website consultation popup',
+        ${lead.source || "website_popup"}
+      );
+    `;
+  } catch {}
+
+  // Local JSON backup to guarantee zero lead loss
+  try {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const filePath = path.join(process.cwd(), "data", "popupLeads.json");
+    let leads: any[] = [];
+    try {
+      const content = await fs.readFile(filePath, "utf-8");
+      leads = JSON.parse(content);
+    } catch {}
+
+    const newLead = {
+      id: dbResult?.id || Date.now(),
+      phone: lead.phone,
+      email: lead.email,
+      source: lead.source || "website_popup",
+      status: "new",
+      notes: "",
+      created_at: new Date().toISOString(),
+    };
+
+    leads.unshift(newLead);
+    await fs.writeFile(filePath, JSON.stringify(leads, null, 2), "utf-8");
+    return dbResult || newLead;
+  } catch (e) {
+    console.error("Local backup write error:", e);
+    return dbResult || { id: Date.now(), ...lead, status: "new" };
+  }
+}
+
+export async function getPopupLeads(): Promise<PopupLeadRecord[]> {
+  await ensureCoreTables();
+  try {
+    const rows = await sql`
+      SELECT * FROM popup_leads ORDER BY created_at DESC LIMIT 500;
+    `;
+    if (rows && rows.length > 0) {
+      return rows as unknown as PopupLeadRecord[];
+    }
+  } catch (err) {
+    console.warn("Neon DB getPopupLeads fallback to local:", err);
+  }
+
+  // Fallback to local JSON file
+  try {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const filePath = path.join(process.cwd(), "data", "popupLeads.json");
+    const content = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(content);
+  } catch {
+    return [];
+  }
+}
+
+export async function updatePopupLead(id: number, updates: { status?: string; notes?: string }) {
+  await ensureCoreTables();
+  let dbResult: any = null;
+  try {
+    const rows = await sql`
+      UPDATE popup_leads
+      SET 
+        status = COALESCE(${updates.status ?? null}, status),
+        notes = COALESCE(${updates.notes ?? null}, notes)
+      WHERE id = ${id}
+      RETURNING *;
+    `;
+    dbResult = rows[0];
+  } catch (err) {
+    console.warn("Neon DB updatePopupLead warning:", err);
+  }
+
+  // Update local file backup
+  try {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const filePath = path.join(process.cwd(), "data", "popupLeads.json");
+    const content = await fs.readFile(filePath, "utf-8");
+    let leads: any[] = JSON.parse(content);
+    leads = leads.map((l) => (l.id === id ? { ...l, ...updates } : l));
+    await fs.writeFile(filePath, JSON.stringify(leads, null, 2), "utf-8");
+  } catch {}
+
+  return dbResult || { success: true };
+}
+
+export async function deletePopupLead(id: number) {
+  await ensureCoreTables();
+  try {
+    await sql`
+      DELETE FROM popup_leads WHERE id = ${id};
+    `;
+  } catch (err) {
+    console.warn("Neon DB deletePopupLead warning:", err);
+  }
+
+  // Remove from local file backup
+  try {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const filePath = path.join(process.cwd(), "data", "popupLeads.json");
+    const content = await fs.readFile(filePath, "utf-8");
+    let leads: any[] = JSON.parse(content);
+    leads = leads.filter((l) => l.id !== id);
+    await fs.writeFile(filePath, JSON.stringify(leads, null, 2), "utf-8");
+  } catch {}
+
+  return { success: true };
 }
 
 export async function getSettings() {

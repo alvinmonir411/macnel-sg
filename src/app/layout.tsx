@@ -70,9 +70,13 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/macnel-icon.svg",
-    shortcut: "/macnel-icon.svg",
-    apple: "/macnel-icon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "96x96" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 

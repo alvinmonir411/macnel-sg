@@ -52,6 +52,7 @@ import {
   Layers,
   ChevronRight,
   Menu,
+  Users,
 } from "lucide-react";
 
 // Types
@@ -953,6 +954,7 @@ export default function AdminDashboardPage() {
           <div className="flex lg:flex-1 overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto px-3 py-3 lg:py-4 gap-2 lg:block lg:space-y-1.5 no-scrollbar">
             {[
               { id: "overview", label: "Executive Overview", icon: LayoutDashboard },
+              { id: "leads", label: "Popup Leads", icon: Users, href: "/admin/leads" },
               { id: "bookings", label: "Bookings", badge: bookings.length, icon: Calendar },
               { id: "inquiries", label: "Leads & Inquiries", badge: inquiries.length, icon: Inbox },
               { id: "images", label: "Visual Image Manager (All Pages)", badge: `${imageSlots.length}`, icon: ImageIcon },
@@ -1277,6 +1279,13 @@ export default function AdminDashboardPage() {
 
                   <div className="space-y-2 pt-2">
                     {[
+                      {
+                        label: "Website Popup Leads",
+                        desc: "View, call, or WhatsApp captured visitor leads",
+                        href: "/admin/leads",
+                        icon: Users,
+                        color: "text-[#8CCB6B]",
+                      },
                       {
                         label: "Website Visual Image Manager",
                         desc: "Swap hero, trade services, and gallery photos",
