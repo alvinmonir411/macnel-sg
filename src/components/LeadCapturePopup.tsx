@@ -101,12 +101,13 @@ export function LeadCapturePopup() {
     const trimmedPhone = phone.trim();
     const trimmedEmail = email.trim();
 
-    if (!trimmedPhone || trimmedPhone.length < 6) {
-      setErrorMessage("Please enter a valid contact / WhatsApp number.");
+    // Both are optional, but at least one contact method must be provided to submit
+    if (!trimmedPhone && !trimmedEmail) {
+      setErrorMessage("Please enter either your Phone number or Email address.");
       return;
     }
 
-    if (!trimmedEmail || !trimmedEmail.includes("@") || !trimmedEmail.includes(".")) {
+    if (trimmedEmail && (!trimmedEmail.includes("@") || !trimmedEmail.includes("."))) {
       setErrorMessage("Please enter a valid email address.");
       return;
     }
@@ -224,9 +225,12 @@ export function LeadCapturePopup() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Phone Field */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                    Phone / WhatsApp Number <span className="text-[#E87722]">*</span>
-                  </label>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-bold text-slate-300">
+                      Phone / WhatsApp Number
+                    </label>
+                    <span className="text-[11px] text-slate-400 font-medium">Optional</span>
+                  </div>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                       <Phone className="w-4 h-4" />
@@ -236,7 +240,6 @@ export function LeadCapturePopup() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+65 8123 4567 / Your Phone"
-                      required
                       className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.07] border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#8CCB6B] focus:border-transparent transition-all"
                     />
                   </div>
@@ -244,9 +247,12 @@ export function LeadCapturePopup() {
 
                 {/* Email Field */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
-                    Email Address <span className="text-[#E87722]">*</span>
-                  </label>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-bold text-slate-300">
+                      Email Address
+                    </label>
+                    <span className="text-[11px] text-slate-400 font-medium">Optional</span>
+                  </div>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                       <Mail className="w-4 h-4" />
@@ -256,7 +262,6 @@ export function LeadCapturePopup() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@example.com"
-                      required
                       className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.07] border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#8CCB6B] focus:border-transparent transition-all"
                     />
                   </div>

@@ -15,17 +15,17 @@ export async function POST(request: Request) {
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const source = typeof body.source === "string" ? body.source.trim() : "website_popup";
 
-    // Validation: Phone and Email are required
-    if (!phone || phone.length < 6) {
+    // Both fields are optional, but at least one must be provided
+    if (!phone && !email) {
       return NextResponse.json(
-        { error: "A valid phone number is required." },
+        { error: "Please provide either a phone number or an email address." },
         { status: 400 }
       );
     }
 
-    if (!email || !email.includes("@") || !email.includes(".")) {
+    if (email && (!email.includes("@") || !email.includes("."))) {
       return NextResponse.json(
-        { error: "A valid email address is required." },
+        { error: "Please enter a valid email address." },
         { status: 400 }
       );
     }

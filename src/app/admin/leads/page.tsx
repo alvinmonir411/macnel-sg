@@ -462,20 +462,26 @@ export default function AdminLeadsPage() {
                     {/* Contact Details */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-mono font-bold text-base text-white tracking-wide">
-                          {lead.phone}
-                        </span>
-                        <button
-                          onClick={() => handleCopy(lead.phone, `phone-${lead.id}`)}
-                          className="p-1 rounded-md text-zinc-500 hover:text-white hover:bg-zinc-800"
-                          title="Copy Phone"
-                        >
-                          {copiedId === `phone-${lead.id}` ? (
-                            <Check className="w-3.5 h-3.5 text-emerald-400" />
-                          ) : (
-                            <Copy className="w-3.5 h-3.5" />
-                          )}
-                        </button>
+                        {lead.phone ? (
+                          <>
+                            <span className="font-mono font-bold text-base text-white tracking-wide">
+                              {lead.phone}
+                            </span>
+                            <button
+                              onClick={() => handleCopy(lead.phone, `phone-${lead.id}`)}
+                              className="p-1 rounded-md text-zinc-500 hover:text-white hover:bg-zinc-800"
+                              title="Copy Phone"
+                            >
+                              {copiedId === `phone-${lead.id}` ? (
+                                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                              ) : (
+                                <Copy className="w-3.5 h-3.5" />
+                              )}
+                            </button>
+                          </>
+                        ) : (
+                          <span className="text-xs text-zinc-500 italic">No phone provided</span>
+                        )}
 
                         {/* Status Badge Dropdown */}
                         <select
@@ -500,47 +506,57 @@ export default function AdminLeadsPage() {
 
                       <div className="flex items-center gap-2 text-xs text-zinc-400">
                         <Mail className="w-3.5 h-3.5 text-zinc-500" />
-                        <a
-                          href={`mailto:${lead.email}`}
-                          className="hover:text-white underline decoration-zinc-700"
-                        >
-                          {lead.email}
-                        </a>
-                        <button
-                          onClick={() => handleCopy(lead.email, `email-${lead.id}`)}
-                          className="p-0.5 rounded text-zinc-600 hover:text-white"
-                          title="Copy Email"
-                        >
-                          {copiedId === `email-${lead.id}` ? (
-                            <Check className="w-3 h-3 text-emerald-400" />
-                          ) : (
-                            <Copy className="w-3 h-3" />
-                          )}
-                        </button>
+                        {lead.email ? (
+                          <>
+                            <a
+                              href={`mailto:${lead.email}`}
+                              className="hover:text-white underline decoration-zinc-700"
+                            >
+                              {lead.email}
+                            </a>
+                            <button
+                              onClick={() => handleCopy(lead.email, `email-${lead.id}`)}
+                              className="p-0.5 rounded text-zinc-600 hover:text-white"
+                              title="Copy Email"
+                            >
+                              {copiedId === `email-${lead.id}` ? (
+                                <Check className="w-3 h-3 text-emerald-400" />
+                              ) : (
+                                <Copy className="w-3 h-3" />
+                              )}
+                            </button>
+                          </>
+                        ) : (
+                          <span className="text-zinc-500 italic">No email provided</span>
+                        )}
                       </div>
                     </div>
 
                     {/* Action Buttons */}
                     <div className="flex items-center gap-2">
-                      <a
-                        href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-                          `Hello, thank you for requesting a quotation with Renovation Contractor SG. Our master contractor is ready to discuss your project!`
-                        )}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="px-3.5 py-2 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366]/30 text-[#25D366] border border-[#25D366]/40 text-xs font-bold flex items-center gap-1.5 transition-colors"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5" />
-                        <span>WhatsApp</span>
-                      </a>
+                      {cleanPhone ? (
+                        <>
+                          <a
+                            href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(
+                              `Hello, thank you for requesting a quotation with Renovation Contractor SG. Our master contractor is ready to discuss your project!`
+                            )}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="px-3.5 py-2 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366]/30 text-[#25D366] border border-[#25D366]/40 text-xs font-bold flex items-center gap-1.5 transition-colors"
+                          >
+                            <MessageCircle className="w-3.5 h-3.5" />
+                            <span>WhatsApp</span>
+                          </a>
 
-                      <a
-                        href={`tel:${lead.phone}`}
-                        className="px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 text-xs font-bold flex items-center gap-1.5 transition-colors"
-                      >
-                        <Phone className="w-3.5 h-3.5" />
-                        <span>Call</span>
-                      </a>
+                          <a
+                            href={`tel:${lead.phone}`}
+                            className="px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 text-xs font-bold flex items-center gap-1.5 transition-colors"
+                          >
+                            <Phone className="w-3.5 h-3.5" />
+                            <span>Call</span>
+                          </a>
+                        </>
+                      ) : null}
 
                       <button
                         onClick={() => handleDeleteLead(lead.id)}

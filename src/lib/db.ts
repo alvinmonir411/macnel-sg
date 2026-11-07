@@ -208,11 +208,16 @@ export async function deleteInquiry(id: number) {
   return result[0];
 }
 
-export async function savePopupLead(lead: { phone: string; email: string; source?: string }) {
+export async function savePopupLead(lead: { phone?: string; email?: string; source?: string }) {
   await ensureCoreTables();
   let dbResult: any = null;
 
   try {
+    try {
+      await sql`ALTER TABLE popup_leads ALTER COLUMN phone DROP NOT NULL;`;
+      await sql`ALTER TABLE popup_leads ALTER COLUMN email DROP NOT NULL;`;
+    } catch {}
+
     const rows = await sql`
       INSERT INTO popup_leads (
         phone,
@@ -220,8 +225,8 @@ export async function savePopupLead(lead: { phone: string; email: string; source
         source,
         status
       ) VALUES (
-        ${lead.phone},
-        ${lead.email},
+        ${lead.phone || ""},
+        ${lead.email || ""},
         ${lead.source || "website_popup"},
         'new'
       )
@@ -244,10 +249,10 @@ export async function savePopupLead(lead: { phone: string; email: string; source
         source
       ) VALUES (
         'Popup Lead',
-        ${lead.phone},
-        ${lead.email},
+        ${lead.phone || "N/A"},
+        ${lead.email || ""},
         'Website Consultation Popup',
-        'Lead captured via 2-second website consultation popup',
+        'Lead captured via 1.5-second website consultation popup',
         ${lead.source || "website_popup"}
       );
     `;
@@ -266,8 +271,8 @@ export async function savePopupLead(lead: { phone: string; email: string; source
 
     const newLead = {
       id: dbResult?.id || Date.now(),
-      phone: lead.phone,
-      email: lead.email,
+      phone: lead.phone || "",
+      email: lead.email || "",
       source: lead.source || "website_popup",
       status: "new",
       notes: "",
