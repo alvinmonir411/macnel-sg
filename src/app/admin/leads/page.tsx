@@ -334,7 +334,7 @@ export default function AdminLeadsPage() {
               </span>
             </h1>
             <p className="text-[10px] text-zinc-400 hidden sm:block">
-              Captured via the 2-second visitor lead capture popup
+              Captured via the 5-second visitor lead capture popup
             </p>
           </div>
         </div>

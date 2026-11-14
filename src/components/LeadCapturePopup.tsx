@@ -69,10 +69,10 @@ export function LeadCapturePopup() {
       return;
     }
 
-    // Trigger popup exactly 1.5 seconds (1500ms) after page load
+    // Trigger popup after 5 seconds (5000ms) after page load
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 1500);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);

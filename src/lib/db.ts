@@ -252,7 +252,7 @@ export async function savePopupLead(lead: { phone?: string; email?: string; sour
         ${lead.phone || "N/A"},
         ${lead.email || ""},
         'Website Consultation Popup',
-        'Lead captured via 1.5-second website consultation popup',
+        'Lead captured via 5-second website consultation popup',
         ${lead.source || "website_popup"}
       );
     `;
