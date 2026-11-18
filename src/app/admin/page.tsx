@@ -224,6 +224,12 @@ export default function AdminDashboardPage() {
   // Filter states
   const [bookingFilter, setBookingFilter] = useState<string>("all");
   const [bookingSearch, setBookingSearch] = useState<string>("");
+  const [inquirySearch, setInquirySearch] = useState<string>("");
+  const [inquiryServiceFilter, setInquiryServiceFilter] = useState<string>("all");
+  const [inquiryPropertyFilter, setInquiryPropertyFilter] = useState<string>("all");
+  const [inquiryDatePreset, setInquiryDatePreset] = useState<string>("all");
+  const [inquiryStartDate, setInquiryStartDate] = useState<string>("");
+  const [inquiryEndDate, setInquiryEndDate] = useState<string>("");
   const [imageCategory, setImageCategory] = useState<string>("all");
   const [uploadingSlotId, setUploadingSlotId] = useState<string | null>(null);
   const [urlInputMap, setUrlInputMap] = useState<Record<string, string>>({});
@@ -786,18 +792,95 @@ export default function AdminDashboardPage() {
     });
   }, [bookings, bookingFilter, bookingSearch, globalSearch]);
 
-  // Filtered Inquiries
+  // Unique Inquiry Services and Properties for filter dropdowns
+  const uniqueInquiryServices = useMemo(() => {
+    const set = new Set<string>();
+    inquiries.forEach((i) => {
+      if (i.service) set.add(i.service);
+    });
+    return Array.from(set);
+  }, [inquiries]);
+
+  const uniqueInquiryProperties = useMemo(() => {
+    const set = new Set<string>();
+    inquiries.forEach((i) => {
+      if (i.property_type) set.add(i.property_type);
+    });
+    return Array.from(set);
+  }, [inquiries]);
+
+  // Filtered Inquiries with Comprehensive Date by Date and Type Filters
   const filteredInquiries = useMemo(() => {
-    const q = globalSearch.toLowerCase();
-    if (!q) return inquiries;
-    return inquiries.filter(
-      (i) =>
-        i.name.toLowerCase().includes(q) ||
-        i.phone.toLowerCase().includes(q) ||
-        i.service?.toLowerCase().includes(q) ||
-        i.message?.toLowerCase().includes(q)
-    );
-  }, [inquiries, globalSearch]);
+    const now = new Date();
+    const todayStr = now.toISOString().slice(0, 10);
+    const yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().slice(0, 10);
+    const sevenDaysAgo = new Date(now);
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const thirtyDaysAgo = new Date(now);
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    return inquiries.filter((inq) => {
+      // 1. Text Search Query
+      const q = (inquirySearch || globalSearch).toLowerCase().trim();
+      if (q) {
+        const matches =
+          inq.name.toLowerCase().includes(q) ||
+          inq.phone.toLowerCase().includes(q) ||
+          (inq.email || "").toLowerCase().includes(q) ||
+          (inq.service || "").toLowerCase().includes(q) ||
+          (inq.property_type || "").toLowerCase().includes(q) ||
+          (inq.message || "").toLowerCase().includes(q) ||
+          (inq.source || "").toLowerCase().includes(q);
+        if (!matches) return false;
+      }
+
+      // 2. Service Type Filter
+      if (inquiryServiceFilter !== "all" && inq.service !== inquiryServiceFilter) {
+        return false;
+      }
+
+      // 3. Property Type Filter
+      if (inquiryPropertyFilter !== "all" && inq.property_type !== inquiryPropertyFilter) {
+        return false;
+      }
+
+      // 4. Date by Date Filter
+      if (inq.created_at) {
+        const inqDate = new Date(inq.created_at);
+        const inqDateStr = inqDate.toISOString().slice(0, 10);
+
+        if (inquiryDatePreset === "today" && inqDateStr !== todayStr) return false;
+        if (inquiryDatePreset === "yesterday" && inqDateStr !== yesterdayStr) return false;
+        if (inquiryDatePreset === "last7" && inqDate < sevenDaysAgo) return false;
+        if (inquiryDatePreset === "last30" && inqDate < thirtyDaysAgo) return false;
+        if (inquiryDatePreset === "thisMonth") {
+          if (
+            inqDate.getFullYear() !== now.getFullYear() ||
+            inqDate.getMonth() !== now.getMonth()
+          ) {
+            return false;
+          }
+        }
+        if (inquiryDatePreset === "custom") {
+          if (inquiryStartDate && inqDateStr < inquiryStartDate) return false;
+          if (inquiryEndDate && inqDateStr > inquiryEndDate) return false;
+        }
+      }
+
+      return true;
+    });
+  }, [
+    inquiries,
+    globalSearch,
+    inquirySearch,
+    inquiryServiceFilter,
+    inquiryPropertyFilter,
+    inquiryDatePreset,
+    inquiryStartDate,
+    inquiryEndDate,
+  ]);
 
   // Filtered Image Slots
   const filteredImageSlots = useMemo(() => {
@@ -1544,19 +1627,181 @@ export default function AdminDashboardPage() {
             <div className="space-y-6">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-black text-white">Direct Quote Inquiries</h2>
+                  <h2 className="text-xl font-black text-white">Direct Quote Inquiries & Leads</h2>
                   <p className="text-xs text-zinc-400">
-                    Lead submissions from the website contact and calculator forms
+                    Lead submissions from the website contact and calculator forms ({inquiries.length} total)
                   </p>
                 </div>
 
-                <button
-                  onClick={exportInquiriesToCSV}
-                  className="px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs font-bold text-zinc-300 hover:text-white flex items-center gap-1.5 self-start md:self-auto transition-colors"
-                >
-                  <Download className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Export Inquiries CSV</span>
-                </button>
+                <div className="flex items-center gap-2 self-start md:self-auto">
+                  <Link
+                    href="/admin/leads"
+                    className="px-3.5 py-2 rounded-xl bg-[#8CCB6B]/20 hover:bg-[#8CCB6B]/30 text-[#8CCB6B] border border-[#8CCB6B]/40 text-xs font-bold flex items-center gap-1.5 transition-colors"
+                  >
+                    <Users className="w-3.5 h-3.5" />
+                    <span>Popup Leads Hub</span>
+                  </Link>
+
+                  <button
+                    onClick={exportInquiriesToCSV}
+                    className="px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-xs font-bold text-zinc-300 hover:text-white flex items-center gap-1.5 transition-colors"
+                  >
+                    <Download className="w-3.5 h-3.5 text-zinc-400" />
+                    <span>Export CSV ({filteredInquiries.length})</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* 🌟 Comprehensive Date by Date & Type Filter Strip */}
+              <div className="bg-[#0E0E0E] border border-zinc-800 rounded-3xl p-5 space-y-4">
+                {/* Search Bar */}
+                <div className="relative">
+                  <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    value={inquirySearch}
+                    onChange={(e) => setInquirySearch(e.target.value)}
+                    placeholder="Search inquiries by name, phone, email, message..."
+                    className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-colors"
+                  />
+                  {inquirySearch && (
+                    <button
+                      onClick={() => setInquirySearch("")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
+
+                {/* Date by Date Filters */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-zinc-400">
+                    <Calendar className="w-3.5 h-3.5 text-[#8CCB6B]" />
+                    <span>Date Filter (Date by Date):</span>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {[
+                      { id: "all", label: "All Time" },
+                      { id: "today", label: "Today" },
+                      { id: "yesterday", label: "Yesterday" },
+                      { id: "last7", label: "Last 7 Days" },
+                      { id: "last30", label: "Last 30 Days" },
+                      { id: "custom", label: "Custom Range / Specific Date" },
+                    ].map((p) => (
+                      <button
+                        key={p.id}
+                        onClick={() => {
+                          setInquiryDatePreset(p.id);
+                          if (p.id !== "custom") {
+                            setInquiryStartDate("");
+                            setInquiryEndDate("");
+                          }
+                        }}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                          inquiryDatePreset === p.id
+                            ? "bg-white text-black font-black shadow-md"
+                            : "bg-zinc-900 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-zinc-800"
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {inquiryDatePreset === "custom" && (
+                    <div className="pt-2 flex flex-wrap items-center gap-3 p-3 bg-zinc-950 rounded-2xl border border-zinc-800 animate-in fade-in duration-200">
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-zinc-400 font-semibold">From:</span>
+                        <input
+                          type="date"
+                          value={inquiryStartDate}
+                          onChange={(e) => setInquiryStartDate(e.target.value)}
+                          className="bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-white cursor-pointer"
+                        />
+                      </div>
+
+                      <div className="flex items-center gap-2 text-xs">
+                        <span className="text-zinc-400 font-semibold">To:</span>
+                        <input
+                          type="date"
+                          value={inquiryEndDate}
+                          onChange={(e) => setInquiryEndDate(e.target.value)}
+                          className="bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-white cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Service & Property Type Filters */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-zinc-800/80">
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                      Service Type
+                    </label>
+                    <select
+                      value={inquiryServiceFilter}
+                      onChange={(e) => setInquiryServiceFilter(e.target.value)}
+                      className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs font-bold text-zinc-200 focus:outline-none focus:border-zinc-600 cursor-pointer"
+                    >
+                      <option value="all">All Services ({inquiries.length})</option>
+                      {uniqueInquiryServices.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">
+                      Property Type
+                    </label>
+                    <select
+                      value={inquiryPropertyFilter}
+                      onChange={(e) => setInquiryPropertyFilter(e.target.value)}
+                      className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs font-bold text-zinc-200 focus:outline-none focus:border-zinc-600 cursor-pointer"
+                    >
+                      <option value="all">All Properties</option>
+                      {uniqueInquiryProperties.map((p) => (
+                        <option key={p} value={p}>
+                          {p}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Filter Summary & Reset */}
+                <div className="flex items-center justify-between pt-2 border-t border-zinc-800/80 text-xs text-zinc-400">
+                  <div>
+                    Showing <span className="font-bold text-white">{filteredInquiries.length}</span> of{" "}
+                    <span className="font-bold text-white">{inquiries.length}</span> inquiries
+                  </div>
+
+                  {(inquirySearch ||
+                    inquiryServiceFilter !== "all" ||
+                    inquiryPropertyFilter !== "all" ||
+                    inquiryDatePreset !== "all" ||
+                    inquiryStartDate ||
+                    inquiryEndDate) && (
+                    <button
+                      onClick={() => {
+                        setInquirySearch("");
+                        setInquiryServiceFilter("all");
+                        setInquiryPropertyFilter("all");
+                        setInquiryDatePreset("all");
+                        setInquiryStartDate("");
+                        setInquiryEndDate("");
+                      }}
+                      className="text-xs text-[#8CCB6B] hover:underline cursor-pointer"
+                    >
+                      Reset all filters
+                    </button>
+                  )}
+                </div>
               </div>
 
               {filteredInquiries.length === 0 ? (

@@ -186,6 +186,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${montserrat.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <head>
@@ -247,7 +248,7 @@ export default async function RootLayout({
         {/* Dynamic Marketing & Tracking Scripts (GA4, GTM, Meta Pixel, Custom Head) */}
         <MarketingHeadScripts marketing={siteData.marketing} />
       </head>
-      <body className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col font-sans bg-white text-[#0F172A]">
         <SiteShell
           siteData={{
             contact: siteData.contact,

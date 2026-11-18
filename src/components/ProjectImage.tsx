@@ -25,7 +25,12 @@ export function ProjectImage({
   sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
 }: ProjectImageProps) {
   const [hasError, setHasError] = useState(false);
-  const resolveSrc = () => {
+
+  // Deterministic server-safe baseline URL
+  const [activeSrc, setActiveSrc] = useState<string>(() => getCloudinaryUrl(src));
+
+  // Client-only override resolver
+  const resolveClientSrc = () => {
     if (typeof window !== "undefined" && src) {
       try {
         const raw = localStorage.getItem("site_images_latest_overrides");
@@ -38,18 +43,22 @@ export function ProjectImage({
     return getCloudinaryUrl(src);
   };
 
-  const [activeSrc, setActiveSrc] = useState<string>(() => resolveSrc());
-
-  // Sync when prop changes or on client hydration
+  // Sync client overrides post-hydration safely
   useEffect(() => {
-    setActiveSrc(resolveSrc());
+    const next = resolveClientSrc();
+    if (next) {
+      setActiveSrc(next);
+    }
     setHasError(false);
   }, [src]);
 
   // Listen to live instant updates triggered from dashboard without page refresh
   useEffect(() => {
     const handleLiveImageUpdate = () => {
-      setActiveSrc(resolveSrc());
+      const next = resolveClientSrc();
+      if (next) {
+        setActiveSrc(next);
+      }
       setHasError(false);
     };
 

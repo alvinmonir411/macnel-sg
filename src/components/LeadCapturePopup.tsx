@@ -57,19 +57,20 @@ export function LeadCapturePopup() {
       forceShow = searchParams.get("popup") === "true" || window.location.hash === "#popup";
     } catch {}
 
-    // Check Cookie: has this visitor already seen/dismissed the popup?
-    const hasSeenCookie = getCookie("macnel_lead_seen_v1");
+    // Check if already submitted in localStorage or dismissed in this session
     let hasSubmittedLocal = false;
+    let hasDismissedSession = false;
     try {
       hasSubmittedLocal = Boolean(localStorage.getItem("macnel_lead_submitted"));
+      hasDismissedSession = Boolean(sessionStorage.getItem("macnel_lead_popup_dismissed"));
     } catch {}
 
-    // If visitor has already seen the popup (cookie exists) and not in force mode, do not show again
-    if (!forceShow && (hasSeenCookie || hasSubmittedLocal)) {
+    // If already submitted or dismissed in current session (and not forced), do not trigger
+    if (!forceShow && (hasSubmittedLocal || hasDismissedSession)) {
       return;
     }
 
-    // Trigger popup after 5 seconds (5000ms) after page load
+    // Trigger popup exactly 5 seconds (5000ms) after user enters the website
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 5000);
@@ -90,8 +91,10 @@ export function LeadCapturePopup() {
 
   const handleDismiss = () => {
     setIsOpen(false);
-    // Set cookie for 7 days so the visitor only sees it once
-    setCookie("macnel_lead_seen_v1", "dismissed", 7);
+    try {
+      sessionStorage.setItem("macnel_lead_popup_dismissed", "true");
+    } catch {}
+    setCookie("macnel_lead_seen_v1", "dismissed", 1);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

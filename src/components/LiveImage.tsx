@@ -17,10 +17,30 @@ export function LiveImage({
   style,
   ...props
 }: LiveImageProps) {
-  const resolveUrl = () => {
+  // Deterministic server-safe baseline URL: identical on both server and client initial render
+  const getInitialUrl = () => {
+    let url = getCloudinaryUrl(src);
+
+    if (slotId === "brand_logo" || src.includes("icon") || src.includes("logo")) {
+      return optimizeCloudinaryUrl(url, { width: 240, quality: "auto" });
+    }
+
+    if (slotId && slotId.toLowerCase().includes("hero")) {
+      return optimizeCloudinaryUrl(url, { width: 1200, quality: "auto" });
+    }
+
+    if (url && url.includes("res.cloudinary.com")) {
+      return optimizeCloudinaryUrl(url, { quality: "auto" });
+    }
+
+    return url;
+  };
+
+  // Client-only URL resolution that safely incorporates localStorage and window overrides
+  const resolveClientUrl = () => {
     let url = "";
     if (typeof window !== "undefined") {
-      // 1. Direct synchronous localStorage read (instant cross-tab & hard refresh cache)
+      // 1. Direct synchronous localStorage read
       try {
         const raw = localStorage.getItem("site_images_latest_overrides");
         if (raw) {
@@ -44,17 +64,14 @@ export function LiveImage({
       url = getCloudinaryUrl(src);
     }
 
-    // Auto-optimize if this is brand_logo or icon to 80px thumbnail
     if (slotId === "brand_logo" || src.includes("icon") || src.includes("logo")) {
       return optimizeCloudinaryUrl(url, { width: 240, quality: "auto" });
     }
 
-    // Auto-optimize service page hero images to 1200px responsive WebP
     if (slotId && slotId.toLowerCase().includes("hero")) {
       return optimizeCloudinaryUrl(url, { width: 1200, quality: "auto" });
     }
 
-    // Ensure all other Cloudinary images get auto-format (WebP/AVIF) and auto-quality
     if (url && url.includes("res.cloudinary.com")) {
       return optimizeCloudinaryUrl(url, { quality: "auto" });
     }
@@ -62,19 +79,21 @@ export function LiveImage({
     return url;
   };
 
-  const [currentSrc, setCurrentSrc] = useState<string>(() => resolveUrl());
+  // Initial state uses purely deterministic URL to guarantee 0 SSR/client hydration mismatch
+  const [currentSrc, setCurrentSrc] = useState<string>(getInitialUrl);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
   const syncImage = () => {
-    const nextUrl = resolveUrl();
-    setCurrentSrc(nextUrl);
-    // Explicitly update native DOM attribute to defeat React hydration attribute suppression
-    if (imgRef.current && imgRef.current.src !== nextUrl) {
-      imgRef.current.src = nextUrl;
+    const nextUrl = resolveClientUrl();
+    if (nextUrl) {
+      setCurrentSrc(nextUrl);
+      if (imgRef.current && imgRef.current.src !== nextUrl) {
+        imgRef.current.src = nextUrl;
+      }
     }
   };
 
-  // Sync on mount and prop changes
+  // Sync client overrides post-hydration safely in useEffect
   useEffect(() => {
     syncImage();
   }, [src, slotId]);
@@ -106,6 +125,7 @@ export function LiveImage({
       decoding="async"
       className={className}
       style={style}
+      suppressHydrationWarning
       {...props}
     />
   );
