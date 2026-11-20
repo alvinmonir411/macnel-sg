@@ -183,7 +183,7 @@ export default async function AboutUsPage() {
             </p>
             <p className="text-base text-slate-600 leading-relaxed mb-6 font-normal">
               {siteConfig.name} was established to restore pure direct contractor craftsmanship. When you work with us, you deal
-              directly with our Founder, Managing Director, and master tradesmen responsible for your hacking, waterproofing, piping, tiling, electrical, and
+              directly with our Project Supervisor and master tradesmen responsible for your hacking, waterproofing, piping, tiling, electrical, and
               custom cabinetry.
             </p>
 
@@ -204,17 +204,17 @@ export default async function AboutUsPage() {
 
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-[#8CCB6B]/40 group">
             <LiveImage src={"/images/team/owner.jpg"}
-              alt="Renovation Contractor SG Founder & Managing Director on site"
+              alt="Renovation Contractor SG Project Supervisor on site"
               className="w-full h-[520px] object-cover object-top group-hover:scale-105 transition-transform duration-700"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#16263F]/95 via-[#16263F]/35 to-transparent flex flex-col justify-end p-8 text-white">
               <span className="text-xs uppercase font-bold text-[#A3E635] tracking-wider mb-1 flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#8CCB6B]" />
-                <span>Founder &amp; Managing Director On-Site</span>
+                <span>Project Supervisor On-Site</span>
               </span>
               <p className="text-xl font-bold">
-                Direct Hands-On Supervision from Founder to Handover
+                Direct Hands-On Supervision from Project Supervisor to Handover
               </p>
               <p className="text-xs text-slate-300 mt-2">
                 BCA Registered Contractor (CR06 / L1 Interior Decoration) · Compliance with BCA SS CP5, PUB Code of Practice, and HDB guidelines.

@@ -38,8 +38,8 @@ export function AboutSection({
     ? contextCreds.hdbLicense
     : (customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense);
   const founder = members?.[0] || {
-    name: "Managing Director & Founder",
-    role: "Managing Director & Lead Project Supervisor",
+    name: "Project Supervisor",
+    role: "Project Supervisor",
     experience: "12+ Years Singapore Renovation Specialist",
     credentials: "BCA Certified CoreTrade Specialist",
     bio: "Direct on-site supervision, plumbing & sanitary installations, structural works, and quality control from hacking to final handover.",
@@ -82,7 +82,7 @@ export function AboutSection({
               <ProjectImage
                 src={founder.photo}
                 alt={clean(founder.name)}
-                fallbackText="Founder on-site photo"
+                fallbackText="Project Supervisor on-site photo"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
@@ -124,7 +124,7 @@ export function AboutSection({
                   className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#15803d] hover:bg-[#166534] text-white font-bold text-xs shadow-md transition-all"
                 >
                   <MessageCircle className="w-4 h-4 fill-current" />
-                  <span>Chat with Founder</span>
+                  <span>Chat with Supervisor</span>
                 </a>
 
                 <a

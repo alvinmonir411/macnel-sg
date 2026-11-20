@@ -36,11 +36,11 @@
     {
       "id": "member-1",
       "isPlaceholder": false,
-      "name": "Managing Director & Founder",
-      "role": "Managing Director & Lead Project Supervisor",
+      "name": "Project Supervisor",
+      "role": "Project Supervisor",
       "experience": "BCA Certified Master Contractor",
       "credentials": "BCA Certified CoreTrade Specialist",
-      "bio": "Founder & Director of Renovation Contractor SG. Direct on-site supervision, plumbing & sanitary installations, structural works, and quality control from hacking to final handover.",
+      "bio": "Project Supervisor of Renovation Contractor SG. Direct on-site supervision, plumbing & sanitary installations, structural works, and quality control from hacking to final handover.",
       "photo": "/images/team/owner.jpg"
     }
   ]

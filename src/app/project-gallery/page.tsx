@@ -55,7 +55,7 @@ export default async function ProjectGalleryPage() {
             Need an Itemized Renovation Quotation for Your Property?
           </h2>
           <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
-            Consult directly with our on-site project directors. We provide free on-site floorplan
+            Consult directly with our on-site project supervisors. We provide free on-site floorplan
             measurements, HDB/condo advice, and itemized quotations with zero hidden variation buffers.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">

@@ -112,7 +112,7 @@ export default async function AboutPage() {
               Leadership &amp; Craft Masters
             </span>
             <h2 className="text-3xl font-extrabold text-[#0F172A]">
-              Project Directors &amp; In-House Specialists
+              Project Supervisors &amp; In-House Specialists
             </h2>
           </div>
 
@@ -143,7 +143,7 @@ export default async function AboutPage() {
                       </div>
                       {isFounder && (
                         <div className="absolute top-3 right-3 bg-[#16a34a] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
-                          Founder &amp; Owner
+                          Project Supervisor
                         </div>
                       )}
                     </div>

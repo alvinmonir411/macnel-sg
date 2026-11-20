@@ -261,7 +261,7 @@ async function ProjectDetailContent({ params }: PageProps) {
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-xl hover:scale-[1.02] transition-transform"
                 >
                   <MessageCircle className="w-4 h-4 fill-current" />
-                  <span>WhatsApp Project Director</span>
+                  <span>WhatsApp Project Supervisor</span>
                 </a>
               </div>
             </div>
