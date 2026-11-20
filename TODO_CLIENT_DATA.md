@@ -20,7 +20,7 @@ Use this checklist to replace all placeholder data with your official business i
 | **[x] Office / Showroom Address** | `contact.address` | Registered office or showroom address | `101 Kitchener Road, #02-13 Jalan Besar Plaza, Singapore 208511` |
 | **[x] Direct Call Hotline** | `contact.phonePrimary` | Primary phone call number | `+65 8653 1076` |
 | **[x] WhatsApp Hotline** | `contact.whatsapp` | Primary WhatsApp messaging number | `+65 8170 4063 (6581704063)` |
-| **[x] Owner / Founder Photo** | `public/images/team/owner.jpg` | Verified owner photo on About page | Configured on `/about` and `/about-us` |
+| **[x] Owner / Project Supervisor Photo** | `public/images/team/owner.jpg` | Verified owner photo on About page | Configured on `/about` and `/about-us` |
 | **[ ] Showroom Notice** | `contact.showroomNote` | Showroom visit instructions | `Showroom visits and material consultations available by appointment` |
 | **[ ] Google Maps Embed** | `contact.googleMapsEmbedUrl` | Google Maps `iframe` `src` URL for your address | Embed URL for Jalan Besar Plaza |
 | **[ ] Response Time** | `contact.quoteTurnaroundHours` | Number of hours to reply to quotes (e.g. `2` or `24`) | `2` |
@@ -72,7 +72,7 @@ Use this checklist to replace all placeholder data with your official business i
 | Item | Description | Action Required |
 |---|---|---|
 | **[ ] Company Story** | Founding background & philosophy | Replace `companyStory` with your true company founding story |
-| **[ ] Managing Director / Founder** | Name, role, years of experience, bio | Replace `members[0]` in `team.json` |
+| **[x] Project Supervisor** | Name, role, years of experience, bio | Configured in `team.json` & Neon DB |
 | **[ ] Senior Tiler / Masonry Lead** | Name, role, years of experience, bio | Replace `members[1]` in `team.json` |
 | **[ ] Carpentry Director** | Name, role, years of experience, bio | Replace `members[2]` in `team.json` |
 | **[ ] Leadership Photos** | Place profile photos in `/public/images/team/` | Update `photo` paths in `team.json` (or `<ProjectImage>` will show fallback) |

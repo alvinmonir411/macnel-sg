@@ -37,7 +37,7 @@ export function AboutSection({
   const hdbLicense = contextCreds?.hdbLicense !== undefined
     ? contextCreds.hdbLicense
     : (customCredentials?.hdbLicense !== undefined ? customCredentials.hdbLicense : siteConfig.hdbLicense);
-  const founder = members?.[0] || {
+  const leadSupervisor = members?.[0] || {
     name: "Project Supervisor",
     role: "Project Supervisor",
     experience: "12+ Years Singapore Renovation Specialist",
@@ -75,13 +75,13 @@ export function AboutSection({
 
         {/* Editorial Split Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-          {/* Left: Founder Editorial Portrait Card (5 cols) */}
+          {/* Left: Project Supervisor Editorial Portrait Card (5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl bg-white border border-slate-200/90 shadow-xl overflow-hidden group hover:border-[#16a34a]/40 transition-all duration-300">
             {/* Visual Photo Area */}
             <div className="relative aspect-[4/3] sm:aspect-[1/1] w-full bg-slate-950 overflow-hidden">
               <ProjectImage
-                src={founder.photo}
-                alt={clean(founder.name)}
+                src={leadSupervisor.photo}
+                alt={clean(leadSupervisor.name)}
                 fallbackText="Project Supervisor on-site photo"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -96,19 +96,19 @@ export function AboutSection({
               {/* Lower Overlay Credentials */}
               <div className="absolute bottom-4 left-4 right-4 text-white">
                 <span className="text-xs font-bold text-[#8CCB6B] block uppercase tracking-wider">
-                  {clean(founder.role)}
+                  {clean(leadSupervisor.role)}
                 </span>
                 <h3 className="text-xl sm:text-2xl font-black text-white mt-0.5">
-                  {clean(founder.name)}
+                  {clean(leadSupervisor.name)}
                 </h3>
                 <div className="mt-2 flex items-center gap-2 text-xs text-slate-200 font-medium">
                   <Award className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span>{clean(founder.credentials) || "BCA Certified CoreTrade Specialist"}</span>
+                  <span>{clean(leadSupervisor.credentials) || "BCA Certified CoreTrade Specialist"}</span>
                 </div>
               </div>
             </div>
 
-            {/* Founder Personal Note & Quick Contact */}
+            {/* Supervisor Personal Note & Quick Contact */}
             <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 bg-gradient-to-b from-white to-slate-50/70">
               <blockquote className="text-xs sm:text-sm text-slate-700 italic leading-relaxed border-l-2 border-[#16a34a] pl-3.5 mb-6">
                 &ldquo;When you trust us with your home, you don&rsquo;t deal with an interior design salesperson. You deal directly with me and our in-house master tilers, carpenters, and electricians.&rdquo;

@@ -118,12 +118,12 @@ export default async function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {members.map((m: any) => {
-              const isFounder = m.id === "member-1";
+              const isLeadMember = m.id === "member-1";
               return (
                 <div
                   key={m.id}
                   className={`group rounded-3xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 ${
-                    isFounder
+                    isLeadMember
                       ? "bg-white border-2 border-emerald-500/80 shadow-[0_4px_24px_rgba(22,163,74,0.12)]"
                       : "bg-white border border-slate-200"
                   }`}
@@ -141,7 +141,7 @@ export default async function AboutPage() {
                         <ShieldCheck className="w-3.5 h-3.5 text-[#16a34a]" />
                         <span>{clean(m.credentials)}</span>
                       </div>
-                      {isFounder && (
+                      {isLeadMember && (
                         <div className="absolute top-3 right-3 bg-[#16a34a] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md">
                           Project Supervisor
                         </div>
